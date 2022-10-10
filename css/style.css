@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);
 
 body {
-    background-color: #c7937d;
+    background-color: #FFFAFA;
     font-family: 'Oswald', sans-serif;
     margin: 0;
     overflow-x: hidden;
@@ -26,7 +26,7 @@ body {
 
 button {
     font-weight: 700;
-    color: #fff
+    color: #FFFAFA
 }
 
 button:hover {
@@ -86,7 +86,7 @@ header img {
     position: fixed;
     right: -100px;
     z-index: -1;
-    opacity: 0.5;
+    opacity: 0.25;
     height: fit-content;
 }
 
@@ -141,7 +141,7 @@ button {
 
 footer {
     /*    text-shadow: 2px 2px 2px #333;*/
-    border: 1px solid #cbbbab;
+    border: 1px solid #000;
     position: relative;
     left: 0px;
     bottom: 0px;
@@ -474,7 +474,7 @@ iframe {
 }
 
 .element.toggle {
-    background-color: #c7937d !important;
+    background-color: #FFFAFA !important;
     /* background-color: green !important; */
 }
 
@@ -510,12 +510,12 @@ iframe {
 .element.toggle #fontPlusBtn,
 .element.toggle #kontrast {
     color: #000;
-    background-color: #c7937d
+    background-color: #B8C2BC
 }
 
 .element.toggle footer {
 
-    background-color: #cbbbab
+    background-color: #fff
 }
 
 #fontMinusBtn,
