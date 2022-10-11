@@ -24,6 +24,10 @@ body {
     z-index: 1;
 }
 
+h1, h2 {
+    text-align: center;
+}
+
 button {
     font-weight: 700;
     color: #FFFAFA
@@ -316,7 +320,7 @@ footer ul li {
 
     .nazwa {
         font-size: 2em;
-        width: 100%f
+        width: 100%;
     }
 }
 
@@ -654,4 +658,13 @@ hr {
 
 #teatr {
     text-align: center;
+}
+
+.test-gallery {
+    text-align: center;
+}
+
+.opis {
+    width: 55%;
+    margin: auto;
 }
