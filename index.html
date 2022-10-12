@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/flag-icons.min.css">
     <link rel="stylesheet" href="css/material-photo-gallery.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
 
     <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
@@ -77,7 +77,9 @@
     <section class="text textDiv">
 
         <div tabindex="5">
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem, quia alias, deserunt maiores cupiditate quae quibusdam aperiam totam sapiente amet corporis provident vitae architecto tempore quaerat eveniet recusandae impedit ab.</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem, quia alias, deserunt maiores
+                cupiditate quae quibusdam aperiam totam sapiente amet corporis provident vitae architecto tempore
+                quaerat eveniet recusandae impedit ab.</p>
 
 
             </p>
@@ -97,7 +99,7 @@
 
                 <div class="button">
                     <form action="online.html" method="get" class="textDiv">
-                        <button tabindex="7">Oglądaj on-line<br></button>
+                        <button tabindex="7">Oglądaj on-line<br><i class="fa-solid fa-play"></i></button>
                     </form>
                     </div-->
                 </div>
@@ -111,85 +113,6 @@
             <p>Oto nasze niebo i masskowy świat... Nasza Masska przez 20 lat...</p>
         </div>
     </section-->
-
-    <script src="https://www.amcharts.com/lib/3/ammap.js" type="text/javascript"></script>
-    <script src="https://www.amcharts.com/lib/3/maps/js/worldHigh.js" type="text/javascript"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/dark.js" type="text/javascript"></script>
-    <div id="mapdiv"></div>
-    <script type="text/javascript">
-        var map = AmCharts.makeChart("mapdiv", {
-            type: "map",
-            theme: "dark",
-            projection: "mercator",
-            panEventsEnabled: true,
-            backgroundColor: "000000",
-            backgroundAlpha: 1,
-            zoomControl: {
-                zoomControlEnabled: true
-            },
-            dataProvider: {
-                map: "worldHigh",
-                getAreasFromMap: true,
-                areas: [{
-                        "id": "BY",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "FR",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "GE",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "DE",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "LT",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "PL",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "ES",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "UA",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "UZ",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "RU",
-                        "showAsSelected": true
-                    },
-                    {
-                        "id": "HU",
-                        "showAsSelected": true
-                    }
-                ]
-            },
-            areasSettings: {
-                autoZoom: true,
-                color: "#B4B4B7",
-                colorSolid: "#84ADE9",
-                selectedColor: "#84ADE9",
-                outlineColor: "#666666",
-                rollOverColor: "#9EC2F7",
-                rollOverOutlineColor: "#000000"
-            }
-        });
-    </script>
-
-
-
 
     <!-- FOOTER -->
 
@@ -206,8 +129,9 @@
                             src="img/implus.webp" alt="Grupa IM+" class="image" title="Grupa IM+"></a></li>
 
                 <li><img src="img/wsp.webp" alt="Współpraca" class="footer"></li>
-                <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img src="img/teatr-atelier.webp"
-                            alt="Teatr Atelier" title="Teatr Atelier" class="image"></a></li>
+                <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img
+                            src="img/teatr-atelier.webp" alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
+                </li>
                 <li><a href="https://pkps.org.pl" target="_blank" tabindex="12"><img src="img/pkps.webp"
                             alt="Polski Komitet Pomocy Społecznej" class="image"
                             title="Polski Komitet Pomocy Społecznej"></a></li>
@@ -216,13 +140,14 @@
                 <li><a href="https://www.sopot.pl" target="_blank" tabindex="14"><img src="img/sopot.webp"
                             alt="Miasto Sopot" class="image" title="Miasto Sopot"></a></li>
                 <li><a href="https://bart.sopot.pl" target="_blank" tabindex="15"><img src="img/bart.webp"
-                            alt="Bałtycka Agencja Turystyczna" title="Bałtycka Agencja Turystyczna" class="image" class="footer" tabindex="16"></a></li>
+                            alt="Bałtycka Agencja Turystyczna" title="Bałtycka Agencja Turystyczna" class="image"
+                            class="footer" tabindex="16"></a></li>
                 <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img src="img/atelier.webp"
-                                alt="Teatr Atelier" title="Teatr Atelier" class="image"></a></li>
+                            alt="Teatr Atelier" title="Teatr Atelier" class="image"></a></li>
                 <li><img src="img/miasto.webp" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
 
             </ul>
-            <div><img src="img/miasto.jpg" alt="Gmina Miasta Sopotu" id="mobile-gmina" class="footer"></div>
+            <div><img src="img/miasto.webp" alt="Gmina Miasta Sopotu" id="mobile-gmina" class="footer"></div>
             <div id="cookies">
                 <p><a href="cookies.html" id="privacy" tabindex="17">Polityka cookies/Cookie Policy</a></p>
             </div>
