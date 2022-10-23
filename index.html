@@ -26,7 +26,10 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/flag-icons.min.css">
     <link rel="stylesheet" href="css/material-photo-gallery.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="css/w3.css">
 
     <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
@@ -114,6 +117,25 @@
         </div>
     </section-->
 
+    <!--img src="img/collage.webp" alt="21 lat Masski" id="collage"-->
+    <h2 class="w3-center">21 lat Masski</h2>
+
+    <div class="w3-content w3-section" style="max-width:500px">
+
+        <img class="mySlides fade" src="img/plakaty/2013.webp" style="width:100%">
+        <img class="mySlides fade" src="img/plakaty/2014.webp" style="width:100%">
+        <img class="mySlides fade" src="img/plakaty/2015.webp" style="width:100%">
+        <img class="mySlides fade" src="img/plakaty/2016.webp" style="width:100%">
+        <img class="mySlides fade" src="img/plakaty/2017.webp" style="width:100%">
+        <img class="mySlides fade" src="img/plakaty/2018.webp" style="width:100%">
+        <img class="mySlides fade" src="img/plakaty/2019.webp" style="width:100%">
+        <img class="mySlides fade" src="img/plakaty/2020.webp" style="width:100%">
+        <img class="mySlides fade" src="img/plakaty/2021.webp" style="width:100%">
+    </div>
+    <div class="arrows">
+        <button class="w3-button w3-display-left" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="w3-button w3-display-right" onclick="plusSlides(1)">&#10095;</button>
+    </div>
     <!-- FOOTER -->
 
     <footer>
@@ -156,7 +178,6 @@
     </footer>
 
     <!-- SKRYPTY -->
-
     <script type="text/javascript" src="js/timer.js"></script>
     <script type="text/javascript" src="js/accessibility.js"></script>
 
@@ -189,6 +210,58 @@
         var galx = 0;
     </script>
     <script type="text/javascript" src="js/cookie.js"></script>
+    <script>
+        var myIndex = 0;
+        var x = document.getElementsByClassName("mySlides");
+        var auto;
+        carousel();
+
+        function carousel() {
+            var i;
+
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) {
+                myIndex = 1
+            }
+            x[myIndex - 1].style.display = "block";
+            var auto = setTimeout(function () {
+                carousel();
+            }, 4000); // Change image every 2 seconds
+            console.log(myIndex);
+        }
+
+        function plusSlides(n) {
+            showSlides(myIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(myIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+                myIndex = 1
+            }
+            if (n < 1) {
+                myIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[myIndex - 1].style.display = "block";
+            dots[myIndex - 1].className += " active";
+        }
+    </script>
+
 </body>
 
 </html>

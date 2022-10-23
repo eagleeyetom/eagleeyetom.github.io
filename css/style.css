@@ -1,670 +1,613 @@
-@import url(https://fonts.googleapis.com/css2?family=Oswald&display=swap);
+@import "https://fonts.googleapis.com/css2?family=Oswald&display=swap";
 
 body {
-    background-color: #FFFAFA;
-    font-family: 'Oswald', sans-serif;
-    margin: 0;
-    overflow-x: hidden;
+background-color:#FFFAFA;
+font-family:'Oswald',sans-serif;
+margin:0;
+overflow-x:hidden
 }
 
 @media only screen and (max-width:700px) {
-
-    body,
-    html {
-        overflow-x: hidden;
-        width: 100%;
-    }
+body,html {
+overflow-x:hidden;
+width:100%
+}
 }
 
 .accessibility {
-    float: right;
-    position: relative;
-    top: 0;
-    right: 2vw;
-    z-index: 1;
+float:right;
+position:relative;
+right:2vw;
+top:0;
+z-index:1
 }
 
-h1, h2 {
-    text-align: center;
+h1,h2 {
+text-align:center
 }
 
 button {
-    font-weight: 700;
-    color: #FFFAFA
+color:#FFFAFA;
+font-weight:700
 }
 
 button:hover {
-    background-color: #4a4541 !important
+background-color:#4a4541!important
 }
 
 #fontMinusBtn {
-    font-size: small
+font-size:small
 }
 
-#fontMinusBtn:hover,
-#fontPlusBtn:hover,
-#kontrast:hover {
-    background-color: #4a4541
+#fontMinusBtn:hover,#fontPlusBtn:hover,#kontrast:hover {
+background-color:#4a4541
 }
 
 #fontPlusBtn {
-    font-size: large
+font-size:large
 }
 
 .topbox {
-    position: relative;
+position:relative
 }
 
 header {
-    top: 0;
-    left: 0;
-    right: 0;
-    position: relative;
+left:0;
+position:relative;
+right:0;
+top:0
 }
 
-.column img,
-.opis,
-footer img,
-header img {
-    width: 100%
+.column img,.opis,footer img,header img {
+width:100%
 }
 
 .text {
-    color: #fff;
-    font-size: 18px;
-    padding: 16px 32px
+color:#fff;
+font-size:18px;
+padding:16px 32px
 }
 
 .tekst {
-    font-size: 1.3em;
-    color: #000;
-    line-height: 1.5;
-    margin: 0 2%;
-    text-align: justify
+color:#000;
+font-size:1.3em;
+line-height:1.5;
+margin:0 2%;
+text-align:justify
 }
 
 #head {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    position: fixed;
-    right: -100px;
-    z-index: -1;
-    opacity: 0.25;
-    height: fit-content;
+display:block;
+height:fit-content;
+margin-left:auto;
+margin-right:auto;
+opacity:.25;
+position:fixed;
+right:-100px;
+z-index:-1
 }
 
 @media screen and (max-width:700px) {
-    #head {
-        left: 0;
-    }
+#head {
+left:0
+}
 }
 
-/*.glowa img {
-    right: 0;
-    width: 20%;
-    padding-left: 5%
-}*/
-
-.flaga,
-.glowa img {
-    float: right
+.flaga,.glowa img {
+float:right
 }
 
-.button,
-.watch {
-    display: flex;
-    justify-content: center;
-    padding: 3%
+.button,.watch {
+display:flex;
+justify-content:center;
+padding:3%
 }
 
-.button button,
-button {
-    transition-duration: .4s;
-    cursor: pointer
+.button button,button {
+cursor:pointer;
+transition-duration:.4s
 }
 
 .button button {
-    background-color: #66685b;
-    border: 0;
-    padding: 15px 32px;
-    font-size: 32px;
-    border-radius: 12px
+background-color:#66685b;
+border:0;
+border-radius:12px;
+font-size:32px;
+padding:15px 32px
 }
 
-
 .button button a {
-    text-decoration: none;
-    color: #fff
+color:#fff;
+text-decoration:none
 }
 
 .button button:hover {
-    background: #4a4541
+background:#4a4541
 }
 
-
 footer {
-    /*    text-shadow: 2px 2px 2px #333;*/
-    border: 1px solid #000;
-    position: relative;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    margin-top: 2%;
+border:1px solid #000;
+bottom:0;
+left:0;
+margin-top:2%;
+position:relative;
+width:100%
 }
 
 footer ul {
-    display: flex;
-    list-style: none
+display:flex;
+list-style:none
 }
 
 #mobile-gmina {
-    display: none
+display:none
 }
 
 footer ul li {
-    padding-right: 1%
+padding-right:1%
 }
 
 @media screen and (max-width:700px) {
-    #gmina {
-        display: none
-    }
+#gmina {
+display:none
+}
 
-    footer ul {
-        padding-right: 10%
-    }
+footer ul {
+padding-right:10%
+}
 
-    #mobile-gmina {
-        display: block
-    }
+#mobile-gmina {
+display:block
+}
 }
 
 .image {
-    opacity: 1;
-    transition: .5s ease;
-    backface-visibility: hidden;
+backface-visibility:hidden;
+opacity:1;
+transition:.5s ease
 }
 
 .image:hover {
-    opacity: .3
+opacity:.3
 }
 
 .galeria div {
-    margin: auto
+margin:auto
 }
 
 .galeria a {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 3em
+font-size:3em;
+font-weight:700;
+text-decoration:none;
+text-transform:uppercase
 }
 
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px
+display:flex;
+flex-wrap:wrap;
+padding:0 4px
 }
 
-.column,
-.galeria a {
-    justify-content: center
+.column,.galeria a {
+justify-content:center
 }
 
 .column {
-    flex: 10%;
-    max-width: 25%;
-    padding: 0 4px;
-    text-align: center
+flex:10%;
+max-width:25%;
+padding:0 4px;
+text-align:center
 }
 
 .column img {
-    margin-top: 8px;
-    vertical-align: middle
+margin-top:8px;
+vertical-align:middle
 }
 
 @media screen and (max-width:700px) {
-    .column {
-        flex: 70%;
-        max-width: 70%
-    }
+.column {
+flex:70%;
+max-width:70%
+}
 }
 
 @media screen and (max-width:500px) {
-    .column {
-        flex: 100%;
-        max-width: 100%
-    }
+.column {
+flex:100%;
+max-width:100%
+}
 }
 
 .naglowek {
-    color: #000;
-    font-family: 'Oswald', sans-serif;
-    font-size: 28px;
-    text-transform: uppercase
+color:#000;
+font-family:'Oswald',sans-serif;
+font-size:28px;
+text-transform:uppercase
 }
 
 .column .teatr {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
+left:50%;
+position:absolute;
+top:50%;
+transform:translate(-50%,-50%)
 }
 
 .zdjecie {
-    position: relative;
-    text-align: center;
-    color: #fff;
-    max-width: 400px;
-    max-height: 200px;
-    padding: 3%;
-    font-size: .6em
+color:#fff;
+font-size:.6em;
+max-height:200px;
+max-width:400px;
+padding:3%;
+position:relative;
+text-align:center
 }
 
 @media screen and (max-width:1000px) {
-    .zdjecie {
-        font-size: .4em
-    }
+.zdjecie {
+font-size:.4em
+}
 }
 
-
 .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-transform: uppercase;
-    text-shadow: 3px 3px #000;
-    /*(-webkit-text-fill-color: white;
-    -webkit-text-stroke-color: black;
-    -webkit-text-stroke-width: .1px;*/
+left:50%;
+position:absolute;
+text-shadow:3px 3px #000;
+text-transform:uppercase;
+top:50%;
+transform:translate(-50%,-50%)
 }
 
 .zdjecie:hover {
-    opacity: .3
+opacity:.3
 }
 
 .sekcja {
-    font-size: 32px;
-    text-align: center;
-    padding-top: 3%;
-    text-decoration: underline
+font-size:32px;
+padding-top:3%;
+text-align:center;
+text-decoration:underline
 }
 
 .profil {
-    display: flex
+display:flex
 }
 
 @media screen and (max-width:700px) {
-    .profil {
-        display: block
-    }
+.profil {
+display:block
+}
 }
 
 .nazwa {
-    width: 50%;
-    text-align: center;
-    font-size: 3em;
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
-    align-items: center
+align-items:center;
+display:flex;
+font-size:3em;
+font-weight:700;
+justify-content:center;
+text-align:center;
+width:50%
 }
 
 @media screen and (max-width:1300px) and (min-width:700px) {
-    .m-p-g__thumbs-img {
-        width: 400px !important;
-        height: 267px !important
-    }
+.m-p-g__thumbs-img {
+height:267px!important;
+width:400px!important
+}
 
-    .nazwa {
-        font-size: 2em;
-        width: 100%;
-    }
+.nazwa {
+font-size:2em;
+width:100%
+}
 }
 
 @media screen and (max-width:700px) {
-    .nazwa {
-        font-size: 1.3em
-    }
+.nazwa {
+font-size:1.3em
+}
 
-    .nazwa ul li {
-        width: 100%;
-        margin-left: -5%
-    }
+.nazwa ul li {
+margin-left:-5%;
+width:100%
+}
 
-    .info ul li {
-        width: 88%
-    }
+.info ul li {
+width:88%
+}
 
-    .m-p-g__thumbs-img {
-        float: none !important;
-        width: 100% !important;
-        height: 100% !important
-    }
+.m-p-g__thumbs-img {
+float:none!important;
+height:100%!important;
+width:100%!important
+}
 }
 
 .nazwa ul {
-    list-style: none
+list-style:none
 }
 
 .tytul {
-    font-style: italic
+font-style:italic
 }
 
 .foto img {
-    margin: 3px
+margin:3px
 }
 
 @media screen and (max-width:700px) {
-
-    .foto,
-    .nazwa {
-        width: 100%
-    }
+.foto,.nazwa {
+width:100%
+}
 }
 
-.info,
-.opis ul {
-    text-align: justify
+.info,.opis ul {
+text-align:justify
 }
 
 .info {
-    font-size: 1.3em;
-    width: 80%;
-    margin: 2% auto;
-    line-height: 1.5
+font-size:1.3em;
+line-height:1.5;
+margin:2% auto;
+width:80%
 }
 
 .opis ul {
-    width: 100%
+width:100%
 }
 
 .yt {
-    text-align: center;
-    margin-top: 3%
+margin-top:3%;
+text-align:center
 }
 
 iframe {
-    border: none;
+border:none
 }
 
-#mtt,
-#exilium {
-    font-size: 24px
+#mtt,#exilium {
+font-size:24px
 }
 
 @media only screen and (max-width:700px) {
-    iframe {
-        width: 100%
-    }
+iframe {
+width:100%
+}
 
-    #fritsch {
-        font-size: 25px !important
-    }
+#fritsch {
+font-size:25px!important
+}
 
-    #mtt,
-    #exilium {
-        font-size: 20px !important
-    }
+#mtt,#exilium {
+font-size:20px!important
+}
 
-    .info {
-        width: 90%
-    }
+.info {
+width:90%
+}
 }
 
 #link {
-    color: #000;
-    font-size: 1.5em
+color:#000;
+font-size:1.5em
 }
 
 @media only screen and (min-width:700px) {
-    .pion {
-        height: 40% !important;
-        max-height: 40% !important;
-        width: 40% !important
-    }
+.pion {
+height:40%!important;
+max-height:40%!important;
+width:40%!important
+}
 
-    #fritsch,
-    #mtt,
-    #exilium {
-        font-size: .7em !important
-    }
+#fritsch,#mtt,#exilium {
+font-size:.7em!important
+}
 }
 
 .element {
-    background-color: #000;
-    transition-duration: .4s
+background-color:#000;
+transition-duration:.4s
 }
 
-.element #link,
-.element .info ol,
-.element .info ul,
-.element h2,
-.element h1,
-.element p,
-.element #privacy,
-.element #demo,
-.element .info a {
-    color: #fff
+.element #link,.element .info ol,.element .info ul,.element h2,.element h1,.element p,.element #privacy,.element #demo,.element .info a {
+color:#fff
 }
 
-.element .banner,
-.element .boll,
-.element .button button,
-.element #mapdiv,
-.element .footer,
-.element .head,
-.element .image,
-.element .nazwa .miasto,
-.element .nazwa .teatr,
-.element .nazwa .tytul,
-.element .sekcja h2,
-.element #simplecookienotification_v01 {
-    filter: invert(100%);
-    transition-duration: .4s
+.element .banner,.element .boll,.element .button button,.element #mapdiv,.element .footer,.element .head,.element .image,.element .nazwa .miasto,.element .nazwa .teatr,.element .nazwa .tytul,.element .sekcja h2,.element #simplecookienotification_v01 {
+filter:invert(100%);
+transition-duration:.4s
 }
 
-.element #fontMinusBtn,
-.element #fontPlusBtn,
-.element #kontrast {
-    color: #fff;
-    background-color: #000
+.element #fontMinusBtn,.element #fontPlusBtn,.element #kontrast {
+background-color:#000;
+color:#fff
 }
 
 .element footer {
-    background-color: #344454
+background-color:#344454
 }
 
 .element.toggle {
-    background-color: #FFFAFA !important;
-    /* background-color: green !important; */
+background-color:#FFFAFA!important
 }
 
-.element.toggle #link,
-.element.toggle .info ol,
-.element.toggle .info ul,
-.element.toggle h2,
-.element.toggle h1,
-.element.toggle p,
-.element.toggle #privacy,
-.element.toggle #demo,
-.element.toggle .info a {
-    color: #000;
+.element.toggle #link,.element.toggle .info ol,.element.toggle .info ul,.element.toggle h2,.element.toggle h1,.element.toggle p,.element.toggle #privacy,.element.toggle #demo,.element.toggle .info a {
+color:#000
 }
 
-.element.toggle .banner,
-.element.toggle .boll,
-.element.toggle .button button,
-.element.toggle .watch button,
-.element.toggle .footer,
-.element.toggle #mapdiv,
-.element.toggle .head,
-.element.toggle .image,
-.element.toggle .nazwa .miasto,
-.element.toggle .nazwa .teatr,
-.element.toggle .nazwa .tytul,
-.element.toggle .sekcja h2,
-.element.toggle #simplecookienotification_v01 {
-    filter: invert(0%)
+.element.toggle .banner,.element.toggle .boll,.element.toggle .button button,.element.toggle .watch button,.element.toggle .footer,.element.toggle #mapdiv,.element.toggle .head,.element.toggle .image,.element.toggle .nazwa .miasto,.element.toggle .nazwa .teatr,.element.toggle .nazwa .tytul,.element.toggle .sekcja h2,.element.toggle #simplecookienotification_v01 {
+filter:invert(0%)
 }
 
-.element.toggle #fontMinusBtn,
-.element.toggle #fontPlusBtn,
-.element.toggle #kontrast {
-    color: #000;
-    background-color: #B8C2BC
+.element.toggle #fontMinusBtn,.element.toggle #fontPlusBtn,.element.toggle #kontrast {
+background-color:#B8C2BC;
+color:#000
 }
 
 .element.toggle footer {
-
-    background-color: #fff
+background-color:#fff
 }
 
-#fontMinusBtn,
-#fontPlusBtn,
-#kontrast {
-    background-color: transparent !important;
+#fontMinusBtn,#fontPlusBtn,#kontrast {
+background-color:transparent!important
 }
 
 #kontrast {
-    position: relative;
-    vertical-align: middle;
-    cursor: pointer;
-    font-size: 1.5em
+cursor:pointer;
+font-size:1.5em;
+position:relative;
+vertical-align:middle
 }
 
 #blank {
-    width: 400px;
-    height: 200px
+height:200px;
+width:400px
 }
 
 .wcag {
-    border: 0
+border:0
 }
 
 hr {
-    border-bottom: 5px solid gray
+border-bottom:5px solid gray
 }
 
 @media only screen and (max-width:700px) {
-    .head {
-        padding-bottom: 4%
-    }
+.head {
+padding-bottom:4%
+}
 }
 
 .boll {
-    display: flex;
-    background-color: #fff;
-    text-align: center
+background-color:#fff;
+display:flex;
+text-align:center
 }
 
 .boll img {
-    max-width: 100%
+max-width:100%
 }
 
 #bck {
-    margin: 1%
+margin:1%
 }
 
 @media only screen and (max-width:700px) {
-    #bck {
-        margin: 0
-    }
+#bck {
+margin:0
+}
 }
 
-#demo,
-#demo-eng {
-    text-align: center;
-    color: #0606;
-    font-size: 4em;
-    margin-bottom: 0;
-    -webkit-text-fill-color: black;
-    -webkit-text-stroke-color: whitesmoke;
-    -webkit-text-stroke-width: 1px;
+#demo,#demo-eng {
+-webkit-text-fill-color:#000;
+-webkit-text-stroke-color:#f5f5f5;
+-webkit-text-stroke-width:1px;
+color:#0606;
+font-size:4em;
+margin-bottom:0;
+text-align:center
 }
 
 #cookies {
-    position: absolute;
-    bottom: 1%;
-    right: 1%;
+bottom:1%;
+position:absolute;
+right:1%
 }
 
 @media only screen and (max-width:700px) {
-    #cookies {
-        bottom: 10vw;
-    }
+#cookies {
+bottom:10vw
+}
 }
 
 #privacy {
-    text-decoration: none;
-    color: #000;
-    font-size: 15px;
+color:#000;
+font-size:15px;
+text-decoration:none
 }
 
-#privacy:hover,
-.element #privacy:hover {
-    color: saddlebrown;
+#privacy:hover,.element #privacy:hover {
+color:#8b4513
 }
 
 .element .info a:hover {
-    font-weight: 800;
+font-weight:800
 }
 
 #mapdiv {
-    width: 1000px;
-    height: 450px;
-    margin: auto;
-    width: 50%
+height:450px;
+margin:auto;
+width:1000px
 }
 
 @media only screen and (max-width:700px) {
-    #mapdiv {
-        width: 100%;
-    }
+#mapdiv {
+width:100%
+}
 }
 
 #youtube {
-    position: absolute;
-    float: inline-start;
-    text-align: center;
+float:inline-start;
+position:absolute;
+text-align:center
 }
 
 .animate-box {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    z-index: 999;
+bottom:0;
+left:0;
+position:fixed;
+right:0;
+top:0;
+z-index:999
 }
 
 .animate-box .left-part {
-    background: #c1272d;
-    width: 50%;
-    height: 100%;
-    transition: 3.0s;
-    float: left;
+background:#c1272d;
+float:left;
+height:100%;
+transition:3s;
+width:50%
 }
 
 .animate-box .right-part {
-    background: #c1272d;
-    width: 50%;
-    height: 100%;
-    transition: 3.0s;
-    float: right;
-}
-
-#teatr {
-    text-align: center;
-}
-
-.test-gallery {
-    text-align: center;
+background:#c1272d;
+float:right;
+height:100%;
+transition:3s;
+width:50%
 }
 
 .opis {
-    width: 55%;
-    margin: auto;
+margin:auto;
+width:55%
+}
+
+#collage {
+display:block;
+margin-left:auto;
+margin-right:auto;
+width:95%
+}
+
+#teatr,.test-gallery, .arrows {
+text-align:center
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 2s;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+.arrows {
+  margin-top: 25px;
 }
