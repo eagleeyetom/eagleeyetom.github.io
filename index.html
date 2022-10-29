@@ -51,8 +51,6 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-    <!--script src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script-->
 
 </head>
 
@@ -108,17 +106,10 @@
                 </div>
             </div>
     </section>
-    <!--section class="textDiv">
-        <div class="text">
-            <p><i>Daj człowiekowi mapę do Nieba, a odda Ci ją jutro... poprawioną...</i></p>
-            <p>- Fiodor Dostojewski</p>
 
-            <p>Oto nasze niebo i masskowy świat... Nasza Masska przez 20 lat...</p>
-        </div>
-    </section-->
-
-    <!--img src="img/collage.webp" alt="21 lat Masski" id="collage"-->
     <h2 class="w3-center">21 lat Masski</h2>
+
+    <!-- CAROUSEL-->
 
     <div class="w3-content w3-section" style="max-width:500px">
 
@@ -210,57 +201,7 @@
         var galx = 0;
     </script>
     <script type="text/javascript" src="js/cookie.js"></script>
-    <script>
-        var myIndex = 0;
-        var x = document.getElementsByClassName("mySlides");
-        var auto;
-        carousel();
-
-        function carousel() {
-            var i;
-
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            myIndex++;
-            if (myIndex > x.length) {
-                myIndex = 1
-            }
-            x[myIndex - 1].style.display = "block";
-            var auto = setTimeout(function () {
-                carousel();
-            }, 4000); // Change image every 2 seconds
-            console.log(myIndex);
-        }
-
-        function plusSlides(n) {
-            showSlides(myIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(myIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {
-                myIndex = 1
-            }
-            if (n < 1) {
-                myIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[myIndex - 1].style.display = "block";
-            dots[myIndex - 1].className += " active";
-        }
-    </script>
+    <script type="text/javascript" src="js/carousel.js"></script>
 
 </body>
 
