@@ -22,6 +22,7 @@ top:0;
 z-index:1
 }
 
+
 h1,h2 {
 text-align:center
 }
@@ -72,7 +73,7 @@ padding:16px 32px
 color:#000;
 font-size:1.3em;
 line-height:1.5;
-margin:0 2%;
+margin:0 10%;
 text-align:justify
 }
 
@@ -466,8 +467,37 @@ width:400px
 border:0
 }
 
-hr {
+#fontPlusBtn:hover {
+  background:white;
+    color:black;
+  border: 1px solid #ccc;
+}
+
+/*hr {
 border-bottom:5px solid gray
+}*/
+
+hr {
+  border: none;
+  border-top: 1px solid #333;
+  color: #333;
+  overflow: visible;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  width: 10%;
+  position: relative;
+  margin: 30px auto;
+}
+
+hr:after {
+  background: #fff;
+  font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f630";
+  padding: 0 4px;
+  position: relative;
+  top: -13px;
 }
 
 @media only screen and (max-width:700px) {
