@@ -33,7 +33,7 @@ font-weight:700
 }
 
 button:hover {
-background-color:#4a4541!important
+background-color:#4a4541!important;
 }
 
 #fontMinusBtn {
@@ -41,7 +41,8 @@ font-size:small
 }
 
 #fontMinusBtn:hover,#fontPlusBtn:hover,#kontrast:hover {
-background-color:#4a4541
+background-color:#4a4541!important;
+color:#fff!important
 }
 
 #fontPlusBtn {
@@ -466,13 +467,6 @@ width:400px
 .wcag {
 border:0
 }
-
-#fontPlusBtn:hover {
-  background:white;
-    color:black;
-  border: 1px solid #ccc;
-}
-
 /*hr {
 border-bottom:5px solid gray
 }*/
@@ -551,7 +545,7 @@ right:1%
 
 @media only screen and (max-width:700px) {
 #cookies {
-bottom:10vw
+bottom:8vw
   }
 }
 
