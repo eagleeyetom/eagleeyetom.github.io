@@ -11,7 +11,7 @@ overflow-x:hidden
 body,html {
 overflow-x:hidden;
 width:100%
-}
+  }
 }
 
 .accessibility {
@@ -92,7 +92,7 @@ z-index:-1
 @media screen and (max-width:700px) {
 #head {
 left:0
-}
+  }
 }
 
 .flaga,.glowa img {
@@ -160,7 +160,7 @@ padding-right:10%
 
 #mobile-gmina {
 display:block
-}
+  }
 }
 
 .image {
@@ -210,14 +210,14 @@ vertical-align:middle
 .column {
 flex:70%;
 max-width:70%
-}
+  }
 }
 
 @media screen and (max-width:500px) {
 .column {
 flex:100%;
 max-width:100%
-}
+  }
 }
 
 .naglowek {
@@ -247,7 +247,7 @@ text-align:center
 @media screen and (max-width:1000px) {
 .zdjecie {
 font-size:.4em
-}
+  }
 }
 
 .centered {
@@ -277,7 +277,7 @@ display:flex
 @media screen and (max-width:700px) {
 .profil {
 display:block
-}
+  }
 }
 
 .nazwa {
@@ -299,7 +299,7 @@ width:400px!important
 .nazwa {
 font-size:2em;
 width:100%
-}
+  }
 }
 
 @media screen and (max-width:700px) {
@@ -320,7 +320,7 @@ width:88%
 float:none!important;
 height:100%!important;
 width:100%!important
-}
+  }
 }
 
 .nazwa ul {
@@ -338,7 +338,7 @@ margin:3px
 @media screen and (max-width:700px) {
 .foto,.nazwa {
 width:100%
-}
+  }
 }
 
 .info,.opis ul {
@@ -346,7 +346,6 @@ text-align:justify
 }
 
 .info {
-font-size:1.3em;
 line-height:1.5;
 margin:2% auto;
 width:80%
@@ -384,7 +383,7 @@ font-size:20px!important
 
 .info {
 width:90%
-}
+  }
 }
 
 #link {
@@ -399,7 +398,7 @@ max-height:40%!important;
 width:40%!important
 }
 
-#fritsch,#mtt,#exilium {
+#fritsch,#mtt {
 font-size:.7em!important
 }
 }
@@ -409,11 +408,11 @@ background-color:#000;
 transition-duration:.4s
 }
 
-.element #link,.element .info ol,.element .info ul,.element h2,.element h1,.element p,.element #privacy,.element #demo,.element .info a {
+.element #link,.element .info ol,.element .info ul,.element h2,.element h1,.element p,.element #privacy,.element #demo,.element .info a, hr {
 color:#fff
 }
 
-.element .banner,.element .boll,.element .button button,.element #mapdiv,.element .footer,.element .head,.element .image,.element .nazwa .miasto,.element .nazwa .teatr,.element .nazwa .tytul,.element .sekcja h2,.element #simplecookienotification_v01 {
+.element .banner,.element .boll,.element .button button,.element #mapdiv,.element .footer,.element .head,.element .image,.element .nazwa .miasto,.element .nazwa .teatr,.element .nazwa .tytul,.element .sekcja h2,.element #simplecookienotification_v01, hr {
 filter:invert(100%);
 transition-duration:.4s
 }
@@ -431,11 +430,11 @@ background-color:#344454
 background-color:#FFFAFA!important
 }
 
-.element.toggle #link,.element.toggle .info ol,.element.toggle .info ul,.element.toggle h2,.element.toggle h1,.element.toggle p,.element.toggle #privacy,.element.toggle #demo,.element.toggle .info a {
+.element.toggle #link,.element.toggle .info ol,.element.toggle .info ul,.element.toggle h2,.element.toggle h1,.element.toggle p,.element.toggle #privacy,.element.toggle #demo,.element.toggle .info a, .element.toggle hr {
 color:#000
 }
 
-.element.toggle .banner,.element.toggle .boll,.element.toggle .button button,.element.toggle .watch button,.element.toggle .footer,.element.toggle #mapdiv,.element.toggle .head,.element.toggle .image,.element.toggle .nazwa .miasto,.element.toggle .nazwa .teatr,.element.toggle .nazwa .tytul,.element.toggle .sekcja h2,.element.toggle #simplecookienotification_v01 {
+.element.toggle .banner,.element.toggle .boll,.element.toggle .button button,.element.toggle .watch button,.element.toggle .footer,.element.toggle #mapdiv,.element.toggle .head,.element.toggle .image,.element.toggle .nazwa .miasto,.element.toggle .nazwa .teatr,.element.toggle .nazwa .tytul,.element.toggle .sekcja h2,.element.toggle #simplecookienotification_v01, .element.toggle hr {
 filter:invert(0%)
 }
 
@@ -467,9 +466,6 @@ width:400px
 .wcag {
 border:0
 }
-/*hr {
-border-bottom:5px solid gray
-}*/
 
 hr {
   border: none;
@@ -482,16 +478,23 @@ hr {
   width: 10%;
   position: relative;
   margin: 30px auto;
+  z-index: 1;
+}
+
+@media only screen and (max-width:700px) {
+  hr {
+    width: 50%;
+  }
 }
 
 hr:after {
-  background: #fff;
   font-family: "Font Awesome 5 Free";
     font-weight: 900;
     content: "\f630";
   padding: 0 4px;
   position: relative;
   top: -13px;
+  z-index: -1;
 }
 
 @media only screen and (max-width:700px) {
