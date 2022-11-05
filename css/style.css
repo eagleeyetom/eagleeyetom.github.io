@@ -82,7 +82,7 @@ header img {
   color: #000;
   font-size: 1.3em;
   line-height: 1.5;
-  margin: 0 10%;
+  margin: 0 5%;
   text-align: justify
 }
 
@@ -363,7 +363,7 @@ footer ul li {
 .info {
   line-height: 1.5;
   margin: 2% auto;
-  width: 80%
+  width: 90%
 }
 
 .opis ul {
@@ -406,7 +406,7 @@ iframe {
   }
 
   .info {
-    width: 90%
+    width: 95%
   }
 }
 
