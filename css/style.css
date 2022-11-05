@@ -373,14 +373,13 @@ footer ul li {
 .yt {
   margin-top: 3%;
   text-align: center;
-  overflow: hidden;
 }
 
-.yt iframe,
-.yt object,
-.yt embed {
-  top: 0;
-  left: 0;
+@media only screen and (max-width:700px) {
+.yt {
+  width: 95%;
+  margin: auto;
+}
 }
 
 iframe {
@@ -655,12 +654,6 @@ hr:after {
   #mapdiv {
     width: 100%
   }
-}
-
-#youtube {
-  float: inline-start;
-  position: absolute;
-  text-align: center
 }
 
 .animate-box {
