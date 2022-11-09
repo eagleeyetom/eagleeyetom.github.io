@@ -23,16 +23,14 @@
     <meta name="author" content="Paulina Lewandowska">
     <meta name="description"
         content="21. Przegląd Teatralny Masska On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
-
     <!-- STYLE -->
-
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/photoswipe.css">
     <link rel="stylesheet" type="text/css" href="css/flag-icons.min.css">
-    <link rel="stylesheet" href="css/material-photo-gallery.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- favicon -->
-
     <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
@@ -50,10 +48,11 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <!-- SKRYPTY -->
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="js/photoswipe-lightbox.umd.min.js"></script>
+    <script src="js/photoswipe.umd.min.js"></script>
 </head>
 
 
@@ -67,99 +66,99 @@
         <a href="en/fritsch-company.html"><span class="flag-icon flag-icon-gb"></span></a>
     </section>
 
+    <!-- TREŚĆ -->
+
     <section id="topbox">
         <header>
-            <a href="index.html" tabindex="4"><img src="img/banner.webp" alt="Przegląd Teatralny Masska"
-                    class="banner"></a>
+            <a href="index.html" tabindex="-1"><img src="img/banner.webp" class="banner"
+                    alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
-    <!-- TREŚĆ -->
-    <section class="textDiv">
-        <div class="profil">
-            <div class="nazwa" tabindex="5">
-                <ul>
-                    <li class="teatr">Fritsch Company</li>
-                    <li class="tytul">Stolik dla Trz3ch</li>
-                    <li class="miasto">Madryt</li>
-                    <li><span class="flag-icon flag-icon-es" title="Hiszpania"></span></li>
-                </ul>
-            </div>
-
-            <div class="m-p-g">
-                <div class="m-p-g__thumbs" data-google-image-layout data-max-height="350">
-                    <img src="img/teatr/fritsch-company/1_thumb.jpg" data-full="img/teatr/fritsch-company/1.jpg"
-                        class="m-p-g__thumbs-img" alt="Grupa krzyczących ludzi" tabindex="7" />
-                    <img src="img/teatr/fritsch-company/2_thumb.jpg" data-full="img/teatr/fritsch-company/2.jpg"
-                        class="m-p-g__thumbs-img" alt="Dwie osoby stojące na czerwonym tle" tabindex="6" />
-                    <img src="img/teatr/fritsch-company/3_thumb.jpg" data-full="img/teatr/fritsch-company/3.jpg"
-                        class="m-p-g__thumbs-img pion" alt="Taniec nowoczesny" tabindex="8" />
-
-                </div>
-                <div class="m-p-g__fullscreen"></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="textDiv">
-        <div class="opis">
-            <div class="info" tabindex="9">
-                <h2 id="established">Rok założenia:</h2>
-                <p>Fritsch Company profesjonalnie zajmuje się integracyjnym tańcem współczesnym. Grupa została
-                    zarejestrowana w profesjonalnym katalogu scenicznym -Dance to
-                    Scene- w 2017.</p>
-            </div>
-            <div class="info" tabindex="10">
-                <h2>Personel teatru:</h2>
-                <ul>
-                    <li>Dyrektor artystyczny: Gabriela Martín</li>
-                    <li>Asystent dyrektora i koordynatorzy prób: Esther Gómez i Pilar Muñoz</li>
-                    <li>Technik światła: Clemente Jiménez</li>
-                    <li>Koordynator wycieczek: Clarisa García</li>
-                    <li>Obsada sztuki nr 1: Germán Morales, Julen Serrano, Ana Fernández, Yael López, Ana Mª Alonso,
-                    </li>
-                    <li>Ramón Marcos, Adrian Saez, Esther Gomez.</li>
-                    <li>Obsada sztuki nr 2: Adrián López, Ricardo Cabrero, Carla Mouchet, Julia Antón, María Galisteo,
-                        Sebastien
-                        Thevenin, José Carlos de la Cal, Pilar Muñoz.</li>
-                    <li>Choreografowie: "Ballhaus" - Antonio Ruz; "Coffee" - Patricia Ruz i "Des/Envolts" - Amaya
-                        Galeote.</li>
-                </ul>
-            </div>
-            <div class="info" tabindex="11">
-                <h2>Opis teatru:</h2>
-                <p>
-                    Fritsch Company to profesjonalny zespół teatralno-taneczny obejmującym dwie obsady, w sumie 16
-                    wyselekcjonowanych tancerzy o wysokim potencjale artystycznym i zróżnicowanym stopniu
-                    niepełnosprawności. Ta
-                    firma dąży do integracji zatrudnionych ludzi z niepełnosprawności poprzez sztukę widowiskową.
-                    Fritsch ma na koncie pięć spektakli: Peerlees, Becoming, Table for Thre3, Programmed Obsolescence i
-                    Love does not last forever.
-                </p>
-            </div>
-            <div class="info" tabindex="13">
-                <h2>Opis spektaklu:</h2>
-                <p>
-                    STÓŁ DLA TRZ3CH trwa 60 minut. Składa się z trzech utworów współczesnego tańca: „Ballhaus” Antonio
-                    Ruza; „Kawa” Patricii Ruz i „Des/Envolts” Amayi Galeote.
-                </p>
-                <p>Trzech bardzo prestiżowych choreografów, w poszukiwaniu nowych wyzwań artystycznych decyduje się na
-                    szkolenie i wsparcie. Projekt, który prezentujemy to efekt długiej i uznanej trajektorii
-                    artystycznej choreografów, dyscypliny, swobody tworzenia i profesjonalizmu nszej grupy.
-                </p>
-            </div>
-            <div class="info">
-                <h2>Kontakt:</h2>
-                <p><a href="mailto:espectaculos@psicoballetmaiteleon.org" id="link"
-                        tabindex="14">espectaculos@psicoballetmaiteleon.org</a></p>
-            </div>
-        </div>
-    </section>
     <section>
-        <div class="yt">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/IJseJ6tzE14"
+        <div class="yt"><iframe width="560" height="315" src="https://www.youtube.com/embed/oBk1aEWLv6Q"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="textDiv">
+        <h1><i class="fa-solid fa-masks-theater"></i> Fritsch Company</h1>
+        <h2><span class="fa-solid fa-location-dot"></span> Madryt <span class="flag-icon flag-icon-es"
+                title="Hiszpania"></span>
+        </h2>
+        <h2><i class="fa-solid fa-arrow-right"></i> DOBRANIE</h2>
+        <h2><i class="fa-solid fa-clock"></i> 57 min.</h2>
+    </section>
+
+    <div class="test-gallery">
+        <a href="img/teatr/fritsch-company/photo/photo1.webp" data-pswp-width="1167" data-pswp-height="1750">
+            <img src="img/teatr/fritsch-company/thumb/photo1.webp" alt="" />
+        </a>
+        <a href="img/teatr/fritsch-company/photo/photo2.webp" data-pswp-width="1750" data-pswp-height="1167">
+            <img src="img/teatr/fritsch-company/thumb/photo2.webp" alt="" />
+        </a>
+        <a href="img/teatr/fritsch-company/photo/photo3.webp" data-pswp-width="1400" data-pswp-height="1750">
+            <img src="img/teatr/fritsch-company/thumb/photo3.webp" alt="" />
+        </a>
+    </div>
+
+    <!-- https://dummyimage.com/500x300/000000/fff 
+    -->
+
+
+    <section class="textDiv tekst">
+        <div class="info">
+            <p>
+
+                Relacje i powiązania, które badają nasze najskrytsze ja, nasze dzieciństwo, nasz sposób kochania,
+                pragnienia lub bycia.
+            </p>
+            <p>
+                DOBRANIE (BECOMING) rodzi się z procesów twórczych teatru, w których tancerze eksplorują ekspresyjny i
+                własny język ciała. Osadzone w różnych kontekstach, relacjach i osobistych więzach, dzieła łączą się ze
+                sobą niezależnie i składają się na przedstawienie.
+            </p>
+            <p>
+                DOBRANIE składa się z czterech elementów: MARE GEO, BUNKIER, ŚCIANA ZE ŚCIANĄ oraz 1+1=3
+            </p>
+
+            </p>
+            <hr>
+            <p>
+                <ul>
+                    <li>Dyrektor artystyczny: Gabriela Martín</li>
+                    <li>Światło i scenariusz: Clemente Jiménez</li>
+                    <li>Projektowanie ubrań: Josep Ahumada</li>
+                    <li>Koordynator wyjazdów: Clarisa García</li>
+                    <li>
+                        Tancerze i choreografowie: Germán Morales, Julen Serrano, Ana
+                        Fernández, Yael López, Ana Mª Alonso,
+                        Ramón Marcos, Adrian Sáez, Esther
+                        Gómez i Adrián López.
+                    </li>
+                </ul>
+
+            </p>
+            <hr>
+            <p>
+                Fritsch Company jest profesjonalnym zespołem teatralno-tanecznym obejmującym dwie obsady, w sumie 16
+                wybranych tancerzy, z niepełnosprawnością i bez niej. Firma dąży do integracji zatrudnienia osób z
+                niepełnosprawnością poprzez sztukę widowiskową.
+                Aby promować normalizację sceny inkluzywnej i jakość artystyczną firmy, w 2012 roku Fritsch Company
+                rozpoczęła projekt WSPÓŁPRACY ARTYSTYCZNEJ z profesjonalistami sceny, takimi jak m.in. Antonio Ruz,
+                Patricia Ruz, Amaya Galeote i Andrés Lima.
+            </p>
+            <hr>
+            <p>
+                Fritsch ma w trasie pięć spektakli: Peerlees, Becoming, Table for Thre3, Programmed Obsolescence i
+                Miłość nie trwa wiecznie.
+            </p>
+            <p>
+                <ul>
+                    <li>Contact: espectaculos@psicoballetmaiteleon.org</li>
+                </ul>
+            </p>
         </div>
     </section>
     <!-- FOOTER -->

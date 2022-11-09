@@ -439,8 +439,9 @@ iframe {
 .element h2,
 .element h1,
 .element p,
+.element li,
 .element #privacy,
-.element #demo,
+.element #timer,
 .element .info a,
 hr {
   color: #fff
@@ -484,8 +485,9 @@ hr {
 .element.toggle h2,
 .element.toggle h1,
 .element.toggle p,
+.element.toggle li,
 .element.toggle #privacy,
-.element.toggle #demo,
+.element.toggle #timer,
 .element.toggle .info a,
 .element.toggle hr {
   color: #000
@@ -597,8 +599,8 @@ hr:after {
   }
 }
 
-#demo,
-#demo-eng {
+#timer,
+#timer-eng {
   -webkit-text-fill-color: #000;
   -webkit-text-stroke-color: #f5f5f5;
   -webkit-text-stroke-width: 1px;
@@ -610,8 +612,8 @@ hr:after {
 
 @media only screen and (max-width:700px) {
 
-  #demo,
-  #demo-eng {
+  #timer,
+  #timer-eng {
     font-size: 1em;
     -webkit-text-stroke-width: 0.1px;
   }

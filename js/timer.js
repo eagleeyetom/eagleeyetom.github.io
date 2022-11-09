@@ -16,14 +16,54 @@ var x = setInterval(function () {
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     var za = "Startujemy za";
-    // Display the result in the element with id="demo"
+    var starting = "We are starting in";
+    // Display the result in the element with id="timer"
 
-    document.getElementById("demo").innerHTML = za + " " + days + " dni " + hours + " godz. " +
-        minutes + " min. " + seconds + " sek. ";
+    if (document.documentElement.lang === "pl") {
+        if (days == 1) {
+            document.getElementById("timer").innerHTML = `${za} ${days} dzień ${hours} godz. ${minutes} min. ${seconds} sek. `;
+        } else {
+            document.getElementById("timer").innerHTML = `${za} ${days} dni ${hours} godz. ${minutes} min. ${seconds} sek. `;
+        }
+        if (days == 0) {
+            document.getElementById("timer").innerHTML = `${za} ${hours} godz. ${minutes} min. ${seconds} sek. `;
+        }
+        if (hours == 0) {
+            document.getElementById("timer").innerHTML = `${za} ${minutes} min. ${seconds} sek. `;
+        }
+        if (minutes == 0) {
+            document.getElementById("timer").innerHTML = `${za} ${seconds} sek. `;
+        }
 
-    // If the count down is finished, write some text
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").style.display = "none";
+            var tag_id = document.getElementById('button');
+            tag_id.innerHTML = '<div class="button"><form action="online.html" method="get" class="textDiv"><button tabindex="7">Oglądaj on-line<br><i class="fa-solid fa-play"></i></button></form></div>';
+        }
+    }
+
+    if (document.documentElement.lang === "en") {
+        if (days == 1) {
+            document.getElementById("timer").innerHTML = `${starting} ${days} day(s) ${hours} hour(s) ${minutes} minute(s) ${seconds} second(s) `;
+        } else {
+            document.getElementById("timer").innerHTML = `${starting} ${days} day(s) ${hours} hour(s) ${minutes} minute(s) ${seconds} second(s) `;
+        }
+        if (days == 0) {
+            document.getElementById("timer").innerHTML = `${starting} ${hours} hour(s) ${minutes} min. ${seconds} sek. `;
+        }
+        if (hours == 0) {
+            document.getElementById("timer").innerHTML = `${starting} ${minutes} minute(s) ${seconds} second(s) `;
+        }
+        if (minutes == 0) {
+            document.getElementById("timer").innerHTML = `${starting} ${seconds}second(s) `;
+        }
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").style.display = "none";
+            var tag_id = document.getElementById('button');
+            tag_id.innerHTML = '<div class="button"><form action="online.html" method="get" class="textDiv"><button tabindex="7">Watch on-line<br><i class="fa-solid fa-play"></i></button></form></div>';
+        }
     }
 }, 1000);
