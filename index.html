@@ -61,12 +61,19 @@
 
     <!-- JQuery -->
 
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
-        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 
-<body id="resultDiv" class="element toggle">
+<body id="resultDiv" class="element toggle preload">
     <img id="head" class="image" src="img/head.webp">
+    <!-- Loader -->
+
+    <div class="container">
+        <div class="loader">
+        </div>
+    </div>
+
     <section class="accessibility textDiv">
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
@@ -168,7 +175,8 @@
                                 alt="Bałtycka Agencja Turystyczna" title="Bałtycka Agencja Turystyczna" class="image"
                                 class="footer" tabindex="16"></a></li>
                     <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img src="img/atelier.webp"
-                                alt="Teatr Atelier" title="Teatr Atelier" class="image"></a></li>
+                                alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
+                    </li>
                     <li><img src="img/miasto.webp" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
 
                 </ul>
@@ -182,14 +190,23 @@
     </section>
 
     <!-- SKRYPTY -->
-
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $(".container").fadeOut("slow");
+            $("body").removeClass("preload");
+        });
+    </script>
     <div id="simplecookienotification_v01"
-        style="display: block; z-index: 99999; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
+        style="display: block; z-index: 99; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
         <div style="padding:10px; margin-left:15px; margin-right:15px; font-size:14px; font-weight:normal;">
-            <span id="simplecookienotification_v01_powiadomienie">Ta strona używa plików cookie w celu usprawnienia i
-                ułatwienia dostępu do serwisu oraz prowadzenia danych statystycznych. Dalsze korzystanie z tej witryny
-                oznacza akceptację tego stanu rzeczy.<br>By continuing to browse or by clicking "Ok", you agree to the
-                storing of cookies on your device to enhance your site experience and for analytical purposes. To learn
+            <span id="simplecookienotification_v01_powiadomienie">Ta strona używa plików cookie w celu usprawnienia
+                i
+                ułatwienia dostępu do serwisu oraz prowadzenia danych statystycznych. Dalsze korzystanie z tej
+                witryny
+                oznacza akceptację tego stanu rzeczy.<br>By continuing to browse or by clicking "Ok", you agree to
+                the
+                storing of cookies on your device to enhance your site experience and for analytical purposes. To
+                learn
                 more about how we use the cookies, please see our cookies policy.</span><span
                 id="br_pc_title_html"><br></span>
             <a id="simplecookienotification_v01_polityka" href="https://masska.org/cookies.html"
@@ -213,7 +230,8 @@
     </script>
     <script type="text/javascript" src="js/timer.js"></script>
     <script type="text/javascript" src="js/cookie.js"></script>
-    <script type="text/javascript" src="js/carousel.js"></script>
+    <script type="text/javascript" src="js/carousel.js">
+    </script>
     <script type="text/javascript" src="js/accessibility.js"></script>
 
 </body>

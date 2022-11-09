@@ -25,16 +25,6 @@ var x = setInterval(function () {
         } else {
             document.getElementById("timer").innerHTML = `${za} ${days} dni ${hours} godz. ${minutes} min. ${seconds} sek. `;
         }
-        if (days == 0) {
-            document.getElementById("timer").innerHTML = `${za} ${hours} godz. ${minutes} min. ${seconds} sek. `;
-        }
-        if (hours == 0) {
-            document.getElementById("timer").innerHTML = `${za} ${minutes} min. ${seconds} sek. `;
-        }
-        if (minutes == 0) {
-            document.getElementById("timer").innerHTML = `${za} ${seconds} sek. `;
-        }
-
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("timer").style.display = "none";
@@ -48,15 +38,6 @@ var x = setInterval(function () {
             document.getElementById("timer").innerHTML = `${starting} ${days}d ${hours}h ${minutes}m ${seconds}s `;
         } else {
             document.getElementById("timer").innerHTML = `${starting} ${days}d ${hours}h ${minutes}m ${seconds}s `;
-        }
-        if (days == 0) {
-            document.getElementById("timer").innerHTML = `${starting} ${hours}h ${minutes}m ${seconds}s `;
-        }
-        if (hours == 0) {
-            document.getElementById("timer").innerHTML = `${starting} ${minutes}min. ${seconds}sec. `;
-        }
-        if (minutes == 0) {
-            document.getElementById("timer").innerHTML = `${starting} ${seconds}seconds `;
         }
 
         if (distance < 0) {

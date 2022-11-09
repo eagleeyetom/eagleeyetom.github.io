@@ -22,12 +22,14 @@
 
     <meta name="author" content="Paulina Lewandowska">
     <meta name="description"
-        content="20th theatrical overview - Masska on-line 2021 Sopot. 15-30 November 2021. Theatres of people with disabilities and youth theatres from Poland and other countries.">
+        content="21. Przegląd Teatralny Masska On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
     <!-- STYLE -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/photoswipe.css">
     <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
-    <link rel="stylesheet" href="../css/material-photo-gallery.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../img/favicon/apple-icon-60x60.png">
@@ -46,191 +48,151 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-
+    <!-- SKRYPTY -->
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="../js/photoswipe-lightbox.umd.min.js"></script>
+    <script src="../js/photoswipe.umd.min.js"></script>
 </head>
 
 <body id="resultDiv" class="element toggle">
     <img id="head" class="image" src="../img/head.webp">
+
     <section class="accessibility textDiv">
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
-        <a href="../rambazamba.html" tabindex="4"><span class="flag-icon flag-icon-pl"></span></a>
+        <a href="../rambazamba.html"><span class="flag-icon flag-icon-pl" tabindex="4"></span></a>
     </section>
+
+
+    <!-- TREŚĆ -->
 
     <section id="topbox">
         <header>
-            <a href="index.html" tabindex="-1"><img src="../img/banner.webp" alt="Masska theatrical overview"
-                    class="banner"></a>
+            <a href="index.html" tabindex="-1"><img src="../img/banner.webp" class="banner"
+                    alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
-    <section class="textDiv">
-        <div class="profil">
-            <div class="nazwa" tabindex="5">
-                <ul>
-                    <li class="teatr">Teatr RambaZamba</li>
-                    <li class="tytul">Golem</li>
-                    <li class="miasto">Berlin</li>
-                    <li><span class="flag-icon flag-icon-de" title="Germany"></span>
-                    </li>
-                </ul>
-            </div>
-            <div class="m-p-g">
-                <div class="m-p-g__thumbs" data-google-image-layout data-max-height="350">
-                    <img src="../img/teatr/rambazamba/1_thumb.jpg" data-full="../img/teatr/rambazamba/1.jpg"
-                        class="m-p-g__thumbs-img" alt="Fragment of the spectacle" tabindex="7" />
-                    <img src="../img/teatr/rambazamba/2_thumb.jpg" data-full="../img/teatr/rambazamba/2.jpg"
-                        class="m-p-g__thumbs-img" alt="Actors" tabindex="6" />
-                    <img src="../img/teatr/rambazamba/3_thumb.jpg" data-full="../img/teatr/rambazamba/3.jpg"
-                        class="m-p-g__thumbs-img" alt="Actors dancing" tabindex="8" />
-                </div>
 
-                <div class="m-p-g__fullscreen"></div>
-            </div>
-        </div>
-    </section>
-    <section class="textDiv">
-        <div class="opis">
-
-            <div class="info" tabindex="9">
-                <h2 id="established">Founded:</h2>
-                <p>1991</p>
-            </div>
-
-            <div class="info" tabindex="10">
-                <h2>Brief description of theatre:</h2>
-                <p>
-                    Since it’s founding in 1991 RambaZamba Theater company is considered one of the most important
-                    inclusive professional theaters in Europe.
-                </p>
-                <p>
-                    RambaZamba is an interdisciplinary experimental theatre which engages various social topics. The
-                    heart of our work derives from the unique artistic expression of our actors which lead us to new
-                    narrative forms: new ideas, solutions, images, scenic ways of telling stories that we otherwise
-                    would not think of or imagine.
-                </p>
-                <p>
-                    In addition to around 100 in-house performances per theatre season, the company occasionally engages
-                    audiences outside Berlin, performing across Germany and Europe.
-                </p>
-            </div>
-
-            <div class="info" tabindex="11">
-                <h2>Play summary:</h2>
-                <p>
-                    The RambaZamba Theater turns 30 (+1) this year! We are celebrating the birthday with the world
-                    premiere of “Golem”, a production that brings together artists from spoken theatre, deaf theatre,
-                    dance and music in order to combine the different artistic forms of expression into a polyphonic
-                    spectacle. Author Bernd Freytag, director Jacob Höhne, the RambaZamba Ensemble and numerous guests
-                    are jointly developing a piece about the human dream of becoming a creator. The uncontrollability of
-                    the newly created being, the golem, reflects our fears and dystopian fantasies.
-                </p>
-                <p>
-                    It is a mute, human-like being made of clay, often of enormous size and strength, and able to carry
-                    out orders. A golem isn't finished, it doesn't have a soul yet. As Heiner Müller wrote, it is not
-                    possible for him to die because the dead come back. This state creates space and freedom.
-                </p>
-                <p>
-                    In the dance theatre adaption Jacob Höhne and choreographer Sara Lu let the golem take tremendous
-                    and dynamic shapes, formed by a mixed-abled dance ensemble, Leo Solter’s driving live music and the
-                    astonishing visual art of Lillevan.
-                </p>
-
-                </p>
-            </div>
-            <div class="info">
-                <h2>Kontakt:</h2>
-                <p><a href="mailto:n.linnemann@rambazamba-theater.de" id="link"
-                        tabindex="12">n.linnemann@rambazamba-theater.de</a><br>
-                    <a href="mailto:m.geißelbrecht@rambazamba-theater.de" id="link"
-                        tabindex="13">m.geißelbrecht@rambazamba-theater.de</a>
-                </p>
-            </div>
-        </div>
-    </section>
     <section>
-        <div class="yt" tabindex="14">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/uHOQpb1So8A"
+        <div class="yt"><iframe width="560" height="315" src="https://www.youtube.com/embed/sclt2Pn4Kc4"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
         </div>
     </section>
+
+    <section class="textDiv">
+        <h1><i class="fa-solid fa-masks-theater"></i> RambaZamba Theater</h1>
+        <h2><span class="fa-solid fa-location-dot"></span> Berlin <span class="flag-icon flag-icon-de"
+                title="Germany"></span>
+            <h2><i class="fa-solid fa-arrow-right"></i> Die Ratten</h2>
+            <h2><i class="fa-solid fa-clock"></i> 90 min.</h2>
+    </section>
+    <section>
+        <div class="test-gallery">
+            <a href="../img/teatr/mtt/photo/photo1.webp" data-pswp-width="960" data-pswp-height="720">
+                <img src="../img/teatr/mtt/thumb/photo1.webp" alt="" />
+            </a>
+            <a href="../img/teatr/mtt/photo/photo2.webp" data-pswp-width="960" data-pswp-height="720">
+                <img src="../img/teatr/mtt/thumb/photo2.webp" alt="" />
+            </a>
+            <a href="../img/teatr/mtt/photo/photo3.webp" data-pswp-width="960" data-pswp-height="960">
+                <img src="../img/teatr/mtt/thumb/photo3.webp" alt="" />
+            </a>
+        </div>
+    </section>
+    <!-- https://dummyimage.com/500x300/000000/fff 
+        -->
+
+
+    <section class=" textDiv tekst">
+        <div class="info">
+            <p>
+                "(...) If you want to keep peace - protect the creation."<br>
+                - Benedict XVI
+
+            </p>
+            <hr>
+            <p>
+                September 21 was announced as the International Day of Peace.
+                The General Assembly of the United Nations recommended all nations to celebrate this day as a day of
+                universal reconciliation and ceased all warfare.
+                This special opportunity - a joint artistic and social project of disabled people, artists and academic
+                youth - the mysterion - "Day of Peace", we pay attention to one of the most sensitive social groups -
+                disabled people.
+
+            </p>
+            <hr>
+            <ul>
+                <li>Theater manager, composer: Snieguole Dikčiūtė</li>
+                <li>Directors: Saulius Čėpla, Saulė Degutytė, Vitalij Liubota, Sakalas Uždavinys</li>
+                <li>Artist: Audronė Brazauskaitė</li>
+            </ul>
+            <p>
+                <ul>
+                    <li>Established: 2015
+                    </li>
+                    <li>Contact: lzns(at)negalia.lt</li>
+                </ul>
+            </p>
+        </div>
+    </section>
+
+
     <!-- FOOTER -->
+
 
     <footer>
         <div>
             <ul>
-                <li><img src="../img/org.jpg" alt="Organizatorzy" class="footer"></li>
+                <li><img src="../img/org.webp" alt="Organizatorzy" class="footer"></li>
 
-                <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"
-                        tabindex="15"><img src="../img/snde.jpg" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"
+                <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank" tabindex="8"><img
+                            src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"
                             title="Stowarzyszenie Na Drodze Ekspresji"></a></li>
 
-                <li><a href="https://www.facebook.com/grupaimplus/" target="_blank" tabindex="16"><img
-                            src="../img/implus.jpg" alt="Grupa IM+" class="image" title="Grupa IM+"></a></li>
+                <li><a href="https://www.facebook.com/grupaimplus/" target="_blank" tabindex="9"><img
+                            src="../img/implus.webp" alt="Grupa IM+" class="image" title="Grupa IM+"></a></li>
 
-                <li><img src="../img/wsp.jpg" alt="Współpraca" class="footer"></li>
-                <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="17"><img
-                            src="../img/teatr-atelier.png" alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
+                <li><img src="../img/wsp.webp" alt="Współpraca" class="footer"></li>
+                <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img
+                            src="../img/teatr-atelier.webp" alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
                 </li>
-                <li><a href="https://mopssopot.pl" target="_blank" tabindex="18"><img src="../img/mops.jpg"
-                            alt="Miejski Ośrodek Pomocy Społecznej" title="Miejski Ośrodek Pomocy Społecznej"
-                            class="image"></a></li>
-                <li><a href="https://pkps.org.pl" target="_blank" tabindex="19"><img src="../img/pkps.jpg"
+                <li><a href="https://pkps.org.pl" target="_blank" tabindex="12"><img src="../img/pkps.webp"
                             alt="Polski Komitet Pomocy Społecznej" class="image"
                             title="Polski Komitet Pomocy Społecznej"></a></li>
-                <li><a href="https://www.sopot.pl" target="_blank" tabindex="20"><img src="../img/120.png"
+                <li><a href="https://www.sopot.pl" target="_blank" tabindex="13"><img src="../img/sopot120.webp"
                             alt="120 lat Sopotu" class="image" title="120 lat Sopotu"></a></li>
-                <li><a href="https://www.sopot.pl" target="_blank" tabindex="21"><img src="../img/sopot.jpg"
+                <li><a href="https://www.sopot.pl" target="_blank" tabindex="14"><img src="../img/sopot.webp"
                             alt="Miasto Sopot" class="image" title="Miasto Sopot"></a></li>
-                <li><a href="https://radiogdansk.pl" target="_blank" tabindex="22"><img src="../img/radio.png"
-                            alt="Radio Gdańsk" title="Radio Gdańsk" class="image" class="footer"></a></li>
-                <li><img src="../img/miasto.jpg" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
+                <li><a href="https://bart.sopot.pl" target="_blank" tabindex="15"><img src="../img/bart.webp"
+                            alt="Bałtycka Agencja Turystyczna" title="Bałtycka Agencja Turystyczna" class="image"
+                            class="footer" tabindex="16"></a></li>
+                <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img src="../img/atelier.webp"
+                            alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
+                </li>
+                <li><img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
 
             </ul>
-            <div><img src="../img/miasto.jpg" alt="Gmina Miasta Sopotu" id="mobile-gmina" class="footer"></div>
+            <div><img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" id="mobile-gmina" class="footer"></div>
             <div id="cookies">
-                <p><a href="cookies.html" id="privacy" tabindex="23">Cookie Policy</a></p>
+                <p><a href="cookies.html" id="privacy" tabindex="17">Polityka cookies/Cookie Policy</a></p>
             </div>
         </div>
-    </footer>
 
-    <div id="simplecookienotification_v01"
-        style="display: block; z-index: 99999; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
-        <div style="padding:10px; margin-left:15px; margin-right:15px; font-size:14px; font-weight:normal;">
-            <span id="simplecookienotification_v01_powiadomienie">Ta strona używa plików cookie w celu usprawnienia i
-                ułatwienia dostępu do serwisu oraz prowadzenia danych statystycznych. Dalsze korzystanie z tej witryny
-                oznacza akceptację tego stanu rzeczy.<br>By continuing to browse or by clicking "Ok", you agree to the
-                storing of cookies on your device to enhance your site experience and for analytical purposes. To learn
-                more about how we use the cookies, please see our cookies policy.</span><span
-                id="br_pc_title_html"><br></span>
-            <a id="simplecookienotification_v01_polityka" href="https://masska.org/cookies.html"
-                style="color: rgb(121, 85, 72);">Polityka Prywatności</a><span id="br_pc2_title_html"> &nbsp;&nbsp;
-            </span>
-            <a id="simplecookienotification_v01_info" href="http://jakwylaczyccookie.pl/jak-wylaczyc-pliki-cookies/"
-                style="color: rgb(121, 85, 72);">Jak wyłączyć cookies?</a><span id="br_pc3_title_html"> &nbsp;&nbsp;
-            </span>
-            <a id="simplecookienotification_v01_info2" href="https://nety.pl/cyberbezpieczenstwo"
-                style="color: rgb(121, 85, 72);">Cyberbezpieczeństwo</a>
-            <div id="jwc_hr1" style="height: 10px; display: none;"></div>
-            <a id="okbutton"
-                href="javascript:simplecookienotification_v01_create_cookie('simplecookienotification_v01',1,7);"
-                style="position: absolute; background: rgb(121, 85, 72); color: rgb(255, 255, 255); padding: 5px 15px; text-decoration: none; font-size: 12px; font-weight: normal; border: 0px solid rgb(239, 235, 233); border-radius: 0px; top: 5px; right: 5px;">OK</a>
-            <div id="jwc_hr2" style="height: 10px; display: none;"></div>
-        </div>
-    </div>
+    </footer>
     <!-- SKRYPTY -->
     <script type="text/javascript">
-        var galTable = new Array();
-        var galx = 0;
+        var lightbox = new PhotoSwipeLightbox({
+            gallery: '.test-gallery',
+            children: 'a',
+            // dynamic import is not supported in UMD version
+            pswpModule: PhotoSwipe
+        });
+        lightbox.init();
     </script>
-    <script type="text/javascript" src="../js/cookie.js"></script>
-    <script type="text/javascript" src="../js/material-photo-gallery.min.js"></script>
-    <script type="text/javascript" src="../js/mpg.js"></script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
 </body>
 
