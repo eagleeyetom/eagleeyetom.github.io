@@ -52,8 +52,8 @@
 
     <!-- JQuery -->
 
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -61,6 +61,14 @@
 
 <body id="resultDiv" class="element toggle">
     <img id="head" class="image" src="img/head.webp">
+
+    <!-- Loader -->
+
+    <div class="container">
+        <div class="loader">
+        </div>
+    </div>
+
     <section class="accessibility textDiv">
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
@@ -282,6 +290,12 @@
         </div>
     </div>
     <!-- SKRYPTY -->
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $(".container").fadeOut("slow");
+            $("body").removeClass("preload");
+        });
+    </script>
     <script type="text/javascript">
         var galTable = new Array();
         var galx = 0;
