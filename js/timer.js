@@ -45,18 +45,18 @@ var x = setInterval(function () {
 
     if (document.documentElement.lang === "en") {
         if (days == 1) {
-            document.getElementById("timer").innerHTML = `${starting} ${days} day(s) ${hours} hour(s) ${minutes} minute(s) ${seconds} second(s) `;
+            document.getElementById("timer").innerHTML = `${starting} ${days}d ${hours}h ${minutes}m ${seconds}s `;
         } else {
-            document.getElementById("timer").innerHTML = `${starting} ${days} day(s) ${hours} hour(s) ${minutes} minute(s) ${seconds} second(s) `;
+            document.getElementById("timer").innerHTML = `${starting} ${days}d ${hours}h ${minutes}m ${seconds}s `;
         }
         if (days == 0) {
-            document.getElementById("timer").innerHTML = `${starting} ${hours} hour(s) ${minutes} min. ${seconds} sek. `;
+            document.getElementById("timer").innerHTML = `${starting} ${hours}h ${minutes}m ${seconds}s `;
         }
         if (hours == 0) {
-            document.getElementById("timer").innerHTML = `${starting} ${minutes} minute(s) ${seconds} second(s) `;
+            document.getElementById("timer").innerHTML = `${starting} ${minutes}min. ${seconds}sec. `;
         }
         if (minutes == 0) {
-            document.getElementById("timer").innerHTML = `${starting} ${seconds}second(s) `;
+            document.getElementById("timer").innerHTML = `${starting} ${seconds}seconds `;
         }
 
         if (distance < 0) {

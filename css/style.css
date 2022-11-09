@@ -440,8 +440,6 @@ iframe {
 .element h1,
 .element p,
 .element li,
-.element #privacy,
-.element #timer,
 .element .info a,
 hr {
   color: #fff
@@ -459,6 +457,7 @@ hr {
 .element .nazwa .tytul,
 .element .sekcja h2,
 .element #simplecookienotification_v01,
+.element #timer,
 hr {
   filter: invert(100%);
   transition-duration: .4s
@@ -506,6 +505,7 @@ hr {
 .element.toggle .nazwa .tytul,
 .element.toggle .sekcja h2,
 .element.toggle #simplecookienotification_v01,
+.element.toggle #timer,
 .element.toggle hr {
   filter: invert(0%)
 }
@@ -614,7 +614,7 @@ hr:after {
 
   #timer,
   #timer-eng {
-    font-size: 1em;
+    font-size: 1.7em;
     -webkit-text-stroke-width: 0.1px;
   }
 }
