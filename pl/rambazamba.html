@@ -22,13 +22,15 @@
 
     <meta name="author" content="Paulina Lewandowska">
     <meta name="description"
-        content="Jubileuszowy 20. Przegląd teatralny Masska On-Line 2021 Sopot. 15-30.11.2020. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
+        content="21. Przegląd Teatralny Masska On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
     <!-- STYLE -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/photoswipe.css">
     <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
-    <link rel="stylesheet" href="../css/material-photo-gallery.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <!--favicon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../img/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../img/favicon/apple-icon-72x72.png">
@@ -46,10 +48,11 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-
+    <!-- SKRYPTY -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="../js/photoswipe-lightbox.umd.min.js"></script>
+    <script src="../js/photoswipe.umd.min.js"></script>
 </head>
 
 <!-- BODY -->
@@ -63,14 +66,17 @@
     <div class="container">
         <div class="loader">
         </div>
-    </div> <!-- ACCESSIBILITY -->
+    </div>
+
+    <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
-        </div>
         <button id="fontMinusBtn" class="wcag">A-</button>
         <button id="fontPlusBtn" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast"></button>
-        <a href="../en/rambazamba.html" tabindex="4"><span class="flag-icon flag-icon-gb" id="flag"></span></a>
+        <a href="../en/rambazamba.html"><span class="flag-icon flag-icon-gb" id="flag"></span></a>
     </section>
+
+
 
     <!-- TREŚĆ -->
 
@@ -81,92 +87,72 @@
             <a href="index.html"><img src="../img/banner.webp" class="banner" alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
-    <section class="textDiv">
-        <div class="profil">
-            <div class="nazwa" tabindex="5">
-                <ul>
-                    <li class="teatr">Teatr RambaZamba</li>
-                    <li class="tytul">Golem</li>
-                    <li class="miasto">Berlin</li>
-                    <li><span class="flag-icon flag-icon-de" title="Niemcy"></span>
-                    </li>
-                </ul>
-            </div>
 
-            <div class="m-p-g">
-                <div class="m-p-g__thumbs" data-google-image-layout data-max-height="350">
-                    <img src="../img/teatr/rambazamba/1_thumb.jpg" data-full="img/teatr/rambazamba/1.jpg"
-                        class="m-p-g__thumbs-img" alt="Fragment spektaklu" tabindex="7" />
-                    <img src="../img/teatr/rambazamba/2_thumb.jpg" data-full="img/teatr/rambazamba/2.jpg"
-                        class="m-p-g__thumbs-img" alt="Aktorzy spektaklu" tabindex="6" />
-                    <img src="../img/teatr/rambazamba/3_thumb.jpg" data-full="img/teatr/rambazamba/3.jpg"
-                        class="m-p-g__thumbs-img" alt="Taniec aktorów" tabindex="8" />
-
-                </div>
-
-                <div class="m-p-g__fullscreen"></div>
-            </div>
-        </div>
-    </section>
-    <section class="textDiv">
-        <div class="opis">
-
-            <div class="info" tabindex="9">
-                <h2 id="established">Rok założenia:</h2>
-                <p>1991</p>
-            </div>
-
-            <div class="info" tabindex="10">
-                <h2>Opis działalności teatru:</h2>
-                <p>Od momentu powstania w 1991 roku RambaZamba są uważani za jeden z najważniejszych inkluzywnych
-                    teatrów zawodowych w Europie.</p>
-
-                <p>RambaZamba to interdyscyplinarny teatr eksperymentalny, który angażuje różne tematy społeczne. Sedno
-                    naszej pracy wywodzi się z wyjątkowej ekspresji artystycznej naszych aktorów, która prowadzi nas do
-                    nowych form narracji: nowych pomysłów, rozwiązań, obrazów, scenicznych sposobów opowiadania
-                    historii, o których inaczej byśmy nie pomyśleli lub nie wyobrażali sobie.</p>
-
-                <p>Oprócz około 100 spektakli wewnętrznych w sezonie teatralnym, zespół od czasu do czasu angażuje
-                    publiczność poza Berlinem, występując w Niemczech i Europie.</p>
-            </div>
-
-            <div class="info" tabindex="11">
-                <h2>Opis Sztuki:</h2>
-                <p>
-                    Teatr RambaZamba kończy w tym roku 30 (+1) lat! Urodziny świętujemy światową premierą „Golema”,
-                    spektaklu, który skupia artystów teatru mówionego, teatru głuchych, tańca i muzyki, aby połączyć
-                    różne formy artystycznej ekspresji w polifoniczny spektakl. Autor Bernd Freytag, reżyser Jacob
-                    Höhne, zespół RambaZamba i liczni goście wspólnie pracują nad dziełem o ludzkim marzeniu o zostaniu
-                    twórcą. Niekontrolowalność nowo stworzonej istoty, golema, odzwierciedla nasze lęki i dystopijne
-                    fantazje.
-                </p>
-                <p>Golem jest niemą, podobną do człowieka istotą z gliny, często o ogromnych rozmiarach i sile, zdolną
-                    do
-                    wykonywania rozkazów. Golem nie jest skończony, nie ma jeszcze duszy. Jak napisał Heiner Müller, nie
-                    może umrzeć, ponieważ zmarli powracają. Ten stan stwarza przestrzeń i wolność.</p>
-                <p>
-                    W adaptacji teatru tańca Jacob Höhne i choreograf Sara Lu pozwolili golemowi przybrać ogromne i
-                    dynamiczne kształty, utworzone przez zespół taneczny o zróżnicowanych umiejętnościach, prowadzącą
-                    muzykę
-                    na żywo Leo Soltera i zadziwiającą sztukę wizualną Lillevan.
-                </p>
-            </div>
-            <div class="info">
-                <h2>Kontakt:</h2>
-                <p><a href="mailto:n.linnemann@rambazamba-theater.de" id="link"
-                        tabindex="12">n.linnemann@rambazamba-theater.de</a><br>
-                    <a href="mailto:m.geißelbrecht@rambazamba-theater.de" id="link"
-                        tabindex="13">m.geißelbrecht@rambazamba-theater.de</a>
-                </p>
-            </div>
-        </div>
-    </section>
+    <!-- YT -->
     <section>
-        <div class="yt" tabindex="14">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/uHOQpb1So8A"
+        <div class="yt">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0wxnfv9Wfv0"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- OPIS -->
+    <section class="textDiv">
+        <h1><i class="fa-solid fa-masks-theater"></i> Teatr RambaZamba</h1>
+        <h2><span class="fa-solid fa-location-dot"></span> Berlin <span class="flag-icon flag-icon-de"
+                title="Germany"></span>
+            <h2><i class="fa-solid fa-arrow-right"></i> Die Ratten</h2>
+            <h2><i class="fa-solid fa-clock"></i> 90 min.</h2>
+    </section>
+    <!-- GALERIA -->
+    <section>
+        <div class="test-gallery">
+            <a href="../img/teatr/rambazamba/photo/photo1.webp" data-pswp-width="1340" data-pswp-height="1340">
+                <img src="../img/teatr/rambazamba/thumb/photo1.webp" alt="" />
+            </a>
+            <a href="../img/teatr/rambazamba/photo/photo2.webp" data-pswp-width="1600" data-pswp-height="1066">
+                <img src="../img/teatr/rambazamba/thumb/photo2.webp" alt="" />
+            </a>
+            <a href="../img/teatr/rambazamba/photo/photo3.webp" data-pswp-width="1600" data-pswp-height="1066">
+                <img src="../img/teatr/rambazamba/thumb/photo3.webp" alt="" />
+            </a>
+        </div>
+    </section>
+
+    <section class=" textDiv tekst">
+        <div class="info">
+            <p>
+                „Szczury” („Die Ratten”) to najczęściej wystawiana sztuka Gerharta Hauptmanna. W tragicznej komedii
+                motywy życia zderzają się ze sobą i nadal są aktualne ponad sto lat po premierze. Chodzi o upragnioną
+                ciążę i niespełnione pragnienie posiadania dzieci, o zakazaną miłość i niesłychaną tęsknotę, o troskę i
+                emancypację, o bycie rodzicem – i wciąż na nowo o teatrze, o spojrzeniu na sztukę, życie i świat.
+            </p>
+            <div class="hr">
+                <span class="icon fa-solid fa-masks-theater"></span>
+            </div>
+            <p>
+                W tym niezwykłym teatrze partycypacja społeczna osób niepełnosprawnych przeżywana jest na co dzień i
+                znajduje swój niepowtarzalny, artystyczny wyraz w około 100 przedstawieniach odgrywanych podczas
+                pojedynczego sezonu. Teatr jest jedną z najbardziej znanych w kraju i za granicą scen teatru
+                inkluzywnego. Sercem teatru jest ponad 30 aktorów, którzy swoim humorem, energią i szczególną pasją
+                ogromnie wzbogacają każdy klasyczny utwór i każdy współczesny tekst, wykrzesując coś nowego. Ciągła
+                współpraca z młodymi, nowatorskimi i odważnymi reżyserami, choreografami, muzykami i autorami sprawia,
+                że teatr jest źródłem nowoczesnych, nonkonformistycznych i wymagających spektakli.
+
+            </p>
+            <div class="hr">
+                <span class="icon fa-solid fa-masks-theater"></span>
+            </div>
+            <p>
+
+                <span><i class="fa-solid fa-circle-plus"></i></span> 1990
+                <br>
+                <span><i class="fa-solid fa-envelope"></i></span> m.geisselbrecht(at)rambazamba-theater.de<br>
+                <span><i class="fa-solid fa-envelope"></i></span> n.linnemann@rambazamba-theater.de
+                </ul>
+            </p>
         </div>
     </section>
 
