@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
     <script>
@@ -15,21 +16,20 @@
         gtag('config', 'G-CKB0FYJDGK');
     </script>
 
+    <!-- META -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Masska Theatrical Overview - On-Line</title>
+    <title>Masska Przegląd Teatralny - On-Line</title>
     <meta name="author" content="Paulina Lewandowska">
     <meta name="description"
-        content="21st theatrical overview - Masska on-line 2022 Sopot. 14-30 November 2022. Theatres of people with disabilities and youth theatres from Poland and other countries.">
-
+        content="21. Przegląd Teatralny Masska On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/w3.css">
-
+    <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../img/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../img/favicon/apple-icon-72x72.png">
@@ -48,36 +48,37 @@
     <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- JQuery -->
+
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
+<!-- BODY -->
 
-<body id="resultDiv" class="element toggle preload">
+<body id="resultDiv" class="element toggle">
+
+    <!-- HEAD -->
+    <img id="head" class="image" src="../img/head.webp" alt="Logo Masski">
 
     <!-- Loader -->
 
-    <div class="container">
+    <!--div class="container">
         <div class="loader">
         </div>
-    </div>
-    <!-- HEAD -->
-    <img id="head" class="image" src="../img/head.webp" alt="Logo of Masska">
+    </div-->
     <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
-        <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
-        <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
-        <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
-        <a href="../pl/index.html"><span class="flag-icon flag-icon-pl" tabindex="4"></span></a>
+        <button id="fontMinusBtn" class="wcag">A-</button>
+        <button id="fontPlusBtn" class="wcag">A+</button>
+        <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast"></button>
+        <a href="../pl/index.html"><span class="flag-icon flag-icon-pl" id="flag"></span></a>
     </section>
-
-    <!-- TREŚĆ -->
 
     <!-- BANNER -->
 
     <section id="topbox">
         <header>
-            <a href="index.html" tabindex="-1"><img src="../img/banner.webp" class="banner"
-                    alt="Masska - Przegląd Teatralny"></a>
+            <a href="index.html"><img src="../img/banner.webp" class="banner" alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
 
@@ -85,18 +86,17 @@
 
     <section class="tekst textDiv">
 
-        <div tabindex="5">
+        <div>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem, quia alias, deserunt maiores
                 cupiditate quae quibusdam aperiam totam sapiente amet corporis provident vitae architecto tempore
                 quaerat eveniet recusandae impedit ab.</p>
-
-
-            </p>
         </div>
     </section>
+
     <!-- TIMER -->
+
     <section>
-        <div id="timer"></div>
+        <div id="timer" class="timer"></div>
     </section>
     <!-- YT -->
     <section>
@@ -104,13 +104,13 @@
             <iframe width="560" height="315" src="https://www.youtube.com/embed/U9eLEL2wL8g"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen tabindex="6"></iframe>
+                allowfullscreen></iframe>
         </div>
-        <!-- BUTTON-->
+        <!-- BUTTON -->
         <div id="button"></div>
     </section>
 
-    </section>
+
     <section class="textDiv">
         <h1 class="w3-center">21 years of Masska</h1>
     </section>
@@ -129,10 +129,10 @@
             <img class="mySlides fade" src="../img/plakaty/2020.webp" style="width:100%" alt="Masska 2020">
             <img class="mySlides fade" src="../img/plakaty/2021.webp" style="width:100%" alt="Masska 2021">
             <img class="mySlides fade" src="../img/plakaty/2022.webp" style="width:100%" alt="Masska 2022">
-        </div>../
+        </div>
         <div class="arrows">
-            <button tabindex="8" class="w3-button w3-display-left" onclick="plusSlides(-1)">&#10094;</button>
-            <button tabindex="9" class="w3-button w3-display-right" onclick="plusSlides(1)">&#10095;</button>
+            <button class="w3-button w3-display-left" onclick="plusSlides(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right" onclick="plusSlides(1)">&#10095;</button>
         </div>
     </section>
     <!-- FOOTER -->
@@ -142,40 +142,34 @@
                 <ul>
                     <li><img src="../img/org.webp" alt="Organizatorzy" class="footer"></li>
 
-                    <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"
-                            tabindex="8"><img src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji"
-                                class="image" title="Stowarzyszenie Na Drodze Ekspresji"></a></li>
+                    <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"><img
+                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a></li>
 
-                    <li><a href="https://www.facebook.com/grupaimplus/" target="_blank" tabindex="9"><img
-                                src="../img/implus.webp" alt="Grupa IM+" class="image" title="Grupa IM+"></a></li>
+                    <li><a href="https://www.facebook.com/grupaimplus/" target="_blank"><img src="../img/implus.webp"
+                                alt="Grupa IM+" class="image"></a></li>
 
                     <li><img src="../img/wsp.webp" alt="Współpraca" class="footer"></li>
-                    <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img
-                                src="../img/teatr-atelier.webp" alt="Teatr Atelier" title="Teatr Atelier"
-                                class="image"></a>
+                    <li><a href="https://www.teatratelier.pl" target="_blank"><img src="../img/teatr-atelier.webp"
+                                alt="Teatr Atelier" class="image"></a>
                     </li>
-                    <li><a href="https://pkps.org.pl" target="_blank" tabindex="12"><img src="../img/pkps.webp"
-                                alt="Polski Komitet Pomocy Społecznej" class="image"
-                                title="Polski Komitet Pomocy Społecznej"></a></li>
-                    <li><a href="https://www.sopot.pl" target="_blank" tabindex="13"><img src="../img/sopot120.webp"
-                                alt="120 lat Sopotu" class="image" title="120 lat Sopotu"></a></li>
-                    <li><a href="https://www.sopot.pl" target="_blank" tabindex="14"><img src="../img/sopot.webp"
-                                alt="Miasto Sopot" class="image" title="Miasto Sopot"></a></li>
-                    <li><a href="https://bart.sopot.pl" target="_blank" tabindex="15"><img src="../img/bart.webp"
-                                alt="Bałtycka Agencja Turystyczna" title="Bałtycka Agencja Turystyczna" class="image"
-                                class="footer" tabindex="16"></a></li>
-                    <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img
-                                src="../img/atelier.webp" alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
+                    <li><a href="https://pkps.org.pl" target="_blank"><img src="../img/pkps.webp"
+                                alt="Polski Komitet Pomocy Społecznej" class="image"></a></li>
+                    <li><img src="../img/sopot120.webp" alt="120 lat Sopotu" class="image"></li>
+                    <li><a href="https://www.sopot.pl" target="_blank"><img src="../img/sopot.webp" alt="Miasto Sopot"
+                                class="image"></a></li>
+                    <li><a href="https://bart.sopot.pl" target="_blank"><img src="../img/bart.webp"
+                                alt="Bałtycka Agencja Turystyczna" class="image"></a></li>
+                    <li><a href="https://www.teatratelier.pl" target="_blank"><img src="../img/atelier.webp"
+                                alt="Teatr Atelier" class="image"></a>
                     </li>
                     <li><img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
 
                 </ul>
                 <div><img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" id="mobile-gmina" class="footer"></div>
                 <div id="cookies">
-                    <p><a href="cookies.html" id="privacy" tabindex="17">Polityka cookies/Cookie Policy</a></p>
+                    <p><a href="cookies.html" id="privacy">Polityka cookies/Cookie Policy</a></p>
                 </div>
             </div>
-
         </footer>
     </section>
 
