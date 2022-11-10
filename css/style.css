@@ -463,7 +463,9 @@ hr {
 .element .sekcja h2,
 .element #simplecookienotification_v01,
 .element #timer,
-.element .hr {
+.element .hr,
+.element .arrow-left,
+.element .arrow-right {
   filter: invert(100%);
   transition-duration: .4s
 }
@@ -493,7 +495,8 @@ hr {
 .element.toggle #privacy,
 .element.toggle #timer,
 .element.toggle .info a,
-.element.toggle hr {
+.element.toggle hr
+{
   color: #000
 }
 
@@ -511,7 +514,9 @@ hr {
 .element.toggle .sekcja h2,
 .element.toggle #simplecookienotification_v01,
 .element.toggle #timer,
-.element.toggle .hr {
+.element.toggle .hr,
+.element.toggle .arrow-left,
+.element.toggle .arrow-right {
   filter: invert(0%)
 }
 
@@ -707,6 +712,41 @@ hr {
 
 .arrows {
   margin-top: 25px;
+}
+
+.carousel {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.arrow-left, .arrow-right {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  border: none;
+  color: #000;
+  background: none;
+}
+.arrow-left {
+  left: -50px;
+}
+.arrow-right {
+  right: -50px;
+}
+
+@media only screen and (max-width:700px) {
+  .arrow-left {
+    left: 0;
+  }
+  .arrow-right {
+    right: 0;
+  }
+  .arrow-left, .arrow-right {
+    text-shadow: 0 0 1px #fff;
+  }
 }
 /*
 .container {
