@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -14,22 +14,23 @@
 
         gtag('config', 'G-CKB0FYJDGK');
     </script>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Masska Theatrical Overview - On-Line</title>
+
+    <title>Mały Big Band - Masska On-Line</title>
+
     <meta name="author" content="Paulina Lewandowska">
     <meta name="description"
-        content="21st theatrical overview - Masska on-line 2022 Sopot. 14-30 November 2022. Theatres of people with disabilities and youth theatres from Poland and other countries.">
-
+        content="21. Przegląd Teatralny Masska On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
+    <!-- STYLE -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/photoswipe.css">
     <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="../css/w3.css">
-
+    <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../img/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../img/favicon/apple-icon-72x72.png">
@@ -47,25 +48,36 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
+    <!-- SKRYPTY -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="../js/photoswipe-lightbox.umd.min.js"></script>
+    <script src="../js/photoswipe.umd.min.js"></script>
 </head>
 
+<!-- BODY -->
+
 <body id="resultDiv" class="element toggle">
+    <!-- HEAD -->
     <img id="head" class="image" src="../img/head.webp">
-    <!-- ACCESSIBILITY -->
-    <section class="accessibility textDiv">
+
+    <!-- LOADER -->
+
+    <div class="container">
+        <div class="loader">
         </div>
+    </div>    <!-- ACCESSIBILITY -->  
+  <section class="accessibility textDiv">
+    </div>
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
-        <a href="../pl/index.html"><span class="flag-icon flag-icon-pl" tabindex="4"></span></a>
+        <a href="../en/maly-big-band.html"><span class="flag-icon flag-icon-gb" tabindex="4"></span></a>
     </section>
 
     <!-- TREŚĆ -->
 
-    <!-- BANNER -->
+        <!-- BANNER -->
 
     <section id="topbox">
         <header>
@@ -73,64 +85,88 @@
                     alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
+    <!-- YT -->
+    <section>
+        <div class="yt"><iframe width="560" height="315" src="https://www.youtube.com/embed/FBCgGvyZjQg"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </section>
 
-    <!-- TEKST -->
+    <!-- OPIS -->
+    <section class="textDiv">
+        <h1><i class="fa-solid fa-masks-theater"></i> Mały Big Band</h1>
+        <h2><span class="fa-solid fa-location-dot"></span> Łódź <span class="flag-icon flag-icon-pl"
+                title="Polska"></span>
+        </h2>
+        <h2><i class="fa-solid fa-arrow-right"></i> „20-latki – Przed nami siódme niebo”</h2>
+        <h2><i class="fa-solid fa-clock"></i> 12 min.</h2>
+    </section>
+        <!-- GALERIA -->
+    <section>
+        <div class="test-gallery">
+            <a href="../img/teatr/maly-big-band/photo/photo1.webp" data-pswp-width="3840" data-pswp-height="2160">
+                <img src="../img/teatr/maly-big-band/thumb/photo1.webp" alt="" />
+            </a>
+            <a href="../img/teatr/maly-big-band/photo/photo2.webp" data-pswp-width="3840" data-pswp-height="2160">
+                <img src="../img/teatr/maly-big-band/thumb/photo2.webp" alt="" />
+            </a>
+            <a href="../img/teatr/maly-big-band/photo/photo3.webp" data-pswp-width="3840" data-pswp-height="2160">
+                <img src="../img/teatr/maly-big-band/thumb/photo3.webp" alt="" />
+            </a>
+        </div>
+    </section>
+    <!-- https://dummyimage.com/500x300/000000/fff 
+    -->
 
-    <section class="tekst textDiv">
+    <section class=" textDiv tekst">
+        <div class="info">
+            <p>Jest to historia dwojga podróżnych – chłopaka i dziewczyny, którzy poznają się na dworcu, gdzie oboje
+                czekają
+                na pociąg. Początkowo obcy sobie, z każdą chwilą czują się lepiej w swoim towarzystwie, odkrywają wiele
+                wspólnych tematów do rozmowy, opowiadają sobie swoje historie, lubią się coraz bardziej…
+            </p>
+            <p>Dwojgu aktorom towarzyszy zespół muzyczny, który gra aranżacje perkusyjne do fragmentów popularnych
+                polskich
+                piosenek.</p>
+            <p>Spektakl powstał przy okazji jubileuszu Orkiestry Perkusyjnej „Mały Big Band” i miał pokazać z jednej
+                strony
+                znaczenie mijającego czasu i ciągłej podróży przez życie ale również to jak ważne jest aby czasem się
+                zatrzymać i poznać bliżej kogoś, bo ten ktoś może stać się kimś bliskim.</p>
+            <p>Piosenki wykorzystane w przedstawieniu opowiadają o różnych, bardziej lub mniej ważnych sprawach ale
+                wszystko zmierza do tego, żeby cieszyć się chwilą i po prostu dobrze się bawić…</p>
 
-        <div tabindex="5">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem, quia alias, deserunt maiores
-                cupiditate quae quibusdam aperiam totam sapiente amet corporis provident vitae architecto tempore
-                quaerat eveniet recusandae impedit ab.</p>
+            </p>
+            <hr>
+            <p>
+                <ul>
+                    <li>Iwona Starkowska - Instruktor muzyczny </li>
+                </ul>
 
+            </p>
+            <hr>
 
+            <p>
+                „Mały Big Band” to Zespół osób z niepełnosprawnością intelektualną – głównie z zespołem Downa, grający
+                na
+                różnych, prostych instrumentach perkusyjnych. Jest to głównie zespół muzyczny, jednak dodatkowo
+                wykorzystuje
+                różne formy wyrazu artystycznego i przygotowuje zarówno prezentacje instrumentalne jak i taneczne czy
+                teatralne.
+            </p>
+            <p>
+                <ul>
+                    <li>Rok powstania: 1997</li>
+                    <li>Adres e-mail: iwonastarmusic68(at)wp.pl</li>
+                </ul>
             </p>
         </div>
     </section>
 
-    <!-- YT -->
 
-    <section>
-        <div id="timer"></div>
-    </section>
-    <!-- YT -->
-    <section>
-        <div class="yt">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/U9eLEL2wL8g"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen tabindex="6"></iframe>
-
-            <div id="button"></div>
-        </div>
-    </section>
-
-    </section>
-    <section class="textDiv">
-        <h1 class="w3-center">21 years of Masska</h1>
-    </section>
-    <section>
-        <!-- CAROUSEL-->
-
-        <div class="w3-content w3-section" style="max-width:500px">
-
-            <img class="mySlides fade" src="../img/plakaty/2013.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2014.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2015.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2016.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2017.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2018.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2019.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2020.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2021.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2022.webp" style="width:100%">
-        </div>../
-        <div class="arrows">
-            <button tabindex="8" class="w3-button w3-display-left" onclick="plusSlides(-1)">&#10094;</button>
-            <button tabindex="9" class="w3-button w3-display-right" onclick="plusSlides(1)">&#10095;</button>
-        </div>
-    </section>
     <!-- FOOTER -->
+
     <section>
         <footer>
             <div>
@@ -138,8 +174,8 @@
                     <li><img src="../img/org.webp" alt="Organizatorzy" class="footer"></li>
 
                     <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"
-                            tabindex="8"><img src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji"
-                                class="image" title="Stowarzyszenie Na Drodze Ekspresji"></a></li>
+                            tabindex="8"><img src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"
+                                title="Stowarzyszenie Na Drodze Ekspresji"></a></li>
 
                     <li><a href="https://www.facebook.com/grupaimplus/" target="_blank" tabindex="9"><img
                                 src="../img/implus.webp" alt="Grupa IM+" class="image" title="Grupa IM+"></a></li>
@@ -159,8 +195,8 @@
                     <li><a href="https://bart.sopot.pl" target="_blank" tabindex="15"><img src="../img/bart.webp"
                                 alt="Bałtycka Agencja Turystyczna" title="Bałtycka Agencja Turystyczna" class="image"
                                 class="footer" tabindex="16"></a></li>
-                    <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img
-                                src="../img/atelier.webp" alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
+                    <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img src="../img/atelier.webp"
+                                alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
                     </li>
                     <li><img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
 
@@ -173,14 +209,15 @@
 
         </footer>
     </section>
-
     <!-- SKRYPTY -->
-
-    <script type="text/javascript" src="../js/timer-eng.js"></script>
-    <script type="text/javascript" src="../js/accessibility.js"></script>
-
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $(".container").fadeOut("slow");
+            $("body").removeClass("preload");
+        });
+    </script>
     <div id="simplecookienotification_v01"
-        style="display: block; z-index: 99999; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
+        style="display: block; z-index: 99; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
         <div style="padding:10px; margin-left:15px; margin-right:15px; font-size:14px; font-weight:normal;">
             <span id="simplecookienotification_v01_powiadomienie">Ta strona używa plików cookie w celu usprawnienia
                 i
@@ -208,12 +245,15 @@
         </div>
     </div>
     <script type="text/javascript">
-        var galTable = new Array();
-        var galx = 0;
+        var lightbox = new PhotoSwipeLightbox({
+            gallery: '.test-gallery',
+            children: 'a',
+            // dynamic import is not supported in UMD version
+            pswpModule: PhotoSwipe
+        });
+        lightbox.init();
     </script>
-    <script type="text/javascript" src="../js/timer.js"></script>
-    <script type="text/javascript" src="../js/cookie.js"></script>
-    <script type="text/javascript" src="../js/carousel.js"></script>
+<script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
 </body>
 

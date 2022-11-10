@@ -48,8 +48,8 @@
     <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- SKRYPTY -->
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
-        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="../js/photoswipe-lightbox.umd.min.js"></script>
     <script src="../js/photoswipe.umd.min.js"></script>
 </head>
@@ -57,14 +57,18 @@
 <body id="resultDiv" class="element toggle">
     <img id="head" class="image" src="../img/head.webp">
 
+    <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
+        </div>
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
-        <a href="../compagnie-de-loiseau-mouche.html"><span class="flag-icon flag-icon-pl" tabindex="4"></span></a>
+        <a href="../pl/compagnie-de-loiseau-mouche.html"><span class="flag-icon flag-icon-pl" tabindex="4"></span></a>
     </section>
 
     <!-- TREŚĆ -->
+
+    <!-- BANNER -->
 
     <section id="topbox">
         <header>
@@ -72,6 +76,7 @@
                     alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
+    <!-- YT -->
     <section>
         <div class="yt"><iframe width="560" height="315" src="https://www.youtube.com/embed/w_GWnxBnQd4"
                 title="YouTube video player" frameborder="0"
@@ -80,6 +85,7 @@
         </div>
     </section>
 
+    <!-- OPIS -->
     <section class="textDiv">
         <h1><i class="fa-solid fa-masks-theater"></i> Compagnie de l'Oiseau-Mouche</h1>
         <h2><span class="fa-solid fa-location-dot"></span> Roubaix <span class="flag-icon flag-icon-fr"
@@ -228,6 +234,7 @@
         });
         lightbox.init();
     </script>
+<script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
 </body>
 

@@ -22,12 +22,14 @@
 
     <meta name="author" content="Paulina Lewandowska">
     <meta name="description"
-        content="20th theatrical overview - Masska on-line 2021 Sopot. 15-30 November 2021. Theatres of people with disabilities and youth theatres from Poland and other countries.">
+        content="21. Przegląd Teatralny Masska On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
     <!-- STYLE -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/photoswipe.css">
     <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
-    <link rel="stylesheet" href="../css/material-photo-gallery.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../img/favicon/apple-icon-60x60.png">
@@ -46,20 +48,28 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-
+    <!-- SKRYPTY -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="../js/photoswipe-lightbox.umd.min.js"></script>
+    <script src="../js/photoswipe.umd.min.js"></script>
 </head>
 
 <body id="resultDiv" class="element toggle">
     <img id="head" class="image" src="../img/head.webp">
+
+    <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
+        </div>
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
-        <a href="../visage.html" tabindex="4"><span class="flag-icon flag-icon-pl"></span></a>
+        <a href="../pl/krug-ii.html"><span class="flag-icon flag-icon-pl" tabindex="4"></span></a>
     </section>
+
+
+    <!-- TREŚĆ -->
+    <!-- BANNER -->
 
     <section id="topbox">
         <header>

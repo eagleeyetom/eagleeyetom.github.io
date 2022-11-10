@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -14,22 +14,23 @@
 
         gtag('config', 'G-CKB0FYJDGK');
     </script>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Masska Theatrical Overview - On-Line</title>
+
+    <title>Trupa Teatru Muzycznego MTT Litewskiego Związku Ludzi Niepelnosprawnych - Masska On-Line</title>
+
     <meta name="author" content="Paulina Lewandowska">
     <meta name="description"
-        content="21st theatrical overview - Masska on-line 2022 Sopot. 14-30 November 2022. Theatres of people with disabilities and youth theatres from Poland and other countries.">
-
+        content="21. Przegląd Teatralny Masska On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
+    <!-- STYLE -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/photoswipe.css">
     <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="../css/w3.css">
-
+    <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../img/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="../img/favicon/apple-icon-72x72.png">
@@ -47,20 +48,31 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
+    <!-- SKRYPTY -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="../js/photoswipe-lightbox.umd.min.js"></script>
+    <script src="../js/photoswipe.umd.min.js"></script>
 </head>
 
+<!-- BODY -->
+
 <body id="resultDiv" class="element toggle">
+    <!-- HEAD -->
     <img id="head" class="image" src="../img/head.webp">
-    <!-- ACCESSIBILITY -->
+
+    <!-- LOADER -->
+
+    <div class="container">
+        <div class="loader">
+        </div>
+    </div> <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
         </div>
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
-        <a href="../pl/index.html"><span class="flag-icon flag-icon-pl" tabindex="4"></span></a>
+        <a href="../en/mtt.html"><span class="flag-icon flag-icon-gb" tabindex="4"></span></a>
     </section>
 
     <!-- TREŚĆ -->
@@ -74,63 +86,77 @@
         </header>
     </section>
 
-    <!-- TEKST -->
+    <!-- YT -->
+    <section>
+        <div class="yt"><iframe width="560" height="315" src="https://www.youtube.com/embed/sclt2Pn4Kc4"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </section>
 
-    <section class="tekst textDiv">
+    <!-- OPIS -->
+    <section class="textDiv">
+        <h1><i class="fa-solid fa-masks-theater"></i> Trupa Teatru Muzycznego MTT Litewskiego Związku Ludzi
+            Niepełnosprawnych</h1>
+        <h2><span class="fa-solid fa-location-dot"></span> Wilno <span class="flag-icon flag-icon-lt"
+                title="Litwa"></span>
+            <h2><i class="fa-solid fa-arrow-right"></i> Dzień pokoju</h2>
+            <h2><i class="fa-solid fa-clock"></i> 15 min.</h2>
+    </section>
+    <!-- GALERIA -->
+    <section>
+        <div class="test-gallery">
+            <a href="../img/teatr/mtt/photo/photo1.webp" data-pswp-width="960" data-pswp-height="720">
+                <img src="../img/teatr/mtt/thumb/photo1.webp" alt="" />
+            </a>
+            <a href="../img/teatr/mtt/photo/photo2.webp" data-pswp-width="960" data-pswp-height="720">
+                <img src="../img/teatr/mtt/thumb/photo2.webp" alt="" />
+            </a>
+            <a href="../img/teatr/mtt/photo/photo3.webp" data-pswp-width="960" data-pswp-height="960">
+                <img src="../img/teatr/mtt/thumb/photo3.webp" alt="" />
+            </a>
+        </div>
+    </section>
+    <!-- https://dummyimage.com/500x300/000000/fff 
+    -->
 
-        <div tabindex="5">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem, quia alias, deserunt maiores
-                cupiditate quae quibusdam aperiam totam sapiente amet corporis provident vitae architecto tempore
-                quaerat eveniet recusandae impedit ab.</p>
 
+    <section class=" textDiv tekst">
+        <div class="info">
+            <p>
+                „(…) Jeśli chcesz zachować pokój - chroń stworzenie.”<br>
+                - Benedykt XVI
 
+            </p>
+            <hr>
+            <p>
+                21 września ogłoszony jest Międzynarodowym Dniem Pokoju. Zgromadzenie Ogólne Narodów Zjednoczonych
+                zaleciło wszystkim narodom, aby obchodziły ten dzień jako dzień powszechnego pojednania i zaprzestały
+                wszelkich działań wojennych. Tą szczególną okazją – wspólnym projektem artystyczno – społecznym osób
+                niepełnosprawnych, artystów i młodzieży akademickiej – Mysterią „Dzień Pokoju“ zwracamy uwagę na jedną z
+                najbardziej wrażliwych grup społecznych – osoby niepełnosprawne.
+
+            </p>
+            <hr>
+            <ul>
+                <li>Kierowniczka teatru, kompozytorka: Snieguole Dikčiūtė</li>
+                <li>Reżyserzy: Saulius Čėpla, Saulė Degutytė, Vitalij Liubota, Sakalas Uždavinys</li>
+                <li>Artystka Audronė Brazauskaitė</li>
+            </ul>
+            <p>
+                <ul>
+                    <li>Rok założenia: 2015
+                    </li>
+                    <li>Adres e-mail: lzns(at)negalia.lt</li>
+                </ul>
             </p>
         </div>
     </section>
 
-    <!-- YT -->
 
-    <section>
-        <div id="timer"></div>
-    </section>
-    <!-- YT -->
-    <section>
-        <div class="yt">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/U9eLEL2wL8g"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen tabindex="6"></iframe>
-
-            <div id="button"></div>
-        </div>
-    </section>
-
-    </section>
-    <section class="textDiv">
-        <h1 class="w3-center">21 years of Masska</h1>
-    </section>
-    <section>
-        <!-- CAROUSEL-->
-
-        <div class="w3-content w3-section" style="max-width:500px">
-
-            <img class="mySlides fade" src="../img/plakaty/2013.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2014.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2015.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2016.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2017.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2018.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2019.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2020.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2021.webp" style="width:100%">
-            <img class="mySlides fade" src="../img/plakaty/2022.webp" style="width:100%">
-        </div>../
-        <div class="arrows">
-            <button tabindex="8" class="w3-button w3-display-left" onclick="plusSlides(-1)">&#10094;</button>
-            <button tabindex="9" class="w3-button w3-display-right" onclick="plusSlides(1)">&#10095;</button>
-        </div>
-    </section>
     <!-- FOOTER -->
+
     <section>
         <footer>
             <div>
@@ -173,14 +199,15 @@
 
         </footer>
     </section>
-
     <!-- SKRYPTY -->
-
-    <script type="text/javascript" src="../js/timer-eng.js"></script>
-    <script type="text/javascript" src="../js/accessibility.js"></script>
-
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $(".container").fadeOut("slow");
+            $("body").removeClass("preload");
+        });
+    </script>
     <div id="simplecookienotification_v01"
-        style="display: block; z-index: 99999; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
+        style="display: block; z-index: 99; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
         <div style="padding:10px; margin-left:15px; margin-right:15px; font-size:14px; font-weight:normal;">
             <span id="simplecookienotification_v01_powiadomienie">Ta strona używa plików cookie w celu usprawnienia
                 i
@@ -208,12 +235,15 @@
         </div>
     </div>
     <script type="text/javascript">
-        var galTable = new Array();
-        var galx = 0;
+        var lightbox = new PhotoSwipeLightbox({
+            gallery: '.test-gallery',
+            children: 'a',
+            // dynamic import is not supported in UMD version
+            pswpModule: PhotoSwipe
+        });
+        lightbox.init();
     </script>
-    <script type="text/javascript" src="../js/timer.js"></script>
     <script type="text/javascript" src="../js/cookie.js"></script>
-    <script type="text/javascript" src="../js/carousel.js"></script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
 </body>
 

@@ -49,8 +49,8 @@
     <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- SKRYPTY -->
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
-        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="../js/photoswipe-lightbox.umd.min.js"></script>
     <script src="../js/photoswipe.umd.min.js"></script>
 </head>
@@ -58,7 +58,9 @@
 <body id="resultDiv" class="element toggle">
     <img id="head" class="image" src="../img/head.webp">
 
-    <section class="accessibility textDiv">
+    <!-- ACCESSIBILITY -->  
+  <section class="accessibility textDiv">
+    </div>
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
@@ -68,6 +70,8 @@
 
     <!-- TREŚĆ -->
 
+        <!-- BANNER -->
+
     <section id="topbox">
         <header>
             <a href="index.html" tabindex="-1"><img src="../img/banner.webp" class="banner"
@@ -75,6 +79,7 @@
         </header>
     </section>
 
+    <!-- YT -->
     <section>
         <div class="yt"><iframe width="560" height="315" src="https://www.youtube.com/embed/sclt2Pn4Kc4"
                 title="YouTube video player" frameborder="0"
@@ -83,6 +88,7 @@
         </div>
     </section>
 
+    <!-- OPIS -->
     <section class="textDiv">
         <h1><i class="fa-solid fa-masks-theater"></i> RambaZamba Theater</h1>
         <h2><span class="fa-solid fa-location-dot"></span> Berlin <span class="flag-icon flag-icon-de"
@@ -90,6 +96,7 @@
             <h2><i class="fa-solid fa-arrow-right"></i> Die Ratten</h2>
             <h2><i class="fa-solid fa-clock"></i> 90 min.</h2>
     </section>
+        <!-- GALERIA -->
     <section>
         <div class="test-gallery">
             <a href="../img/teatr/mtt/photo/photo1.webp" data-pswp-width="960" data-pswp-height="720">
@@ -193,6 +200,7 @@
         });
         lightbox.init();
     </script>
+<script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
 </body>
 

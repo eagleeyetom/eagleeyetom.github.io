@@ -23,53 +23,65 @@
     <meta name="description"
         content="21. Przegląd Teatralny Masska On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
     <!-- STYLE -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/photoswipe.css">
-    <link rel="stylesheet" type="text/css" href="css/flag-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/photoswipe.css">
+    <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="img/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../img/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- SKRYPTY -->
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
-        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
-    <script src="js/photoswipe-lightbox.umd.min.js"></script>
-    <script src="js/photoswipe.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="../js/photoswipe-lightbox.umd.min.js"></script>
+    <script src="../js/photoswipe.umd.min.js"></script>
 </head>
 
-<body id="resultDiv" class="element toggle">
-    <img id="head" class="image" src="img/head.webp">
+<!-- BODY -->
 
-    <section class="accessibility textDiv">
+<body id="resultDiv" class="element toggle">
+    <!-- HEAD -->
+    <img id="head" class="image" src="../img/head.webp">
+
+    <!-- LOADER -->
+
+    <div class="container">
+        <div class="loader">
+        </div>
+    </div>    <!-- ACCESSIBILITY -->  
+  <section class="accessibility textDiv">
+    </div>
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
-        <a href="en/lik.html"><span class="flag-icon flag-icon-gb" tabindex="4"></span></a>
+        <a href="../en/lik.html"><span class="flag-icon flag-icon-gb" tabindex="4"></span></a>
     </section>
 
 
     <!-- TREŚĆ -->
 
+        <!-- BANNER -->
+
     <section id="topbox">
         <header>
-            <a href="index.html" tabindex="-1"><img src="img/banner.webp" class="banner"
+            <a href="index.html" tabindex="-1"><img src="../img/banner.webp" class="banner"
                     alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
@@ -87,11 +99,11 @@
             </div>
             <div class="m-p-g">
                 <div class="m-p-g__thumbs" data-google-image-layout data-max-height="350">
-                    <img src="img/teatr/visage/3_thumb.jpg" data-full="img/teatr/visage/3.jpg" class="m-p-g__thumbs-img"
+                    <img src="../img/teatr/visage/3_thumb.jpg" data-full="img/teatr/visage/3.jpg" class="m-p-g__thumbs-img"
                         alt="Zdjęcie grupowe" tabindex="7" />
-                    <img src="img/teatr/visage/2_thumb.jpg" data-full="img/teatr/visage/2.jpg" class="m-p-g__thumbs-img"
+                    <img src="../img/teatr/visage/2_thumb.jpg" data-full="img/teatr/visage/2.jpg" class="m-p-g__thumbs-img"
                         alt="Akordeonista i pianistka" tabindex="6" />
-                    <img src="img/teatr/visage/1_thumb.jpg" data-full="img/teatr/visage/1.jpg" class="m-p-g__thumbs-img"
+                    <img src="../img/teatr/visage/1_thumb.jpg" data-full="img/teatr/visage/1.jpg" class="m-p-g__thumbs-img"
                         alt="Grający muzycy" tabindex="8" />
                 </div>
                 <div class="m-p-g__fullscreen"></div>
@@ -186,43 +198,48 @@
     <footer>
         <div>
             <ul>
-                <li><img src="img/org.jpg" alt="Organizatorzy" class="footer"></li>
+                <li><img src="../img/org.jpg" alt="Organizatorzy" class="footer"></li>
                 <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"
-                        tabindex="15"><img src="img/snde.jpg" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"
+                        tabindex="15"><img src="../img/snde.jpg" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"
                             title="Stowarzyszenie Na Drodze Ekspresji"></a></li>
                 <li><a href="https://www.facebook.com/grupaimplus/" target="_blank" tabindex="16"><img
-                            src="img/implus.jpg" alt="Grupa IM+" class="image" title="Grupa IM+"></a></li>
-                <li><img src="img/wsp.jpg" alt="Współpraca" class="footer"></li>
-                <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="17"><img src="img/teatr-atelier.png"
+                            src="../img/implus.jpg" alt="Grupa IM+" class="image" title="Grupa IM+"></a></li>
+                <li><img src="../img/wsp.jpg" alt="Współpraca" class="footer"></li>
+                <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="17"><img src="../img/teatr-atelier.png"
                             alt="Teatr Atelier" title="Teatr Atelier" class="image"></a></li>
-                <li><a href="https://mopssopot.pl" target="_blank" tabindex="18"><img src="img/mops.jpg"
+                <li><a href="https://mopssopot.pl" target="_blank" tabindex="18"><img src="../img/mops.jpg"
                             alt="Miejski Ośrodek Pomocy Społecznej" title="Miejski Ośrodek Pomocy Społecznej"
                             class="image"></a></li>
-                <li><a href="https://pkps.org.pl" target="_blank" tabindex="19"><img src="img/pkps.jpg"
+                <li><a href="https://pkps.org.pl" target="_blank" tabindex="19"><img src="../img/pkps.jpg"
                             alt="Polski Komitet Pomocy Społecznej" class="image"
                             title="Polski Komitet Pomocy Społecznej"></a></li>
-                <li><a href="https://www.sopot.pl" target="_blank" tabindex="20"><img src="img/120.png"
+                <li><a href="https://www.sopot.pl" target="_blank" tabindex="20"><img src="../img/120.png"
                             alt="120 lat Sopotu" class="image" title="120 lat Sopotu"></a></li>
-                <li><a href="https://www.sopot.pl" target="_blank" tabindex="21"><img src="img/sopot.jpg"
+                <li><a href="https://www.sopot.pl" target="_blank" tabindex="21"><img src="../img/sopot.jpg"
                             alt="Miasto Sopot" class="image" title="Miasto Sopot"></a></li>
-                <li><a href="https://radiogdansk.pl" target="_blank" tabindex="22"><img src="img/radio.png"
+                <li><a href="https://radiogdansk.pl" target="_blank" tabindex="22"><img src="../img/radio.png"
                             alt="Radio Gdańsk" title="Radio Gdańsk" class="image" class="footer"></a></li>
-                <li><img src="img/miasto.jpg" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
+                <li><img src="../img/miasto.jpg" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
             </ul>
-            <div><img src="img/miasto.jpg" alt="Gmina Miasta Sopotu" id="mobile-gmina" class="footer"></div>
+            <div><img src="../img/miasto.jpg" alt="Gmina Miasta Sopotu" id="mobile-gmina" class="footer"></div>
             <div id="cookies">
                 <p><a href="cookies.html" id="privacy" tabindex="23">Polityka cookies</a></p>
             </div>
         </div>
     </footer>
+    <!-- COOKIES -->
 
     <div id="simplecookienotification_v01"
-        style="display: block; z-index: 99999; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
+        style="display: block; z-index: 99; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
         <div style="padding:10px; margin-left:15px; margin-right:15px; font-size:14px; font-weight:normal;">
-            <span id="simplecookienotification_v01_powiadomienie">Ta strona używa plików cookie w celu usprawnienia i
-                ułatwienia dostępu do serwisu oraz prowadzenia danych statystycznych. Dalsze korzystanie z tej witryny
-                oznacza akceptację tego stanu rzeczy.<br>By continuing to browse or by clicking "Ok", you agree to the
-                storing of cookies on your device to enhance your site experience and for analytical purposes. To learn
+            <span id="simplecookienotification_v01_powiadomienie">Ta strona używa plików cookie w celu usprawnienia
+                i
+                ułatwienia dostępu do serwisu oraz prowadzenia danych statystycznych. Dalsze korzystanie z tej
+                witryny
+                oznacza akceptację tego stanu rzeczy.<br>By continuing to browse or by clicking "Ok", you agree to
+                the
+                storing of cookies on your device to enhance your site experience and for analytical purposes. To
+                learn
                 more about how we use the cookies, please see our cookies policy.</span><span
                 id="br_pc_title_html"><br></span>
             <a id="simplecookienotification_v01_polityka" href="https://masska.org/cookies.html"
@@ -240,15 +257,25 @@
             <div id="jwc_hr2" style="height: 10px; display: none;"></div>
         </div>
     </div>
+
     <!-- SKRYPTY -->
     <script type="text/javascript">
-        var galTable = new Array();
-        var galx = 0;
+        $(window).on("load", function () {
+            $(".container").fadeOut("slow");
+            $("body").removeClass("preload");
+        });
     </script>
-    <script type="text/javascript" src="js/cookie.js"></script>
-    <script type="text/javascript" src="js/material-photo-gallery.min.js"></script>
-    <script type="text/javascript" src="js/mpg.js"></script>
-    <script type="text/javascript" src="js/accessibility.js"></script>
+    <script type="text/javascript">
+        var lightbox = new PhotoSwipeLightbox({
+            gallery: '.test-gallery',
+            children: 'a',
+            // dynamic import is not supported in UMD version
+            pswpModule: PhotoSwipe
+        });
+        lightbox.init();
+    </script>
+    <script type="text/javascript" src="../js/accessibility.js"></script>
+    <script type="text/javascript" src="../js/cookie.js"></script>
 </body>
 
 </html>

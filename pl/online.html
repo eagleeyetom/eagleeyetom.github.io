@@ -26,28 +26,28 @@
 
     <!-- STYLES -->
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/flag-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
     <!-- favicon -->
 
-    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="img/favicon/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="../img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="../img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="../img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../img/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <!-- JQuery -->
@@ -59,25 +59,37 @@
 
 <!-- TREŚĆ -->
 
-<body id="resultDiv" class="element toggle">
-    <img id="head" class="image" src="img/head.webp">
+<!-- BODY -->
 
-    <!-- Loader -->
+<body id="resultDiv" class="element toggle">
+    <!-- HEAD -->
+    <img id="head" class="image" src="../img/head.webp">
+
+    <!-- LOADER -->
+
+    <div class="container">
+        <div class="loader">
+        </div>
+    </div>    <!-- Loader -->
 
     <div class="container">
         <div class="loader">
         </div>
     </div>
 
-    <section class="accessibility textDiv">
+    <!-- ACCESSIBILITY -->  
+  <section class="accessibility textDiv">
+    </div>
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
-        <a href="en/online.html" tabindex="4"><span class="flag-icon flag-icon-gb"></span></a>
+        <a href="../en/online.html" tabindex="4"><span class="flag-icon flag-icon-gb"></span></a>
     </section>
+        <!-- BANNER -->
+
     <section id="topbox">
         <header>
-            <a href="index.html" tabindex="-1"><img src="img/banner.webp" class="banner"
+            <a href="index.html" tabindex="-1"><img src="../img/banner.webp" class="banner"
                     alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
@@ -99,7 +111,7 @@
                     <div class="column">
                         <a href="baltazar.html" tabindex="5">
                             <div class="zdjecie">
-                                <img src="img/teatr/baltazar/thumb/thumb.webp" alt="Teatr Baltazar">
+                                <img src="../img/teatr/baltazar/thumb/thumb.webp" alt="Teatr Baltazar">
                                 <div class="centered">Teatr Baltazar<br>
                                     <span class="flag-icon flag-icon-hu" title="Węgry"></span></div>
                             </div>
@@ -107,7 +119,7 @@
 
                         <a href="fritsch-company.html" tabindex="7">
                             <div class="zdjecie">
-                                <img src="img/teatr/fritsch-company/thumb/thumb.webp" alt="Fritsch Company">
+                                <img src="../img/teatr/fritsch-company/thumb/thumb.webp" alt="Fritsch Company">
                                 <div class="centered">Fritsch
                                     Company<br>
                                     <span class="flag-icon flag-icon-es" title="Hiszpania"></span>
@@ -116,7 +128,7 @@
                         </a>
                         <a href="mtt.html" tabindex="10">
                             <div class="zdjecie">
-                                <img src="img/teatr/mtt/thumb/thumb.webp"
+                                <img src="../img/teatr/mtt/thumb/thumb.webp"
                                     alt="Trupa teatru muzycznego MTT Litewskiego związku ludzi niepelnosprawnych">
                                 <div class="centered" id="mtt">Trupa Teatru Muzycznego MTT Litewskiego Związku Ludzi
                                     Niepełnosprawnych<br>
@@ -131,14 +143,14 @@
                     <div class="column">
                         <a href="compagnie-de-loiseau-mouche.html" tabindex="12">
                             <div class="zdjecie">
-                                <img src="img/teatr/loiseau-mouche/thumb/thumb.webp" alt="Teatr L'Oiseau Mouche">
+                                <img src="../img/teatr/loiseau-mouche/thumb/thumb.webp" alt="Teatr L'Oiseau Mouche">
                                 <div class="centered">Compagnie L'Oiseau Mouche<br>
                                     <span class="flag-icon flag-icon-fr" title="Francja"></span></div>
                             </div>
                         </a>
                         <a href="krug-ii.html" tabindex="8">
                             <div class="zdjecie">
-                                <img src="img/teatr/krug-ii/thumb/thumb.webp" alt="Teatr Krug II">
+                                <img src="../img/teatr/krug-ii/thumb/thumb.webp" alt="Teatr Krug II">
                                 <div class="centered">Teatr Krug II<br>
                                     <span class="flag-icon flag-icon-ru" title="Rosja"></span></div>
                             </div>
@@ -147,7 +159,7 @@
 
                         <a href="ernesta.html" tabindex="11">
                             <div class="zdjecie">
-                                <img src="img/teatr/ernesta/thumb/thumb.webp" alt="Niezależny Teatr Dramatyczny">
+                                <img src="../img/teatr/ernesta/thumb/thumb.webp" alt="Niezależny Teatr Dramatyczny">
                                 <div class="centered">Niezależny Teatr Dramatyczny<br>
                                     <span class="flag-icon flag-icon-lt" title="Litwa"></span></div>
                             </div>
@@ -160,7 +172,7 @@
                     <div class="column">
                         <a href="dysonans.html" tabindex="13">
                             <div class="zdjecie">
-                                <img src="img/teatr/dysonans/thumb/thumb.webp" alt="Pogotowie Teatralne">
+                                <img src="../img/teatr/dysonans/thumb/thumb.webp" alt="Pogotowie Teatralne">
                                 <div class="centered">Teatr Dysonans<br>
                                     <span class="flag-icon flag-icon-pl" title="Polska"></span>
                                 </div>
@@ -177,7 +189,7 @@
                         </a>
                         <a href="rambazamba.html" tabindex="16">
                             <div class="zdjecie">
-                                <img src="img/teatr/rambazamba/thumb/thumb.webp" alt="Teatr RambaZamba">
+                                <img src="../img/teatr/rambazamba/thumb/thumb.webp" alt="Teatr RambaZamba">
                                 <div class="centered">Teatr RambaZamba<br>
                                     <span class="flag-icon flag-icon-de" title="Niemcy"></span></div>
                             </div>
@@ -189,21 +201,21 @@
                     <div class="column">
                         <a href="euforion.html" tabindex="6">
                             <div class="zdjecie">
-                                <img src="img/teatr/euforion/thumb/thumb.webp" alt=" Teatr Integracyjny Euforion">
+                                <img src="../img/teatr/euforion/thumb/thumb.webp" alt=" Teatr Integracyjny Euforion">
                                 <div class="centered">Teatr Integracyjny Euforion<br>
                                     <span class="flag-icon flag-icon-pl" title="Polska"></span></div>
                             </div>
                         </a>
                         <a href="maly-big-band.html" tabindex="9">
                             <div class="zdjecie">
-                                <img src="img/teatr/maly-big-band/thumb/thumb.webp" alt="Teatr Mały Big Band">
+                                <img src="../img/teatr/maly-big-band/thumb/thumb.webp" alt="Teatr Mały Big Band">
                                 <div class="centered">Mały Big Band<br>
                                     <span class="flag-icon flag-icon-pl" title="Polska"></span></div>
                             </div>
                         </a>
                         <a href="svezhiy-veter.html" tabindex="17">
                             <div class="zdjecie">
-                                <img src="img/teatr/svezhiy-veter/thumb/thumb.webp" alt="Teatr Svezhiy Veter">
+                                <img src="../img/teatr/svezhiy-veter/thumb/thumb.webp" alt="Teatr Svezhiy Veter">
                                 <div class="centered">Teatr Świeży Wiatr<br>
                                     <span class="flag-icon flag-icon-by" title="Białoruś"></span></div>
                             </div>
@@ -219,37 +231,37 @@
         <footer>
             <div>
                 <ul>
-                    <li><img src="img/org.webp" alt="Organizatorzy" class="footer"></li>
+                    <li><img src="../img/org.webp" alt="Organizatorzy" class="footer"></li>
 
                     <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"
-                            tabindex="8"><img src="img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"
+                            tabindex="8"><img src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"
                                 title="Stowarzyszenie Na Drodze Ekspresji"></a></li>
 
                     <li><a href="https://www.facebook.com/grupaimplus/" target="_blank" tabindex="9"><img
-                                src="img/implus.webp" alt="Grupa IM+" class="image" title="Grupa IM+"></a></li>
+                                src="../img/implus.webp" alt="Grupa IM+" class="image" title="Grupa IM+"></a></li>
 
-                    <li><img src="img/wsp.webp" alt="Współpraca" class="footer"></li>
+                    <li><img src="../img/wsp.webp" alt="Współpraca" class="footer"></li>
                     <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img
-                                src="img/teatr-atelier.webp" alt="Teatr Atelier" title="Teatr Atelier"
+                                src="../img/teatr-atelier.webp" alt="Teatr Atelier" title="Teatr Atelier"
                                 class="image"></a>
                     </li>
-                    <li><a href="https://pkps.org.pl" target="_blank" tabindex="12"><img src="img/pkps.webp"
+                    <li><a href="https://pkps.org.pl" target="_blank" tabindex="12"><img src="../img/pkps.webp"
                                 alt="Polski Komitet Pomocy Społecznej" class="image"
                                 title="Polski Komitet Pomocy Społecznej"></a></li>
-                    <li><a href="https://www.sopot.pl" target="_blank" tabindex="13"><img src="img/sopot120.webp"
+                    <li><a href="https://www.sopot.pl" target="_blank" tabindex="13"><img src="../img/sopot120.webp"
                                 alt="120 lat Sopotu" class="image" title="120 lat Sopotu"></a></li>
-                    <li><a href="https://www.sopot.pl" target="_blank" tabindex="14"><img src="img/sopot.webp"
+                    <li><a href="https://www.sopot.pl" target="_blank" tabindex="14"><img src="../img/sopot.webp"
                                 alt="Miasto Sopot" class="image" title="Miasto Sopot"></a></li>
-                    <li><a href="https://bart.sopot.pl" target="_blank" tabindex="15"><img src="img/bart.webp"
+                    <li><a href="https://bart.sopot.pl" target="_blank" tabindex="15"><img src="../img/bart.webp"
                                 alt="Bałtycka Agencja Turystyczna" title="Bałtycka Agencja Turystyczna" class="image"
                                 class="footer" tabindex="16"></a></li>
-                    <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img src="img/atelier.webp"
+                    <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img src="../img/atelier.webp"
                                 alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
                     </li>
-                    <li><img src="img/miasto.webp" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
+                    <li><img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" id="gmina" class="footer"></li>
 
                 </ul>
-                <div><img src="img/miasto.webp" alt="Gmina Miasta Sopotu" id="mobile-gmina" class="footer"></div>
+                <div><img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" id="mobile-gmina" class="footer"></div>
                 <div id="cookies">
                     <p><a href="cookies.html" id="privacy" tabindex="17">Polityka cookies/Cookie Policy</a></p>
                 </div>
@@ -300,8 +312,8 @@
         var galTable = new Array();
         var galx = 0;
     </script>
-    <script type="text/javascript" src="js/cookie.js"></script>
-    <script-- type="text/javascript" src="js/accessibility.js">
+    <script type="text/javascript" src="../js/cookie.js"></script>
+    <script-- type="text/javascript" src="../js/accessibility.js">
         </script>
         <!--script>
         $(document).ready(function () {
