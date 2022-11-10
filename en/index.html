@@ -55,17 +55,17 @@
 </head>
 <!-- BODY -->
 
-<body id="resultDiv" class="element toggle">
+<body id="resultDiv" class="element toggle preload">
 
     <!-- HEAD -->
     <img id="head" class="image" src="../img/head.webp" alt="Logo Masski">
 
     <!-- Loader -->
 
-    <!--div class="container">
+    <div class="container">
         <div class="loader">
         </div>
-    </div-->
+    </div>
     <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
         <button id="fontMinusBtn" class="wcag">A-</button>
@@ -143,7 +143,8 @@
                     <li><img src="../img/org.webp" alt="Organizatorzy" class="footer"></li>
 
                     <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"><img
-                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a></li>
+                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a>
+                    </li>
 
                     <li><a href="https://www.facebook.com/grupaimplus/" target="_blank"><img src="../img/implus.webp"
                                 alt="Grupa IM+" class="image"></a></li>
@@ -204,15 +205,10 @@
     </div>
     <!-- SKRYPTY -->
     <script type="text/javascript">
-        $(window).on("load", function () {
-            $(".container").fadeOut("slow");
-            $("body").removeClass("preload");
-        });
-    </script>
-    <script type="text/javascript">
         var galTable = new Array();
         var galx = 0;
     </script>
+    <script type="text/javascript" src="../js/preload.js"></script>
     <script type="text/javascript" src="../js/timer.js"></script>
     <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/carousel.js">

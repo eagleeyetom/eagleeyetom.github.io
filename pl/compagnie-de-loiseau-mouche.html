@@ -197,8 +197,8 @@
         </div>
     </section>
 
-
     <!-- FOOTER -->
+
     <section>
         <footer>
             <div>
@@ -206,7 +206,8 @@
                     <li><img src="../img/org.webp" alt="Organizatorzy" class="footer"></li>
 
                     <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"><img
-                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a></li>
+                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a>
+                    </li>
 
                     <li><a href="https://www.facebook.com/grupaimplus/" target="_blank"><img src="../img/implus.webp"
                                 alt="Grupa IM+" class="image"></a></li>
@@ -270,12 +271,6 @@
     <!-- SKRYPTY -->
 
     <script type="text/javascript">
-        $(window).on("load", function () {
-            $(".container").fadeOut("slow");
-            $("body").removeClass("preload");
-        });
-    </script>
-    <script type="text/javascript">
         var lightbox = new PhotoSwipeLightbox({
             gallery: '.test-gallery',
             children: 'a',
@@ -284,6 +279,7 @@
         });
         lightbox.init();
     </script>
+    <script type="text/javascript" src="../js/preload.js"></script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
     <script type="text/javascript" src="../js/cookie.js"></script>
 </body>

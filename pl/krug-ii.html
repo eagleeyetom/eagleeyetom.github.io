@@ -84,8 +84,7 @@
 
     <section id="topbox">
         <header>
-            <a href="index.html"><img src="../img/banner.webp" class="banner"
-                    alt="Masska - Przegląd Teatralny"></a>
+            <a href="index.html"><img src="../img/banner.webp" class="banner" alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
     <section tabindex="14">
@@ -187,7 +186,8 @@
                     <li><img src="../img/org.webp" alt="Organizatorzy" class="footer"></li>
 
                     <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"><img
-                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a></li>
+                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a>
+                    </li>
 
                     <li><a href="https://www.facebook.com/grupaimplus/" target="_blank"><img src="../img/implus.webp"
                                 alt="Grupa IM+" class="image"></a></li>
@@ -216,8 +216,8 @@
             </div>
         </footer>
     </section>
-    <!-- COOKIES -->
 
+    <!-- COOKIES -->
 
     <div id="simplecookienotification_v01"
         style="display: block; z-index: 99; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
@@ -251,12 +251,6 @@
     <!-- SKRYPTY -->
 
     <script type="text/javascript">
-        $(window).on("load", function () {
-            $(".container").fadeOut("slow");
-            $("body").removeClass("preload");
-        });
-    </script>
-    <script type="text/javascript">
         var lightbox = new PhotoSwipeLightbox({
             gallery: '.test-gallery',
             children: 'a',
@@ -265,6 +259,7 @@
         });
         lightbox.init();
     </script>
+    <script type="text/javascript" src="../js/preload.js"></script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
     <script type="text/javascript" src="../js/cookie.js"></script>
 </body>

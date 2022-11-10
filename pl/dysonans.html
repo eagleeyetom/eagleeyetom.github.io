@@ -69,7 +69,7 @@
     </div>
 
     <!-- ACCESSIBILITY -->
-<section class="accessibility textDiv">
+    <section class="accessibility textDiv">
         <button id="fontMinusBtn" class="wcag">A-</button>
         <button id="fontPlusBtn" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast"></button>
@@ -80,8 +80,7 @@
 
     <section id="topbox">
         <header>
-            <a href="index.html"><img src="../img/banner.webp" class="banner"
-                    alt="Masska - Przegląd Teatralny"></a>
+            <a href="index.html"><img src="../img/banner.webp" class="banner" alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
 
@@ -174,13 +173,15 @@
 
     <!-- FOOTER -->
 
-    <footer>
+    <section>
+        <footer>
             <div>
                 <ul>
                     <li><img src="../img/org.webp" alt="Organizatorzy" class="footer"></li>
 
                     <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"><img
-                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a></li>
+                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a>
+                    </li>
 
                     <li><a href="https://www.facebook.com/grupaimplus/" target="_blank"><img src="../img/implus.webp"
                                 alt="Grupa IM+" class="image"></a></li>
@@ -191,8 +192,7 @@
                     </li>
                     <li><a href="https://pkps.org.pl" target="_blank"><img src="../img/pkps.webp"
                                 alt="Polski Komitet Pomocy Społecznej" class="image"></a></li>
-                    <li><a href="https://www.sopot.pl" target="_blank"><img src="../img/sopot120.webp"
-                                alt="120 lat Sopotu" class="image"></a></li>
+                    <li><img src="../img/sopot120.webp" alt="120 lat Sopotu" class="image"></li>
                     <li><a href="https://www.sopot.pl" target="_blank"><img src="../img/sopot.webp" alt="Miasto Sopot"
                                 class="image"></a></li>
                     <li><a href="https://bart.sopot.pl" target="_blank"><img src="../img/bart.webp"
@@ -209,6 +209,7 @@
                 </div>
             </div>
         </footer>
+    </section>
 
     <!-- COOKIES -->
 
@@ -242,12 +243,7 @@
     </div>
 
     <!-- SKRYPTY -->
-    <script type="text/javascript">
-        $(window).on("load", function () {
-            $(".container").fadeOut("slow");
-            $("body").removeClass("preload");
-        });
-    </script>
+
     <script type="text/javascript">
         var lightbox = new PhotoSwipeLightbox({
             gallery: '.test-gallery',
@@ -257,7 +253,7 @@
         });
         lightbox.init();
     </script>
-<script type="text/javascript" src="../js/cookie.js"></script>
+    <script type="text/javascript" src="../js/preload.js"></script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
     <script type="text/javascript" src="../js/cookie.js"></script>
 </body>

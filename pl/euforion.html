@@ -80,8 +80,7 @@
 
     <section id="topbox">
         <header>
-            <a href="index.html"><img src="../img/banner.webp" class="banner"
-                    alt="Masska - Przegląd Teatralny"></a>
+            <a href="index.html"><img src="../img/banner.webp" class="banner" alt="Masska - Przegląd Teatralny"></a>
         </header>
     </section>
 
@@ -176,7 +175,6 @@
         </div>
     </section>
 
-
     <!-- FOOTER -->
 
     <section>
@@ -186,7 +184,8 @@
                     <li><img src="../img/org.webp" alt="Organizatorzy" class="footer"></li>
 
                     <li><a href="https://www.facebook.com/StowarzyszenieNaDrodzeEkspresji" target="_blank"><img
-                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a></li>
+                                src="../img/snde.webp" alt="Stowarzyszenie Na Drodze Ekspresji" class="image"></a>
+                    </li>
 
                     <li><a href="https://www.facebook.com/grupaimplus/" target="_blank"><img src="../img/implus.webp"
                                 alt="Grupa IM+" class="image"></a></li>
@@ -215,6 +214,7 @@
             </div>
         </footer>
     </section>
+
     <!-- COOKIES -->
 
     <div id="simplecookienotification_v01"
@@ -247,12 +247,7 @@
     </div>
 
     <!-- SKRYPTY -->
-    <script type="text/javascript">
-        $(window).on("load", function () {
-            $(".container").fadeOut("slow");
-            $("body").removeClass("preload");
-        });
-    </script>
+
     <script type="text/javascript">
         var lightbox = new PhotoSwipeLightbox({
             gallery: '.test-gallery',
@@ -262,6 +257,7 @@
         });
         lightbox.init();
     </script>
+    <script type="text/javascript" src="../js/preload.js"></script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
     <script type="text/javascript" src="../js/cookie.js"></script>
 </body>
