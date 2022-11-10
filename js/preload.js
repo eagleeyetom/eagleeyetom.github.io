@@ -1,10 +1,10 @@
-$(document).ready(function(){   
-    window.setTimeout('fadeout();', 3000);
-    
-});
-
-function fadeout(){
-    $('.container').delay(2000).fadeOut('slow', function() {
-       $('.preload').removeClass('preload');
-    });
-}
+document.onreadystatechange = function () {
+    if (document.readyState === "complete") {
+        $("#panel_left").addClass("panel_left");
+        $("#panel_right").addClass("panel_right");
+        $("#loader").addClass("loaded-circle");
+        $("#loader-img").addClass("loaded-img");
+        $("#preloader").addClass("loaded-img");
+        $("body").removeClass("preload");
+    }
+};

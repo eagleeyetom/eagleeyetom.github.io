@@ -61,11 +61,14 @@
     <img id="head" class="image" src="../img/head.webp" alt="Logo Masski">
 
     <!-- Loader -->
-
-    <div class="container">
-        <div class="loader">
+    <div id="preloader">
+        <div id="loader-img">
+            <div id="loader"></div>
         </div>
+        <div id="panel_left" class='loader-section section-left'></div>
+        <div id="panel_right" class='loader-section section-right'></div>
     </div>
+
     <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
         <button id="fontMinusBtn" class="wcag">A-</button>
@@ -206,16 +209,12 @@
         </div>
     </div>
     <!-- SKRYPTY -->
-    <script type="text/javascript">
-        $(window).on("load", function () {
-            $(".container").fadeOut("slow");
-            $("body").removeClass("preload");
-        });
-    </script>
+
     <script type="text/javascript">
         var galTable = new Array();
         var galx = 0;
     </script>
+    <script type="text/javascript" src="../js/preload.js"></script>
     <script type="text/javascript" src="../js/timer.js"></script>
     <script type="text/javascript" src="../js/cookie.js"></script>
     <script type="text/javascript" src="../js/carousel.js">
