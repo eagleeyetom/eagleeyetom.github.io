@@ -52,7 +52,15 @@
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 
-<body id="resultDiv" class="element toggle">
+<body id="resultDiv" class="element toggle preload">
+
+    <!-- Loader -->
+
+    <div class="container">
+        <div class="loader">
+        </div>
+    </div>
+    <!-- HEAD -->
     <img id="head" class="image" src="../img/head.webp">
     <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
@@ -87,9 +95,7 @@
             </p>
         </div>
     </section>
-
-    <!-- YT -->
-
+    <!-- TIMER -->
     <section>
         <div id="timer"></div>
     </section>
@@ -100,8 +106,9 @@
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen tabindex="6"></iframe>
-
-            <div id="button"></div>
+        </div>
+        <!-- BUTTON-->
+        <div id="button"></div>
         </div>
     </section>
 
@@ -174,13 +181,9 @@
         </footer>
     </section>
 
-    <!-- SKRYPTY -->
-
-    <script type="text/javascript" src="../js/timer-eng.js"></script>
-    <script type="text/javascript" src="../js/accessibility.js"></script>
-
+    <!-- COOKIES -->
     <div id="simplecookienotification_v01"
-        style="display: block; z-index: 99999; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
+        style="display: block; z-index: 99; min-height: 35px; width: 100%; position: fixed; background: rgb(239, 235, 233); border-image: initial; border-width: 5px 0px 0px; border-top-style: solid; border-color: rgb(121, 85, 72); text-align: center; right: 0px; color: rgb(119, 119, 119); bottom: 0px; left: 0px; border-radius: 0px; border-right-style: initial; border-bottom-style: initial; border-left-style: initial;">
         <div style="padding:10px; margin-left:15px; margin-right:15px; font-size:14px; font-weight:normal;">
             <span id="simplecookienotification_v01_powiadomienie">Ta strona używa plików cookie w celu usprawnienia
                 i
@@ -207,14 +210,23 @@
             <div id="jwc_hr2" style="height: 10px; display: none;"></div>
         </div>
     </div>
+    <!-- SKRYPTY -->
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            $(".container").fadeOut("slow");
+            $("body").removeClass("preload");
+        });
+    </script>
     <script type="text/javascript">
         var galTable = new Array();
         var galx = 0;
     </script>
     <script type="text/javascript" src="../js/timer.js"></script>
     <script type="text/javascript" src="../js/cookie.js"></script>
-    <script type="text/javascript" src="../js/carousel.js"></script>
+    <script type="text/javascript" src="../js/carousel.js">
+    </script>
     <script type="text/javascript" src="../js/accessibility.js"></script>
+
 </body>
 
 </html>
