@@ -714,40 +714,6 @@ hr {
   margin-top: 25px;
 }
 
-.carousel {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-}
-
-.arrow-left, .arrow-right {
-  position: absolute;
-  top: 50%;
-  font-size: 40px;
-  border: none;
-  color: #000;
-  background: none;
-}
-.arrow-left {
-  left: -50px;
-}
-.arrow-right {
-  right: -50px;
-}
-
-@media only screen and (max-width:700px) {
-  .arrow-left {
-    left: 0;
-  }
-  .arrow-right {
-    right: 0;
-  }
-  .arrow-left, .arrow-right {
-    text-shadow: 0 0 1px #fff;
-  }
-}
 /*
 .container {
   height: 100%;
