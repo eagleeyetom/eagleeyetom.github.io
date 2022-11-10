@@ -27,9 +27,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/w3.css">
     <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
@@ -57,25 +55,23 @@
 </head>
 <!-- BODY -->
 
-<body id="resultDiv" class="element toggle preload">
+<body id="resultDiv" class="element toggle">
 
     <!-- HEAD -->
     <img id="head" class="image" src="../img/head.webp" alt="Logo Masski">
 
     <!-- Loader -->
 
-    <div class="container">
+    <!--div class="container">
         <div class="loader">
         </div>
-    </div>
+    </div-->
     <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
-        </div>
         <button id="fontMinusBtn" tabindex="1" class="wcag">A-</button>
         <button id="fontPlusBtn" tabindex="2" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast" tabindex="3"></button>
-        <a href="../en/index.html"><span class="flag-icon flag-icon-gb" tabindex="4"
-                description="Przejdź na stronę w języku angielskim"></span></a>
+        <a href="../en/index.html"><span class="flag-icon flag-icon-gb" tabindex="4" id="flag"></span></a>
     </section>
 
     <!-- BANNER -->
@@ -95,9 +91,6 @@
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem, quia alias, deserunt maiores
                 cupiditate quae quibusdam aperiam totam sapiente amet corporis provident vitae architecto tempore
                 quaerat eveniet recusandae impedit ab.</p>
-
-
-            </p>
         </div>
     </section>
 
@@ -116,10 +109,9 @@
         </div>
         <!-- BUTTON -->
         <div id="button"></div>
-        </div>
     </section>
 
-    </section>
+
     <section class="textDiv">
         <h1 class="w3-center">21 lat Masski</h1>
     </section>
@@ -138,7 +130,7 @@
             <img class="mySlides fade" src="../img/plakaty/2020.webp" style="width:100%" alt="Masska 2020">
             <img class="mySlides fade" src="../img/plakaty/2021.webp" style="width:100%" alt="Masska 2021">
             <img class="mySlides fade" src="../img/plakaty/2022.webp" style="width:100%" alt="Masska 2022">
-        </div> alt="Masska 20"
+        </div>
         <div class="arrows">
             <button tabindex="8" class="w3-button w3-display-left" onclick="plusSlides(-1)"
                 description="Poprzedni plakat">&#10094;</button>
@@ -174,7 +166,7 @@
                                 alt="Miasto Sopot" class="image" title="Miasto Sopot"></a></li>
                     <li><a href="https://bart.sopot.pl" target="_blank" tabindex="15"><img src="../img/bart.webp"
                                 alt="Bałtycka Agencja Turystyczna" title="Bałtycka Agencja Turystyczna" class="image"
-                                class="footer" tabindex="16"></a></li>
+                                tabindex="16"></a></li>
                     <li><a href="https://www.teatratelier.pl" target="_blank" tabindex="10"><img
                                 src="../img/atelier.webp" alt="Teatr Atelier" title="Teatr Atelier" class="image"></a>
                     </li>

@@ -4,7 +4,12 @@ body {
   background-color: #FFFAFA;
   font-family: 'Oswald', sans-serif;
   margin: 0;
-  overflow-x: hidden
+  overflow-x: hidden;
+  font-display: fallback;
+  font-weight: normal;
+  -moz-osx-font-smoothing: normal;
+  -webkit-font-smoothing: auto;
+
 }
 
 @media only screen and (max-width:700px) {
@@ -40,7 +45,7 @@ button:hover {
 }
 
 #fontMinusBtn {
-  font-size: small
+  font-size: 150%;
 }
 
 #fontMinusBtn:hover,
@@ -51,7 +56,7 @@ button:hover {
 }
 
 #fontPlusBtn {
-  font-size: large
+  font-size: 200%;
 }
 
 .topbox {
@@ -527,11 +532,11 @@ hr {
   background-color: transparent !important
 }
 
-#kontrast {
+#kontrast, #flag {
   cursor: pointer;
-  font-size: 1.5em;
+  font-size: 150%;
   position: relative;
-  vertical-align: middle
+  justify-content: center;
 }
 
 #blank {
@@ -599,12 +604,8 @@ hr:after {
   }
 }
 
-#timer,
-#timer-eng {
-  -webkit-text-fill-color: #000;
-  -webkit-text-stroke-color: #f5f5f5;
-  -webkit-text-stroke-width: 1px;
-  color: #0606;
+#timer {
+  color: #000;
   font-size: 4em;
   margin-bottom: 0;
   text-align: center
@@ -612,10 +613,8 @@ hr:after {
 
 @media only screen and (max-width:700px) {
 
-  #timer,
-  #timer-eng {
+  #timer {
     font-size: 1.7em;
-    -webkit-text-stroke-width: 0.1px;
   }
 }
 
