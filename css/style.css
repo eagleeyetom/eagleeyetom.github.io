@@ -658,12 +658,6 @@ hr {
   width: 1000px
 }
 
-@media only screen and (max-width:700px) {
-  #mapdiv {
-    width: 100%
-  }
-}
-
 .opis {
   margin: auto;
   width: 55%
@@ -673,13 +667,33 @@ hr {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 95%
+  width: 99%
 }
 
 #teatr,
 .test-gallery,
 .arrows {
   text-align: center
+}
+
+#mobile {
+  display: none;
+}
+
+@media only screen and (max-width:700px) {
+  #mobile {
+    width: 95%;
+    margin: auto;
+    display: block;
+  }
+
+  #mobile img {
+    width: 100%;
+  }
+
+  #gallery {
+    display: none;
+  }
 }
 
 .fade {
