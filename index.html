@@ -1,27 +1,15 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html>
 
 <head>
     <script type="text/javascript">
         const lang = navigator.language
         langChanger:
-            if (lang.includes('pl')) {
-                window.location = 'pl/index.html'
-            } else {
-                window.location = 'en/index.html'
-            }
-    </script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
+        if (lang.includes('pl')) {
+            window.location = 'pl/index.html'
+        } else {
+            window.location = 'en/index.html'
         }
-        gtag('js', new Date());
-
-        gtag('config', 'G-CKB0FYJDGK');
     </script>
     <!-- META -->
     <meta charset="utf-8">
@@ -31,34 +19,7 @@
     <meta name="author" content="Paulina Lewandowska">
     <meta name="description"
         content="21. Przegląd Teatralny Masska On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-
-    <!-- FAVICON -->
-    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="img/favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-
-    <!-- JQuery -->
-
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-</head>
-<!-- BODY -->
+    <!-- BODY -->
 
 <body class="preload">
     <!-- Loader -->
@@ -69,13 +30,6 @@
         <div id="panel_left" class='loader-section section-left'></div>
         <div id="panel_right" class='loader-section section-right'></div>
     </div>
-    <!-- SKRYPTY -->
-    <script type="text/javascript">
-        $(window).on("load", function () {
-            $(".container").fadeOut("slow");
-            $("body").removeClass("preload");
-        });
-    </script>
 </body>
 
 </html>
