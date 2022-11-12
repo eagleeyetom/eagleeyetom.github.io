@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -18,16 +18,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Svezhiy Veter - MASSKA On-Line</title>
+    <title>Teatr Ubogi Relacji - MASSKA On-Line</title>
+
 
     <meta name="author" content="Paulina Lewandowska">
     <meta name="description"
-        content="20th theatrical overview - MASSKA on-line 2021 Sopot. 15-30 November 2021. Theatres of people with disabilities and youth theatres from Poland and other countries.">
+        content="21. Przegląd Teatralny MASSKA On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy.">
     <!-- STYLE -->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/photoswipe.css">
     <link rel="stylesheet" type="text/css" href="../css/flag-icons.min.css">
-    <link rel="stylesheet" href="../css/material-photo-gallery.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="../img/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../img/favicon/apple-icon-60x60.png">
@@ -46,11 +49,13 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="../img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-
+    <!-- SKRYPTY -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="../js/photoswipe-lightbox.umd.min.js"></script>
+    <script src="../js/photoswipe.umd.min.js"></script>
 </head>
+<!-- BODY -->
 
 <body id="resultDiv" class="element toggle preload">
     <!-- HEAD -->
@@ -65,102 +70,123 @@
         <div id="panel_left" class='loader-section section-left'></div>
         <div id="panel_right" class='loader-section section-right'></div>
     </div>
+
     <!-- ACCESSIBILITY -->
     <section class="accessibility textDiv">
         <button id="fontMinusBtn" class="wcag">A-</button>
         <button id="fontPlusBtn" class="wcag">A+</button>
         <button class="fas fa-adjust wcag" onclick="switchColor()" id="kontrast"></button>
-        <a href="../svezhiy-veter.html" tabindex="4"><span class="flag-icon flag-icon-pl" id="flag"></span></a>
+        <a href="../en/teatr-ubogi-relacji.html"><span class="flag-icon flag-icon-gb" id="flag"></span></a>
     </section>
 
     <!-- BANNER -->
 
     <section id="topbox">
         <header>
-            <a href="index.html" tabindex="-1"><img src="../img/banner.webp" alt="MASSKA theatrical overview"
-                    class="banner"></a>
+            <a href="index.html"><img src="../img/banner.webp" class="banner" alt="MASSKA - Przegląd Teatralny"></a>
         </header>
     </section>
-    <!-- TREŚĆ -->
-    <section class="textDiv">
-        <div class="profil">
-            <div class="nazwa" tabindex="5">
-                <ul>
-                    <li class="teatr">Svezhiy Veter</li>
-                    <li class="tytul">"Legend of Pra Busla". Based on folk art</li>
-                    <li class="miasto">Stolin</li>
-                    <li><span class="flag-icon flag-icon-by" title="Belarus"></span>
-                    </li>
-                </ul>
-            </div>
-            <div class="m-p-g">
-                <div class="m-p-g__thumbs" data-google-image-layout data-max-height="350">
-                    <img src="../img/teatr/svezhiy-veter/3_thumb.jpg" data-full="../img/teatr/svezhiy-veter/3.jpg"
-                        class="m-p-g__thumbs-img" alt="Actors" tabindex="7" />
-                    <img src="../img/teatr/svezhiy-veter/2_thumb.jpg" data-full="../img/teatr/svezhiy-veter/2.jpg"
-                        class="m-p-g__thumbs-img" alt="Playing actress" tabindex="6" />
-                    <img src="../img/teatr/svezhiy-veter/1_thumb.jpg" data-full="../img/teatr/svezhiy-veter/1.jpg"
-                        class="m-p-g__thumbs-img" alt="Dance" tabindex="8" />
-                </div>
-                <div class="m-p-g__fullscreen"></div>
-            </div>
-        </div>
-    </section>
-    <section class="textDiv">
-        <div class="opis">
-            <div class="info" tabindex="9">
-                <h2 id="established">Founded:</h2>
-                <p>2008</p>
-            </div>
-            <div class="info" tabindex="11">
-                <h2>Goals of the theatre:</h2>
-                <p>
-                    The purpose of the CCROiR is to ensure the creation of a comprehensive system of psychological,
-                    medical and pedagogical assistance to persons with psychophysical developmental disabilities
-                    (hereinafter referred to as OPFR) and the implementation of educational, including within the
-                    framework of providing early comprehensive assistance (hereinafter referred to as RCP) to children
-                    under the age of three, correctional - pedagogical, diagnostic, social, methodological, advisory,
-                    information and analytical activities, the provision of psychological assistance.
-                </p>
-                <p>
-                    The composition of the theatre participants is constant. It consisted of students of the Central
-                    Committee for Regional Development and Development and young people with disabilities attending the
-                    day care department for young people with disabilities, volunteers of the city's schools. The
-                    theatre actors are 14-30 years old.
-                </p>
-                </p>
-            </div>
-            <div class="info" tabindex="12">
-                <h2>Brief description of theatre:</h2>
-                <p>
-                    The reason for the creation of the theatre was the desire to unite children with disabilities and
-                    young disabled people. The goals was also to provide them with opportunities for
-                    creative and personal development. During its existence, the theatre took part in the International
-                    festival of special theatres "Nieprzetartego Szlaku" in Brest, Lublin (Poland), became a permanent
-                    participant in the international theatre project "Theatre under the open sky" in Stolin, took part
-                    in the third all-Ukrainian festival creativity of disabled people "Restless Heart", the
-                    international festival for children and young people with disabilities "Valley of Narcissus"
-                    (Ukraine), "Eastern Fairy Tale" (Azerbaijan), "Step Towards" (Belarus), "Lilac Swallow" (Belarus),
-                    "Begasis" (Lithuania), "Art for All" (Latvia), "Wings" (Ukraine), "Theatrical Labyrinth" (Germany),
-                    "Life of Endless Possibilities" (Moscow). Theatre directors have been trained on international
-                    projects for directors of special theatres in Belarus, Ukraine, Germany. Theatre "Fresh Wind" is
-                    included in the collection-register "Special Theatres of Russia" issue 4: Moscow, 2010.
-                </p>
-            </div>
-            <div class="info">
-                <h2>Contact:</h2>
-                <p><a href="mailto:ckro@roo-stolin.gov.by" id="link" tabindex="13">ckro@roo-stolin.gov.by
 
-                    </a></p>
-            </div>
-        </div>
-    </section>
-    <section tabindex="14">
+    <!-- YT -->
+    <section>
         <div class="yt">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/A8kIY818nHk"
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/xZLUfGwrUqI"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
+        </div>
+    </section>
+    <!-- OPIS -->
+    <section class="textDiv">
+        <h1><i class="fa-solid fa-masks-theater"></i> Teatr Ubogi Relacji</h1>
+        <h2><span class="fa-solid fa-location-dot"></span> Sopot <span class="flag-icon flag-icon-pl"
+                title="Polska"></span>
+        </h2>
+        <h2><i class="fa-solid fa-arrow-right"></i> On i Ona - Bajka bez morału</h2>
+        <h2><i class="fa-solid fa-clock"></i> 27 min.</h2>
+    </section>
+
+    <!-- GALERIA -->
+
+    <section>
+        <div class="test-gallery" id="gallery">
+            <a href="../img/teatr/teatr-ubogi-relacji/photo/photo1.webp" data-pswp-width="2048" data-pswp-height="1532">
+                <img src="../img/teatr/teatr-ubogi-relacji/thumb/photo1.webp" alt="" />
+            </a>
+            <a href="../img/teatr/teatr-ubogi-relacji/photo/photo2.webp" data-pswp-width="2048" data-pswp-height="1532">
+                <img src="../img/teatr/teatr-ubogi-relacji/thumb/photo2.webp" alt="" />
+            </a>
+            <a href="../img/teatr/teatr-ubogi-relacji/photo/photo3.webp" data-pswp-width="960" data-pswp-height="580">
+                <img src="../img/teatr/teatr-ubogi-relacji/thumb/photo3.webp" alt="" />
+            </a>
+        </div>
+    </section>
+    <section>
+        <div class="test-gallery" id="mobile">
+            <a href="../img/teatr/teatr-ubogi-relacji/photo/photo1.webp" data-pswp-width="2048" data-pswp-height="1532">
+                <img src="../img/teatr/teatr-ubogi-relacji/photo/photo1.webp" alt="" />
+            </a>
+            <a href="../img/teatr/teatr-ubogi-relacji/photo/photo2.webp" data-pswp-width="2048" data-pswp-height="1532">
+                <img src="../img/teatr/teatr-ubogi-relacji/photo/photo2.webp" alt="" />
+            </a>
+            <a href="../img/teatr/teatr-ubogi-relacji/photo/photo3.webp" data-pswp-width="960" data-pswp-height="580">
+                <img src="../img/teatr/teatr-ubogi-relacji/photo/photo3.webp" alt="" />
+            </a>
+        </div>
+    </section>
+
+    <!-- TEKST -->
+
+    <section class="textDiv tekst">
+        <div class="info">
+            <p>
+                To prosta historia o próbie pokonania swoich oraz zewnętrznych ograniczeń i nawiązania bliższych relacji
+                z drugim człowiekiem.
+            </p>
+            <p>
+                Scenariusz: Zespół
+            </p>
+
+            <div class="hr">
+                <span class="icon fa-solid fa-masks-theater"></span>
+            </div>
+            <p>
+            <ul>
+                <li>Reżyser - Jacek Spica</li>
+                <li>Kostiumy - Gosia Golińska</li>
+                <li>Manager - Paulina Lewandowska</li>
+            </ul>
+            <p>
+                Aktorzy:
+            </p>
+            <ul>
+                <li>Dorota Koczyk</li>
+                <li>Małgorzata Abraham</li>
+                <li>Anna Butkiewicz</li>
+                <li>Aleksandra Kurek</li>
+                <li>Grzegorz Szupicki</li>
+                <li>Maciej Kozłowski</l>
+                <li>Michał Pniewski</li>
+                <li>Ryszard Czynszak</li>
+                <li>Sławomir Byrdy</li>
+            </ul>
+            <div class="hr">
+                <span class="icon fa-solid fa-masks-theater"></span>
+            </div>
+
+            <p>
+                Teatr Ubogi Relacji, to spontaniczne, co roku odnawialne (istniejemy już 27 lat) przedsięwzięcie mające
+                na celu wyrażenie uczuć, myśli i przeżyć jego uczestników, podopiecznych obecnie Środowiskowego Domu
+                Samopomocy w Sopocie. To efekt poszukiwań sposobu opowiadania o tym, co jest ważne w życiu,
+                prezentowania swoich przekonań nieznajdujących innego wyrazu. Teatr jest dla nas sposobem poznawania
+                siebie i świata. W tym czasie zrealizowaliśmy wiele różnorodnych pod względem tematyki i formy
+                przedstawień szukając sposobu na wyrażenie swoich doświadczeń. Staramy się opowiadać własne historie.
+                Własne, czyli takie, których źródłem jest sposób widzenia świata aktorów teatru.
+            </p>
+            <p>
+                <span><i class="fa-solid fa-circle-plus"></i></span> 1995<br>
+                <span><i class="fa-solid fa-envelope"></i></span> teatrubogirelacji(at)gmail.com
+            </p>
         </div>
     </section>
 
