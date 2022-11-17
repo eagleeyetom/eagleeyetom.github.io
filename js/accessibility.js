@@ -24,7 +24,7 @@ function accessCookie(name, value, days) {
   document.getElementById("resultDiv").classList.toggle("toggle");
 }
 
-function readCookie(name) {
+function readAccessCookie(name) {
   var nameEQ = name + "=";
   var ca = document.cookie.split(";");
   for (var i = 0; i < ca.length; i++) {
@@ -34,7 +34,7 @@ function readCookie(name) {
   }
   return null;
 }
-var readCookie_jest = readCookie("readCookie");
+var readCookie_jest = readCookie("readAccessCookie");
 if (readCookie_jest == 1) {
   document.getElementById("resultDiv").classList.toggle("toggle");
 }
