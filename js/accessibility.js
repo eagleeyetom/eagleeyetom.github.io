@@ -12,6 +12,9 @@ $("#fontMinusBtn").click(function () {
 
 function switchColor() {
   document.getElementById("resultDiv").classList.toggle("toggle");
+  // Set the cookie to store the color choice
+  document.cookie =
+    "colorChoice=" + color + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
 }
 
 function accessCookie(name, value, days) {
@@ -38,3 +41,10 @@ var readCookie_jest = readCookie("readAccessCookie");
 if (readCookie_jest == 1) {
   document.getElementById("resultDiv").classList.toggle("toggle");
 }
+
+window.onload = function () {
+  var colorChoice = getCookie("colorChoice");
+  if (colorChoice) {
+    document.body.style.backgroundColor = colorChoice;
+  }
+};
