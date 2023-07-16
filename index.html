@@ -1,54 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <script type="text/javascript">
-        const lang = navigator.language;
-        langChanger:
-        if (lang.includes('pl')) {
-            window.location = 'pl/index.html'
-        } else {
-            window.location = 'en/index.html'
-        }
-    </script>
-    <!-- META -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MASSKA Przegląd Teatralny - On-Line</title>
-    <meta name="author" content="Paulina Lewandowska">
-    <meta name="description"
-        content="21. Przegląd Teatralny MASSKA On-Line 2022 Sopot. 14-30.11.2022. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy."
-        lang="pl">
-    <meta name="description"
-        content="21st theatrical overview - MASSKA on-line 2022 Sopot. 14-30 November 2022. Theatres of people with disabilities and youth theatres from Poland and other countries."
-        lang="en">
-    <!-- FAVICON -->
-    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png" />
-    <link rel="manifest" href="img/favicon/manifest.json" />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png" />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- BODY -->
+    <title>Style Selector</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            margin-bottom: 20px;
+        }
+
+        .box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
 
 <body>
-    <p>W przypadku problemów z załadowaniem strony <a href="pl/index.html">KLIKNIJ TUTAJ</a></p>
-    <p>In case of problems with loading <a href="pl/index.html">CLICK HERE</a></p>
-    <br>
-    <p>Przeglądarka Internet Explorer nie jest wspierana. Prosimy o użycie innej przeglądarki.</p>
-    <p>Internet Explorer is not supported. Please use a different browser.</p>
+    <div class="container">
+        <h2>Select a Style:</h2>
+        <div class="box" onclick="switchStyle('red')"></div>
+        <div class="box" onclick="switchStyle('green')"></div>
+        <div class="box" onclick="switchStyle('blue')"></div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            var styleChoice = getCookie("styleChoice");
+            if (styleChoice) {
+                applyStyle(styleChoice);
+            }
+        };
+
+        function switchStyle(style) {
+            applyStyle(style);
+            setCookie("styleChoice", style, 365);
+        }
+
+        function applyStyle(style) {
+            var boxes = document.getElementsByClassName('box');
+            for (var i = 0; i < boxes.length; i++) {
+                boxes[i].style.backgroundColor = style;
+            }
+        }
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            var cookieArr = document.cookie.split("; ");
+            for (var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split("=");
+                if (name === cookiePair[0]) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+    </script>
 </body>
 
 </html>
