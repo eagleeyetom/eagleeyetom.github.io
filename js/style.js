@@ -1,20 +1,39 @@
 window.onload = function () {
-  var styleChoice = getCookie("styleChoice");
-  if (styleChoice) {
-    applyStyle(styleChoice);
+  var fontSizeChoice = getCookie("fontSizeChoice");
+  if (
+    fontSizeChoice &&
+    (fontSizeChoice === "small" || fontSizeChoice === "large")
+  ) {
+    switchFontSize(fontSizeChoice);
+  }
+
+  var contrastChoice = getCookie("contrastChoice");
+  if (contrastChoice && contrastChoice === "high-contrast") {
+    toggleContrast();
   }
 };
 
-function switchStyle(style) {
-  applyStyle(style);
-  setCookie("styleChoice", style, 365);
+function switchFontSize(size) {
+  var bodyElement = document.body;
+  bodyElement.classList.remove("small-text", "large-text");
+
+  if (size === "small") {
+    bodyElement.classList.add("small-text");
+  } else if (size === "large") {
+    bodyElement.classList.add("large-text");
+  }
+
+  setCookie("fontSizeChoice", size, 365);
 }
 
-function applyStyle(style) {
-  var boxes = document.getElementsByClassName("box");
-  for (var i = 0; i < boxes.length; i++) {
-    boxes[i].style.backgroundColor = style;
-  }
+function toggleContrast() {
+  var bodyElement = document.body;
+  bodyElement.classList.toggle("high-contrast");
+
+  var contrastChoice = bodyElement.classList.contains("high-contrast")
+    ? "high-contrast"
+    : "default";
+  setCookie("contrastChoice", contrastChoice, 365);
 }
 
 function setCookie(name, value, days) {

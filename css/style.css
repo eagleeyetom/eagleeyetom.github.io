@@ -1,0 +1,38 @@
+body {
+    font-size: 16px;
+    color: #333;
+}
+
+/* High contrast styles */
+.high-contrast {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Font size styles */
+.small-text {
+    font-size: 14px;
+}
+
+.large-text {
+    font-size: 18px;
+}
+
+/* WCAG menu styles */
+.wcag-menu {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999;
+}
+
+.wcag-menu button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
