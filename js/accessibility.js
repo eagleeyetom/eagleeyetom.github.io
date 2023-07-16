@@ -17,34 +17,20 @@ function switchColor() {
     "colorChoice=" + color + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
 }
 
-function accessCookie(name, value, days) {
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    var expires = "; expires=" + date.toGMTString();
-  } else var expires = "";
-  document.cookie = name + "=" + value + expires + "; path=/";
-  document.getElementById("resultDiv").classList.toggle("toggle");
-}
-
-function readAccessCookie(name) {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-  }
-  return null;
-}
-var readCookie_jest = readCookie("readAccessCookie");
-if (readCookie_jest == 1) {
-  document.getElementById("resultDiv").classList.toggle("toggle");
-}
-
 window.onload = function () {
   var colorChoice = getCookie("colorChoice");
   if (colorChoice) {
     document.body.style.backgroundColor = colorChoice;
   }
 };
+
+function getCookie(name) {
+  var cookieArr = document.cookie.split("; ");
+  for (var i = 0; i < cookieArr.length; i++) {
+    var cookiePair = cookieArr[i].split("=");
+    if (name === cookiePair[0]) {
+      return decodeURIComponent(cookiePair[1]);
+    }
+  }
+  return null;
+}
