@@ -1,10 +1,10 @@
-function acceptCookies() {
-  setCookie("cookiesAccepted", "true", 365);
+function acceptCookiesConsent() {
+  setCookieConsent("cookiesAccepted", "true", 365);
   var cookieInfo = document.querySelector(".cookie-info");
   cookieInfo.style.display = "none";
 }
 
-function setCookie(name, value, days) {
+function setCookieConsent(name, value, days) {
   var expires = "";
   if (days) {
     var date = new Date();
@@ -14,7 +14,7 @@ function setCookie(name, value, days) {
   document.cookie = name + "=" + value + expires + "; path=/";
 }
 
-function getCookie(name) {
+function getCookieConsent(name) {
   var cookieArr = document.cookie.split("; ");
   for (var i = 0; i < cookieArr.length; i++) {
     var cookiePair = cookieArr[i].split("=");
@@ -26,7 +26,7 @@ function getCookie(name) {
 }
 
 window.onload = function () {
-  var cookiesAccepted = getCookie("cookiesAccepted");
+  var cookiesAccepted = getCookieConsent("cookiesAccepted");
   if (cookiesAccepted) {
     var cookieInfo = document.querySelector(".cookie-info");
     cookieInfo.style.display = "none";

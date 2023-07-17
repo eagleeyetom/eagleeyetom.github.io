@@ -52,6 +52,8 @@ body {
     position: fixed;
     bottom: 10px;
     left: 10px;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(120, 121, 9, 0.8407738095238095) 35%);
 }
 
 .cookie-info img {
@@ -77,6 +79,8 @@ body {
     .cookie-info {
         border: 3px solid green;
         border-radius: 15px;
+        background: rgb(2, 0, 36);
+        z-index: 999;
     }
 
     .cookie-info img {
