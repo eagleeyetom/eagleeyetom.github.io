@@ -7,6 +7,7 @@
     <title>Masska 2023</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 </head>
 
 <body>
@@ -18,8 +19,13 @@
         <button onclick="switchFontSize('large')">A+</button>
         <button onclick="toggleContrast()"><i class="fas fa-adjust"></i></button>
     </div>
-
+    <div class="cookie-info">
+        <img src="img/cookie.webp" alt="Ciastko">
+        <p>Ta strona używa plików cookie w celu usprawnienia i ułatwienia dostępu do serwisu oraz prowadzenia danych
+            statystycznych.</p>
+        <button onclick="acceptCookies()">Ok</button>
+    </div>
     <script src="js/style.js"></script>
-</body>
+    <script src="js/cookie-consent.js"></script>
 
 </html>

@@ -23,7 +23,7 @@ body {
 /* WCAG menu styles */
 .wcag-menu {
     position: fixed;
-    bottom: 20px;
+    top: 20px;
     right: 20px;
     background-color: #f5f5f5;
     padding: 10px;
@@ -39,8 +39,35 @@ body {
     cursor: pointer;
 }
 
-.wcag-menu button:hover {
+.wcag-menu button:hover, .cookie-info button:hover {
     -webkit-filter: invert(1);
     filter: invert(1);
     transition-duration: .5s;
+}
+
+/* Cookie */
+.cookie-info {
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+.cookie-info img {
+    width: 100px;
+    height: auto;
+}
+
+.cookie-info p {
+    margin: 0;
+    width: 200px;
+    padding: 10px;
+}
+
+.cookie-info button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
 }
