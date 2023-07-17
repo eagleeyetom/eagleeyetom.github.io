@@ -71,3 +71,28 @@ body {
     border-radius: 3px;
     cursor: pointer;
 }
+
+/* Responsive */
+@media screen and (max-width:700px) {
+    .cookie-info {
+        border: 3px solid green;
+        border-radius: 15px;
+    }
+
+    .cookie-info img {
+        width: 50px;
+        height: auto;
+    }
+
+    .cookie-info p {
+        margin: 0;
+        width: 150px;
+        padding: 10px;
+    }
+
+    /* WCAG menu styles */
+    .wcag-menu {
+        top: auto;
+        bottom: 20px;
+    }
+}
