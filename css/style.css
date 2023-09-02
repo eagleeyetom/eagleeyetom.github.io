@@ -2,10 +2,21 @@ body {
     font-size: 16px;
     color: #333;
     transition-duration: .5s;
+    background-color: #648d9f;
+    width: 90%;
+    margin: auto;
+    text-align: justify;
 }
 
 .banner {
     width: 100%;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
 }
 
 /* High contrast styles */
@@ -15,7 +26,11 @@ body {
     transition-duration: .5s;
 }
 
-.high-contrast .banner {
+.high-contrast .logo {
+    filter: invert(100%);
+}
+
+.high-contrast .wcag-menu {
     filter: invert(100%);
 }
 
@@ -26,6 +41,15 @@ body {
 
 .large-text {
     font-size: 22px;
+}
+
+p:first-child:first-letter {
+    float: left;
+    font-size: 75px;
+    line-height: 60px;
+    padding-top: 4px;
+    padding-right: 8px;
+    padding-left: 3px;
 }
 
 /* WCAG menu styles */
@@ -51,6 +75,10 @@ body {
     -webkit-filter: invert(1);
     filter: invert(1);
     transition-duration: .5s;
+}
+
+.high-contrast .wcag-menu {
+    filter: invert(100%);
 }
 
 /* Cookie */
