@@ -24,6 +24,32 @@ body {
     width: 10%;
 }
 
+/* Styling for the WCAG menu container */
+.wcag {
+    list-style: none;
+    font-size: medium !important;
+}
+
+.wcag-menu {
+    position: fixed;
+    top: 50%;
+    bottom: 50%;
+    right: 0;
+}
+
+.wcag-menu button {
+    background: none;
+    border: none;
+    margin: auto;
+    cursor: pointer;
+}
+
+.wcag-menu button:hover, .cookie-info button:hover {
+    -webkit-filter: invert(.5);
+    filter: invert(.5);
+    transition-duration: .5s;
+}
+
 /* High contrast styles */
 .high-contrast {
     background-color: #000;
@@ -37,7 +63,6 @@ body {
 
 .high-contrast .wcag-menu {
     filter: invert(100%);
-    border: 1px solid #000;
 }
 
 /* Font size styles */
@@ -56,33 +81,6 @@ p:first-child:first-letter {
     padding-top: 4px;
     padding-right: 8px;
     padding-left: 3px;
-}
-
-/* WCAG menu styles */
-.wcag-menu {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #DDE4E2;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 999;
-    border: 1px solid;
-}
-
-.wcag-menu button {
-    margin-right: 5px;
-    padding: 5px 10px;
-    border: 1px solid;
-    background: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.wcag-menu button:hover, .cookie-info button:hover {
-    -webkit-filter: invert(.5);
-    filter: invert(.5);
-    transition-duration: .5s;
 }
 
 /* Cookie */
@@ -134,6 +132,13 @@ footer ul li {
     padding-right: 1%
 }
 
+.mobile-gmina {
+    display: none;
+}
+
+footer img {
+    width: 100%;
+}
 
 /* Responsive */
 @media screen and (max-width:700px) {

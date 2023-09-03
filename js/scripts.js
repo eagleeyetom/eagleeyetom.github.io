@@ -25,6 +25,29 @@ function getCookie(name) {
   return null;
 }
 
+function switchFontSize(size) {
+  // Added this function
+  var bodyElement = document.body;
+  if (size === "small") {
+    bodyElement.classList.remove("large-text");
+    bodyElement.classList.add("small-text");
+  } else if (size === "large") {
+    bodyElement.classList.remove("small-text");
+    bodyElement.classList.add("large-text");
+  }
+}
+
+function toggleFontSize() {
+  var bodyElement = document.body;
+  if (bodyElement.classList.contains("small-text")) {
+    switchFontSize("large");
+    setCookie("fontSizeChoice", "large", 365);
+  } else {
+    switchFontSize("small");
+    setCookie("fontSizeChoice", "small", 365);
+  }
+}
+
 window.onload = function () {
   var cookiesAccepted = getCookie("cookiesAccepted");
   if (cookiesAccepted) {
@@ -45,19 +68,6 @@ window.onload = function () {
     toggleContrast();
   }
 };
-
-function switchFontSize(size) {
-  var bodyElement = document.body;
-  bodyElement.classList.remove("small-text", "large-text");
-
-  if (size === "small") {
-    bodyElement.classList.add("small-text");
-  } else if (size === "large") {
-    bodyElement.classList.add("large-text");
-  }
-
-  setCookie("fontSizeChoice", size, 365);
-}
 
 function toggleContrast() {
   var bodyElement = document.body;
