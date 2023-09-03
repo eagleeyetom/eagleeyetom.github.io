@@ -162,12 +162,20 @@ footer img {
 
     /* WCAG menu styles */
     .wcag-menu {
-        top: auto;
-        bottom: 20px;
+        right: 0;
+        top: 0;
     }
 
     .logo {
         width: 30%;
+    }
+
+    .gmina {
+        display: none;
+    }
+
+    .mobile-gmina {
+        display: block;
     }
 
 }
