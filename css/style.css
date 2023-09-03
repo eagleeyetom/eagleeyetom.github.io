@@ -1,8 +1,8 @@
 body {
     font-size: 16px;
-    color: #333;
+    color: #000;
     transition-duration: .5s;
-    background-color: #648d9f;
+    background-color: #8bb0c0;
     margin: auto;
     text-align: justify;
     overflow-x: hidden;
@@ -19,9 +19,14 @@ body {
 
 .logo {
     display: block;
+    height: fit-content;
     margin-left: auto;
     margin-right: auto;
-    width: 10%;
+    opacity: .15;
+    position: fixed;
+    right: -100px;
+    z-index: -1;
+    width: 50%;
 }
 
 /* Styling for the WCAG menu container */
@@ -57,7 +62,7 @@ body {
     transition-duration: .5s;
 }
 
-.high-contrast .logo, .high-contrast footer {
+.high-contrast .logo, .high-contrast footer, .high-contrast #head {
     filter: invert(100%);
 }
 
@@ -67,11 +72,11 @@ body {
 
 /* Font size styles */
 .small-text {
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .large-text {
-    font-size: 22px;
+    font-size: 30px;
 }
 
 p:first-child:first-letter {
@@ -167,11 +172,7 @@ footer a:hover {
     /* WCAG menu styles */
     .wcag-menu {
         right: 0;
-        top: 0;
-    }
-
-    .logo {
-        width: 30%;
+        top: 5%;
     }
 
     .gmina {
@@ -184,6 +185,11 @@ footer a:hover {
 
     footer ul {
         padding-right: 10%
+    }
+
+    .logo {
+        left: 0;
+        width: 100%;
     }
 
 }
