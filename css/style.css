@@ -224,8 +224,11 @@ footer a:hover {
         margin: auto;
     }
 
-
     /* WCAG Menu Styles */
+    body {
+        overflow-x: hidden;
+    }
+
     .wcag-menu {
         right: 0;
         top: 5%;
