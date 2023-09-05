@@ -6,6 +6,7 @@ body {
     margin: auto;
     text-align: justify;
     overflow-x: hidden;
+    font-family: Arial, sans-serif;
 }
 
 .body {
@@ -50,8 +51,8 @@ body {
 }
 
 .wcag-menu button:hover, .cookie-info button:hover {
-    -webkit-filter: invert(.5);
-    filter: invert(.5);
+    -webkit-filter: invert(.3);
+    filter: invert(.3);
     transition-duration: .5s;
 }
 
@@ -62,12 +63,19 @@ body {
     transition-duration: .5s;
 }
 
-.high-contrast .logo, .high-contrast footer, .high-contrast #head {
+
+.high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu {
+    -webkit-filter: invert(1);
     filter: invert(100%);
 }
 
-.high-contrast .wcag-menu {
-    filter: invert(100%);
+.high-contrast .cookie-info {
+    border-color: #000;
+}
+
+.high-contrast .cookie-info img {
+    -webkit-filter: invert(1);
+    filter: invert(1);
 }
 
 /* Font size styles */
@@ -88,33 +96,55 @@ p:first-child:first-letter {
     padding-left: 3px;
 }
 
+.theater {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Cookie */
 .cookie-info {
-    text-align: center;
     padding: 10px;
     position: fixed;
     bottom: 10px;
     left: 10px;
-    background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(120, 121, 9, 0.8407738095238095) 35%);
+    background-color: #B9D7D8;
+    text-align: center;
+    opacity: .9;
+    border-radius: 5%;
+    border: solid 5px;
+    z-index: 999;
 }
 
-.cookie-info img {
+.cookie {
     width: 100px;
     height: auto;
+    left: 0;
 }
 
 .cookie-info p {
     margin: 0;
-    width: 200px;
+    width: 400px;
     padding: 10px;
 }
 
 .cookie-info button {
     padding: 5px 10px;
-    border: none;
     border-radius: 3px;
     cursor: pointer;
+    font-size: large;
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 6%;
+    right: 2%;
+}
+
+.close:hover {
+    opacity: .5;
+    transition-duration: .3s;
 }
 
 footer {
