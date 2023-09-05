@@ -15,7 +15,8 @@ body {
     margin: auto;
 }
 
-h1, h3 {
+h1,
+h3 {
     text-align: center;
 }
 
@@ -24,11 +25,21 @@ a {
     font-weight: bold;
 }
 
+.high-contrast a:not(.high-contrast .cookie-info a), .high-contrast .analytics {
+    color: #fff;
+    font-weight: bold;
+}
+
+a:hover, .analytics:hover {
+    filter: invert(.3);
+    transition: .3s;
+}
+
+/* Header & logo*/
+
 header a:hover {
     filter: none;
 }
-
-
 
 .banner {
     width: 100%;
@@ -66,7 +77,8 @@ header a:hover {
     cursor: pointer;
 }
 
-.wcag-menu button:hover, .cookie-info button:hover {
+.wcag-menu button:hover,
+.cookie-info button:hover {
     -webkit-filter: invert(0.3);
     filter: invert(0.3);
     transition-duration: 0.5s;
@@ -79,20 +91,33 @@ header a:hover {
     transition-duration: 0.5s;
 }
 
-.high-contrast a, a:hover, .high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu {
+.high-contrast .cookie-info img,
+.high-contrast .logo,
+.high-contrast footer,
+.high-contrast #head,
+.high-contrast .theater,
+.high-contrast .cookie-info,
+.high-contrast .cookie-info p,
+.high-contrast .cookie-info .close,
+.high-contrast .wcag-menu {
     -webkit-filter: invert(1);
     filter: invert(100%);
 }
 
-.high-contrast .cookie-info {
+/*.high-contrast .cookie-info {
     border-color: #000;
 }
 
-.high-contrast .polityka {
-    color: #fff
+.high-contrast .cookie-info a {
+    filter: none;
+    color: #fff !important
 }
 
-.high-contrast .polityka:hover, .high-contrast .analytics:hover {
+.high-contrast a {
+    color: #fff !important
+}
+
+.high-contrast a:hover, .high-contrast .polityka {
     color: #ff0;
 }
 
@@ -224,6 +249,11 @@ footer a:hover {
         padding-right: 10%;
     }
 
+    footer {
+        border: none;
+        padding-top: 1%;
+    }
+
     .logo {
         left: 0;
         width: 100%;
@@ -232,6 +262,11 @@ footer a:hover {
     .google-form {
         margin: auto;
         width: 100%;
-        left: 0;
+        margin-left: 0;
+    }
+
+    .google-form iframe {
+        width: 100%;
+        height: 750px;
     }
 }
