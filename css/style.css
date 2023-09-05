@@ -104,21 +104,15 @@ header a:hover {
     filter: invert(100%);
 }
 
-/*.high-contrast .cookie-info {
-    border-color: #000;
+/* Google Form */
+
+.google-form {
+    margin: auto;
 }
 
-.high-contrast .cookie-info a {
-    filter: none;
-    color: #fff !important
-}
-
-.high-contrast a {
-    color: #fff !important
-}
-
-.high-contrast a:hover, .high-contrast .polityka {
-    color: #ff0;
+.google-form iframe {
+    width: 100%;
+    height: 700px;
 }
 
 /* Font Size Styles */
@@ -260,13 +254,10 @@ footer a:hover {
     }
 
     .google-form {
-        margin: auto;
-        width: 100%;
         margin-left: 0;
     }
 
     .google-form iframe {
-        width: 100%;
         height: 750px;
     }
 }
