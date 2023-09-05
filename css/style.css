@@ -1,18 +1,34 @@
+/* Base Styles */
 body {
     font-size: 16px;
     color: #000;
-    transition-duration: .5s;
     background-color: #8bb0c0;
     margin: auto;
     text-align: justify;
     overflow-x: hidden;
     font-family: Arial, sans-serif;
+    transition-duration: 0.5s;
 }
 
 .body {
     width: 90%;
     margin: auto;
 }
+
+h1, h3 {
+    text-align: center;
+}
+
+a {
+    color: #000;
+    font-weight: bold;
+}
+
+header a:hover {
+    filter: none;
+}
+
+
 
 .banner {
     width: 100%;
@@ -23,14 +39,14 @@ body {
     height: fit-content;
     margin-left: auto;
     margin-right: auto;
-    opacity: .15;
+    opacity: 0.15;
     position: fixed;
     right: -100px;
     z-index: -1;
     width: 50%;
 }
 
-/* Styling for the WCAG menu container */
+/* WCAG Menu Styles */
 .wcag {
     list-style: none;
     font-size: medium !important;
@@ -51,20 +67,19 @@ body {
 }
 
 .wcag-menu button:hover, .cookie-info button:hover {
-    -webkit-filter: invert(.3);
-    filter: invert(.3);
-    transition-duration: .5s;
+    -webkit-filter: invert(0.3);
+    filter: invert(0.3);
+    transition-duration: 0.5s;
 }
 
-/* High contrast styles */
+/* High Contrast Styles */
 .high-contrast {
     background-color: #000;
     color: #fff;
-    transition-duration: .5s;
+    transition-duration: 0.5s;
 }
 
-
-.high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu {
+.high-contrast a, a:hover, .high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu {
     -webkit-filter: invert(1);
     filter: invert(100%);
 }
@@ -73,12 +88,15 @@ body {
     border-color: #000;
 }
 
-.high-contrast .cookie-info img {
-    -webkit-filter: invert(1);
-    filter: invert(1);
+.high-contrast .polityka {
+    color: #fff
 }
 
-/* Font size styles */
+.high-contrast .polityka:hover, .high-contrast .analytics:hover {
+    color: #ff0;
+}
+
+/* Font Size Styles */
 .small-text {
     font-size: 22px;
 }
@@ -102,7 +120,7 @@ p:first-child:first-letter {
     margin-right: auto;
 }
 
-/* Cookie */
+/* Cookie Info */
 .cookie-info {
     padding: 10px;
     position: fixed;
@@ -110,7 +128,7 @@ p:first-child:first-letter {
     left: 10px;
     background-color: #B9D7D8;
     text-align: center;
-    opacity: .9;
+    opacity: 0.9;
     border-radius: 5%;
     border: solid 5px;
     z-index: 999;
@@ -143,10 +161,11 @@ p:first-child:first-letter {
 }
 
 .close:hover {
-    opacity: .5;
-    transition-duration: .3s;
+    opacity: 0.5;
+    transition-duration: 0.3s;
 }
 
+/* Footer Styles */
 footer {
     border: 1px solid #000;
     bottom: 0;
@@ -164,7 +183,7 @@ footer ul {
 }
 
 footer ul li {
-    padding-right: 1%
+    padding-right: 1%;
 }
 
 .mobile-gmina {
@@ -176,30 +195,18 @@ footer img {
 }
 
 footer a:hover {
-    opacity: .3;
+    opacity: 0.3;
 }
 
-/* Responsive */
-@media screen and (max-width:700px) {
+/* Responsive Styles */
+@media screen and (max-width: 700px) {
     .cookie-info {
-        border: 3px solid green;
-        border-radius: 15px;
-        background: rgb(2, 0, 36);
-        z-index: 999;
+        width: 90%;
+        margin: auto;
     }
 
-    .cookie-info img {
-        width: 50px;
-        height: auto;
-    }
 
-    .cookie-info p {
-        margin: 0;
-        width: 150px;
-        padding: 10px;
-    }
-
-    /* WCAG menu styles */
+    /* WCAG Menu Styles */
     .wcag-menu {
         right: 0;
         top: 5%;
@@ -214,7 +221,7 @@ footer a:hover {
     }
 
     footer ul {
-        padding-right: 10%
+        padding-right: 10%;
     }
 
     .logo {
@@ -222,4 +229,9 @@ footer a:hover {
         width: 100%;
     }
 
+    .google-form {
+        margin: auto;
+        width: 100%;
+        left: 0;
+    }
 }
