@@ -160,7 +160,7 @@ p:first-child:first-letter {
 }
 
 .cookie-info p {
-    margin: 0;
+    margin: auto;
     width: 400px;
     padding: 10px;
 }
@@ -222,6 +222,11 @@ footer a:hover {
     .cookie-info {
         width: 90%;
         margin: auto;
+    }
+
+    .cookie-info p {
+        width: auto;
+        padding: 10px;
     }
 
     /* WCAG Menu Styles */
