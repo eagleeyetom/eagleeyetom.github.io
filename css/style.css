@@ -222,6 +222,7 @@ footer a:hover {
     .cookie-info {
         width: 100%;
         margin: auto;
+        left: 0;
     }
 
     .cookie-info p {
