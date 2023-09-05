@@ -220,9 +220,9 @@ footer a:hover {
 /* Responsive Styles */
 @media screen and (max-width: 700px) {
     .cookie-info {
-        width: 100%;
+        width: 90%;
         margin: auto;
-        left: 0;
+        right: 50%;
     }
 
     .cookie-info p {
