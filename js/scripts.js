@@ -29,6 +29,25 @@ function getCookie(name) {
   return null;
 }
 
+function fadeInElements() {
+  const fadeElements = document.querySelectorAll(".fade-in-paragraph");
+  fadeElements.forEach((element) => {
+    const elementTop = element.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (elementTop < windowHeight) {
+      element.style.opacity = "1";
+      element.style.transform = "translateY(0)";
+    }
+  });
+}
+
+window.addEventListener("scroll", fadeInElements);
+window.addEventListener("resize", fadeInElements);
+
+// Call the function on page load to check elements that are already in view.
+fadeInElements();
+
 function switchFontSize(size) {
   // Added this function
   var bodyElement = document.body;

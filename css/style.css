@@ -39,6 +39,12 @@ a:hover, .analytics:hover {
     transition: .3s;
 }
 
+.fade-in-paragraph {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
 /* Header & logo*/
 
 header a:hover {
@@ -237,7 +243,6 @@ footer a:hover {
     text-align: center;
 }
 
-
 /* High Contrast Styles */
 .high-contrast {
     background-color: #000;
@@ -297,13 +302,18 @@ footer a:hover {
         overflow-x: hidden;
     }
 
+    .body {
+        width: 85%;
+    }
+
     header {
         margin-top: 5%;
     }
 
     .wcag-menu {
-        right: 0;
-        top: 5%;
+        top: auto;
+        bottom: 2%;
+        z-index: 999;
     }
 
     .column {
@@ -351,27 +361,5 @@ footer a:hover {
     iframe {
         border: none;
         width: 100%
-    }
-}
-
-.fade-in-paragraph {
-    opacity: 0;
-    animation: fade-in 1.5s ease forwards;
-}
-
-.delay {
-    animation-delay: .5s;
-    /* Adjust the delay as needed (in seconds) */
-}
-
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
