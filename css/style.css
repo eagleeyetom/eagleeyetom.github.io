@@ -5,54 +5,51 @@ body {
     margin: auto;
     text-align: justify;
     overflow-x: hidden;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif
 }
 
 body.with-transition {
-    transition-duration: 0.5s;
-    /* Desired transition duration (0.5 seconds) */
+    transition-duration: .5s
+        /* Desired transition duration (0.5 seconds) */
 }
 
 .body {
     width: 90%;
-    margin: auto;
+    margin: auto
 }
 
-h1,
-h2,
-h3 {
-    text-align: center;
+h1, h2, h3 {
+    text-align: center
 }
 
 a {
     color: #000;
-    font-weight: bold;
+    font-weight: 700
 }
 
 .high-contrast a:not(.high-contrast .cookie-info a), .high-contrast .analytics {
     color: #fff;
-    font-weight: bold;
+    font-weight: 700
 }
 
 a:hover, .analytics:hover {
     filter: invert(.3);
-    transition: .3s;
+    transition: .3s
 }
 
 .fade-in-paragraph {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity .7s ease, transform .7s ease
 }
 
 /* Header & logo*/
-
 header a:hover {
-    filter: none;
+    filter: none
 }
 
 .banner {
-    width: 100%;
+    width: 100%
 }
 
 .logo {
@@ -60,44 +57,42 @@ header a:hover {
     height: fit-content;
     margin-left: auto;
     margin-right: auto;
-    opacity: 0.15;
+    opacity: .15;
     position: fixed;
     right: -100px;
     z-index: -1;
-    width: 50%;
+    width: 50%
 }
 
 /* WCAG Menu Styles */
 .wcag {
     list-style: none;
-    font-size: medium !important;
+    font-size: medium !important
 }
 
 .wcag-menu {
     position: fixed;
     top: 50%;
     bottom: 50%;
-    right: 0;
+    right: 0
 }
 
 .wcag-menu button {
     background: none;
     border: none;
     margin: auto;
-    cursor: pointer;
+    cursor: pointer
 }
 
-.wcag-menu button:hover,
-.cookie-info button:hover {
+.wcag-menu button:hover, .cookie-info button:hover {
     -webkit-filter: invert(0.3);
     filter: invert(0.3);
-    transition-duration: 0.5s;
+    transition-duration: .5s
 }
 
 /* Galeria */
-
 .gallery div {
-    margin: auto;
+    margin: auto
 }
 
 .row {
@@ -107,7 +102,7 @@ header a:hover {
     -ms-flex-wrap: wrap;
     /* IE10 */
     flex-wrap: wrap;
-    padding: 0 4px;
+    padding: 0 4px
 }
 
 /* Create four equal columns that sits next to each other */
@@ -116,33 +111,32 @@ header a:hover {
     /* IE10 */
     flex: 20%;
     max-width: 20%;
-    padding: 0 4px;
+    padding: 0 4px
 }
 
 .column img {
     margin-top: 8px;
     vertical-align: middle;
-    width: 100%;
+    width: 100%
 }
 
 /* Google Form */
-
 .google-form {
-    margin: auto;
+    margin: auto
 }
 
 .google-form iframe {
     width: 100%;
-    height: 700px;
+    height: 700px
 }
 
 /* Font Size Styles */
 .small-text {
-    font-size: 22px;
+    font-size: 22px
 }
 
 .large-text {
-    font-size: 30px;
+    font-size: 30px
 }
 
 p:first-child:first-letter {
@@ -151,13 +145,13 @@ p:first-child:first-letter {
     line-height: 60px;
     padding-top: 4px;
     padding-right: 8px;
-    padding-left: 3px;
+    padding-left: 3px
 }
 
 .theater {
     display: block;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto
 }
 
 /* Cookie Info */
@@ -168,42 +162,42 @@ p:first-child:first-letter {
     left: 10px;
     background-color: #B9D7D8;
     text-align: center;
-    opacity: 0.9;
+    opacity: .9;
     border-radius: 5%;
     border: solid 5px;
     z-index: 999;
-    transition-duration: 0.5s;
+    transition-duration: .5s
 }
 
 .cookie {
     width: 100px;
     height: auto;
-    left: 0;
+    left: 0
 }
 
 .cookie-info p {
     margin: auto;
     width: 400px;
-    padding: 10px;
+    padding: 10px
 }
 
 .cookie-info button {
     padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;
-    font-size: large;
+    font-size: large
 }
 
 .close {
     cursor: pointer;
     position: absolute;
     top: 6%;
-    right: 2%;
+    right: 2%
 }
 
 .close:hover {
-    opacity: 0.5;
-    transition-duration: 0.3s;
+    opacity: .5;
+    transition-duration: .3s
 }
 
 /* Footer Styles */
@@ -215,66 +209,58 @@ footer {
     position: relative;
     width: 100%;
     height: 10%;
-    background-color: #fff;
+    background-color: #fff
 }
 
 footer ul {
     display: flex;
-    list-style: none;
+    list-style: none
 }
 
 footer ul li {
-    padding-right: 1%;
+    padding-right: 1%
 }
 
 .mobile-gmina {
-    display: none;
+    display: none
 }
 
 footer img {
-    width: 100%;
+    width: 100%
 }
 
 footer a:hover {
-    opacity: 0.3;
+    opacity: .3
 }
 
 .yt {
-    text-align: center;
+    text-align: center
 }
 
 /* High Contrast Styles */
 .high-contrast {
     background-color: #000;
     color: #fff;
-    transition-duration: 0.5s;
+    transition-duration: .5s
 }
 
-.high-contrast .cookie-info img,
-.high-contrast .logo,
-.high-contrast footer,
-.high-contrast #head,
-.high-contrast .theater,
-.high-contrast .cookie-info p,
-.high-contrast .cookie-info .close,
-.high-contrast .wcag-menu {
+.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu {
     -webkit-filter: invert(1);
-    filter: invert(100%);
+    filter: invert(100%)
 }
 
 .high-contrast .cookie-info {
     border-color: #000;
     -webkit-filter: invert(1);
-    filter: invert(100%);
+    filter: invert(100%)
 }
 
 /* Responsive Styles */
-
 @media screen and (max-width: 1200px) {
     .column {
         -ms-flex: 40%;
         flex: 40%;
-        max-width: 40%;
+        max-width: 40%
     }
 }
 
@@ -284,78 +270,77 @@ footer a:hover {
         /* Center horizontally */
         transform: translateX(-50%);
         /* Center horizontally */
-        width: 80%;
+        width: 80%
     }
 
     .cookie-info.fadeOut {
         /* Add a class for the fade-out animation */
-        opacity: 0;
+        opacity: 0
     }
 
     .cookie-info p {
         width: auto;
-        padding: 10px;
+        padding: 10px
     }
 
     /* WCAG Menu Styles */
     body {
-        overflow-x: hidden;
+        overflow-x: hidden
     }
 
     .body {
-        width: 85%;
+        width: 85%
     }
 
     header {
-        margin-top: 5%;
+        margin-top: 5%
     }
 
     .wcag-menu {
         top: auto;
         bottom: 2%;
-        z-index: 999;
+        z-index: 999
     }
 
     .column {
         -ms-flex: 100%;
         flex: 100%;
-        max-width: 100%;
+        max-width: 100%
     }
 
     .gmina {
-        display: none;
+        display: none
     }
 
     .mobile-gmina {
         display: block;
-        height: 50px;
+        height: 50px
     }
 
     footer ul {
-        padding-right: 10%;
+        padding-right: 10%
     }
 
     footer {
         border: none;
-        padding-top: 1%;
-
+        padding-top: 1%
     }
 
     .logo {
         left: 0;
-        width: 100%;
+        width: 100%
     }
 
     .google-form {
-        margin-left: 0;
+        margin-left: 0
     }
 
     .google-form iframe {
-        height: 750px;
+        height: 750px
     }
 
     .yt {
-        margin: auto;
+        margin: auto
     }
 
     iframe {
