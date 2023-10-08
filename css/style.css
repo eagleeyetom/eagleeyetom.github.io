@@ -16,6 +16,7 @@ body {
 }
 
 h1,
+h2,
 h3 {
     text-align: center;
 }
@@ -228,6 +229,11 @@ footer a:hover {
     opacity: 0.3;
 }
 
+.yt {
+    text-align: center;
+}
+
+
 /* High Contrast Styles */
 .high-contrast {
     background-color: #000;
@@ -327,5 +333,14 @@ footer a:hover {
 
     .google-form iframe {
         height: 750px;
+    }
+
+    .yt {
+        margin: auto;
+    }
+
+    iframe {
+        border: none;
+        width: 100%
     }
 }
