@@ -96,10 +96,15 @@ header a:hover {
 .high-contrast footer,
 .high-contrast #head,
 .high-contrast .theater,
-.high-contrast .cookie-info,
 .high-contrast .cookie-info p,
 .high-contrast .cookie-info .close,
 .high-contrast .wcag-menu {
+    -webkit-filter: invert(1);
+    filter: invert(100%);
+}
+
+.high-contrast .cookie-info {
+    border-color: #000;
     -webkit-filter: invert(1);
     filter: invert(100%);
 }
