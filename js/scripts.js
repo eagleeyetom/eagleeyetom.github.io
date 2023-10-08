@@ -1,39 +1,36 @@
+// Cookie Functions
 function acceptCookies() {
   setCookie("cookiesAccepted", "true", 365);
-  var cookieInfo = document.querySelector(".cookie-info");
-  cookieInfo.style.transition = "opacity 0.5s";
-  cookieInfo.style.opacity = 0;
-  setTimeout(function () {
-    cookieInfo.style.display = "none";
-  }, 500);
+  hideCookieInfo();
 }
 
 function setCookie(name, value, days) {
-  var expires = "";
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + value + expires + "; path=/";
+  const expires = days
+    ? `; expires=${new Date(
+        Date.now() + days * 24 * 60 * 60 * 1000
+      ).toUTCString()}`
+    : "";
+  document.cookie = `${name}=${value}${expires}; path=/`;
 }
 
 function getCookie(name) {
-  var cookieArr = document.cookie.split("; ");
-  for (var i = 0; i < cookieArr.length; i++) {
-    var cookiePair = cookieArr[i].split("=");
-    if (name === cookiePair[0]) {
-      return decodeURIComponent(cookiePair[1]);
+  const cookieArr = document.cookie.split("; ");
+  for (let i = 0; i < cookieArr.length; i++) {
+    const [cookieName, cookieValue] = cookieArr[i].split("=");
+    if (name === cookieName) {
+      return decodeURIComponent(cookieValue);
     }
   }
   return null;
 }
 
+// Element Fade-In
 function fadeInElements() {
   const fadeElements = document.querySelectorAll(".fade-in-paragraph");
+  const windowHeight = window.innerHeight;
+
   fadeElements.forEach((element) => {
     const elementTop = element.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
 
     if (elementTop < windowHeight) {
       element.style.opacity = "1";
@@ -42,15 +39,19 @@ function fadeInElements() {
   });
 }
 
-window.addEventListener("scroll", fadeInElements);
-window.addEventListener("resize", fadeInElements);
+function setupFadeIn() {
+  window.addEventListener("scroll", fadeInElements);
+  window.addEventListener("resize", fadeInElements);
 
-// Call the function on page load to check elements that are already in view.
-fadeInElements();
+  // Call the function on page load to check elements that are already in view.
+  fadeInElements();
+}
 
+// Font Size Switching
 function switchFontSize(size) {
-  // Added this function
-  var bodyElement = document.body;
+  const bodyElement = document.body;
+  bodyElement.classList.add("with-transition");
+
   if (size === "small") {
     bodyElement.classList.remove("large-text");
     bodyElement.classList.add("small-text");
@@ -61,8 +62,7 @@ function switchFontSize(size) {
 }
 
 function toggleFontSize() {
-  var bodyElement = document.body;
-  document.body.classList.add("with-transition");
+  const bodyElement = document.body;
   if (bodyElement.classList.contains("small-text")) {
     switchFontSize("large");
     setCookie("fontSizeChoice", "large", 365);
@@ -72,18 +72,15 @@ function toggleFontSize() {
   }
 }
 
-window.onload = function () {
-  var cookiesAccepted = getCookie("cookiesAccepted");
+// Page Initialization
+function initializePage() {
+  const cookiesAccepted = getCookie("cookiesAccepted");
   if (cookiesAccepted) {
-    var cookieInfo = document.querySelector(".cookie-info");
-    cookieInfo.style.display = "none";
+    hideCookieInfo();
   }
 
-  var fontSizeChoice = getCookie("fontSizeChoice");
-  if (
-    fontSizeChoice &&
-    (fontSizeChoice === "small" || fontSizeChoice === "large")
-  ) {
+  const fontSizeChoice = getCookie("fontSizeChoice");
+  if (fontSizeChoice === "small" || fontSizeChoice === "large") {
     switchFontSize(fontSizeChoice);
   } else {
     // Default to small font size if no choice is found
@@ -91,18 +88,33 @@ window.onload = function () {
     setCookie("fontSizeChoice", "small", 365);
   }
 
-  var contrastChoice = getCookie("contrastChoice");
-  if (contrastChoice && contrastChoice === "high-contrast") {
+  const contrastChoice = getCookie("contrastChoice");
+  if (contrastChoice === "high-contrast") {
     toggleContrast();
   }
-};
 
+  setupFadeIn();
+}
+
+function hideCookieInfo() {
+  const cookieInfo = document.querySelector(".cookie-info");
+  cookieInfo.style.transition = "opacity 0.5s";
+  cookieInfo.style.opacity = 0;
+  setTimeout(() => {
+    cookieInfo.style.display = "none";
+  }, 500);
+}
+
+// Contrast Toggle
 function toggleContrast() {
-  var bodyElement = document.body;
+  const bodyElement = document.body;
   bodyElement.classList.toggle("high-contrast");
 
-  var contrastChoice = bodyElement.classList.contains("high-contrast")
+  const contrastChoice = bodyElement.classList.contains("high-contrast")
     ? "high-contrast"
     : "default";
   setCookie("contrastChoice", contrastChoice, 365);
 }
+
+// Initialize the page when it loads
+window.onload = initializePage;
