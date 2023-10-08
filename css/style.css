@@ -239,10 +239,6 @@ footer a:hover {
     text-align: center
 }
 
-#mobile {
-    display: none;
-}
-
 /* High Contrast Styles */
 .high-contrast {
     background-color: #000;
@@ -305,7 +301,6 @@ footer a:hover {
     .wcag-menu {
         top: auto;
         bottom: 2%;
-        z-index: 999
     }
 
     .column {
@@ -314,13 +309,13 @@ footer a:hover {
         max-width: 100%
     }
 
-    .gmina {
+    .miasto {
         display: none
     }
 
     .mobile-gmina {
         display: block;
-        height: 50px
+        margin-top: -30px;
     }
 
     footer ul {
