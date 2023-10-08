@@ -1,7 +1,11 @@
 function acceptCookies() {
   setCookie("cookiesAccepted", "true", 365);
   var cookieInfo = document.querySelector(".cookie-info");
-  cookieInfo.style.display = "none";
+  cookieInfo.style.transition = "opacity 0.5s";
+  cookieInfo.style.opacity = 0;
+  setTimeout(function () {
+    cookieInfo.style.display = "none";
+  }, 500);
 }
 
 function setCookie(name, value, days) {
@@ -39,6 +43,7 @@ function switchFontSize(size) {
 
 function toggleFontSize() {
   var bodyElement = document.body;
+  document.body.classList.add("with-transition");
   if (bodyElement.classList.contains("small-text")) {
     switchFontSize("large");
     setCookie("fontSizeChoice", "large", 365);

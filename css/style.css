@@ -6,7 +6,11 @@ body {
     text-align: justify;
     overflow-x: hidden;
     font-family: Arial, sans-serif;
+}
+
+body.with-transition {
     transition-duration: 0.5s;
+    /* Desired transition duration (0.5 seconds) */
 }
 
 .body {
@@ -162,6 +166,7 @@ p:first-child:first-letter {
     border-radius: 5%;
     border: solid 5px;
     z-index: 999;
+    transition-duration: 0.5s;
 }
 
 .cookie {
@@ -277,6 +282,11 @@ footer a:hover {
         width: 80%;
     }
 
+    .cookie-info.fadeOut {
+        /* Add a class for the fade-out animation */
+        opacity: 0;
+    }
+
     .cookie-info p {
         width: auto;
         padding: 10px;
@@ -341,5 +351,27 @@ footer a:hover {
     iframe {
         border: none;
         width: 100%
+    }
+}
+
+.fade-in-paragraph {
+    opacity: 0;
+    animation: fade-in 1.5s ease forwards;
+}
+
+.delay {
+    animation-delay: .5s;
+    /* Adjust the delay as needed (in seconds) */
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
