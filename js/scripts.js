@@ -61,6 +61,10 @@ window.onload = function () {
     (fontSizeChoice === "small" || fontSizeChoice === "large")
   ) {
     switchFontSize(fontSizeChoice);
+  } else {
+    // Default to small font size if no choice is found
+    switchFontSize("small");
+    setCookie("fontSizeChoice", "small", 365);
   }
 
   var contrastChoice = getCookie("contrastChoice");
