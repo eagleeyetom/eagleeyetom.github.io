@@ -84,29 +84,35 @@ header a:hover {
     transition-duration: 0.5s;
 }
 
-/* High Contrast Styles */
-.high-contrast {
-    background-color: #000;
-    color: #fff;
-    transition-duration: 0.5s;
+/* Galeria */
+
+.gallery div {
+    margin: auto;
 }
 
-.high-contrast .cookie-info img,
-.high-contrast .logo,
-.high-contrast footer,
-.high-contrast #head,
-.high-contrast .theater,
-.high-contrast .cookie-info p,
-.high-contrast .cookie-info .close,
-.high-contrast .wcag-menu {
-    -webkit-filter: invert(1);
-    filter: invert(100%);
+.row {
+    display: -ms-flexbox;
+    /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap;
+    /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
 }
 
-.high-contrast .cookie-info {
-    border-color: #000;
-    -webkit-filter: invert(1);
-    filter: invert(100%);
+/* Create four equal columns that sits next to each other */
+.column {
+    -ms-flex: 20%;
+    /* IE10 */
+    flex: 20%;
+    max-width: 20%;
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
 }
 
 /* Google Form */
@@ -222,7 +228,41 @@ footer a:hover {
     opacity: 0.3;
 }
 
+/* High Contrast Styles */
+.high-contrast {
+    background-color: #000;
+    color: #fff;
+    transition-duration: 0.5s;
+}
+
+.high-contrast .cookie-info img,
+.high-contrast .logo,
+.high-contrast footer,
+.high-contrast #head,
+.high-contrast .theater,
+.high-contrast .cookie-info p,
+.high-contrast .cookie-info .close,
+.high-contrast .wcag-menu {
+    -webkit-filter: invert(1);
+    filter: invert(100%);
+}
+
+.high-contrast .cookie-info {
+    border-color: #000;
+    -webkit-filter: invert(1);
+    filter: invert(100%);
+}
+
 /* Responsive Styles */
+
+@media screen and (max-width: 1200px) {
+    .column {
+        -ms-flex: 40%;
+        flex: 40%;
+        max-width: 40%;
+    }
+}
+
 @media screen and (max-width: 700px) {
     .cookie-info {
         left: 50%;
@@ -249,6 +289,12 @@ footer a:hover {
     .wcag-menu {
         right: 0;
         top: 5%;
+    }
+
+    .column {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
     }
 
     .gmina {
