@@ -120,6 +120,8 @@ header a:hover {
     width: 100%
 }
 
+
+
 /* Google Form */
 .google-form {
     margin: auto
@@ -233,8 +235,12 @@ footer a:hover {
     opacity: .3
 }
 
-.yt {
+.yt, .test-gallery {
     text-align: center
+}
+
+#mobile {
+    display: none;
 }
 
 /* High Contrast Styles */
@@ -346,5 +352,50 @@ footer a:hover {
     iframe {
         border: none;
         width: 100%
+    }
+
+    #mobile img {
+        width: 100%;
+    }
+
+    #photoswipe {
+        width: 95%;
+        margin: auto;
+        display: block;
+    }
+
+    #photoswipe img {
+        width: 100%;
+    }
+
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 2s;
+        animation-name: fade;
+        animation-duration: 2s;
+    }
+
+    @-webkit-keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    .arrows {
+        margin-top: 25px;
     }
 }
