@@ -149,10 +149,15 @@ p:first-child:first-letter {
     padding-left: 3px
 }
 
-.theater {
-    display: block;
+.theater-container {
+    max-width: fit-content;
     margin-left: auto;
     margin-right: auto
+}
+
+.theater {
+    display: block;
+
 }
 
 /* Cookie Info */
@@ -168,7 +173,8 @@ p:first-child:first-letter {
     border: solid 5px;
     z-index: 999;
     transition-duration: .5s;
-    display: none
+    display: none;
+    transition: opacity 0.5s, display 0.5s;
 }
 
 .cookie {
