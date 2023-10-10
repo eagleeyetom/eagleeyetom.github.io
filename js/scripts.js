@@ -1,7 +1,8 @@
 // Cookie Functions
 function acceptCookies() {
   setCookie("cookiesAccepted", "true", 365);
-  hideCookieInfo();
+  var cookieInfo = document.querySelector(".cookie-info");
+  cookieInfo.style.display = "none";
 }
 
 function setCookie(name, value, days) {
@@ -22,6 +23,46 @@ function getCookie(name) {
     }
   }
   return null;
+}
+
+function showCookieInfo() {
+  const cookieInfo = document.querySelector(".cookie-info");
+  cookieInfo.style.transition = "opacity 0.5s";
+  cookieInfo.style.opacity = 1;
+  cookieInfo.style.display = "block";
+}
+
+// Page Initialization
+function initializePage() {
+  const cookiesAccepted = getCookie("cookiesAccepted");
+  if (!cookiesAccepted) {
+    showCookieInfo(); // Show the cookie prompt
+  }
+
+  const fontSizeChoice = getCookie("fontSizeChoice");
+  if (fontSizeChoice === "small" || fontSizeChoice === "large") {
+    switchFontSize(fontSizeChoice);
+  } else {
+    // Default to small font size if no choice is found
+    switchFontSize("small");
+    setCookie("fontSizeChoice", "small", 365);
+  }
+
+  const contrastChoice = getCookie("contrastChoice");
+  if (contrastChoice === "high-contrast") {
+    toggleContrast();
+  }
+
+  setupFadeIn();
+}
+
+function hideCookieInfo() {
+  const cookieInfo = document.querySelector(".cookie-info");
+  cookieInfo.style.transition = "opacity 0.5s";
+  cookieInfo.style.opacity = 0;
+  setTimeout(() => {
+    cookieInfo.style.display = "none";
+  }, 500);
 }
 
 // Element Fade-In
@@ -72,11 +113,18 @@ function toggleFontSize() {
   }
 }
 
+function showCookieInfo() {
+  const cookieInfo = document.querySelector(".cookie-info");
+  cookieInfo.style.transition = "opacity 0.5s";
+  cookieInfo.style.opacity = 1;
+  cookieInfo.style.display = "block";
+}
+
 // Page Initialization
 function initializePage() {
   const cookiesAccepted = getCookie("cookiesAccepted");
-  if (cookiesAccepted) {
-    hideCookieInfo();
+  if (!cookiesAccepted) {
+    showCookieInfo(); // Show the cookie prompt
   }
 
   const fontSizeChoice = getCookie("fontSizeChoice");

@@ -121,8 +121,6 @@ header a:hover {
     width: 100%
 }
 
-
-
 /* Google Form */
 .google-form {
     margin: auto
@@ -169,7 +167,8 @@ p:first-child:first-letter {
     border-radius: 5%;
     border: solid 5px;
     z-index: 999;
-    transition-duration: .5s
+    transition-duration: .5s;
+    display: none
 }
 
 .cookie {
