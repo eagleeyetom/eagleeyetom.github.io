@@ -254,6 +254,11 @@ footer a:hover {
     text-align: center
 }
 
+.thumb {
+    max-width: 600px;
+    max-height: 400px;
+}
+
 /* High Contrast Styles */
 .high-contrast {
     background-color: #000;
