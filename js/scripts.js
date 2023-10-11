@@ -63,19 +63,24 @@ function initializePage() {
 }
 
 // Element Fade-In
-function fadeInElements() {
-  const fadeElements = document.querySelectorAll(".fade-in-paragraph");
-  const windowHeight = window.innerHeight;
+const paragraphs = document.querySelectorAll(".fade-in-paragraph");
 
-  fadeElements.forEach((element) => {
-    const elementTop = element.getBoundingClientRect().top;
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = "fade-in 1.5s ease forwards";
+      } else {
+        entry.target.style.animation = "fade-out 1.5s ease forwards";
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
 
-    if (elementTop < windowHeight) {
-      element.style.opacity = "1";
-      element.style.transform = "translateY(0)";
-    }
-  });
-}
+paragraphs.forEach((paragraph) => {
+  observer.observe(paragraph);
+});
 
 function setupFadeIn() {
   window.addEventListener("scroll", fadeInElements);
