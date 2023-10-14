@@ -156,7 +156,7 @@ header a:hover {
 }
 
 /* When hovering over the image container, show the hover image */
-.image-container:hover .hover-image, .image-container:active .hover-image {
+.image-container:hover .hover-image, .image-container:active .hover-image, .image-container:focus .hover-image {
     opacity: 1;
 }
 
