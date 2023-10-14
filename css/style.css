@@ -132,6 +132,34 @@ header a:hover {
     width: 100%
 }
 
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+    /* Add a transition for smooth animation */
+    aspect-ratio: 4 / 3;
+}
+
+/* Style the hover image */
+.image-container .hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    /* Add a transition for smooth opacity change */
+}
+
+/* When hovering over the image container, show the hover image */
+.image-container:hover .hover-image {
+    opacity: 1;
+}
+
 /* Google Form */
 .google-form {
     margin: auto
