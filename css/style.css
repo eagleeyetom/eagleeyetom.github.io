@@ -33,7 +33,7 @@ a {
     font-weight: 700
 }
 
-a:hover, .analytics:hover {
+.link:hover, .analytics:hover {
     filter: invert(.3);
     transition: .3s
 }
