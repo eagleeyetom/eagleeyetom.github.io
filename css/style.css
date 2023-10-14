@@ -170,6 +170,7 @@ header a:hover {
     width: 100%;
     text-align: center;
     color: #fff;
+
 }
 
 /* When hovering over the image container, show the hover image */
@@ -216,7 +217,7 @@ p:first-child:first-letter {
 }
 
 #flag {
-    visibility: hidden;
+    display: none;
 }
 
 /* Cookie Info */
@@ -440,6 +441,6 @@ footer a:hover {
     }
 
     #flag {
-        visibility: visible;
+        display: inline-block;
     }
 }
