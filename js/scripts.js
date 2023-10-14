@@ -58,8 +58,6 @@ function initializePage() {
   if (contrastChoice === "high-contrast") {
     toggleContrast();
   }
-
-  setupFadeIn();
 }
 
 // Element Fade-In
@@ -81,14 +79,6 @@ const observer = new IntersectionObserver(
 paragraphs.forEach((paragraph) => {
   observer.observe(paragraph);
 });
-
-function setupFadeIn() {
-  window.addEventListener("scroll", fadeInElements);
-  window.addEventListener("resize", fadeInElements);
-
-  // Call the function on page load to check elements that are already in view.
-  fadeInElements();
-}
 
 // Font Size Switching
 function switchFontSize(size) {
