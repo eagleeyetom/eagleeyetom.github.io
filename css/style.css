@@ -213,7 +213,10 @@ p:first-child:first-letter {
 
 .theater {
     display: block;
+}
 
+#flag {
+    visibility: hidden;
 }
 
 /* Cookie Info */
@@ -430,5 +433,13 @@ footer a:hover {
 
     .arrows {
         margin-top: 25px;
+    }
+
+    .hover-image {
+        display: none;
+    }
+
+    #flag {
+        visibility: visible;
     }
 }
