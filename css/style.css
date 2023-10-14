@@ -141,7 +141,6 @@ header a:hover {
     width: 100%;
     height: auto;
     transition: transform 0.5s ease;
-    /* Add a transition for smooth animation */
     aspect-ratio: 4 / 3;
 }
 
@@ -152,7 +151,25 @@ header a:hover {
     left: 0;
     opacity: 0;
     transition: opacity 0.5s ease;
-    /* Add a transition for smooth opacity change */
+
+}
+
+.theater-container {
+    top: 50%;
+    bottom: 50%;
+}
+
+.theater-name {
+    left: 50%;
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(128, 128, 128, 0.3);
+    text-shadow: 1px 1px #000;
+    width: 100%;
+    text-align: center;
+    color: #fff;
 }
 
 /* When hovering over the image container, show the hover image */
