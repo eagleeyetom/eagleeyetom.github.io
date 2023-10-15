@@ -116,5 +116,26 @@ function toggleContrast() {
   setCookie("contrastChoice", contrastChoice, 365);
 }
 
+function checkTimeAndVisibility() {
+  const countdownDate = new Date("2023-10-16T21:43:00");
+  const now = new Date();
+  const timerElement = document.getElementById("timer");
+  const buttonElement = document.getElementById("button");
+
+  if (now >= countdownDate) {
+    if (timerElement) {
+      timerElement.style.display = "none"; // Hide the timer
+    }
+    if (buttonElement) {
+      buttonElement.style.display = "block"; // Show the button
+    }
+  }
+}
+
+// Check if the specified time is reached when the page loads
+window.addEventListener("load", checkTimeAndVisibility);
+
+// Check periodically (e.g., every minute) if the time is reached
+setInterval(checkTimeAndVisibility, 1000); // Check every second
 // Initialize the page when it loads
 window.onload = initializePage;

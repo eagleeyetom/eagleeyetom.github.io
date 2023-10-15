@@ -173,6 +173,26 @@ header a:hover {
 
 }
 
+/* Button */
+
+.button {
+    text-align: center;
+}
+
+.button button {
+    cursor: pointer;
+    border: 3px solid black;
+    background-color: #B9D7D8;
+    color: #000;
+    border-radius: 12px;
+    font-size: 32px;
+    transition: 0.5s;
+}
+
+.button button:hover {
+    background: #fff;
+}
+
 /* When hovering over the image container, show the hover image */
 .image-container:hover .hover-image, .image-container:active .hover-image, .image-container:focus .hover-image {
     opacity: 1;
