@@ -43,6 +43,11 @@ a {
     animation: fade-in 1.5s ease forwards;
 }
 
+.fade-out-paragraph {
+    opacity: 1;
+    animation: fade-out 1.5s ease forwards;
+}
+
 @keyframes fade-in {
     0% {
         opacity: 0;
@@ -52,6 +57,18 @@ a {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
     }
 }
 
@@ -191,6 +208,14 @@ header a:hover {
 
 .button button:hover {
     background: #fff;
+}
+
+/* Flipdown */
+.flipdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* This is optional, but it will center the element both horizontally and vertically on the viewport. */
 }
 
 /* When hovering over the image container, show the hover image */
@@ -335,7 +360,7 @@ footer a:hover {
     transition-duration: .5s
 }
 
-.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu {
+.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu, .high-contrast .flipdown {
     -webkit-filter: invert(1);
     filter: invert(100%)
 }

@@ -26,7 +26,10 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/flipdown/flipdown.css">
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700,900" rel="stylesheet">
+    <script type="text/javascript" src="js/flipdown/flipdown.js"></script>
 </head>
 
 <body>
@@ -40,7 +43,7 @@
     </section>
     <section class="body">
         <div>
-            <p class="fade-in-paragraph">
+            <p class="fade-in-paragraph fade-out-paragraph">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
                 expedita,
                 soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -49,7 +52,7 @@
                 iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
                 eveniet!
             </p>
-            <p class="fade-in-paragraph">
+            <p class="fade-in-paragraph fade-out-paragraph">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
                 expedita,
                 soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -58,82 +61,88 @@
                 iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
                 eveniet!
             </p>
-            <div>
+            <!--div>
                 <p class="fade-in-paragraph" id="timer">
                     <script src="https://cdn.logwork.com/widget/countdown.js"></script>
                     <a href="https://logwork.com/countdown-82i8" class="countdown-timer" data-timezone="Europe/Warsaw"
                         data-language="pl" data-date="2023-11-13 00:00">MASSKA startuje za:</a>
                 </p>
+            <div-->
+
+            <div class="flipdown-container">
+                <div id="flipdown" class="flipdown"></div>
             </div>
-            <div class="button" id="button" style="display: none;">
-                <form action="online.html" method="get" class="textDiv"><button>Oglądaj on-line<br><i
-                            class="fa-solid fa-play"></i></button></form>
-            </div>
-            <!--div id="button"></div-->
-            <p class="fade-in-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
         </div>
+
+        <div class="button" id="button" style="display: none;">
+            <form action="online.html" method="get" class="textDiv"><button>Oglądaj on-line<br><i
+                        class="fa-solid fa-play"></i></button></form>
+        </div>
+        <!--div id="button"></div-->
+        <p class="fade-in-paragraph fade-out-paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
+            expedita,
+            soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
+            ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
+            amet
+            iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
+            eveniet!
+        </p>
+        <p class="fade-in-paragraph fade-out-paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
+            expedita,
+            soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
+            ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
+            amet
+            iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
+            eveniet!
+        </p>
+        <p class="fade-in-paragraph fade-out-paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
+            expedita,
+            soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
+            ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
+            amet
+            iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
+            eveniet!
+        </p>
+        <p class="fade-in-paragraph fade-out-paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
+            expedita,
+            soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
+            ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
+            amet
+            iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
+            eveniet!
+        </p>
+        <p class="fade-in-paragraph fade-out-paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
+            expedita,
+            soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
+            ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
+            amet
+            iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
+            eveniet!
+        </p>
+        <p class="fade-in-paragraph fade-out-paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
+            expedita,
+            soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
+            ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
+            amet
+            iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
+            eveniet!
+        </p>
+        <p class="fade-in-paragraph fade-out-paragraph">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
+            expedita,
+            soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
+            ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
+            amet
+            iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
+            eveniet!
+        </p>
+        </div--!>
     </section>
     <section>
         <div class="wcag-menu">

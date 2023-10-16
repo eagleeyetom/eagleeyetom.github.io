@@ -116,10 +116,15 @@ function toggleContrast() {
   setCookie("contrastChoice", contrastChoice, 365);
 }
 
+// Flipdown & button
+
+let countdownStarted = false;
+let countdownEnded = false;
+
 function checkTimeAndVisibility() {
-  const countdownDate = new Date("2023-10-16T21:43:00");
+  const countdownDate = new Date("2023-10-16T15:15:00"); // The target countdown date
   const now = new Date();
-  const timerElement = document.getElementById("timer");
+  const timerElement = document.getElementById("flipdown");
   const buttonElement = document.getElementById("button");
 
   if (now >= countdownDate) {
@@ -129,13 +134,47 @@ function checkTimeAndVisibility() {
     if (buttonElement) {
       buttonElement.style.display = "block"; // Show the button
     }
+    countdownEnded = true;
+  } else {
+    if (timerElement) {
+      timerElement.style.display = "block"; // Show the timer
+    }
+    if (buttonElement) {
+      buttonElement.style.display = "none"; // Hide the button
+    }
+
+    if (!countdownStarted && !countdownEnded) {
+      // Set up FlipDown
+      var timestamp = countdownDate.getTime() / 1000;
+      var flipdown = new FlipDown(timestamp)
+
+        // Start the countdown
+        .start()
+
+        // Do something when the countdown ends
+        .ifEnded(() => {
+          console.log("The countdown has ended!");
+          if (timerElement) {
+            timerElement.style.display = "none"; // Hide the timer when the countdown ends
+          }
+          if (buttonElement) {
+            buttonElement.style.display = "block"; // Show the button when the countdown ends
+          }
+          countdownEnded = true;
+        });
+
+      // Show version number
+      var ver = document.getElementById("ver");
+      ver.innerHTML = flipdown.version;
+
+      countdownStarted = true;
+    }
   }
 }
 
 // Check if the specified time is reached when the page loads
 window.addEventListener("load", checkTimeAndVisibility);
 
-// Check periodically (e.g., every minute) if the time is reached
-setInterval(checkTimeAndVisibility, 1000); // Check every second
 // Initialize the page when it loads
+
 window.onload = initializePage;
