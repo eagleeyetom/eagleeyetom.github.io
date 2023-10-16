@@ -360,7 +360,7 @@ footer a:hover {
     transition-duration: .5s
 }
 
-.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu, .high-contrast .flipdown {
+.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu, .high-contrast .flipdown, .high-contrast .button {
     -webkit-filter: invert(1);
     filter: invert(100%)
 }
