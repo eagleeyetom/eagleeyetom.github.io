@@ -124,13 +124,14 @@ header a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 1rem;
+    width: 100%;
 }
 
 .image-container {
     position: relative;
     overflow: hidden;
     max-width: 600px;
-    max-height: 450px;
+    height: auto;
 }
 
 .image-container img {
