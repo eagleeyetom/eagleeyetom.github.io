@@ -122,7 +122,7 @@ let countdownStarted = false;
 let countdownEnded = false;
 
 function checkTimeAndVisibility() {
-  const countdownDate = new Date("2023-10-16T15:15:00"); // The target countdown date
+  const countdownDate = new Date("2023-10-15T15:15:00"); // The target countdown date
   const now = new Date();
   const timerElement = document.getElementById("flipdown");
   const buttonElement = document.getElementById("button");
