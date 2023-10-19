@@ -96,14 +96,15 @@ header a:hover {
 /* WCAG Menu Styles */
 .wcag {
     list-style: none;
-    font-size: medium !important
+
 }
 
 .wcag-menu {
     position: fixed;
     top: 50%;
     bottom: 50%;
-    right: 0
+    right: 0;
+    text-align: center;
 }
 
 .wcag-menu button {
@@ -113,10 +114,15 @@ header a:hover {
     cursor: pointer
 }
 
-.wcag-menu button:hover, .cookie-info button:hover {
+.wcag-menu button:hover, .cookie-info button:hover, .high-contrast .accessibility:hover {
     -webkit-filter: invert(0.3);
     filter: invert(0.3);
     transition-duration: .5s
+}
+
+.lang {
+    font-size: 2em;
+    margin-top: 10px;
 }
 
 /* Galeria */
@@ -138,7 +144,6 @@ header a:hover {
     width: 100%;
     height: auto;
     transition: transform 0.5s ease;
-    aspect-ratio: 4 / 3;
 }
 
 /* Style the hover image */
@@ -340,9 +345,24 @@ footer a:hover {
     transition-duration: .5s
 }
 
-.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu, .high-contrast .flipdown, .high-contrast .button {
+.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu :not(.accessability), .high-contrast .flipdown, .high-contrast .button, .high-contrast .theater-name {
     -webkit-filter: invert(1);
     filter: invert(100%)
+}
+
+.high-contrast .accessability:hover {
+    -webkit-filter: invert(0.3);
+    filter: invert(0.3);
+    transition-duration: .5s
+}
+
+.high-contrast .lang:hover {
+    opacity: .7;
+    transition-duration: .5s
+}
+
+.high-contrast .theater-name {
+    background-color: #000;
 }
 
 .high-contrast .cookie-info {
@@ -350,6 +370,8 @@ footer a:hover {
     -webkit-filter: invert(1);
     filter: invert(100%)
 }
+
+
 
 /* Responsive Styles */
 @media screen and (max-width: 1200px) {
