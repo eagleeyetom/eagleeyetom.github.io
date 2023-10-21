@@ -131,6 +131,7 @@ header a:hover {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 1rem;
     width: 100%;
+    margin: auto
 }
 
 .image-container {
@@ -423,11 +424,6 @@ footer a:hover {
     .cookie-info p {
         width: auto;
         padding: 10px
-    }
-
-
-    body {
-        overflow-x: hidden
     }
 
     .body {
