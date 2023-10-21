@@ -9,6 +9,18 @@ body {
     font-size: 22px
 }
 
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1em;
+}
+
 body.with-transition {
     transition-duration: .5s
         /* Desired transition duration (0.5 seconds) */
@@ -138,14 +150,19 @@ header a:hover {
     position: relative;
     overflow: hidden;
     max-width: 600px;
-    max-height: 450px;
+    max-height: 400px;
     height: auto;
 }
 
 .image-container img {
     width: 100%;
     height: auto;
+    aspect-ratio: 3/2;
     transition: transform 0.5s ease;
+}
+
+#baltazar {
+    object-fit: cover;
 }
 
 /* Style the hover image */
@@ -155,8 +172,8 @@ header a:hover {
     left: 0;
     opacity: 0;
     transition: opacity 0.5s ease;
-    width: 100%;
-    height: 100%;
+    content: fit-content;
+    aspect-ratio: 3/2;
 }
 
 .theater-container {
@@ -175,7 +192,7 @@ header a:hover {
     width: 100%;
     text-align: center;
     color: #fff;
-
+    margin: auto;
 }
 
 /* Button */
@@ -511,6 +528,7 @@ footer a:hover {
 
     #flag {
         display: inline-block;
+        height: 1.2rem;
     }
 
     .grid {
