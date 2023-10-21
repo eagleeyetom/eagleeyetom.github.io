@@ -386,6 +386,11 @@ footer a:hover {
     text-align: center;
 }
 
+.long {
+    inline-size: 100%;
+    overflow-wrap: break-word;
+}
+
 /* High Contrast Styles */
 .high-contrast {
     background-color: #000;
