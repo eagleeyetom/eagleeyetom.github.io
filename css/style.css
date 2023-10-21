@@ -401,18 +401,20 @@ footer a:hover {
         padding: 10px
     }
 
-    /* WCAG Menu Styles */
+
     body {
         overflow-x: hidden
     }
 
     .body {
-        width: 85%
+        width: 80%
     }
 
     header {
         margin-top: 5%
     }
+
+    /* WCAG Menu Styles */
 
     .wcag-menu {
         top: auto;
