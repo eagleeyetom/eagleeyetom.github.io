@@ -128,7 +128,7 @@ header a:hover {
 /* Galeria */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, max(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 1rem;
     width: 100%;
 }
@@ -137,6 +137,7 @@ header a:hover {
     position: relative;
     overflow: hidden;
     max-width: 600px;
+    max-height: 450px;
     height: auto;
 }
 
@@ -153,7 +154,8 @@ header a:hover {
     left: 0;
     opacity: 0;
     transition: opacity 0.5s ease;
-
+    width: 100%;
+    height: 100%;
 }
 
 .theater-container {
@@ -514,4 +516,5 @@ footer a:hover {
     #flag {
         display: inline-block;
     }
+
 }
