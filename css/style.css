@@ -188,11 +188,15 @@ header a:hover {
     color: #000;
     border-radius: 12px;
     font-size: 32px;
-    transition: 0.5s;
+    transition: 0.5s ease;
 }
 
 .button button:hover {
     background: #fff;
+}
+
+.button button:hover #yt-button {
+    color: #FF0000;
 }
 
 /* Flipdown */
@@ -345,7 +349,7 @@ footer a:hover {
     transition-duration: .5s
 }
 
-.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu :not(.accessability), .high-contrast .flipdown, .high-contrast .button, .high-contrast .theater-name {
+.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu :not(.accessability), .high-contrast .flipdown, .high-contrast .theater-name {
     -webkit-filter: invert(1);
     filter: invert(100%)
 }
@@ -371,7 +375,20 @@ footer a:hover {
     filter: invert(100%)
 }
 
+.high-contrast .button button {
+    background: #000;
+    color: #fff;
+    border-color: #fff;
+}
 
+.high-contrast .button button:hover {
+    background: #fff;
+    color: #000;
+}
+
+.high-contrast .button button:hover #yt-button {
+    color: #FF0000;
+}
 
 /* Responsive Styles */
 @media screen and (max-width: 1200px) {
