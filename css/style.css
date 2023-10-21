@@ -382,6 +382,10 @@ footer a:hover {
     text-align: center;
 }
 
+.pdf-download {
+    text-align: center;
+}
+
 /* High Contrast Styles */
 .high-contrast {
     background-color: #000;
@@ -555,7 +559,7 @@ footer a:hover {
         justify-content: center;
     }
 
-    .gmina {
+    .gmina, .pdf-container {
         display: none;
     }
 
