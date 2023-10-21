@@ -513,4 +513,8 @@ footer a:hover {
         display: inline-block;
     }
 
+    .grid {
+        justify-content: center;
+    }
+
 }
