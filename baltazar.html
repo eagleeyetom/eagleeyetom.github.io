@@ -100,36 +100,39 @@
             <button onclick="acceptCookies()">Akceptuj</button><br>
             <a href="cookies.html" class="polityka">Polityka Plików Cookie</a>
         </div>
-        <footer>
-            <ul>
-                <li><img src="img/org.webp"></li>
-                <li><a href="https://ekspresja.org" target="_blank"><img src="img/snde.webp"></a></li>
-                <li><a href="https://www.facebook.com/grupaimplus/" target="_blank"><img src="img/implus.webp"></a></li>
-                <li><img src="img/wsp.webp"></li>
-                <li><a href="https://www.teatratelier.pl" target="_blank"><img src="img/atelier.webp"></a></li>
-                <li><a href="https://pkps.org.pl" target="_blank"><img src="img/pkps.webp"></a></li>
-                <li><a href="https://www.sopot.pl" target="_blank"><img src="img/sopot.webp"></a></li>
-                <li><a href="https://bart.sopot.pl" target="_blank"><img src="img/bart.webp"></a></li>
-                <li><a href="https://www.teatratelier.pl" target="_blank"><img src="img/teatr-atelier.webp"></a></li>
-                <li class="miasto"><img src="img/miasto.webp" class="gmina"></li>
-            </ul>
-            <div class="mobile-gmina">
-                <img src="img/miasto.webp" alt="Gmina Miasta Sopotu" />
-            </div>
-        </footer>
-        <script src="js/scripts.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.2/umd/photoswipe-lightbox.umd.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.2/umd/photoswipe.umd.min.js"></script>
-        <script type="text/javascript">
-            var lightbox = new PhotoSwipeLightbox({
-                gallery: '.test-gallery',
-                children: 'a',
-                // dynamic import is not supported in UMD version
-                pswpModule: PhotoSwipe
-            });
-            lightbox.init();
-        </script>
+    </section>
+    <footer>
+        <ul>
+            <li><img src="img/org.webp"></li>
+            <li><a href="https://ekspresja.org" target="_blank" class="link"><img src="img/snde.webp"></a></li>
+            <li><a href="https://www.facebook.com/grupaimplus/" target="_blank" class="link"><img
+                        src="img/implus.webp"></a></li>
+            <li><img src="img/wsp.webp"></li>
+            <li><a href="https://www.teatratelier.pl" target="_blank" class="link"><img src="img/atelier.webp"></a>
+            </li>
+            <li><a href="https://pkps.org.pl" target="_blank" class="link"><img src="img/pkps.webp"></a></li>
+            <li><a href="https://www.sopot.pl" target="_blank" class="link"><img src="img/sopot.webp"></a></li>
+            <li><a href="https://bart.sopot.pl" target="_blank" class="link"><img src="img/bart.webp"></a></li>
+            <li><a href="https://www.teatratelier.pl" target="_blank" class="link"><img
+                        src="img/teatr-atelier.webp"></a></li>
+            <li><img src="img/miasto.webp" class="gmina"></li>
+        </ul>
+        <div>
+            <img src="img/miasto.webp" alt="Gmina Miasta Sopotu" class="mobile-gmina" />
+        </div>
+    </footer>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.2/umd/photoswipe-lightbox.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.2/umd/photoswipe.umd.min.js"></script>
+    <script type="text/javascript">
+        var lightbox = new PhotoSwipeLightbox({
+            gallery: '.test-gallery',
+            children: 'a',
+            // dynamic import is not supported in UMD version
+            pswpModule: PhotoSwipe
+        });
+        lightbox.init();
+    </script>
 </body>
 
 </html>
