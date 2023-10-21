@@ -349,7 +349,7 @@ footer a:hover {
     transition-duration: .5s
 }
 
-.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu :not(.accessability), .high-contrast .flipdown, .high-contrast .theater-name {
+.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu :not(.accessability), .high-contrast .flipdown {
     -webkit-filter: invert(1);
     filter: invert(100%)
 }
@@ -367,6 +367,7 @@ footer a:hover {
 
 .high-contrast .theater-name {
     background-color: #000;
+    transition: 0.5s;
 }
 
 .high-contrast .cookie-info {
@@ -388,6 +389,10 @@ footer a:hover {
 
 .high-contrast .button button:hover #yt-button {
     color: #FF0000;
+}
+
+.high-contrast #flag {
+    filter: invert(0) !important
 }
 
 /* Responsive Styles */
