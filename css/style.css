@@ -362,6 +362,26 @@ footer a:hover {
     max-height: 400px;
 }
 
+.hr-theme-slash-2 {
+    display: flex;
+
+    .hr-line {
+        width: 100%;
+        position: relative;
+        margin: 15px;
+        border-bottom: 1px solid #000;
+    }
+
+    .hr-icon {
+        position: relative;
+        top: 3px;
+    }
+}
+
+.pdf-container {
+    text-align: center;
+}
+
 /* High Contrast Styles */
 .high-contrast {
     background-color: #000;
