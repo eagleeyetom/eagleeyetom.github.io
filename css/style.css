@@ -9,6 +9,11 @@ body {
     font-size: 22px
 }
 
+h1, h2, h3 {
+    text-align: center
+}
+
+
 h1 {
     font-size: 2em;
 }
@@ -31,17 +36,8 @@ body.with-transition {
     margin: auto
 }
 
-h1, h2, h3 {
-    text-align: center
-}
-
 a {
     color: #000;
-    font-weight: 700
-}
-
-.high-contrast a:not(.high-contrast .cookie-info a), .high-contrast .analytics {
-    color: #fff;
     font-weight: 700
 }
 
@@ -84,6 +80,42 @@ a {
     }
 }
 
+button {
+    cursor: pointer;
+}
+
+/* Other style */
+
+.long {
+    inline-size: 100%;
+    overflow-wrap: break-word;
+}
+
+.hr-theme-slash-2 {
+    display: flex;
+
+    .hr-line {
+        width: 100%;
+        position: relative;
+        margin: 15px;
+        border-bottom: 1px solid #000;
+    }
+
+    .hr-icon {
+        position: relative;
+        top: 3px;
+    }
+}
+
+.pdf-container {
+    text-align: center;
+}
+
+.pdf-download {
+    text-align: center;
+}
+
+
 /* Header & logo*/
 header a:hover {
     filter: none
@@ -105,6 +137,24 @@ header a:hover {
     width: 50%
 }
 
+/* Font Size Styles */
+.small-text {
+    font-size: 22px
+}
+
+.large-text {
+    font-size: 30px
+}
+
+p:first-child:first-letter {
+    float: left;
+    font-size: 75px;
+    line-height: 60px;
+    padding-top: 4px;
+    padding-right: 8px;
+    padding-left: 3px
+}
+
 /* WCAG Menu Styles */
 .wcag {
     list-style: none;
@@ -123,10 +173,9 @@ header a:hover {
     background: none;
     border: none;
     margin: auto;
-    cursor: pointer
 }
 
-.wcag-menu button:hover, .cookie-info button:hover, .high-contrast .accessibility:hover {
+.wcag-menu button:hover, .cookie-info button:hover {
     -webkit-filter: invert(.3);
     filter: invert(.3);
     transition-duration: .5s
@@ -161,19 +210,8 @@ header a:hover {
     transition: transform .5s ease;
 }
 
-#baltazar {
+.theater-photo {
     object-fit: cover;
-}
-
-/* Style the hover image */
-.image-container .hover-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity .5s ease;
-    content: fit-content;
-    aspect-ratio: 3/2;
 }
 
 .theater-container {
@@ -195,6 +233,47 @@ header a:hover {
     margin: auto;
 }
 
+.theater-container {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.theater {
+    display: block;
+}
+
+.yt, .gallery {
+    text-align: center
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-evenly;
+    gap: .5em;
+}
+
+.thumb {
+    max-width: 600px;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Style the hover image */
+.image-container .hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .5s ease;
+    object-fit: fill;
+    aspect-ratio: 3/2;
+}
+
+#flag {
+    display: none;
+}
+
 /* Button */
 
 .button {
@@ -202,7 +281,6 @@ header a:hover {
 }
 
 .button button {
-    cursor: pointer;
     border: 3px solid black;
     background-color: #B9D7D8;
     color: #000;
@@ -242,38 +320,6 @@ header a:hover {
     height: 700px
 }
 
-/* Font Size Styles */
-.small-text {
-    font-size: 22px
-}
-
-.large-text {
-    font-size: 30px
-}
-
-p:first-child:first-letter {
-    float: left;
-    font-size: 75px;
-    line-height: 60px;
-    padding-top: 4px;
-    padding-right: 8px;
-    padding-left: 3px
-}
-
-.theater-container {
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto
-}
-
-.theater {
-    display: block;
-}
-
-#flag {
-    display: none;
-}
-
 /* Cookie Info */
 .cookie-info {
     padding: 10px;
@@ -304,7 +350,6 @@ p:first-child:first-letter {
 .cookie-info button {
     padding: 5px 10px;
     border-radius: 3px;
-    cursor: pointer;
     font-size: large
 }
 
@@ -353,49 +398,16 @@ footer a:hover {
     opacity: .3
 }
 
-.yt, .test-gallery {
-    text-align: center
-}
-
-.thumb {
-    max-width: 600px;
-    max-height: 400px;
-}
-
-.hr-theme-slash-2 {
-    display: flex;
-
-    .hr-line {
-        width: 100%;
-        position: relative;
-        margin: 15px;
-        border-bottom: 1px solid #000;
-    }
-
-    .hr-icon {
-        position: relative;
-        top: 3px;
-    }
-}
-
-.pdf-container {
-    text-align: center;
-}
-
-.pdf-download {
-    text-align: center;
-}
-
-.long {
-    inline-size: 100%;
-    overflow-wrap: break-word;
-}
-
 /* High Contrast Styles */
 .high-contrast {
     background-color: #000;
     color: #fff;
     transition-duration: .5s
+}
+
+.high-contrast a:not(.high-contrast .cookie-info a), .high-contrast .analytics {
+    color: #fff;
+    font-weight: 700
 }
 
 .high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu :not(.accessability), .high-contrast .flipdown, .high-contrast .hr-line {
@@ -445,11 +457,18 @@ footer a:hover {
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 1200px) {
-    .column {
-        -ms-flex: 40%;
-        flex: 40%;
-        max-width: 40%
+
+
+@media (min-width:701px) and (max-width:1500px) {
+    .gallery {
+        display: flex;
+        max-height: 20%;
+        flex-grow: 1 1 0;
+    }
+
+    .thumb {
+        width: 100%;
+        height: 100%;
     }
 }
 
@@ -485,12 +504,6 @@ footer a:hover {
     .wcag-menu {
         top: auto;
         bottom: 2%;
-    }
-
-    .column {
-        -ms-flex: 100%;
-        flex: 100%;
-        max-width: 100%
     }
 
     .miasto {
@@ -537,7 +550,13 @@ footer a:hover {
         width: 100%;
     }
 
-    #photoswipe {
+    .thumb {
+        max-width: auto;
+        height: auto;
+        object-fit: fill;
+    }
+
+    .gallery {
         width: 95%;
         margin: auto;
         display: block;
