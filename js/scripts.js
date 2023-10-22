@@ -122,14 +122,16 @@ let countdownStarted = false;
 let countdownEnded = false;
 
 function checkTimeAndVisibility() {
-  const countdownDate = new Date("2023-10-15T15:15:00"); // The target countdown date
+  const countdownDate = new Date("2023-10-13T00:00:00"); // The target countdown date
   const now = new Date();
+  const textElement = document.getElementById("flipdown-text");
   const timerElement = document.getElementById("flipdown");
   const buttonElement = document.getElementById("button");
 
   if (now >= countdownDate) {
     if (timerElement) {
-      timerElement.style.display = "none"; // Hide the timer
+      timerElement.style.display = "none";
+      textElement.style.display = "none"; // Hide the timer
     }
     if (buttonElement) {
       buttonElement.style.display = "block"; // Show the button
@@ -137,7 +139,8 @@ function checkTimeAndVisibility() {
     countdownEnded = true;
   } else {
     if (timerElement) {
-      timerElement.style.display = "block"; // Show the timer
+      timerElement.style.display = "block";
+      textElement.style.display = "block"; // Show the timer
     }
     if (buttonElement) {
       buttonElement.style.display = "none"; // Hide the button
@@ -155,7 +158,8 @@ function checkTimeAndVisibility() {
         .ifEnded(() => {
           console.log("The countdown has ended!");
           if (timerElement) {
-            timerElement.style.display = "none"; // Hide the timer when the countdown ends
+            timerElement.style.display = "none";
+            textElement.style.display = "none"; // Hide the timer when the countdown ends
           }
           if (buttonElement) {
             buttonElement.style.display = "block"; // Show the button when the countdown ends

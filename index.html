@@ -1,207 +1,54 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html>
 
 <head>
-
+    <script type="text/javascript">
+        const lang = navigator.language;
+        langChanger:
+        if (lang.includes('pl')) {
+            window.location = 'pl/index.html'
+        } else {
+            window.location = 'en/index.html'
+        }
+    </script>
     <!-- META -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>MASSKA Przegląd Teatralny - On-Line</title>
-    <meta name="author" content="Paulina Lewandowska" />
-    <meta name="description"
-        content="XXII Przegląd Teatralny MASSKA On-Line 2023 Sopot. 13-30.11.2023. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy." />
-
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="img/favicon/site.webmanifest">
-    <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="img/favicon/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/flipdown/flipdown.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700,900" rel="stylesheet">
-    <script type="text/javascript" src="js/flipdown/flipdown.js"></script>
-</head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MASSKA Przegląd Teatralny - On-Line</title>
+    <meta name="author" content="Paulina Lewandowska">
+    <meta name="description"
+        content="XXII Przegląd Teatralny MASSKA On-Line 2023 Sopot. 13-30.11.2023. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy."
+        lang="pl">
+    <meta name="description"
+        content="22st theatrical overview - MASSKA on-line 2023 Sopot. 13-30 November 2023. Theatres of people with disabilities and youth theatres from Poland and other countries."
+        lang="en">
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="img/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- BODY -->
 
 <body>
-    <section>
-        <img src="img/logo.webp" class="logo" alt="Logo Masski">
-    </section>
-    <section>
-        <header>
-            <a href="index.html"><img src="img/banner.webp" class="banner" alt="Banner Masski"></a>
-        </header>
-    </section>
-    <section class="body">
-        <div>
-            <p class="fade-in-paragraph fade-out-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph fade-out-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <!--div>
-                <p class="fade-in-paragraph" id="timer">
-                    <script src="https://cdn.logwork.com/widget/countdown.js"></script>
-                    <a href="https://logwork.com/countdown-82i8" class="countdown-timer" data-timezone="Europe/Warsaw"
-                        data-language="pl" data-date="2023-11-13 00:00">MASSKA startuje za:</a>
-                </p>
-            <div-->
-
-            <div class="flipdown-container fade-in-paragraph fade-out-paragraph">
-                <div id="flipdown" class="flipdown"></div>
-            </div>
-            <!-- https://github.com/PButcher/flipdown/ -->
-        </div>
-
-        <div class="button fade-in-paragraph fade-out-paragraph" id="button" style="display: none;">
-            <form action="online.html" method="get" class="textDiv"><button>Oglądaj on-line<br><i
-                        class="fa-brands fa-youtube" id="yt-button"></i></button></form>
-        </div>
-        <!--div id="button"></div-->
-        <div>
-            <p class="fade-in-paragraph fade-out-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph fade-out-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph fade-out-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <div class="scope-container">
-                <div class="scope">
-                    <span style="--i:1;"><img src="img/plakaty/2023.webp" alt="not found"></span>
-                    <span style="--i:2;"><img src="img/plakaty/2022.webp" alt="not found"></span>
-                    <span style="--i:3;"><img src="img/plakaty/2021.webp" alt="not found"></span>
-                    <span style="--i:4;"><img src="img/plakaty/2020.webp" alt="not found"></span>
-                    <span style="--i:5;"><img src="img/plakaty/2019.webp" alt="not found"></span>
-                    <span style="--i:6;"><img src="img/plakaty/2018.webp" alt="not found"></span>
-                    <span style="--i:7;"><img src="img/plakaty/2017.webp" alt="not found"></span>
-                    <span style="--i:8;"><img src="img/plakaty/2016.webp" alt="not found"></span>
-                    <span style="--i:9;"><img src="img/plakaty/2015.webp" alt="not found"></span>
-                    <span style="--i:10;"><img src="img/plakaty/2014.webp" alt="not found"></span>
-                    <span style="--i:11;"><img src="img/plakaty/2013.webp" alt="not found"></span>
-                </div>
-            </div>
-            <p class="fade-in-paragraph fade-out-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph fade-out-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph fade-out-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-            <p class="fade-in-paragraph fade-out-paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
-                expedita,
-                soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
-                ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro dolore libero laborum ea? Quos
-                amet
-                iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
-                eveniet!
-            </p>
-        </div>
-    </section>
-    <section>
-        <div class="wcag-menu">
-            <ul class="wcag">
-                <li><button onclick="toggleFontSize()"><img src="img/text-size.png" title="Zmień wielkość czcionki"
-                            class="accessability"></button>
-                </li>
-                <li><button onclick="toggleContrast()"><i class="fas fa-adjust fa-2xl accessability"
-                            title="Odwróć kontrast"></i></button></li>
-                <li><button><span class="fi fi-gb fis lang" id="lang"></span></button></li>
-            </ul>
-        </div>
-    </section>
-    <div class="cookie-info">
-        <i class="fa-solid fa-xmark fa-xl close" onclick="acceptCookies()"></i>
-        <img src="img/cookie.webp" alt="Ciastko" class="cookie">
-        <p>Ta strona używa plików cookie w celu usprawnienia i ułatwienia dostępu do serwisu oraz prowadzenia danych
-            statystycznych.</p>
-        <button onclick="acceptCookies()">Akceptuj</button><br>
-        <a href="cookies.html" class="polityka link">Polityka Plików Cookie</a>
-    </div>
-    <footer class="fade-in-paragraph fade-out-paragraph">
-        <ul>
-            <li><img src="img/org.webp"></li>
-            <li><a href="https://ekspresja.org" target="_blank" class="link"><img src="img/snde.webp"></a></li>
-            <li><a href="https://www.facebook.com/grupaimplus/" target="_blank" class="link"><img
-                        src="img/implus.webp"></a></li>
-            <li><img src="img/wsp.webp"></li>
-            <li><a href="https://www.teatratelier.pl" target="_blank" class="link"><img src="img/atelier.webp"></a></li>
-            <li><a href="https://pkps.org.pl" target="_blank" class="link"><img src="img/pkps.webp"></a></li>
-            <li><a href="https://www.sopot.pl" target="_blank" class="link"><img src="img/sopot.webp"></a></li>
-            <li><a href="https://bart.sopot.pl" target="_blank" class="link"><img src="img/bart.webp"></a></li>
-            <li><a href="https://www.teatratelier.pl" target="_blank" class="link"><img
-                        src="img/teatr-atelier.webp"></a></li>
-            <li><img src="img/miasto.webp" class="gmina"></li>
-        </ul>
-        <div>
-            <img src="img/miasto.webp" alt="Gmina Miasta Sopotu" class="mobile-gmina" />
-        </div>
-    </footer>
-    <script src="js/scripts.js"></script>
+    <p>W przypadku problemów z załadowaniem strony <a href="pl/index.html">KLIKNIJ TUTAJ</a></p>
+    <p>In case of problems with loading <a href="en/index.html">CLICK HERE</a></p>
+    <br>
+    <p>Przeglądarka Internet Explorer nie jest wspierana. Prosimy o użycie innej przeglądarki.</p>
+    <p>Internet Explorer is not supported. Please use a different browser.</p>
 </body>
 
 </html>

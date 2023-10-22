@@ -357,6 +357,10 @@ p:first-child:first-letter {
     opacity: 1;
 }
 
+.flipdown-text {
+    display: none;
+}
+
 /* Google Form */
 .google-form {
     margin: auto
