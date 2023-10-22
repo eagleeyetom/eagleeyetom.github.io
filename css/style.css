@@ -618,9 +618,19 @@ footer a:hover {
     font-weight: 700
 }
 
-.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .wcag-menu :not(.accessability), .high-contrast .flipdown, .high-contrast .hr-line {
+.high-contrast .cookie-info img, .high-contrast .logo, .high-contrast footer, .high-contrast #head, .high-contrast .theater, .high-contrast .cookie-info p, .high-contrast .cookie-info .close, .high-contrast .flipdown, .high-contrast .hr-line {
     -webkit-filter: invert(1);
     filter: invert(100%)
+}
+
+.high-contrast .accessability {
+    -webkit-filter: invert(1);
+    filter: invert(100%)
+}
+
+.high-contrast .accessability img {
+    -webkit-filter: invert(1);
+    filter: invert(0%)
 }
 
 .high-contrast .accessability:hover {
