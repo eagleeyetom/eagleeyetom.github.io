@@ -6,7 +6,11 @@ body {
     text-align: justify;
     overflow-x: hidden;
     font-family: Arial, sans-serif;
-    font-size: 22px
+    font-size: 22px;
+    overflow-x: hidden;
+    -moz-osx-font-smoothing: normal;
+    -webkit-font-smoothing: auto;
+    font-display: fallback;
 }
 
 h1, h2, h3 {
