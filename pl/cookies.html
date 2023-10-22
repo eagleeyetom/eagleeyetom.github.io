@@ -27,9 +27,19 @@
     <meta name="msapplication-config" content="../img/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 
-<body>
+<body class="element toggle preload">
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="loader-img">
+            <div id="loader"></div>
+        </div>
+        <div id="panel_left" class="loader-section section-left"></div>
+        <div id="panel_right" class="loader-section section-right"></div>
+    </div>
     <section>
         <img src="../img/logo.webp" class="logo">
     </section>
@@ -138,6 +148,7 @@
         </div>
     </footer>
     <script src="../js/scripts.js"></script>
+    <script type="text/javascript" src="../js/preload.js"></script>
 </body>
 
 </html>

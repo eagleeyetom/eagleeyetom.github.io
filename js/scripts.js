@@ -181,4 +181,4 @@ window.addEventListener("load", checkTimeAndVisibility);
 
 // Initialize the page when it loads
 
-window.onload = initializePage;
+//window.onload = initializePage;

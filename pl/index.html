@@ -31,9 +31,19 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700,900" rel="stylesheet">
     <script type="text/javascript" src="../js/flipdown/flipdown.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 
-<body>
+<body class="element toggle preload">
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="loader-img">
+            <div id="loader"></div>
+        </div>
+        <div id="panel_left" class="loader-section section-left"></div>
+        <div id="panel_right" class="loader-section section-right"></div>
+    </div>
     <section>
         <img src="../img/logo.webp" class="logo" alt="Logo Masski">
     </section>
@@ -204,7 +214,8 @@
             <img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" class="mobile-gmina" />
         </div>
     </footer>
-    <script src="../js/scripts.js"></script>
+    <script type="text/javascript" src="../js/scripts.js"></script>
+    <script type="text/javascript" src="../js/preload.js"></script>
 </body>
 
 </html>
