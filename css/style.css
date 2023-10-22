@@ -4,10 +4,8 @@ body {
     background-color: #8bb0c0;
     margin: auto;
     text-align: justify;
-    overflow-x: hidden;
     font-family: Arial, sans-serif;
     font-size: 22px;
-    overflow-x: hidden;
     -moz-osx-font-smoothing: normal;
     -webkit-font-smoothing: auto;
     font-display: fallback;
@@ -819,4 +817,12 @@ footer a:hover {
         margin: 0 0 5%;
     }
 
+    .scope {
+        width: 150px;
+        height: 150px;
+    }
+
+    .scope span {
+        transform: rotateY(calc(var(--i) * 32.73deg)) translateZ(200px);
+    }
 }
