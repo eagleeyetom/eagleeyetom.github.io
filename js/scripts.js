@@ -68,8 +68,6 @@ const observer = new IntersectionObserver(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.style.animation = "fade-in 1.5s ease forwards";
-      } else {
-        entry.target.style.animation = "fade-out 1.5s ease forwards";
       }
     });
   },
