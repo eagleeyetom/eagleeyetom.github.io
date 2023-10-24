@@ -1,11 +1,11 @@
 /* Base Styles */
+
 body {
     color: #000;
     background-color: #8bb0c0;
     margin: auto;
     text-align: justify;
     font-family: Arial, sans-serif;
-    font-size: 22px;
     -moz-osx-font-smoothing: normal;
     -webkit-font-smoothing: auto;
     font-display: fallback;
@@ -298,16 +298,16 @@ header a:hover {
 
 /* Font Size Styles */
 .small-text {
-    font-size: 22px
+    font-size: 1.5em
 }
 
 .large-text {
-    font-size: 30px
+    font-size: 2em
 }
 
 p:first-child:first-letter {
     float: left;
-    font-size: 75px;
+    font-size: 3em;
     line-height: 60px;
     padding-top: 4px;
     padding-right: 8px;
@@ -392,7 +392,7 @@ p:first-child:first-letter {
 }
 
 .lang {
-    font-size: 2em;
+    font-size: 1.5em;
     margin-top: 10px;
 }
 
@@ -495,8 +495,8 @@ p:first-child:first-letter {
     background-color: #B9D7D8;
     color: #000;
     border-radius: 12px;
-    font-size: 32px;
     transition: .5s ease;
+    font-size: 1.5em;
 }
 
 .button button:hover {
@@ -563,8 +563,8 @@ p:first-child:first-letter {
 
 .cookie-info button {
     padding: 5px 10px;
-    border-radius: 3px;
-    font-size: large
+    border-radius: 10px;
+    font-size: 1em
 }
 
 .close {

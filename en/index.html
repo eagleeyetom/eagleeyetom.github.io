@@ -54,7 +54,7 @@
     </section>
     <section class="body">
         <div>
-            <p class="fade-in-paragraph fade-out-paragraph">
+            <p class="fade-in-paragraph">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
                 expedita,
                 soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -63,7 +63,7 @@
                 iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
                 eveniet!
             </p>
-            <p class="fade-in-paragraph fade-out-paragraph">
+            <p class="fade-in-paragraph">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
                 expedita,
                 soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -79,7 +79,7 @@
                         data-language="pl" data-date="2023-11-13 00:00">MASSKA startuje za:</a>
                 </p>
             <div-->
-            <div class="flipdown-main-container fade-in-paragraph fade-out-paragraph">
+            <div class="flipdown-main-container fade-in-paragraph">
                 <div class="flipdown-text" id="flipdown-text">
                     <h2>Do Masski pozostało:</h2>
                 </div>
@@ -90,12 +90,12 @@
             <!-- https://github.com/PButcher/flipdown/ -->
         </div>
 
-        <div class="button fade-in-paragraph fade-out-paragraph" id="button" style="display: none;">
+        <div class="button fade-in-paragraph" id="button" style="display: none;">
             <a href="online.html"><button>Oglądaj on-line<br><i class="fa-brands fa-youtube"
                         id="yt-button"></i></button></a>
         </div>
         <!--div id="button"></div-->
-        <p class="fade-in-paragraph fade-out-paragraph">
+        <p class="fade-in-paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
             expedita,
             soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -104,7 +104,7 @@
             iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
             eveniet!
         </p>
-        <p class="fade-in-paragraph fade-out-paragraph">
+        <p class="fade-in-paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
             expedita,
             soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -113,7 +113,7 @@
             iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
             eveniet!
         </p>
-        <p class="fade-in-paragraph fade-out-paragraph">
+        <p class="fade-in-paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
             expedita,
             soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -137,7 +137,7 @@
                 <span style="--i:11;"><img src="../img/plakaty/2013.webp" alt="Masska 2013"></span>
             </div>
         </div>
-        <p class="fade-in-paragraph fade-out-paragraph">
+        <p class="fade-in-paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
             expedita,
             soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -146,7 +146,7 @@
             iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
             eveniet!
         </p>
-        <p class="fade-in-paragraph fade-out-paragraph">
+        <p class="fade-in-paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
             expedita,
             soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -155,7 +155,7 @@
             iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
             eveniet!
         </p>
-        <p class="fade-in-paragraph fade-out-paragraph">
+        <p class="fade-in-paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
             expedita,
             soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -164,7 +164,7 @@
             iure doloribus non, alias iste, architecto minus assumenda quia magni eligendi, hic exercitationem eos
             eveniet!
         </p>
-        <p class="fade-in-paragraph fade-out-paragraph">
+        <p class="fade-in-paragraph">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quibusdam libero delectus dolor alias
             expedita,
             soluta tempora laborum voluptatem, eligendi et vel. Commodi sequi id, molestias asperiores eius maiores
@@ -177,11 +177,11 @@
     <section>
         <div class="wcag-menu">
             <ul class="wcag">
-                <li><button onclick="toggleFontSize()"><img src="../img/text-size.png" title="Zmień wielkość czcionki"
+                <li><button onclick="toggleFontSize()"><img src="../img/text-size.png" title="Toggle font size"
                             class="accessability"></button>
                 </li>
                 <li><button onclick="toggleContrast()"><i class="fas fa-adjust fa-2xl accessability"
-                            title="Odwróć kontrast"></i></button></li>
+                            title="Invert contrast"></i></button></li>
                 <li><a href="../pl/index.html"><button><span class="fi fi-pl fis lang" id="lang"
                                 title="Zmień na polski"></span></button></a></li>
             </ul>
@@ -190,12 +190,15 @@
     <div class="cookie-info">
         <i class="fa-solid fa-xmark fa-xl close" onclick="acceptCookies()"></i>
         <img src="../img/cookie.webp" alt="Ciastko" class="cookie">
-        <p>Ta strona używa plików cookie w celu usprawnienia i ułatwienia dostępu do serwisu oraz prowadzenia danych
-            statystycznych.</p>
-        <button onclick="acceptCookies()">Akceptuj</button><br>
-        <a href="cookies.html" class="polityka link">Polityka Plików Cookie</a>
+        <p>This website uses cookies to facilitate and improve
+            access
+            to the service and
+            to conduct statistical data.
+        </p>
+        <button onclick="acceptCookies()">Accept</button><br>
+        <a href="cookies.html" class="polityka link">Cookie Policy</a>
     </div>
-    <footer class="fade-in-paragraph fade-out-paragraph">
+    <footer class="fade-in-paragraph">
         <ul>
             <li><img src="../img/org.webp"></li>
             <li><a href="https://ekspresja.org" target="_blank" class="link"><img src="../img/snde.webp"></a></li>
