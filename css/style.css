@@ -9,6 +9,7 @@ body {
     -moz-osx-font-smoothing: normal;
     -webkit-font-smoothing: auto;
     font-display: fallback;
+    overflow-x: hidden;
 }
 
 h1, h2, h3 {
@@ -267,7 +268,7 @@ button {
 
 .pdf-container, .pdf-download {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 5vh;
 }
 
 .pdf-download a:hover {
@@ -321,7 +322,7 @@ p:first-child:first-letter {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 100px 0;
+    margin: 10vh 0;
 }
 
 .scope {
@@ -366,35 +367,38 @@ p:first-child:first-letter {
 }
 
 /* WCAG Menu Styles */
-.wcag {
-    list-style: none;
-
-}
 
 .wcag-menu {
     position: fixed;
+    right: .5vh;
     top: 50%;
-    bottom: 50%;
-    right: 0;
-    text-align: center;
+    /* Adjust the position from the right as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.wcag-menu button {
-    background: none;
-    border: none;
-    margin: auto;
+.wcag-menu-item {
+    cursor: pointer;
 }
 
-.wcag-menu button:hover, .cookie-info button:hover {
+.wcag-menu img {
+    width: 32px;
+    /* Set the width of the images as needed */
+    height: 32px;
+    /* Set the height of the images as needed */
+}
+
+.wcag-menu-item.accessability.font-toggle img {
+    transition: src 0.5s ease;
+}
+
+.wcag-menu-item:hover, .cookie-info button:hover {
     -webkit-filter: invert(.3);
     filter: invert(.3);
     transition-duration: .5s
 }
 
-.lang {
-    font-size: 1.5em;
-    margin-top: 10px;
-}
 
 /* Galeria */
 .grid {

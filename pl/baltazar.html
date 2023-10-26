@@ -135,15 +135,15 @@
         </section>
         <section>
             <div class="wcag-menu">
-                <ul class="wcag">
-                    <li><button onclick="toggleFontSize()"><img src="../img/text-size.png"
-                                title="Zmień wielkość czcionki" class="accessability"></button>
-                    </li>
-                    <li><button onclick="toggleContrast()"><i class="fas fa-adjust fa-2xl accessability"
-                                title="Odwróć kontrast"></i></button></li>
-                    <li><a href="../en/baltazar.html"><button><span class="fi fi-gb fis lang" id="lang"
-                                    title="Change to English"></span></button></a></li>
-                </ul>
+                <div class="wcag-menu-item accessability font-toggle" onclick="toggleFontSize()">
+                    <img src="../img/icons/format_size.png" title="Zmień wielkość czcionki">
+                </div>
+                <div class="wcag-menu-item accessability" onclick="toggleContrast()">
+                    <img src="../img/icons/contrast.png" title="Odwróć kontrast">
+                </div>
+                <div class="wcag-menu-item">
+                    <a href="../en/baltazar.html"><img src="../img/icons/gb.png" title="Change language to English"></a>
+                </div>
             </div>
         </section>
         <div class="cookie-info">

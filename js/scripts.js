@@ -82,13 +82,24 @@ paragraphs.forEach((paragraph) => {
 function switchFontSize(size) {
   const bodyElement = document.body;
   bodyElement.classList.add("with-transition");
+  const fontSizeImage = document.querySelector(
+    ".wcag-menu-item.accessability.font-toggle img"
+  );
 
   if (size === "small") {
     bodyElement.classList.remove("large-text");
     bodyElement.classList.add("small-text");
+    // Delay the image source change to allow the transition
+    setTimeout(() => {
+      fontSizeImage.src = "../img/icons/format_size.png";
+    }, 100);
   } else if (size === "large") {
     bodyElement.classList.remove("small-text");
     bodyElement.classList.add("large-text");
+    // Delay the image source change to allow the transition
+    setTimeout(() => {
+      fontSizeImage.src = "../img/icons/text_fields.png";
+    }, 100);
   }
 }
 
