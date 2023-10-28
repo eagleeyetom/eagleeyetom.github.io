@@ -463,13 +463,16 @@ p:first-child:first-letter {
 
 .gallery {
     display: flex;
-    justify-content: space-evenly;
+    max-height: 20%;
+    flex-grow: 1 1 0;
     gap: .5em;
 }
 
 .thumb {
     max-width: 600px;
     height: 400px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -686,20 +689,6 @@ footer a:hover {
 }
 
 /* Responsive Styles */
-
-
-@media (min-width:701px) and (max-width:1500px) {
-    .gallery {
-        display: flex;
-        max-height: 20%;
-        flex-grow: 1 1 0;
-    }
-
-    .thumb {
-        width: 100%;
-        height: 100%;
-    }
-}
 
 @media screen and (max-width: 700px) {
 
