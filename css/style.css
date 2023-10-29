@@ -824,11 +824,11 @@ footer a:hover {
     }
 
     .scope {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
     }
 
     .scope span {
-        transform: rotateY(calc(var(--i) * 32.73deg)) translateZ(200px);
+        transform: rotateY(calc(var(--i) * 32.73deg)) translateZ(180px);
     }
 }
