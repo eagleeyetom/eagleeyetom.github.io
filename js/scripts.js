@@ -89,16 +89,16 @@ function switchFontSize(size) {
   if (size === "small") {
     bodyElement.classList.remove("large-text");
     bodyElement.classList.add("small-text");
-    // Delay the image source change to allow the transition
+    // Delay the rotation effect slightly for the transition
     setTimeout(() => {
-      fontSizeImage.src = "../img/icons/format_size.png";
+      fontSizeImage.style.transform = "rotateY(0deg)";
     }, 100);
   } else if (size === "large") {
     bodyElement.classList.remove("small-text");
     bodyElement.classList.add("large-text");
-    // Delay the image source change to allow the transition
+    // Delay the rotation effect slightly for the transition
     setTimeout(() => {
-      fontSizeImage.src = "../img/icons/text_fields.png";
+      fontSizeImage.style.transform = "rotateY(180deg)";
     }, 100);
   }
 }
