@@ -476,6 +476,8 @@ p:first-child:first-letter {
     object-fit: cover;
 }
 
+
+
 /* Style the hover image */
 .image-container .hover-image {
     position: absolute;
