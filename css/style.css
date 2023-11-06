@@ -466,6 +466,7 @@ p:first-child:first-letter {
     max-height: 20%;
     flex-grow: 1 1 0;
     gap: .5em;
+    justify-content: center;
 }
 
 .thumb {
@@ -476,7 +477,11 @@ p:first-child:first-letter {
     object-fit: cover;
 }
 
-
+.lomen-thumb {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
 
 /* Style the hover image */
 .image-container .hover-image {
@@ -744,7 +749,11 @@ footer a:hover {
         z-index: 2;
     }
 
-
+    .lomen-thumb {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
 
     .miasto {
         display: none
