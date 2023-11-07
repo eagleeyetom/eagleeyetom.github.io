@@ -3,11 +3,6 @@
 	<url>
 		<loc>https://www.masska.org</loc>
 		<priority>1.00</priority>
-		<lastmod>2023-10-28</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/pl</loc>
-		<priority>0.67</priority>
 		<lastmod>2023-11-07</lastmod>
 	</url>
 	<url>
@@ -16,72 +11,12 @@
 		<lastmod>2023-11-07</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/teatr-razem.html</loc>
-		<priority>0.33</priority>
+		<loc>https://www.masska.org/pl</loc>
+		<priority>0.67</priority>
 		<lastmod>2023-11-07</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/pogotowie-teatralne.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/pl/online.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/pl/mtt.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/pl/lomen.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/pl/fritsch-company.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/pl/cookies.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/pl/baltazar.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/teatr-razem.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/pogotowie-teatralne.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/online.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/mtt.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/lomen.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/fritsch-company.html</loc>
+		<loc>https://www.masska.org/en/baltazar.html</loc>
 		<priority>0.33</priority>
 		<lastmod>2023-11-07</lastmod>
 	</url>
@@ -91,7 +26,72 @@
 		<lastmod>2023-11-07</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/en/baltazar.html</loc>
+		<loc>https://www.masska.org/en/fritsch-company.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/en/lomen.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/en/mtt.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/en/online.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/en/pogotowie-teatralne.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/en/teatr-razem.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/pl/baltazar.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/pl/cookies.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/pl/fritsch-company.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/pl/lomen.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/pl/mtt.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/pl/online.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/pl/pogotowie-teatralne.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2023-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://www.masska.org/pl/teatr-razem.html</loc>
 		<priority>0.33</priority>
 		<lastmod>2023-11-07</lastmod>
 	</url>
