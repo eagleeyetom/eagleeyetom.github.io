@@ -776,7 +776,8 @@ footer a:hover {
 
     .logo {
         left: 0;
-        width: 100%
+        width: 100%;
+        bottom: 0
     }
 
     .google-form {
