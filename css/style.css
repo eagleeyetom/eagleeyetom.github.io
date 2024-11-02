@@ -461,7 +461,7 @@ p:first-child:first-letter {
     text-align: center
 }
 
-.gallery {
+.gallery, .parostky {
     display: flex;
     max-height: 20%;
     flex-grow: 1 1 0;
@@ -786,7 +786,7 @@ footer a:hover {
         height: 750px
     }
 
-    .yt {
+    .yt, .parostky {
         margin: auto
     }
 
@@ -805,7 +805,7 @@ footer a:hover {
         object-fit: fill;
     }
 
-    .gallery {
+    .gallery, .parostky {
         width: 95%;
         margin: auto;
         display: block;
