@@ -144,7 +144,7 @@ button {
     bottom: 5px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #1D242D;
+    border-top-color: #B13C37;
     -webkit-animation: spin 3s linear infinite;
     animation: spin 3s linear infinite;
 }
@@ -196,7 +196,7 @@ button {
     top: 0;
     width: 51%;
     height: 100%;
-    background: #8bb0c0;
+    background: #9fab9e;
     ;
     z-index: 1000;
     -webkit-transform: translateX(0);
@@ -603,7 +603,7 @@ footer {
     position: relative;
     width: 100%;
     height: 10%;
-    background-color: #f3e9df;
+    background-color: #fff;
     z-index: 1;
 }
 
