@@ -23,19 +23,19 @@
 .flipdown.flipdown__theme-dark .rotor-top,
 .flipdown.flipdown__theme-dark .rotor-leaf-front {
   color: #FFFFFF;
-  background-color: #151515;
+  background-color: #B13C37;
 }
 
 /* Rotor bottoms */
 .flipdown.flipdown__theme-dark .rotor-bottom,
 .flipdown.flipdown__theme-dark .rotor-leaf-rear {
   color: #EFEFEF;
-  background-color: #202020;
+  background-color: #B13C37;
 }
 
 /* Hinge */
 .flipdown.flipdown__theme-dark .rotor:after {
-  border-top: solid 1px #151515;
+  border-top: solid 1px #B13C37;
 }
 
 /********** Theme: light **********/

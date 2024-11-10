@@ -4,13 +4,13 @@ function isBeforeDate(targetDate) {
   return currentDate < targetDate;
 }
 
-// Date and time for when the redirection should stop (13.11.2023 at midnight)
-const stopRedirectionDate = new Date("2023-10-17T00:00:00");
+// Date and time for when the redirection should stop (17.11.2024 at midnight)
+const stopRedirectionDate = new Date("2024-11-07T00:00:00");
 
 // Redirect subpages to "index.html" if the current date is before the stopRedirectionDate
 if (
   isBeforeDate(stopRedirectionDate) &&
-  window.location.pathname !== "/index.html"
+  window.location.pathname !== "./index.html"
 ) {
-  window.location.href = "/index.html";
+  window.location.href = "./index.html";
 }

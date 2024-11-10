@@ -294,7 +294,8 @@ header a:hover {
     position: fixed;
     right: -100px;
     z-index: -1;
-    width: 50%
+    width: 40%;
+    bottom: 0
 }
 
 /* Font Size Styles */
