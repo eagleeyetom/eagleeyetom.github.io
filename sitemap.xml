@@ -1,118 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://www.masska.org</loc>
+		<loc>https://masska.org</loc>
 		<priority>1.00</priority>
-		<lastmod>2023-11-07</lastmod>
+		<lastmod>2024-11-02</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl</loc>
+		<loc>https://masska.org/pl</loc>
 		<priority>0.67</priority>
-		<lastmod>2023-11-07</lastmod>
+		<lastmod>2024-11-14</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/en</loc>
+		<loc>https://masska.org/en</loc>
 		<priority>0.67</priority>
-		<lastmod>2023-11-07</lastmod>
+		<lastmod>2024-11-14</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/teatr-razem.html</loc>
+		<loc>https://masska.org/pl/online.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
+		<lastmod>2024-11-10</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/pogotowie-teatralne.html</loc>
+		<loc>https://masska.org/pl/cookies.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
+		<lastmod>2024-11-07</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/parostky.html</loc>
+		<loc>https://masska.org/pl/baltazar.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2023-11-22</lastmod>
+		<lastmod>2024-11-07</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/online.html</loc>
+		<loc>https://masska.org/pl/azdaki.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2023-11-20</lastmod>
+		<lastmod>2024-11-09</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/mtt.html</loc>
+		<loc>https://masska.org/en/online.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
+		<lastmod>2024-11-07</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/lomen.html</loc>
+		<loc>https://masska.org/en/cookies.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
+		<lastmod>2024-11-07</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/lik.html</loc>
+		<loc>https://masska.org/en/baltazar.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2023-11-09</lastmod>
+		<lastmod>2024-11-09</lastmod>
 	</url>
 	<url>
-		<loc>https://www.masska.org/pl/fritsch-company.html</loc>
+		<loc>https://masska.org/en/azdaki.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/pl/cookies.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/pl/baltazar.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/teatr-razem.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/pogotowie-teatralne.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/parostky.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-22</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/online.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-20</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/mtt.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/lomen.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/lik.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-09</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/fritsch-company.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/cookies.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-07</lastmod>
-	</url>
-	<url>
-		<loc>https://www.masska.org/en/baltazar.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2023-11-09</lastmod>
+		<lastmod>2024-11-09</lastmod>
 	</url>
 </urlset>
