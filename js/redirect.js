@@ -5,7 +5,7 @@ function isBeforeDate(targetDate) {
 }
 
 // Date and time for when the redirection should stop (17.11.2024 at midnight)
-const stopRedirectionDate = new Date("2024-11-25T00:00:00");
+const stopRedirectionDate = new Date("2024-11-20T00:00:00");
 
 // Redirect subpages to "index.html" if the current date is before the stopRedirectionDate
 if (
