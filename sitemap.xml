@@ -6,49 +6,19 @@
 		<lastmod>2024-11-22</lastmod>
 	</url>
 	<url>
-		<loc>https://masska.org/en</loc>
-		<priority>0.67</priority>
-		<lastmod>2024-11-22</lastmod>
-	</url>
-	<url>
 		<loc>https://masska.org/pl</loc>
 		<priority>0.67</priority>
 		<lastmod>2024-11-14</lastmod>
 	</url>
 	<url>
-		<loc>https://masska.org/en/azdaki.html</loc>
-		<priority>0.33</priority>
+		<loc>https://masska.org/en</loc>
+		<priority>0.67</priority>
 		<lastmod>2024-11-22</lastmod>
 	</url>
 	<url>
-		<loc>https://masska.org/en/baltazar.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2024-11-23</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/en/cookies.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2024-11-22</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/en/online.html</loc>
+		<loc>https://masska.org/pl/parostki.html</loc>
 		<priority>0.33</priority>
 		<lastmod>2024-11-24</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/pl/azdaki.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2024-11-22</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/pl/baltazar.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2024-11-23</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/pl/cookies.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2024-11-22</lastmod>
 	</url>
 	<url>
 		<loc>https://masska.org/pl/online.html</loc>
@@ -61,18 +31,48 @@
 		<lastmod>2024-11-24</lastmod>
 	</url>
 	<url>
-		<loc>https://masska.org/en/krug-ii.html</loc>
+		<loc>https://masska.org/pl/cookies.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2024-11-24</lastmod>
+		<lastmod>2024-11-22</lastmod>
 	</url>
 	<url>
-		<loc>https://masska.org/pl/parostki.html</loc>
+		<loc>https://masska.org/pl/baltazar.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2024-11-24</lastmod>
+		<lastmod>2024-11-23</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/pl/azdaki.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2024-11-22</lastmod>
 	</url>
 	<url>
 		<loc>https://masska.org/en/parostki.html</loc>
 		<priority>0.33</priority>
 		<lastmod>2024-11-24</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/en/online.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2024-11-24</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/en/krug-ii.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2024-11-24</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/en/cookies.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2024-11-22</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/en/baltazar.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2024-11-23</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/en/azdaki.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2024-11-22</lastmod>
 	</url>
 </urlset>
