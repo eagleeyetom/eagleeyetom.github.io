@@ -705,7 +705,7 @@ footer a:hover {
 }
 
 /* Responsive Styles */
-@media screen and (min-width:1500px) and (max-width:2400px) {
+@media screen and (min-width:1500px) and (max-width:2200px) {
     .grid {
         margin-bottom: 5%
     }
@@ -716,7 +716,7 @@ footer a:hover {
 
 }
 
-@media screen and (min-width:2401px) {
+@media screen and (min-width:2201px) {
     .grid {
         margin-bottom: 9.5%;
     }
