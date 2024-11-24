@@ -525,6 +525,7 @@ p:first-child:first-letter {
 }
 
 /* Flipdown */
+
 .flipdown-container {
     display: flex;
     justify-content: center;
@@ -708,11 +709,24 @@ footer a:hover {
     .grid {
         margin-bottom: 5%
     }
+
+    .flipdown-main-container {
+        margin-top: -5%;
+    }
+
 }
 
 @media screen and (min-width:2401px) {
     .grid {
         margin-bottom: 7.5%
+    }
+
+    .flipdown-main-container {
+        margin-top: -7%;
+    }
+
+    .body {
+        margin-bottom: -1.5%;
     }
 }
 
