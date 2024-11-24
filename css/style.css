@@ -10,6 +10,7 @@ body {
     -webkit-font-smoothing: auto;
     font-display: fallback;
     overflow-x: hidden;
+
 }
 
 h1, h2, h3 {
@@ -606,6 +607,7 @@ footer {
     height: 10%;
     background-color: #fff;
     z-index: 1;
+
 }
 
 footer ul {
