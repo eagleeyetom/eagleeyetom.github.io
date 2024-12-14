@@ -704,7 +704,7 @@ footer a:hover {
     transform: rotateY(180deg) !important;
 }
 
-/* Responsive Styles */
+/* Responsive Styles
 @media screen and (min-width:1500px) and (max-width:2200px) {
     .grid {
         margin-bottom: 5%
@@ -729,7 +729,7 @@ footer a:hover {
         margin-bottom: -1.5%;
     }
 }
-
+*/
 @media screen and (max-width: 700px) {
 
     h1 {
