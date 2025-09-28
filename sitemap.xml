@@ -16,24 +16,14 @@
 		<lastmod>2024-11-22</lastmod>
 	</url>
 	<url>
-		<loc>https://masska.org/pl/loiseau-mouche.html</loc>
+		<loc>https://masska.org/pl/tur.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2025-01-29</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/en/rambazamba.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2025-01-29</lastmod>
+		<lastmod>2024-12-15</lastmod>
 	</url>
 	<url>
 		<loc>https://masska.org/pl/rambazamba.html</loc>
 		<priority>0.33</priority>
 		<lastmod>2025-01-29</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/pl/tur.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2024-12-15</lastmod>
 	</url>
 	<url>
 		<loc>https://masska.org/pl/parostki.html</loc>
@@ -51,9 +41,24 @@
 		<lastmod>2024-12-14</lastmod>
 	</url>
 	<url>
+		<loc>https://masska.org/pl/loiseau-mouche.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2025-01-29</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/pl/lik.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2025-01-29</lastmod>
+	</url>
+	<url>
 		<loc>https://masska.org/pl/krug-ii.html</loc>
 		<priority>0.33</priority>
 		<lastmod>2024-11-24</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/pl/fritsch-company.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2025-01-29</lastmod>
 	</url>
 	<url>
 		<loc>https://masska.org/pl/cookies.html</loc>
@@ -76,6 +81,11 @@
 		<lastmod>2024-12-15</lastmod>
 	</url>
 	<url>
+		<loc>https://masska.org/en/rambazamba.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2025-01-29</lastmod>
+	</url>
+	<url>
 		<loc>https://masska.org/en/parostki.html</loc>
 		<priority>0.33</priority>
 		<lastmod>2024-11-24</lastmod>
@@ -91,9 +101,24 @@
 		<lastmod>2024-12-14</lastmod>
 	</url>
 	<url>
+		<loc>https://masska.org/en/loiseau-mouche.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2025-01-29</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/en/lik.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2025-01-29</lastmod>
+	</url>
+	<url>
 		<loc>https://masska.org/en/krug-ii.html</loc>
 		<priority>0.33</priority>
 		<lastmod>2024-11-24</lastmod>
+	</url>
+	<url>
+		<loc>https://masska.org/en/fritsch-company.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2025-01-29</lastmod>
 	</url>
 	<url>
 		<loc>https://masska.org/en/cookies.html</loc>
@@ -109,20 +134,5 @@
 		<loc>https://masska.org/en/azdaki.html</loc>
 		<priority>0.33</priority>
 		<lastmod>2024-11-22</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/pl/fritsch-company.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2025-01-29</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/en/fritsch-company.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2025-01-29</lastmod>
-	</url>
-	<url>
-		<loc>https://masska.org/en/loiseau-mouche.html</loc>
-		<priority>0.33</priority>
-		<lastmod>2025-01-29</lastmod>
 	</url>
 </urlset>
