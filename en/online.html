@@ -2,216 +2,315 @@
 <html lang="en">
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Stream performances from the MASSKA festival and explore inclusive theatre ensembles online.">
+    <title>MASSKA · Online Showcase</title>
+    <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/styles-mobile.css">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag("js", new Date());
-
         gtag("config", "G-CKB0FYJDGK");
     </script>
-    <!-- META -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>MASSKA XXIII Inernational Theatrical Overview - Online</title>
-    <meta name="author" content="Paulina Lewandowska" />
-    <meta name="description"
-        content="XXIII MASSKA Theater Overview online 2024 Sopot. 25.11-31.12.2024. Theaters of disabled people and youth theaters from Poland and abroad." />
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" type="image/png" href="../img/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="../img/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="../img/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="../img/favicon/site.webmanifest" />
-    <meta name="theme-color" content="#ffffff">
-
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
-
-    <script src="../js/redirect.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 </head>
 
-<body class="element toggle preload">
-    <!-- Loader -->
-    <div id="preloader">
-        <div id="loader-img">
-            <div id="loader"></div>
-        </div>
-        <div id="panel_left" class="loader-section section-left"></div>
-        <div id="panel_right" class="loader-section section-right"></div>
-    </div>
-    <section>
-        <img src="../img/logo.webp" class="logo">
-    </section>
-    <section>
-        <header><a href="index.html"><img src="../img/banner.webp" class="banner"></a></header>
-    </section>
-    <section class="body online">
+<body data-redirect-to-preferred-language="true">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
-        <!-- Photo Grid -->
-        <div class="grid">
-            <div class="theater-container">
-                <a class="fade-in-paragraph" href="azdaki.html">
-                    <div class="image-container">
-                        <img src="../img/teatr/azdaki/photo1.webp" class="theater-photo">
-                        <img class="hover-image" src="https://flagcdn.com/h240/ge.png" alt="Georgia" title="Georgia">
-                        <div class="theater-name">
-                            Integrated Theatre «Azdak's garden» <span class="fi fi-ge" id="flag" alt="Georgia"
-                                title="Georgia"></span>
-                        </div>
-                    </div>
-                </a>
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <div class="site-branding">
+                <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
+                <p class="brand-subtitle"><img src="../assets/img/overview.webp"
+                        alt="XXIII International Inclusive Theatre Review · 2024"></p>
             </div>
-            <div class="theater-container">
-                <a class="fade-in-paragraph" href="baltazar.html">
-                    <div class="image-container">
-                        <img src="../img/teatr/baltazar/photo1.webp" class="theater-photo">
-                        <img class="hover-image" src="https://flagcdn.com/h240/hu.png" alt="Hungary" title="Hungary">
-                        <div class="theater-name">
-                            The Baltazar Theatre <span class="fi fi-hu" id="flag" alt="Hungary" title="Hungary"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="theater-container">
-                <a class="fade-in-paragraph" href="parostki.html">
-                    <div class="image-container">
-                        <img src="../img/teatr/parostki/photo1.webp" class="theater-photo">
-                        <img class="hover-image" src="https://flagcdn.com/h240/ua.png" alt="Ukraine" title="Ukraine">
-                        <div class="theater-name">
-                            Folk amateur theater studio «PAROSTKY» <span class="fi fi-ua" id="flag" alt="Ukraine"
-                                title="Ukraine"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="theater-container">
-                <a class="fade-in-paragraph" href="krug-ii.html">
-                    <div class="image-container">
-                        <img src="../img/teatr/krug-ii/photo2.webp" class="theater-photo">
-                        <img class="hover-image" src="https://flagcdn.com/h240/ru.png" alt="Russia" title="Russia">
-                        <div class="theater-name">
-                            Professional special theater «Krug II» <span class="fi fi-ru" id="flag" alt="Russia"
-                                title="Russia"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="theater-container">
-                <a class="fade-in-paragraph" href="mtt.html">
-                    <div class="image-container">
-                        <img src="../img/teatr/mtt/photo2.webp" class="theater-photo">
-                        <img class="hover-image" src="https://flagcdn.com/h240/lt.png" alt="Lithuania"
-                            title="Lithuania">
-                        <div class="theater-name">
-                            The troupe of the MTT Music Theater <span class="fi fi-lt" id="flag" alt="Lithuania"
-                                title="Lithuania"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="theater-container">
-                <a class="fade-in-paragraph" href="tur.html">
-                    <div class="image-container">
-                        <img src="../img/teatr/tur/photo1.webp" class="theater-photo">
-                        <img class="hover-image" src="https://flagcdn.com/h240/pl.png" alt="Poland" title="Poland">
-                        <div class="theater-name">
-                            Teatr Ubogi Relacji <span class="fi fi-pl" id="flag" alt="Poland" title="Poland"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="theater-container">
-                <a class="fade-in-paragraph" href="rambazamba.html">
-                    <div class="image-container">
-                        <img src="../img/teatr/rambazamba/photo1.webp" class="theater-photo">
-                        <img class="hover-image" src="https://flagcdn.com/h240/de.png" alt="Germany" title="Germany">
-                        <div class="theater-name">
-                            RambaZamba Theater <span class="fi fi-de" id="flag" alt="Germany" title="Germany"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="theater-container">
-                <a class="fade-in-paragraph" href="fritsch-company.html">
-                    <div class="image-container">
-                        <img src="../img/teatr/fritsch-company/photo2.webp" class="theater-photo">
-                        <img class="hover-image" src="https://flagcdn.com/h240/es.png" alt="Spain" title="Spain">
-                        <div class="theater-name">
-                            Fritsch Company <span class="fi fi-es" id="flag" alt="Spain" title="Spain"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="theater-container">
-                <a class="fade-in-paragraph" href="loiseau-mouche.html">
-                    <div class="image-container">
-                        <img src="../img/teatr/loiseau-mouche/photo2.webp" class="theater-photo">
-                        <img class="hover-image" src="https://flagcdn.com/h240/fr.png" alt="France" title="France">
-                        <div class="theater-name">
-                            La Compagnie de l'Oiseau-Mouche <span class="fi fi-fr" id="flag" alt="France"
-                                title="France"></span>
-                        </div>
-                    </div>
-                </a>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a class="nav-link" href="index.html">Festival</a>
+                <span class="nav-link is-active">Watch Online</span>
+            </nav>
+            <div class="header-tools">
+                <div class="site-actions" role="group" aria-label="Display options">
+                    <button type="button" data-action="font-decrease" aria-label="Decrease text size">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M5 11v2h14v-2z"></path>
+                        </svg>
+                    </button>
+                    <span class="font-indicator" data-font-indicator>100%</span>
+                    <button type="button" data-action="font-increase" aria-label="Increase text size">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path>
+                        </svg>
+                    </button>
+                    <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false"
+                        data-contrast-label data-label-on="High contrast on" data-label-off="High contrast off"
+                        aria-label="High contrast off">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="language-switcher" role="group" aria-label="Switch language">
+                    <span class="sr-only">Available languages:</span>
+                    <a class="language-link is-active" href="../en/online.html" data-language="en"
+                        data-flag-emoji="🇬🇧">
+                        <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
+                        English
+                    </a>
+                    <a class="language-link" href="../pl/online.html" data-language="pl" data-flag-emoji="🇵🇱">
+                        <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
+                        Polski
+                    </a>
+                </div>
             </div>
         </div>
-    </section>
-    <section>
-        <div class="wcag-menu">
-            <div class="wcag-menu-item accessability font-toggle" onclick="toggleFontSize()">
-                <img src="../img/icons/format_size.png" title="Toggle font size">
+    </header>
+
+    <main id="main-content" class="page-content" role="main">
+        <section class="hero">
+            <div class="hero-text">
+                <p class="eyebrow">Streaming now</p>
+                <h1>MASSKA online showcase</h1>
+                <p>Watch curated performances from inclusive theatre ensembles. Each feature includes subtitles,
+                    context, and downloadable materials prepared for the online edition.</p>
+                <div class="hero-actions">
+                    <a class="button primary" href="#theater-grid">Browse ensembles</a>
+                    <a class="button ghost" href="index.html">Return to festival home</a>
+                </div>
             </div>
-            <div class="wcag-menu-item accessability contrast" onclick="toggleContrast()">
-                <img src="../img/icons/contrast.png" title="Invert contrast">
+            <figure class="hero-media" aria-hidden="true">
+                <img src="https://via.placeholder.com/1200x720?text=Streaming+Stage" alt="" role="presentation">
+                <figcaption>Inclusive theatre streams available 24/7.</figcaption>
+            </figure>
+        </section>
+
+        <section class="page-section alt" id="theater-grid" aria-labelledby="ensembles-title">
+            <div class="section-inner">
+                <h2 id="ensembles-title">Ensembles on demand</h2>
+                <div class="theater-grid">
+                    <article class="theater-card">
+                        <figure>
+                            <img src="https://via.placeholder.com/640x420?text=Azdaki+Baghi"
+                                alt="Azdaki Baghi theatre still">
+                            <figcaption>Azdaki Baghi · Georgia</figcaption>
+                        </figure>
+                        <div class="card-body">
+                            <h3>Integrated Theatre “Azdaki Baghi”</h3>
+                            <ul class="meta-list">
+                                <li>Production: Extracurricular Lesson</li>
+                                <li>Duration: 112 minutes</li>
+                                <li>Subtitles: English / Polish</li>
+                            </ul>
+                            <a class="button secondary" href="template.html">Open template</a>
+                        </div>
+                    </article>
+                    <article class="theater-card">
+                        <figure>
+                            <img src="https://via.placeholder.com/640x420?text=Baltazar+Theatre"
+                                alt="Baltazar theatre still">
+                            <figcaption>Baltazar Theatre · Hungary</figcaption>
+                        </figure>
+                        <div class="card-body">
+                            <h3>Baltazar Theatre</h3>
+                            <ul class="meta-list">
+                                <li>Production: Light Steps</li>
+                                <li>Duration: 64 minutes</li>
+                                <li>Subtitles: English / Hungarian</li>
+                            </ul>
+                            <a class="button secondary" href="#">Coming soon</a>
+                        </div>
+                    </article>
+                    <article class="theater-card">
+                        <figure>
+                            <img src="https://via.placeholder.com/640x420?text=Parostki" alt="Parostki theatre still">
+                            <figcaption>Parostki · Ukraine</figcaption>
+                        </figure>
+                        <div class="card-body">
+                            <h3>Parostki Theatre Studio</h3>
+                            <ul class="meta-list">
+                                <li>Production: Golden Field</li>
+                                <li>Duration: 58 minutes</li>
+                                <li>Subtitles: Polish / Ukrainian</li>
+                            </ul>
+                            <a class="button secondary" href="#">Coming soon</a>
+                        </div>
+                    </article>
+                    <article class="theater-card">
+                        <figure>
+                            <img src="https://via.placeholder.com/640x420?text=Krug+II" alt="Krug II theatre still">
+                            <figcaption>Krug II · Poland</figcaption>
+                        </figure>
+                        <div class="card-body">
+                            <h3>Krug II Special Theatre</h3>
+                            <ul class="meta-list">
+                                <li>Production: Shared Stories</li>
+                                <li>Duration: 70 minutes</li>
+                                <li>Subtitles: Polish / English</li>
+                            </ul>
+                            <a class="button secondary" href="#">Coming soon</a>
+                        </div>
+                    </article>
+                    <article class="theater-card">
+                        <figure>
+                            <img src="https://via.placeholder.com/640x420?text=MTT+Theatre" alt="MTT theatre still">
+                            <figcaption>MTT · Lithuania</figcaption>
+                        </figure>
+                        <div class="card-body">
+                            <h3>MTT Musical Theatre Troupe</h3>
+                            <ul class="meta-list">
+                                <li>Production: Road to Light</li>
+                                <li>Duration: 74 minutes</li>
+                                <li>Subtitles: Lithuanian / English</li>
+                            </ul>
+                            <a class="button secondary" href="#">Coming soon</a>
+                        </div>
+                    </article>
+                    <article class="theater-card">
+                        <figure>
+                            <img src="https://via.placeholder.com/640x420?text=RambaZamba"
+                                alt="RambaZamba theatre still">
+                            <figcaption>RambaZamba Theatre · Germany</figcaption>
+                        </figure>
+                        <div class="card-body">
+                            <h3>RambaZamba Theatre</h3>
+                            <ul class="meta-list">
+                                <li>Production: Echoes in Motion</li>
+                                <li>Duration: 62 minutes</li>
+                                <li>Subtitles: German / English</li>
+                            </ul>
+                            <a class="button secondary" href="#">Coming soon</a>
+                        </div>
+                    </article>
+                </div>
             </div>
-            <div class="wcag-menu-item">
-                <a href="../pl/online.html"><img src="../img/icons/pl.png" title="Zmień język na polski"></a>
+        </section>
+
+        <section class="page-section" aria-labelledby="extras-title">
+            <div class="section-inner two-column">
+                <div>
+                    <h2 id="extras-title">How to follow the showcase</h2>
+                    <p>Streaming opens on 25 November 2024. Performances are available on-demand until 31 December 2024
+                        with captions, signposting, and recommended accessibility settings.</p>
+                    <ul>
+                        <li>Enable captions using the player controls.</li>
+                        <li>Switch to high-contrast mode for improved legibility.</li>
+                        <li>Adjust text size using the controls in the header.</li>
+                    </ul>
+                </div>
+                <aside class="info-panel" aria-label="Support">
+                    <h2>Need assistance?</h2>
+                    <p>Email: <a href="mailto:stream@masska.org">stream@masska.org</a></p>
+                    <p>Help desk hours: 10:00–18:00 CET (Mon–Fri)</p>
+                    <p>Emergency line: +48 500 000 000</p>
+                </aside>
             </div>
-        </div>
-    </section>
-    <div class="cookie-info">
-        <i class="fa-solid fa-xmark fa-xl close" onclick="acceptCookies()"></i>
-        <img src="../img/cookie.webp" alt="Ciastko" class="cookie">
-        <p>This website uses cookies to facilitate and improve
-            access
-            to the service and
-            to conduct statistical data.
-        </p>
-        <button onclick="acceptCookies()">Accept</button><br>
-        <a href="cookies.html" class="polityka link">Cookie Policy</a>
-    </div>
-    <footer class="fade-in-paragraph">
-        <ul>
-            <li><img src="../img/org.webp"></li>
-            <li><a href="https://ekspresja.org" target="_blank" class="link"><img src="../img/snde.webp"></a></li>
-            <li><a href="https://www.facebook.com/grupaimplus/" target="_blank" class="link"><img
-                        src="../img/implus.webp"></a></li>
-            <li><img src="../img/wsp.webp"></li>
-            <li><a href="https://www.teatratelier.pl" target="_blank" class="link"><img src="../img/atelier.webp"></a>
-            </li>
-            <li><a href="https://pkps.org.pl" target="_blank" class="link"><img src="../img/pkps.webp"></a></li>
-            <li><a href="https://www.sopot.pl" target="_blank" class="link"><img src="../img/sopot.webp"></a></li>
-            <li><a href="https://bart.sopot.pl" target="_blank" class="link"><img src="../img/bart.webp"></a></li>
-            <li><a href="https://www.teatratelier.pl" target="_blank" class="link"><img
-                        src="../img/teatr-atelier.webp"></a></li>
-            <li><img src="../img/miasto.webp" class="gmina"></li>
-        </ul>
-        <div>
-            <img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" class="mobile-gmina" />
+        </section>
+
+        <section class="page-section" aria-labelledby="supporters-title">
+            <div class="section-inner">
+                <h2 id="supporters-title">Festival supporters</h2>
+                <div class="partners" role="list">
+                    <div class="partner-text">ORGANISERS:</div>
+                    <figure role="listitem">
+                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Na Drodze Ekspresji Association">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/prezydent-sopotu.webp"
+                                alt="Honorary patronage of the Mayor of Sopot">
+                        </a>
+                    </figure>
+                    <div class="partner-text">COOPERATION:</div>
+                    <figure role="listitem">
+                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/pkps.webp" alt="Polish Committee for Social Assistance">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/bart.webp" alt="Baltic Artistic Agency BART">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Wybrzeże Theatre">
+                        </a>
+                    </figure>
+                </div>
+                <div class="partners-wide" role="list">
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/sopot.webp" alt="Co-financed by the City of Sopot">
+                            <figcaption>Co-financed by the City of Sopot</figcaption>
+                        </a>
+                    </figure>
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/urzad-marszalkowski.webp"
+                                alt="Marshal's Office of the Pomeranian Voivodeship">
+                            <figcaption>and the Marshal's Office of the Pomeranian Voivodeship</figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-columns">
+                <section>
+                    <h2>Festival home</h2>
+                    <p><a href="index.html">Return to the modernized festival homepage</a></p>
+                </section>
+                <section>
+                    <h2>Accessibility resources</h2>
+                    <p><a href="../report.md">Download modernization summary</a></p>
+                    <p><a href="template.html">Open theatre template</a></p>
+                </section>
+                <section>
+                    <h2>Legal</h2>
+                    <p><a href="cookies.html">Cookie policy</a></p>
+                </section>
+            </div>
+            <p class="footer-note">© 2024 MASSKA International Theatre Review · Streaming programme.</p>
         </div>
     </footer>
-    <script src="../js/scripts.js"></script>
-    <script type="text/javascript" src="../js/preload.js"></script>
+
+    <div class="cookie-notice" data-cookie-notice>
+        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+            <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
+        </svg>
+        <div class="cookie-notice__content">
+            <p>This website stores your preferences locally in your browser and uses Google Analytics to analyze
+                traffic.</p>
+            <p><a href="cookies.html">Learn more about the cookie policy</a></p>
+        </div>
+        <div class="cookie-notice__actions">
+            <button type="button" class="cookie-notice__button" data-cookie-accept>I understand</button>
+        </div>
+    </div>
+
+    <script src="../assets/app.js" defer></script>
 </body>
 
 </html>

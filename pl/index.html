@@ -2,161 +2,288 @@
 <html lang="pl">
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Odkryj unowocześnioną stronę Międzynarodowego Przeglądu Teatralnego MASSKA z naciskiem na dostępność i responsywny design.">
+    <title>MASSKA · Międzynarodowy Przegląd Teatralny</title>
+    <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/img/head.webp" as="image" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/styles-mobile.css">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag("js", new Date());
-
         gtag("config", "G-CKB0FYJDGK");
     </script>
-    <!-- META -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>MASSKA XXIII Międzynarodowy Przegląd Teatralny - Online</title>
-    <meta name="author" content="Paulina Lewandowska" />
-    <meta name="description"
-        content="XXIII Przegląd Teatralny MASSKA Online 2024 Sopot. 25.11-31.12.2024. Teatry osób niepełnosprawnych i teatry młodzieżowe z kraju i zagranicy." />
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" type="image/png" href="../img/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="../img/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="../img/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="../img/favicon/site.webmanifest" />
-    <meta name="theme-color" content="#ffffff">
-
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/flipdown/flipdown.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700,900" rel="stylesheet">
-
-    <script type="text/javascript" src="../js/flipdown/flipdown.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 </head>
 
-<body class="element toggle preload">
-    <!-- Loader -->
-    <div id="preloader">
-        <div id="loader-img">
-            <div id="loader"></div>
-        </div>
-        <div id="panel_left" class="loader-section section-left"></div>
-        <div id="panel_right" class="loader-section section-right"></div>
-    </div>
-    <section>
-        <img src="../img/logo.webp" class="logo" alt="Logo MASSKI">
-    </section>
-    <section>
-        <header>
-            <a href="index.html"><img src="../img/banner.webp" class="banner" alt="Banner MASSKI"></a>
-        </header>
-    </section>
-    <section class="body">
-        <div class="flipdown-main-container fade-in-paragraph">
-            <div class="flipdown-text" id="flipdown-text">
-                <h2>Do MASSKI online pozostało:</h2>
+<body data-redirect-to-preferred-language="true">
+    <a class="skip-link" href="#main-content">Przejdź do treści</a>
+
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <div class="site-branding">
+                <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
+                <p class="brand-subtitle"><img src="../assets/img/przeglad.webp"
+                        alt="XXIII Międzynarodowy Przegląd Teatralny · 2024"></p>
             </div>
-            <div class="flipdown-container">
-                <div id="flipdown" class="flipdown"></div>
+            <nav class="site-nav" aria-label="Główna nawigacja">
+                <span class="nav-link is-active">Festiwal</span>
+                <a class="nav-link" href="online.html">Oglądaj online</a>
+            </nav>
+            <div class="header-tools">
+                <div class="site-actions" role="group" aria-label="Opcje dostępności">
+                    <button type="button" data-action="font-decrease" aria-label="Zmniejsz rozmiar tekstu">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M5 11v2h14v-2z"></path>
+                        </svg>
+                    </button>
+                    <span class="font-indicator" data-font-indicator>100%</span>
+                    <button type="button" data-action="font-increase" aria-label="Zwiększ rozmiar tekstu">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path>
+                        </svg>
+                    </button>
+                    <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false"
+                        data-contrast-label data-label-on="Wysoki kontrast włączony"
+                        data-label-off="Wysoki kontrast wyłączony" aria-label="Wysoki kontrast wyłączony">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="language-switcher" role="group" aria-label="Zmień język">
+                    <span class="sr-only">Dostępne języki:</span>
+                    <a class="language-link" href="../en/index.html" data-language="en" data-flag-emoji="🇬🇧">
+                        <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
+                        English
+                    </a>
+                    <a class="language-link is-active" href="../pl/index.html" data-language="pl"
+                        data-flag-emoji="🇵🇱">
+                        <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
+                        Polski
+                    </a>
+                </div>
             </div>
         </div>
+    </header>
 
-        <div class="button fade-in-paragraph" id="button" style="display: none;">
-            <a href="online.html"><button>Oglądaj online<br><i class="fa-brands fa-youtube" id="yt-button"></i>
-                </button></a>
-        </div>
-        <div>
-            <p class="fade-in-paragraph">
-                To już po raz piąty otwieramy nasz Międzynarodowy Przegląd Teatralny MASSKA w formule online. Świętujemy
-                nasz pierwszy jubileusz.
-            </p>
-            <p class="fade-in-paragraph">
-
-                Gdy ten pomysł pojawił się w nas i zaczął powoli dojrzewać byliśmy w innej rzeczywistości... Wokół
-                szalejąca pandemia, choroba i izolacja… Dzisiaj, gdy ten straszny czas jest już za nami pozostajemy w
-                sieci, by cieszyć się sobą i delektować różnorodnością świata teatru.
-            </p>
-            <p class="fade-in-paragraph">
-                Mawia się, że Teatr jest jeden lecz nasz festiwal zarówno w formule na żywo (w tym roku odbyła się 23
-                edycja) jak i w odsłonie online udowadnia, że Teatr ma miliony twarzy... To wizerunki lalkarzy,
-                komediantów, tych którzy grają rolę dramatyczne, śpiewają , tańczą a niejednokrotnie ogrywają swoje
-                rekwizyty scalając się z nimi w całość...
-            </p>
-        </div>
-        <p class="fade-in-paragraph">
-            Ta piękna różnorodność co roku zachęca nas do budowania kolejnych wirtualnych odsłon naszego festiwalu.
-            Niestety nie możemy spotkać się wszyscy na żywo więc wykorzystajmy ten czas najlepiej jak się da
-            poznając się wzajemnie i dzieląc się swoją twórczością...
-        </p>
-        <p class="fade-in-paragraph">
-            W ciągu ostatnich lat gościły na naszych stronach teatry z Niemiec, Francji, Hiszpanii, Gruzji,
-            Uzbekistanu, ale i Ukrainy, Litwy, Rosji, Białorusi, Węgier...
-        </p>
-        <p class="fade-in-paragraph">
-            Dzisiaj, kiedy świętujemy nasz pierwszy jubileusz chcemy podziękować wszystkim, którzy zaufali nam w ciągu
-            ostatnich lat i podzielili się swoją twórczością i swoimi historiami.
-        </p>
-        <p class="fade-in-paragraph">
-            Zapraszamy na kolejną odsłonę naszego festiwalu MASSKA w formule online 😊
-        </p>
-
-        <p class="fade-in-paragraph">
-            Paulina Lewandowska & Jacek Spica
-        </p>
-        <section>
-            <div class="wcag-menu">
-                <div class="wcag-menu-item accessability font-toggle" onclick="toggleFontSize()">
-                    <img src="../img/icons/format_size.png" title="Zmień wielkość czcionki">
+    <main id="main-content" class="page-content" role="main">
+        <section class="hero">
+            <div class="hero-text">
+                <p class="eyebrow">Projektujemy z myślą o wszystkich</p>
+                <h1>Nowa odsłona MASSKI stworzona dla każdej osoby</h1>
+                <p>Przepisaliśmy stronę MASSKI w duchu dostępności. Responsywne układy, nowoczesna typografia i
+                    intuicyjne przełączniki sprawiają, że festiwal jest bliżej widzów w każdym miejscu i na każdym
+                    urządzeniu.</p>
+                <div class="hero-actions">
+                    <a class="button primary" href="online.html">Poznaj program online</a>
+                    <a class="button secondary" href="template.html">Otwórz szablon teatru</a>
                 </div>
-                <div class="wcag-menu-item accessability contrast" onclick="toggleContrast()">
-                    <img src="../img/icons/contrast.png" title="Odwróć kontrast">
+                <div class="chip-row" role="list">
+                    <span class="chip" role="listitem">Układ mobilny</span>
+                    <span class="chip" role="listitem">Standardy WCAG</span>
+                    <span class="chip" role="listitem">Zapamiętane preferencje</span>
                 </div>
-                <div class="wcag-menu-item">
-                    <a href="../en/index.html"><img src="../img/icons/gb.png" title="Change language to English"></a>
+            </div>
+            <figure class="hero-media">
+                <img src="../assets/img/head.webp" alt="Grafika nagłówkowa festiwalu MASSKA" decoding="async"
+                    fetchpriority="high">
+            </figure>
+        </section>
+
+        <section class="page-section alt" aria-labelledby="o-festiwalu">
+            <div class="section-inner two-column">
+                <div>
+                    <h2 id="o-festiwalu">Serce festiwalu</h2>
+                    <p>MASSKA łączy integracyjne zespoły teatralne z różnych krajów, tworząc przestrzeń, w której
+                        kreatywność i dostępność idą w parze. Tegoroczna odsłona online prezentuje historie o odwadze,
+                        wrażliwości i współpracy.</p>
+                    <blockquote class="pull-quote">„Mówi się, że teatr jest jeden, ale MASSKA udowadnia, że ma miliony
+                        twarzy.”</blockquote>
+                    <p>Po 23. edycji na żywo festiwal nadal eksploruje formułę hybrydową. Dzięki nowej stronie
+                        społeczność MASSKI może spotykać się niezależnie od miejsca.</p>
+                </div>
+                <aside class="info-panel" aria-label="Najważniejsze informacje o festiwalu">
+                    <h2>Najważniejsze informacje</h2>
+                    <dl>
+                        <div>
+                            <dt>Edycja</dt>
+                            <dd>XXIII Międzynarodowy Przegląd</dd>
+                        </div>
+                        <div>
+                            <dt>Terminy</dt>
+                            <dd>25 listopada – 31 grudnia 2024</dd>
+                        </div>
+                        <div>
+                            <dt>Formuła</dt>
+                            <dd>Hybydowa · Na żywo w Sopocie oraz globalnie online</dd>
+                        </div>
+                        <div>
+                            <dt>Uczestnicy</dt>
+                            <dd>Zespoły z Gruzji, Węgier, Ukrainy, Polski, Niemiec, Hiszpanii, Francji</dd>
+                        </div>
+                    </dl>
+                </aside>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="plan-modernizacji">
+            <div class="section-inner">
+                <h2 id="plan-modernizacji">Plan modernizacji</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Etap 1 · Audyt i przygotowania</h3>
+                        <p>Przeanalizowaliśmy strukturę, zastąpiliśmy przestarzałe znaczniki i sprawdziliśmy dostępność.
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Etap 2 · Responsywny redesign</h3>
+                        <p>Wprowadziliśmy układ mobilny, nowe komponenty i jednolity arkusz stylów z fontem Inter.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Etap 3 · Funkcje dostępności</h3>
+                        <p>Dodaliśmy przełącznik kontrastu, regulację rozmiaru tekstu, przełącznik języka oraz
+                            zapamiętywanie ustawień.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Etap 4 · Testy i weryfikacja</h3>
+                        <p>Przygotowaliśmy listę kontrolną testów na różnych urządzeniach i dla nawigacji klawiaturą.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
-        <div class="cookie-info">
-            <i class="fa-solid fa-xmark fa-xl close" onclick="acceptCookies()"></i>
-            <img src="../img/cookie.webp" alt="Ciastko" class="cookie">
-            <p>Ta strona używa plików cookie w celu usprawnienia i ułatwienia dostępu do serwisu oraz prowadzenia danych
-                statystycznych.</p>
-            <button onclick="acceptCookies()">Akceptuj</button><br>
-            <a href="cookies.html" class="polityka link">Polityka Plików Cookie</a>
-        </div>
-    </section>
-    <footer class="fade-in-paragraph">
-        <ul>
-            <li><img src="../img/org.webp"></li>
-            <li><a href="https://ekspresja.org" target="_blank" class="link"><img src="../img/snde.webp"></a></li>
-            <li><a href="https://bip.sopot.pl" target="_blank" class="link"><img src="../img/prezydent.webp"></a></li>
-            <li><img src="../img/wsp.webp"></li>
-            <li><a href="http://www.klubatelier.pl" target="_blank" class="link"><img src="../img/atelier.webp"></a>
-            </li>
-            <li><a href="https://pkps.org.pl" target="_blank" class="link"><img src="../img/pkps.webp"></a></li>
-            <li><a href="https://www.sopot.pl" target="_blank" class="link"><img src="../img/sopot.webp"></a></li>
-            <li><a href="https://bart.sopot.pl" target="_blank" class="link"><img src="../img/bart.webp"></a></li>
-            <li><a href="https://www.teatratelier.pl" target="_blank" class="link"><img
-                        src="../img/teatr-atelier.webp"></a>
-            <li><a href="https://www.facebook.com/mamuszki14" target="_blank" class="link"><img
-                        src="../img/mamuszki14.webp"></a>
-            </li>
-            <li><img src="../img/miasto.webp" class="gmina"></li>
-        </ul>
-        <div>
-            <img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" class="mobile-gmina" />
+
+        <section class="page-section alt" aria-labelledby="sekcja-wyroznienia">
+            <div class="section-inner">
+                <h2 id="sekcja-wyroznienia">Najciekawsze elementy</h2>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Transmisje online</h3>
+                        <p>Oglądaj nagrania zespołów MASSKI wzbogacone o napisy i przyjazny odtwarzacz.</p>
+                        <a class="button ghost" href="online.html">Przejdź do programu</a>
+                    </article>
+                    <article class="card">
+                        <h3>Profile zespołów</h3>
+                        <p>Poznaj historie teatrów, zobacz galerie zdjęć i opisy spektakli.</p>
+                        <a class="button ghost" href="template.html">Skorzystaj z szablonu</a>
+                    </article>
+                    <article class="card">
+                        <h3>Centrum dostępności</h3>
+                        <p>Wysoki kontrast, regulacja tekstu i szybkie przełączanie języka — wszystko w zasięgu jednego
+                            kliknięcia.</p>
+                        <span class="badge">Nowość</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="partnerzy">
+            <div class="section-inner">
+                <h2 id="partnerzy">Partnerzy festiwalu</h2>
+                <div class="partners" role="list">
+                    <div class="partner-text">ORGANIZATORZY:</div>
+                    <figure role="listitem">
+                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Stowarzyszenie Na Drodze Ekspresji">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/prezydent-sopotu.webp" alt="Patronat honorowy Prezydentki Sopotu">
+                        </a>
+                    </figure>
+                    <div class="partner-text">WSPÓŁPRACA:</div>
+                    <figure role="listitem">
+                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/pkps.webp" alt="Polski Komitet Pomocy Społecznej">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/bart.webp" alt="Bałtycka Agencja Artystyczna BART">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Teatr Wybrzeże">
+                        </a>
+                    </figure>
+                </div>
+                <div class="partners-wide" role="list">
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/sopot.webp" alt="Dofinansowano ze środków Gminy Miasta Sopot">
+                            <figcaption>Dofinansowano ze środków Gminy Miasta Sopot</figcaption>
+                        </a>
+                    </figure>
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/urzad-marszalkowski.webp"
+                                alt="Urząd Marszałkowski Województwa Pomorskiego">
+                            <figcaption>oraz Urzędu Marszałkowskiego Województwa Pomorskiego</figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-columns">
+                <section>
+                    <h2>Kontakt</h2>
+                    <p>Biuro festiwalu: <a href="mailto:biuro@masska.org">biuro@masska.org</a></p>
+                    <p>Media: <a href="mailto:press@masska.org">press@masska.org</a></p>
+                </section>
+                <section>
+                    <h2>Odwiedź na żywo</h2>
+                    <p>Klub Atelier, Aleja Franciszka Mamuszki 2, Sopot</p>
+                    <p class="muted">Program na żywo z miejscami dostosowanymi i tłumaczeniem.</p>
+                </section>
+                <section>
+                    <h2>Więcej informacji</h2>
+                    <ul class="contact-list">
+                        <li><a href="online.html">Przewodnik po transmisji</a></li>
+                        <li><a href="template.html">Szablon teatru</a></li>
+                        <li><a href="../raport.md">Raport z modernizacji</a></li>
+                    </ul>
+                </section>
+            </div>
+            <p class="footer-note">© 2024 MASSKA Międzynarodowy Przegląd Teatralny · Propozycja nowej strony.</p>
         </div>
     </footer>
-    <script type="text/javascript" src="../js/scripts.js"></script>
-    <script type="text/javascript" src="../js/preload.js"></script>
+
+    <div class="cookie-notice" data-cookie-notice>
+        <img src="../assets/img/cookie.webp" alt="Ikona ciasteczek" />
+        <div class="cookie-notice__content">
+            <p>Ta strona zapisuje Twoje preferencje lokalnie w przeglądarce oraz używa Google Analytics do analizy
+                ruchu.</p>
+            <p><a href="cookies.html">Dowiedz się więcej o polityce cookies</a></p>
+        </div>
+        <div class="cookie-notice__actions">
+            <button type="button" class="cookie-notice__button" data-cookie-accept>Rozumiem</button>
+        </div>
+    </div>
+
+    <script src="../assets/app.js" defer></script>
 </body>
 
 </html>

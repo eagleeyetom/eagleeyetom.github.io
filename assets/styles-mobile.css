@@ -1,0 +1,123 @@
+/* Mobile optimizations for MASSKA Festival */
+@media (max-width: 768px) {
+    .header-inner {
+        padding: var(--spacing-sm);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            'branding tools'
+            'nav nav';
+        align-items: center;
+        row-gap: var(--spacing-xs);
+    }
+
+    .site-header {
+        position: sticky;
+        top: 0;
+        background: var(--color-surface);
+        z-index: 100;
+        box-shadow: var(--shadow-sm);
+        max-height: min-content;
+    }
+
+    .site-branding {
+        flex: 0 0 auto;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-xs);
+        grid-area: branding;
+    }
+
+    .brand-subtitle {
+        display: none;
+    }
+
+    .header-tools {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs);
+        grid-area: tools;
+        justify-self: end;
+    }
+
+    .site-actions {
+        order: 2;
+        flex: 0 0 auto;
+        display: flex;
+        gap: var(--spacing-xs);
+    }
+
+    .site-actions button {
+        padding: 0;
+        width: 2.2rem;
+        height: 2.2rem;
+    }
+
+    .site-actions svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .font-indicator {
+        font-size: 0.8rem;
+        min-width: 3ch;
+    }
+
+    .language-switcher {
+        order: 1;
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    .site-nav {
+        grid-area: nav;
+    }
+
+    .language-link {
+        padding: 4px 8px;
+        font-size: 0.9rem;
+        border-radius: var(--radius-xs);
+        background: var(--color-surface-alt);
+        color: var(--color-text);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .language-link::before {
+        content: none !important;
+    }
+
+    .language-link.is-active {
+        background: var(--color-accent-soft);
+        color: var(--color-accent);
+    }
+
+    .contrast-toggle svg {
+        stroke-width: 0;
+        fill: currentColor;
+    }
+
+    /* Partners section: wrap and stack on mobile */
+    .partners {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 1rem;
+    }
+
+    .partners figure img {
+        height: 60px;
+    }
+}
+
+/* Enhanced focus styles for better mobile touch targets */
+@media (max-width: 768px) {
+
+    .site-actions button:focus-visible,
+    .language-link:focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+    }
+}

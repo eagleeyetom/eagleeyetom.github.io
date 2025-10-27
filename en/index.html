@@ -2,163 +2,294 @@
 <html lang="en">
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Explore the modernized MASSKA International Theatre Review website with inclusive design and multilingual support.">
+    <title>MASSKA · Inclusive Theatre Festival</title>
+    <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/img/head.webp" as="image" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/styles-mobile.css">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag("js", new Date());
-
         gtag("config", "G-CKB0FYJDGK");
     </script>
-    <!-- META -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>MASSKA XXIII Inernational Theatrical Overview - Online</title>
-    <meta name="author" content="Paulina Lewandowska" />
-    <meta name="description"
-        content="XXIII MASSKA Theater Overview online 2024 Sopot. 25.11-31.12.2024. Theaters of disabled people and youth theaters from Poland and abroad." />
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" type="image/png" href="../img/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="../img/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="../img/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="../img/favicon/site.webmanifest" />
-    <meta name="theme-color" content="#ffffff">
-
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/flipdown/flipdown.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css" />
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700,900" rel="stylesheet">
-    <script type="text/javascript" src="../js/flipdown/flipdown.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 </head>
 
-<body class="element toggle preload">
-    <!-- Loader -->
-    <div id="preloader">
-        <div id="loader-img">
-            <div id="loader"></div>
-        </div>
-        <div id="panel_left" class="loader-section section-left"></div>
-        <div id="panel_right" class="loader-section section-right"></div>
-    </div>
-    <section>
-        <img src="../img/logo.webp" class="logo" alt="Logo MASSKI">
-    </section>
-    <section>
-        <header>
-            <a href="index.html"><img src="../img/banner.webp" class="banner" alt="Banner MASSKI"></a>
-        </header>
-    </section>
-    <section class="body">
-        <div class="flipdown-main-container fade-in-paragraph">
-            <div class="flipdown-text" id="flipdown-text">
-                <h2>MASSKA online begins in:</h2>
-            </div>
-            <div class="flipdown-container">
-                <div id="flipdown" class="flipdown"></div>
-            </div>
-        </div>
-        <div class="button fade-in-paragraph" id="button" style="display: none;">
-            <a href="online.html"><button>Watch online<br><i class="fa-brands fa-youtube"
-                        id="yt-button"></i></button></a>
-        </div>
-        <div>
+<body data-redirect-to-preferred-language="true">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
-            <p class="fade-in-paragraph">
-                For the fifth time, we are opening our International Theater Review MASSKA in an online format. We are
-                celebrating our first anniversary!
-            </p>
-            <p class="fade-in-paragraph">
-                When this idea first came to us and began to take shape, we were in a different reality... A pandemic
-                was raging around us, with illness and isolation. Today, as that difficult time is behind us, we remain
-                online to enjoy each other's presence and to savor the diversity of the theater world.
-            </p>
-            <p class="fade-in-paragraph">
-                It is often said that there is only one Theater, but our festival—both in its live format (the 23rd
-                edition took place this year) and online—proves that Theater has countless faces. It showcases
-                puppeteers, comedians, actors in dramatic roles, singers, dancers, and even those who skillfully
-                integrate their props into their performances, merging with them completely.
-            </p>
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <div class="site-branding">
+                <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
+                <p class="brand-subtitle"><img src="../assets/img/overview.webp"
+                        alt="XXIII International Inclusive Theatre Review · 2024"></p>
+            </div>
+            <nav class="site-nav" aria-label="Primary navigation">
+                <span class="nav-link is-active">Festival</span>
+                <a class="nav-link" href="online.html">Watch Online</a>
+            </nav>
+            <div class="header-tools">
+                <div class="site-actions" role="group" aria-label="Display options">
+                    <button type="button" data-action="font-decrease" aria-label="Decrease text size">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M5 11v2h14v-2z"></path>
+                        </svg>
+                    </button>
+                    <span class="font-indicator" data-font-indicator>100%</span>
+                    <button type="button" data-action="font-increase" aria-label="Increase text size">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path>
+                        </svg>
+                    </button>
+                    <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false"
+                        data-contrast-label data-label-on="High contrast on" data-label-off="High contrast off"
+                        aria-label="High contrast off">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="language-switcher" role="group" aria-label="Switch language">
+                    <span class="sr-only">Available languages:</span>
+                    <a class="language-link is-active" href="../en/index.html" data-language="en"
+                        data-flag-emoji="🇬🇧">
+                        <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
+                        English
+                    </a>
+                    <a class="language-link" href="../pl/index.html" data-language="pl" data-flag-emoji="🇵🇱">
+                        <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
+                        Polski
+                    </a>
+                </div>
+            </div>
         </div>
-        <p class="fade-in-paragraph">
-            This beautiful diversity inspires us each year to create new virtual editions of our festival. Although
-            we cannot all meet in person, let's make the most of this time by getting to know each other and sharing
-            our creativity.
-        </p>
-        <p class="fade-in-paragraph">
-            Over the past years, we have welcomed theaters from Germany, France, Spain, Georgia, Uzbekistan, Ukraine,
-            Lithuania, Russia, Belarus, Hungary, and more. This shows that our creative theater world is free from
-            divisions and conflicts. We wish for it to stay that way for everyone!
-        </p>
-        <p class="fade-in-paragraph">
-            Today, as we celebrate our first anniversary, we want to thank everyone who has trusted us over the years
-            and shared their creativity and stories with us.
-        </p>
-        <p class="fade-in-paragraph">
-            We invite you to join another edition of our MASSKA festival online! 😊
-        </p>
-        <p class="fade-in-paragraph">
-            Paulina Lewandowska & Jacek Spica
-        </p>
-        <section>
-            <div class="wcag-menu">
-                <div class="wcag-menu-item accessability font-toggle" onclick="toggleFontSize()">
-                    <img src="../img/icons/format_size.png" title="Toggle font size">
+    </header>
+
+    <main id="main-content" class="page-content" role="main">
+        <section class="hero">
+            <div class="hero-text">
+                <p class="eyebrow">Inclusive by design</p>
+                <h1>The MASSKA theatre journey, modernized for everyone</h1>
+                <p>We reimagined the MASSKA festival website with responsive layouts, vibrant typography, and tools that
+                    keep the experience inclusive across devices and abilities.</p>
+                <div class="hero-actions">
+                    <a class="button primary" href="online.html">Discover this year’s stages</a>
+                    <a class="button secondary" href="template.html">Open theatre template</a>
                 </div>
-                <div class="wcag-menu-item accessability contrast" onclick="toggleContrast()">
-                    <img src="../img/icons/contrast.png" title="Invert contrast">
+                <div class="chip-row" role="list">
+                    <span class="chip" role="listitem">Responsive first</span>
+                    <span class="chip" role="listitem">WCAG-aware</span>
+                    <span class="chip" role="listitem">Persistent preferences</span>
                 </div>
-                <div class="wcag-menu-item">
-                    <a href="../pl/index.html"><img src="../img/icons/pl.png" title="Zmień język na polski"></a>
+            </div>
+            <figure class="hero-media">
+                <img src="../assets/img/head.webp" alt="Abstract header artwork for the MASSKA festival"
+                    decoding="async" fetchpriority="high">
+                <figcaption>Celebrating theatre without borders in Sopot, Poland.</figcaption>
+            </figure>
+        </section>
+
+        <section class="page-section alt" aria-labelledby="about-title">
+            <div class="section-inner two-column">
+                <div>
+                    <h2 id="about-title">Festival heartbeat</h2>
+                    <p>MASSKA brings together inclusive theatre ensembles from across Europe, offering a platform where
+                        creativity and accessibility travel together. This year’s online edition shares stories of
+                        resilience, artistry, and collaboration.</p>
+                    <blockquote class="pull-quote">“Theatre has countless faces. MASSKA invites every one of them on
+                        stage.”</blockquote>
+                    <p>Since the 23rd live edition, the festival has continued to explore hybrid formats. The modernized
+                        digital platform keeps the community connected no matter where audiences join from.</p>
+                </div>
+                <aside class="info-panel" aria-label="Festival overview">
+                    <h2>Festival quick facts</h2>
+                    <dl>
+                        <div>
+                            <dt>Edition</dt>
+                            <dd>XXIII International Review</dd>
+                        </div>
+                        <div>
+                            <dt>Dates</dt>
+                            <dd>25 November – 31 December 2024</dd>
+                        </div>
+                        <div>
+                            <dt>Format</dt>
+                            <dd>Hybrid · Live in Sopot with global online programme</dd>
+                        </div>
+                        <div>
+                            <dt>Headliners</dt>
+                            <dd>Inclusive ensembles from Georgia, Hungary, Ukraine, Poland, Germany, Spain, France</dd>
+                        </div>
+                    </dl>
+                </aside>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="modernization-title">
+            <div class="section-inner">
+                <h2 id="modernization-title">Modernization roadmap</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Stage 1 · Audit & preparation</h3>
+                        <p>Refined the site structure, replaced deprecated tags, and evaluated accessibility gaps.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Stage 2 · Responsive redesign</h3>
+                        <p>Introduced a mobile-first layout, consolidated styles into a single performant stylesheet,
+                            and selected the Inter variable font for readability.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Stage 3 · Assistive controls</h3>
+                        <p>Added high-contrast and text-size toggles, visible language switching, and Local Storage to
+                            remember visitor preferences.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Stage 4 · Testing checklist</h3>
+                        <p>Prepared the site for multi-device validation, ensuring smooth keyboard navigation and
+                            consistent contrast ratios.</p>
+                    </div>
                 </div>
             </div>
         </section>
-        <div class="cookie-info">
-            <i class="fa-solid fa-xmark fa-xl close" onclick="acceptCookies()"></i>
-            <img src="../img/cookie.webp" alt="Ciastko" class="cookie">
-            <p>This website uses cookies to facilitate and improve
-                access
-                to the service and
-                to conduct statistical data.
-            </p>
-            <button onclick="acceptCookies()">Accept</button><br>
-            <a href="cookies.html" class="polityka link">Cookie Policy</a>
-        </div>
-    </section>
-    <footer class="fade-in-paragraph">
-        <ul>
-            <li><img src="../img/org.webp"></li>
-            <li><a href="https://ekspresja.org" target="_blank" class="link"><img src="../img/snde.webp"></a></li>
-            <li><a href="https://bip.sopot.pl" target="_blank" class="link"><img src="../img/prezydent.webp"></a></li>
-            <li><img src="../img/wsp.webp"></li>
-            <li><a href="http://www.klubatelier.pl" target="_blank" class="link"><img src="../img/atelier.webp"></a>
-            </li>
-            <li><a href="https://pkps.org.pl" target="_blank" class="link"><img src="../img/pkps.webp"></a></li>
-            <li><a href="https://www.sopot.pl" target="_blank" class="link"><img src="../img/sopot.webp"></a></li>
-            <li><a href="https://bart.sopot.pl" target="_blank" class="link"><img src="../img/bart.webp"></a></li>
-            <li><a href="https://www.teatratelier.pl" target="_blank" class="link"><img
-                        src="../img/teatr-atelier.webp"></a>
-            <li><a href="https://www.facebook.com/mamuszki14" target="_blank" class="link"><img
-                        src="../img/mamuszki14.webp"></a>
-            </li>
-            <li><img src="../img/miasto.webp" class="gmina"></li>
-        </ul>
-        <div>
-            <img src="../img/miasto.webp" alt="Gmina Miasta Sopotu" class="mobile-gmina" />
+
+        <section class="page-section alt" aria-labelledby="highlights-title">
+            <div class="section-inner">
+                <h2 id="highlights-title">Festival highlights</h2>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Streamed performances</h3>
+                        <p>Watch curated recordings of MASSKA ensembles, complete with captions and accessible players.
+                        </p>
+                        <a class="button ghost" href="online.html">Open online showcase</a>
+                    </article>
+                    <article class="card">
+                        <h3>Story-driven profiles</h3>
+                        <p>Delve into each theatre group with biographies, gallery highlights, and production insights.
+                        </p>
+                        <a class="button ghost" href="template.html">Use theatre template</a>
+                    </article>
+                    <article class="card">
+                        <h3>Inclusive toolset</h3>
+                        <p>Light and high-contrast palettes, scalable typography, and persistent language choices
+                            empower every visitor.</p>
+                        <span class="badge">New accessibility centre</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="supporters-title">
+            <div class="section-inner">
+                <h2 id="supporters-title">Festival supporters</h2>
+                <div class="partners" role="list">
+                    <div class="partner-text">ORGANISERS:</div>
+                    <figure role="listitem">
+                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Na Drodze Ekspresji Association">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/prezydent-sopotu.webp"
+                                alt="Honorary patronage of the Mayor of Sopot">
+                        </a>
+                    </figure>
+                    <div class="partner-text">COOPERATION:</div>
+                    <figure role="listitem">
+                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/pkps.webp" alt="Polish Committee for Social Assistance">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/bart.webp" alt="Baltic Artistic Agency BART">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Wybrzeże Theatre">
+                        </a>
+                    </figure>
+                </div>
+                <div class="partners-wide" role="list">
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/sopot.webp" alt="Co-financed by the City of Sopot">
+                            <figcaption>Co-financed by the City of Sopot</figcaption>
+                        </a>
+                    </figure>
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/urzad-marszalkowski.webp"
+                                alt="Marshal's Office of the Pomeranian Voivodeship">
+                            <figcaption>and the Marshal's Office of the Pomeranian Voivodeship</figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-columns">
+                <section>
+                    <h2>Contact</h2>
+                    <p>Festival office: <a href="mailto:biuro@masska.org">biuro@masska.org</a></p>
+                    <p>Press: <a href="mailto:press@masska.org">press@masska.org</a></p>
+                </section>
+                <section>
+                    <h2>Visit on site</h2>
+                    <p>Klub Atelier, Aleja Franciszka Mamuszki 2, Sopot, Poland</p>
+                    <p class="muted">Live programme with accessible seating and interpretation.</p>
+                </section>
+                <section>
+                    <h2>More information</h2>
+                    <ul class="contact-list">
+                        <li><a href="online.html">Festival stream guide</a></li>
+                        <li><a href="template.html">Theatre template</a></li>
+                        <li><a href="../report.md">Modernization report</a></li>
+                    </ul>
+                </section>
+            </div>
+            <p class="footer-note">© 2024 MASSKA International Theatre Review · Modernized experience proposal.</p>
         </div>
     </footer>
-    <script type="text/javascript" src="../js/scripts.js"></script>
-    <script type="text/javascript" src="../js/preload.js"></script>
+
+    <div class="cookie-notice" data-cookie-notice>
+        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+            <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
+        </svg>
+        <div class="cookie-notice__content">
+            <p>This website stores your preferences locally in your browser and uses Google Analytics to analyze
+                traffic.</p>
+            <p><a href="cookies.html">Learn more about the cookie policy</a></p>
+        </div>
+        <div class="cookie-notice__actions">
+            <button type="button" class="cookie-notice__button" data-cookie-accept>I understand</button>
+        </div>
+    </div>
+
+    <script src="../assets/app.js" defer></script>
 </body>
 
 </html>
