@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Szablon do tworzenia profili teatralnych festiwalu MASSKA.">
+    <title>MASSKA · Szablon teatru</title>
+    <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/styles-mobile.css">
+</head>
+
+<body data-redirect-to-preferred-language="true">
+    <a class="skip-link" href="#main-content">Przejdź do treści</a>
+
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <div class="site-branding">
+                <a class="brand" href="index.html">MASSKA Festival</a>
+                <p class="brand-subtitle">Szablon teatralny · użyj dla każdego zespołu</p>
+            </div>
+            <nav class="site-nav" aria-label="Nawigacja główna">
+                <a class="nav-link" href="index.html">Festiwal</a>
+                <a class="nav-link" href="online.html">Oglądaj online</a>
+                <span class="nav-link is-active">Szablon teatru</span>
+            </nav>
+            <div class="header-tools">
+                <div class="site-actions" role="group" aria-label="Opcje dostępności">
+                    <button type="button" data-action="font-decrease" aria-label="Zmniejsz rozmiar tekstu">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M5 11v2h14v-2z"></path>
+                        </svg>
+                    </button>
+                    <span class="font-indicator" data-font-indicator>100%</span>
+                    <button type="button" data-action="font-increase" aria-label="Zwiększ rozmiar tekstu">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path>
+                        </svg>
+                    </button>
+                    <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false"
+                        data-contrast-label data-label-on="Wysoki kontrast włączony"
+                        data-label-off="Wysoki kontrast wyłączony" aria-label="Wysoki kontrast wyłączony">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="language-switcher" role="group" aria-label="Zmień język">
+                    <span class="sr-only">Dostępne języki:</span>
+                    <a class="language-link" href="../en/template.html" data-language="en" data-flag-emoji="🇬🇧">
+                        <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
+                        English
+                    </a>
+                    <a class="language-link is-active" href="../pl/template.html" data-language="pl"
+                        data-flag-emoji="🇵🇱">
+                        <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
+                        Polski
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="page-content" role="main">
+        <section class="page-section">
+            <div class="section-inner two-column">
+                <div>
+                    <span class="badge">[Kraj] · teatr integracyjny</span>
+                    <h1>[Nazwa zespołu]</h1>
+                    <p>[Krótki opis zespołu, lokalizacji i wyróżników. Zastąp tekst podczas uzupełniania szablonu.]</p>
+                    <div class="hero-actions">
+                        <a class="button primary" href="[Link do nagrania]" target="_blank" rel="noopener">Otwórz
+                            nagranie</a>
+                        <a class="button secondary" href="online.html">Wróć do programu online</a>
+                    </div>
+                    <ul class="chip-row" role="list">
+                        <li class="chip" role="listitem">[Gatunek]</li>
+                        <li class="chip" role="listitem">[Czas trwania]</li>
+                        <li class="chip" role="listitem">[Napisy w językach]</li>
+                    </ul>
+                </div>
+                <aside class="info-panel" aria-label="Informacje o spektaklu">
+                    <h2>Najważniejsze informacje</h2>
+                    <dl>
+                        <div>
+                            <dt>Tytuł</dt>
+                            <dd>[Tytuł spektaklu]</dd>
+                        </div>
+                        <div>
+                            <dt>Miasto</dt>
+                            <dd>[Miasto, kraj]</dd>
+                        </div>
+                        <div>
+                            <dt>Gatunek</dt>
+                            <dd>[Opis gatunku]</dd>
+                        </div>
+                        <div>
+                            <dt>Czas trwania</dt>
+                            <dd>[Czas trwania]</dd>
+                        </div>
+                        <div>
+                            <dt>Dostępność</dt>
+                            <dd>[Informacje o dostępności]</dd>
+                        </div>
+                    </dl>
+                </aside>
+            </div>
+        </section>
+
+        <section class="page-section alt" aria-labelledby="opis-title">
+            <div class="section-inner">
+                <h2 id="opis-title">Opis spektaklu</h2>
+                <p>[Opisz narrację spektaklu, główne motywy i doświadczenie widza. Zastąp tekst podczas uzupełniania
+                    szablonu.]</p>
+                <blockquote class="pull-quote">„[Dodaj cytat od zespołu lub dyrektora artystycznego.]”</blockquote>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="galeria-title">
+            <div class="section-inner">
+                <h2 id="galeria-title">Galeria</h2>
+                <div class="media-gallery">
+                    <img src="https://via.placeholder.com/640x420?text=Scena+1" alt="[Opis zdjęcia nr 1]">
+                    <img src="https://via.placeholder.com/640x420?text=Scena+2" alt="[Opis zdjęcia nr 2]">
+                    <img src="https://via.placeholder.com/640x420?text=Scena+3" alt="[Opis zdjęcia nr 3]">
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section alt" aria-labelledby="historia-title">
+            <div class="section-inner two-column">
+                <div>
+                    <h2 id="historia-title">Historia zespołu</h2>
+                    <p>[Podsumuj historię zespołu, kluczowe etapy i misję integracyjną.]</p>
+                </div>
+                <aside class="info-panel" aria-label="Kontakt i osoby odpowiedzialne">
+                    <h2>Kontakt</h2>
+                    <ul class="contact-list">
+                        <li>[Rola]: [Imię i nazwisko]</li>
+                        <li>Email: <a href="mailto:[kontakt@example.com]">[kontakt@example.com]</a></li>
+                        <li>Social media: <a href="[Link do profilu]">[Nazwa profilu]</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="lista-teatrow-title">
+            <div class="section-inner">
+                <h2 id="lista-teatrow-title">Teatry festiwalu</h2>
+                <details class="info-panel">
+                    <summary>Rozwiń listę teatrów</summary>
+                    <ul class="meta-list">
+                        <li>Azdaki Baghi · Gruzja</li>
+                        <li>Teatr Baltazar · Węgry</li>
+                        <li>Parostki Theatre Studio · Ukraina</li>
+                        <li>Specjalny Teatr Krug II · Polska</li>
+                        <li>MTT Musical Theatre Troupe · Litwa</li>
+                        <li>Teatr RambaZamba · Niemcy</li>
+                        <li>[Dodaj kolejne zespoły według potrzeb]</li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-columns">
+                <section>
+                    <h2>Przejdź dalej</h2>
+                    <p><a href="online.html">Wróć do programu online</a></p>
+                </section>
+                <section>
+                    <h2>Raport</h2>
+                    <p><a href="../raport.md">Pobierz raport z modernizacji</a></p>
+                </section>
+                <section>
+                    <h2>Wsparcie</h2>
+                    <p>Email: <a href="mailto:kontakt@masska.org">kontakt@masska.org</a></p>
+                </section>
+            </div>
+            <p class="footer-note">© 2024 MASSKA Międzynarodowy Przegląd Teatralny · Szablon profilu teatru.</p>
+        </div>
+    </footer>
+
+    <div class="cookie-notice" data-cookie-notice>
+        <p>Ta wersja demonstracyjna zapamiętuje Twoje preferencje (kontrast, rozmiar tekstu, język) w pamięci
+            przeglądarki.</p>
+        <div class="cookie-notice__actions">
+            <button type="button" class="cookie-notice__button" data-cookie-accept>Rozumiem</button>
+        </div>
+    </div>
+
+    <script src="../assets/app.js" defer></script>
+</body>
+
+</html>
