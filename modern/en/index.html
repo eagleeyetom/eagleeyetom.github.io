@@ -9,8 +9,20 @@
     <title>MASSKA · Inclusive Theatre Festival</title>
     <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../assets/img/head.webp" as="image" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-CKB0FYJDGK");
+    </script>
 </head>
 
 <body data-redirect-to-preferred-language="true">
@@ -183,21 +195,53 @@
             <div class="section-inner">
                 <h2 id="supporters-title">Festival supporters</h2>
                 <div class="partners" role="list">
+                    <div class="partner-text">ORGANISERS:</div>
                     <figure role="listitem">
-                        <img src="https://via.placeholder.com/240x120?text=Sponsor+1" alt="Partner logo placeholder 1">
-                        <figcaption>Main organiser</figcaption>
+                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Na Drodze Ekspresji Association">
+                        </a>
                     </figure>
                     <figure role="listitem">
-                        <img src="https://via.placeholder.com/240x120?text=Sponsor+2" alt="Partner logo placeholder 2">
-                        <figcaption>City of Sopot</figcaption>
+                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/prezydent-sopotu.webp"
+                                alt="Honorary patronage of the Mayor of Sopot">
+                        </a>
+                    </figure>
+                    <div class="partner-text">COOPERATION:</div>
+                    <figure role="listitem">
+                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/pkps.webp" alt="Polish Committee for Social Assistance">
+                        </a>
                     </figure>
                     <figure role="listitem">
-                        <img src="https://via.placeholder.com/240x120?text=Sponsor+3" alt="Partner logo placeholder 3">
-                        <figcaption>Festival partners</figcaption>
+                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/bart.webp" alt="Baltic Artistic Agency BART">
+                        </a>
                     </figure>
                     <figure role="listitem">
-                        <img src="https://via.placeholder.com/240x120?text=Sponsor+4" alt="Partner logo placeholder 4">
-                        <figcaption>Accessibility allies</figcaption>
+                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Wybrzeże Theatre">
+                        </a>
+                    </figure>
+                </div>
+                <div class="partners-wide" role="list">
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/sopot.webp" alt="Co-financed by the City of Sopot">
+                            <figcaption>Co-financed by the City of Sopot</figcaption>
+                        </a>
+                    </figure>
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/urzad-marszalkowski.webp"
+                                alt="Marshal's Office of the Pomeranian Voivodeship">
+                            <figcaption>and the Marshal's Office of the Pomeranian Voivodeship</figcaption>
+                        </a>
                     </figure>
                 </div>
             </div>
@@ -231,10 +275,16 @@
     </footer>
 
     <div class="cookie-notice" data-cookie-notice>
-        <p>This modernized demo website stores accessibility preferences (contrast, text size, language) in your
-            browser.</p>
+        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+            <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
+        </svg>
+        <div class="cookie-notice__content">
+            <p>This website stores your preferences locally in your browser and uses Google Analytics to analyze traffic.</p>
+            <p><a href="cookies.html">Learn more about the cookie policy</a></p>
+        </div>
         <div class="cookie-notice__actions">
-            <button type="button" class="cookie-notice__button" data-cookie-accept>Understood</button>
+            <button type="button" class="cookie-notice__button" data-cookie-accept>I understand</button>
         </div>
     </div>
 

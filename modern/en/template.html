@@ -7,8 +7,20 @@
     <meta name="description" content="Reusable template for MASSKA theatre profiles.">
     <title>MASSKA · Theatre Template</title>
     <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=wrap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-CKB0FYJDGK");
+    </script>
 </head>
 
 <body data-redirect-to-preferred-language="true">
@@ -17,8 +29,9 @@
     <header class="site-header" role="banner">
         <div class="header-inner">
             <div class="site-branding">
-                <a class="brand" href="index.html">MASSKA Festival</a>
-                <p class="brand-subtitle">Theatre template · reuse for each ensemble</p>
+                <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
+                <p class="brand-subtitle"><img src="../assets/img/overview.webp"
+                        alt="XXIII International Inclusive Theatre Review · 2024"></p>
             </div>
             <nav class="site-nav" aria-label="Primary navigation">
                 <a class="nav-link" href="index.html">Festival</a>
@@ -165,6 +178,62 @@
                 </details>
             </div>
         </section>
+
+        <section class="page-section" aria-labelledby="supporters-title">
+            <div class="section-inner">
+                <h2 id="supporters-title">Festival supporters</h2>
+                <div class="partners" role="list">
+                    <div class="partner-text">ORGANISERS:</div>
+                    <figure role="listitem">
+                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Na Drodze Ekspresji Association">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/prezydent-sopotu.webp"
+                                alt="Honorary patronage of the Mayor of Sopot">
+                        </a>
+                    </figure>
+                    <div class="partner-text">COOPERATION:</div>
+                    <figure role="listitem">
+                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/pkps.webp" alt="Polish Committee for Social Assistance">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/bart.webp" alt="Baltic Artistic Agency BART">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Wybrzeże Theatre">
+                        </a>
+                    </figure>
+                </div>
+                <div class="partners-wide" role="list">
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/sopot.webp" alt="Co-financed by the City of Sopot">
+                            <figcaption>Co-financed by the City of Sopot</figcaption>
+                        </a>
+                    </figure>
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/urzad-marszalkowski.webp"
+                                alt="Marshal's Office of the Pomeranian Voivodeship">
+                            <figcaption>and the Marshal's Office of the Pomeranian Voivodeship</figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer" role="contentinfo">
@@ -188,9 +257,16 @@
     </footer>
 
     <div class="cookie-notice" data-cookie-notice>
-        <p>This demo remembers your preferences (contrast, text size, language) using local storage.</p>
+        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+            <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
+        </svg>
+        <div class="cookie-notice__content">
+            <p>This website stores your preferences locally in your browser and uses Google Analytics to analyze traffic.</p>
+            <p><a href="cookies.html">Learn more about the cookie policy</a></p>
+        </div>
         <div class="cookie-notice__actions">
-            <button type="button" class="cookie-notice__button" data-cookie-accept>Understood</button>
+            <button type="button" class="cookie-notice__button" data-cookie-accept>I understand</button>
         </div>
     </div>
 

@@ -7,8 +7,20 @@
     <meta name="description" content="Szablon do tworzenia profili teatralnych festiwalu MASSKA.">
     <title>MASSKA · Szablon teatru</title>
     <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-CKB0FYJDGK");
+    </script>
 </head>
 
 <body data-redirect-to-preferred-language="true">
@@ -17,8 +29,9 @@
     <header class="site-header" role="banner">
         <div class="header-inner">
             <div class="site-branding">
-                <a class="brand" href="index.html">MASSKA Festival</a>
-                <p class="brand-subtitle">Szablon teatralny · użyj dla każdego zespołu</p>
+                <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
+                <p class="brand-subtitle"><img src="../assets/img/przeglad.webp"
+                        alt="XXIII Międzynarodowy Przegląd Teatralny · 2024"></p>
             </div>
             <nav class="site-nav" aria-label="Nawigacja główna">
                 <a class="nav-link" href="index.html">Festiwal</a>
@@ -163,6 +176,61 @@
                 </details>
             </div>
         </section>
+
+        <section class="page-section" aria-labelledby="partnerzy">
+            <div class="section-inner">
+                <h2 id="partnerzy">Partnerzy festiwalu</h2>
+                <div class="partners" role="list">
+                    <div class="partner-text">ORGANIZATORZY:</div>
+                    <figure role="listitem">
+                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Stowarzyszenie Na Drodze Ekspresji">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/prezydent-sopotu.webp" alt="Patronat honorowy Prezydentki Sopotu">
+                        </a>
+                    </figure>
+                    <div class="partner-text">WSPÓŁPRACA:</div>
+                    <figure role="listitem">
+                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/pkps.webp" alt="Polski Komitet Pomocy Społecznej">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/bart.webp" alt="Bałtycka Agencja Artystyczna BART">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Teatr Wybrzeże">
+                        </a>
+                    </figure>
+                </div>
+                <div class="partners-wide" role="list">
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/sopot.webp" alt="Dofinansowano ze środków Gminy Miasta Sopot">
+                            <figcaption>Dofinansowano ze środków Gminy Miasta Sopot</figcaption>
+                        </a>
+                    </figure>
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/urzad-marszalkowski.webp"
+                                alt="Urząd Marszałkowski Województwa Pomorskiego">
+                            <figcaption>oraz Urzędu Marszałkowskiego Województwa Pomorskiego</figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer" role="contentinfo">
@@ -186,8 +254,14 @@
     </footer>
 
     <div class="cookie-notice" data-cookie-notice>
-        <p>Ta wersja demonstracyjna zapamiętuje Twoje preferencje (kontrast, rozmiar tekstu, język) w pamięci
-            przeglądarki.</p>
+        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+            <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
+        </svg>
+        <div class="cookie-notice__content">
+            <p>Ta strona zapisuje Twoje preferencje lokalnie w przeglądarce oraz używa Google Analytics do analizy ruchu.</p>
+            <p><a href="cookies.html">Dowiedz się więcej o polityce cookies</a></p>
+        </div>
         <div class="cookie-notice__actions">
             <button type="button" class="cookie-notice__button" data-cookie-accept>Rozumiem</button>
         </div>

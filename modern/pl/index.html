@@ -12,6 +12,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-CKB0FYJDGK");
+    </script>
 </head>
 
 <body data-redirect-to-preferred-language="true">
@@ -184,34 +195,50 @@
                 <div class="partners" role="list">
                     <div class="partner-text">ORGANIZATORZY:</div>
                     <figure role="listitem">
-                        <img src="../assets/img/na-drodze-ekspresji.webp" alt="Stowarzyszenie Na Drodze Ekspresji">
+                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Stowarzyszenie Na Drodze Ekspresji">
+                        </a>
                     </figure>
                     <figure role="listitem">
-                        <img src="../assets/img/prezydent-sopotu.webp" alt="Patronat honorowy Prezydentki Sopotu">
+                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/prezydent-sopotu.webp" alt="Patronat honorowy Prezydentki Sopotu">
+                        </a>
                     </figure>
                     <div class="partner-text">WSPÓŁPRACA:</div>
                     <figure role="listitem">
-                        <img src="../assets/img/pkps.webp" alt="Polski Komitet Pomocy Społecznej">
+                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/pkps.webp" alt="Polski Komitet Pomocy Społecznej">
+                        </a>
                     </figure>
                     <figure role="listitem">
-                        <img src="../assets/img/bart.webp" alt="Bałtycka Agencja Artystyczna BART">
+                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/bart.webp" alt="Bałtycka Agencja Artystyczna BART">
+                        </a>
                     </figure>
                     <figure role="listitem">
-                        <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        </a>
                     </figure>
                     <figure role="listitem">
-                        <img src="../assets/img/teatr-wybrzeze.webp" alt="Teatr Wybrzeże">
+                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Teatr Wybrzeże">
+                        </a>
                     </figure>
                 </div>
                 <div class="partners-wide" role="list">
                     <figure role="listitem" class="partner-wide">
-                        <img src="../assets/img/sopot.webp" alt="Dofinansowano ze środków Gminy Miasta Sopot">
-                        <figcaption>Dofinansowano ze środków Gminy Miasta Sopot</figcaption>
+                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/sopot.webp" alt="Dofinansowano ze środków Gminy Miasta Sopot">
+                            <figcaption>Dofinansowano ze środków Gminy Miasta Sopot</figcaption>
+                        </a>
                     </figure>
                     <figure role="listitem" class="partner-wide">
-                        <img src="../assets/img/urzad-marszalkowski.webp"
-                            alt="Urząd Marszałkowski Województwa Pomorskiego">
-                        <figcaption>oraz Urzędu Marszałkowskiego Województwa Pomorskiego</figcaption>
+                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/urzad-marszalkowski.webp"
+                                alt="Urząd Marszałkowski Województwa Pomorskiego">
+                            <figcaption>oraz Urzędu Marszałkowskiego Województwa Pomorskiego</figcaption>
+                        </a>
                     </figure>
                 </div>
             </div>
@@ -245,8 +272,11 @@
     </footer>
 
     <div class="cookie-notice" data-cookie-notice>
-        <p>Ta demonstracyjna wersja serwisu zapisuje Twoje preferencje (kontrast, rozmiar tekstu, język) w przeglądarce.
-        </p>
+        <img src="../assets/img/cookie.webp" alt="Ikona ciasteczek" />
+        <div class="cookie-notice__content">
+            <p>Ta strona zapisuje Twoje preferencje lokalnie w przeglądarce oraz używa Google Analytics do analizy ruchu.</p>
+            <p><a href="cookies.html">Dowiedz się więcej o polityce cookies</a></p>
+        </div>
         <div class="cookie-notice__actions">
             <button type="button" class="cookie-notice__button" data-cookie-accept>Rozumiem</button>
         </div>

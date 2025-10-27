@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Stream performances from the MASSKA festival and explore inclusive theatre ensembles online.">
+    <meta name="description"
+        content="Stream performances from the MASSKA festival and explore inclusive theatre ensembles online.">
     <title>MASSKA · Online Showcase</title>
     <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/styles-mobile.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-CKB0FYJDGK");
+    </script>
 </head>
+
 <body data-redirect-to-preferred-language="true">
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header" role="banner">
         <div class="header-inner">
             <div class="site-branding">
-                <a class="brand" href="index.html">MASSKA Festival</a>
-                <p class="brand-subtitle">Inclusive Theatre Review · Online Edition</p>
+                <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
+                <p class="brand-subtitle"><img src="../assets/img/overview.webp"
+                        alt="XXIII International Inclusive Theatre Review · 2024"></p>
             </div>
             <nav class="site-nav" aria-label="Primary navigation">
                 <a class="nav-link" href="index.html">Festival</a>
@@ -24,20 +41,37 @@
             <div class="header-tools">
                 <div class="site-actions" role="group" aria-label="Display options">
                     <button type="button" data-action="font-decrease" aria-label="Decrease text size">
-                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M5 11v2h14v-2z"></path></svg>
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M5 11v2h14v-2z"></path>
+                        </svg>
                     </button>
                     <span class="font-indicator" data-font-indicator>100%</span>
                     <button type="button" data-action="font-increase" aria-label="Increase text size">
-                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path></svg>
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path>
+                        </svg>
                     </button>
-                    <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false" data-contrast-label data-label-on="High contrast on" data-label-off="High contrast off" aria-label="High contrast off">
-                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-3.87-2.45-7.19-5.88-8.47l-0.72 1.91C17.93 5.68 19 8.19 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7 3.13-7 7-7V3z"></path></svg>
+                    <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false"
+                        data-contrast-label data-label-on="High contrast on" data-label-off="High contrast off"
+                        aria-label="High contrast off">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z">
+                            </path>
+                        </svg>
                     </button>
                 </div>
                 <div class="language-switcher" role="group" aria-label="Switch language">
                     <span class="sr-only">Available languages:</span>
-                    <a class="language-link is-active" href="../en/online.html" data-language="en" data-flag-emoji="🇬🇧">English</a>
-                    <a class="language-link" href="../pl/online.html" data-language="pl" data-flag-emoji="🇵🇱">Polski</a>
+                    <a class="language-link is-active" href="../en/online.html" data-language="en"
+                        data-flag-emoji="🇬🇧">
+                        <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
+                        English
+                    </a>
+                    <a class="language-link" href="../pl/online.html" data-language="pl" data-flag-emoji="🇵🇱">
+                        <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
+                        Polski
+                    </a>
                 </div>
             </div>
         </div>
@@ -48,7 +82,8 @@
             <div class="hero-text">
                 <p class="eyebrow">Streaming now</p>
                 <h1>MASSKA online showcase</h1>
-                <p>Watch curated performances from inclusive theatre ensembles. Each feature includes subtitles, context, and downloadable materials prepared for the online edition.</p>
+                <p>Watch curated performances from inclusive theatre ensembles. Each feature includes subtitles,
+                    context, and downloadable materials prepared for the online edition.</p>
                 <div class="hero-actions">
                     <a class="button primary" href="#theater-grid">Browse ensembles</a>
                     <a class="button ghost" href="index.html">Return to festival home</a>
@@ -66,7 +101,8 @@
                 <div class="theater-grid">
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=Azdaki+Baghi" alt="Azdaki Baghi theatre still">
+                            <img src="https://via.placeholder.com/640x420?text=Azdaki+Baghi"
+                                alt="Azdaki Baghi theatre still">
                             <figcaption>Azdaki Baghi · Georgia</figcaption>
                         </figure>
                         <div class="card-body">
@@ -81,7 +117,8 @@
                     </article>
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=Baltazar+Theatre" alt="Baltazar theatre still">
+                            <img src="https://via.placeholder.com/640x420?text=Baltazar+Theatre"
+                                alt="Baltazar theatre still">
                             <figcaption>Baltazar Theatre · Hungary</figcaption>
                         </figure>
                         <div class="card-body">
@@ -141,7 +178,8 @@
                     </article>
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=RambaZamba" alt="RambaZamba theatre still">
+                            <img src="https://via.placeholder.com/640x420?text=RambaZamba"
+                                alt="RambaZamba theatre still">
                             <figcaption>RambaZamba Theatre · Germany</figcaption>
                         </figure>
                         <div class="card-body">
@@ -162,7 +200,8 @@
             <div class="section-inner two-column">
                 <div>
                     <h2 id="extras-title">How to follow the showcase</h2>
-                    <p>Streaming opens on 25 November 2024. Performances are available on-demand until 31 December 2024 with captions, signposting, and recommended accessibility settings.</p>
+                    <p>Streaming opens on 25 November 2024. Performances are available on-demand until 31 December 2024
+                        with captions, signposting, and recommended accessibility settings.</p>
                     <ul>
                         <li>Enable captions using the player controls.</li>
                         <li>Switch to high-contrast mode for improved legibility.</li>
@@ -175,6 +214,62 @@
                     <p>Help desk hours: 10:00–18:00 CET (Mon–Fri)</p>
                     <p>Emergency line: +48 500 000 000</p>
                 </aside>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="supporters-title">
+            <div class="section-inner">
+                <h2 id="supporters-title">Festival supporters</h2>
+                <div class="partners" role="list">
+                    <div class="partner-text">ORGANISERS:</div>
+                    <figure role="listitem">
+                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Na Drodze Ekspresji Association">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/prezydent-sopotu.webp"
+                                alt="Honorary patronage of the Mayor of Sopot">
+                        </a>
+                    </figure>
+                    <div class="partner-text">COOPERATION:</div>
+                    <figure role="listitem">
+                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/pkps.webp" alt="Polish Committee for Social Assistance">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/bart.webp" alt="Baltic Artistic Agency BART">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Wybrzeże Theatre">
+                        </a>
+                    </figure>
+                </div>
+                <div class="partners-wide" role="list">
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/sopot.webp" alt="Co-financed by the City of Sopot">
+                            <figcaption>Co-financed by the City of Sopot</figcaption>
+                        </a>
+                    </figure>
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/urzad-marszalkowski.webp"
+                                alt="Marshal's Office of the Pomeranian Voivodeship">
+                            <figcaption>and the Marshal's Office of the Pomeranian Voivodeship</figcaption>
+                        </a>
+                    </figure>
+                </div>
             </div>
         </section>
     </main>
@@ -201,12 +296,20 @@
     </footer>
 
     <div class="cookie-notice" data-cookie-notice>
-        <p>This demo remembers your preferences (contrast, text size, language) using local storage.</p>
+        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+            <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
+        </svg>
+        <div class="cookie-notice__content">
+            <p>This website stores your preferences locally in your browser and uses Google Analytics to analyze traffic.</p>
+            <p><a href="cookies.html">Learn more about the cookie policy</a></p>
+        </div>
         <div class="cookie-notice__actions">
-            <button type="button" class="cookie-notice__button" data-cookie-accept>Understood</button>
+            <button type="button" class="cookie-notice__button" data-cookie-accept>I understand</button>
         </div>
     </div>
 
     <script src="../assets/app.js" defer></script>
 </body>
+
 </html>

@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Oglądaj występy festiwalu MASSKA online i poznaj integracyjne zespoły teatralne.">
     <title>MASSKA · Scena Online</title>
     <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/styles-mobile.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-CKB0FYJDGK");
+    </script>
 </head>
+
 <body data-redirect-to-preferred-language="true">
     <a class="skip-link" href="#main-content">Przejdź do treści</a>
 
     <header class="site-header" role="banner">
         <div class="header-inner">
             <div class="site-branding">
-                <a class="brand" href="index.html">MASSKA Festival</a>
-                <p class="brand-subtitle">Integracyjny Przegląd Teatralny · Program online</p>
+                <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
+                <p class="brand-subtitle"><img src="../assets/img/przeglad.webp"
+                        alt="XXIII Międzynarodowy Przegląd Teatralny · 2024"></p>
             </div>
             <nav class="site-nav" aria-label="Nawigacja główna">
                 <a class="nav-link" href="index.html">Festiwal</a>
@@ -24,20 +40,37 @@
             <div class="header-tools">
                 <div class="site-actions" role="group" aria-label="Opcje dostępności">
                     <button type="button" data-action="font-decrease" aria-label="Zmniejsz rozmiar tekstu">
-                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M5 11v2h14v-2z"></path></svg>
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M5 11v2h14v-2z"></path>
+                        </svg>
                     </button>
                     <span class="font-indicator" data-font-indicator>100%</span>
                     <button type="button" data-action="font-increase" aria-label="Zwiększ rozmiar tekstu">
-                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path></svg>
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path>
+                        </svg>
                     </button>
-                    <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false" data-contrast-label data-label-on="Wysoki kontrast włączony" data-label-off="Wysoki kontrast wyłączony" aria-label="Wysoki kontrast wyłączony">
-                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-3.87-2.45-7.19-5.88-8.47l-0.72 1.91C17.93 5.68 19 8.19 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7 3.13-7 7-7V3z"></path></svg>
+                    <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false"
+                        data-contrast-label data-label-on="Wysoki kontrast włączony"
+                        data-label-off="Wysoki kontrast wyłączony" aria-label="Wysoki kontrast wyłączony">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z">
+                            </path>
+                        </svg>
                     </button>
                 </div>
                 <div class="language-switcher" role="group" aria-label="Zmień język">
                     <span class="sr-only">Dostępne języki:</span>
-                    <a class="language-link" href="../en/online.html" data-language="en" data-flag-emoji="🇬🇧">English</a>
-                    <a class="language-link is-active" href="../pl/online.html" data-language="pl" data-flag-emoji="🇵🇱">Polski</a>
+                    <a class="language-link" href="../en/online.html" data-language="en" data-flag-emoji="🇬🇧">
+                        <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
+                        English
+                    </a>
+                    <a class="language-link is-active" href="../pl/online.html" data-language="pl"
+                        data-flag-emoji="🇵🇱">
+                        <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
+                        Polski
+                    </a>
                 </div>
             </div>
         </div>
@@ -48,7 +81,8 @@
             <div class="hero-text">
                 <p class="eyebrow">Transmisja trwa</p>
                 <h1>Scena online MASSKI</h1>
-                <p>Oglądaj wybrane spektakle zespołów integracyjnych. Każdy materiał zawiera napisy, opis i materiały do pobrania przygotowane specjalnie dla widzów online.</p>
+                <p>Oglądaj wybrane spektakle zespołów integracyjnych. Każdy materiał zawiera napisy, opis i materiały do
+                    pobrania przygotowane specjalnie dla widzów online.</p>
                 <div class="hero-actions">
                     <a class="button primary" href="#theater-grid">Przeglądaj zespoły</a>
                     <a class="button ghost" href="index.html">Wróć na stronę główną</a>
@@ -66,7 +100,8 @@
                 <div class="theater-grid">
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=Azdaki+Baghi" alt="Kadr z przedstawienia Azdaki Baghi">
+                            <img src="https://via.placeholder.com/640x420?text=Azdaki+Baghi"
+                                alt="Kadr z przedstawienia Azdaki Baghi">
                             <figcaption>Azdaki Baghi · Gruzja</figcaption>
                         </figure>
                         <div class="card-body">
@@ -81,7 +116,8 @@
                     </article>
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=Teatr+Baltazar" alt="Kadr z teatru Baltazar">
+                            <img src="https://via.placeholder.com/640x420?text=Teatr+Baltazar"
+                                alt="Kadr z teatru Baltazar">
                             <figcaption>Teatr Baltazar · Węgry</figcaption>
                         </figure>
                         <div class="card-body">
@@ -141,7 +177,8 @@
                     </article>
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=RambaZamba" alt="Kadr z teatru RambaZamba">
+                            <img src="https://via.placeholder.com/640x420?text=RambaZamba"
+                                alt="Kadr z teatru RambaZamba">
                             <figcaption>Teatr RambaZamba · Niemcy</figcaption>
                         </figure>
                         <div class="card-body">
@@ -162,7 +199,8 @@
             <div class="section-inner two-column">
                 <div>
                     <h2 id="instrukcja-title">Jak korzystać z programu online</h2>
-                    <p>Emisja rozpoczyna się 25 listopada 2024 roku. Nagrania są dostępne do 31 grudnia 2024 wraz z napisami, oznaczeniami i rekomendowanymi ustawieniami dostępności.</p>
+                    <p>Emisja rozpoczyna się 25 listopada 2024 roku. Nagrania są dostępne do 31 grudnia 2024 wraz z
+                        napisami, oznaczeniami i rekomendowanymi ustawieniami dostępności.</p>
                     <ul>
                         <li>Włącz napisy za pomocą przycisków w odtwarzaczu.</li>
                         <li>Przełącz tryb wysokiego kontrastu dla lepszej czytelności.</li>
@@ -175,6 +213,61 @@
                     <p>Infolinia: 10:00–18:00 CET (pon.–pt.)</p>
                     <p>Telefon alarmowy: +48 500 000 000</p>
                 </aside>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="partnerzy">
+            <div class="section-inner">
+                <h2 id="partnerzy">Partnerzy festiwalu</h2>
+                <div class="partners" role="list">
+                    <div class="partner-text">ORGANIZATORZY:</div>
+                    <figure role="listitem">
+                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Stowarzyszenie Na Drodze Ekspresji">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/prezydent-sopotu.webp" alt="Patronat honorowy Prezydentki Sopotu">
+                        </a>
+                    </figure>
+                    <div class="partner-text">WSPÓŁPRACA:</div>
+                    <figure role="listitem">
+                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/pkps.webp" alt="Polski Komitet Pomocy Społecznej">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/bart.webp" alt="Bałtycka Agencja Artystyczna BART">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                        </a>
+                    </figure>
+                    <figure role="listitem">
+                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Teatr Wybrzeże">
+                        </a>
+                    </figure>
+                </div>
+                <div class="partners-wide" role="list">
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/sopot.webp" alt="Dofinansowano ze środków Gminy Miasta Sopot">
+                            <figcaption>Dofinansowano ze środków Gminy Miasta Sopot</figcaption>
+                        </a>
+                    </figure>
+                    <figure role="listitem" class="partner-wide">
+                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                            <img src="../assets/img/urzad-marszalkowski.webp"
+                                alt="Urząd Marszałkowski Województwa Pomorskiego">
+                            <figcaption>oraz Urzędu Marszałkowskiego Województwa Pomorskiego</figcaption>
+                        </a>
+                    </figure>
+                </div>
             </div>
         </section>
     </main>
@@ -201,7 +294,14 @@
     </footer>
 
     <div class="cookie-notice" data-cookie-notice>
-        <p>Ta wersja demonstracyjna zapamiętuje Twoje preferencje (kontrast, rozmiar tekstu, język) w pamięci przeglądarki.</p>
+        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+            <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
+        </svg>
+        <div class="cookie-notice__content">
+            <p>Ta strona zapisuje Twoje preferencje lokalnie w przeglądarce oraz używa Google Analytics do analizy ruchu.</p>
+            <p><a href="cookies.html">Dowiedz się więcej o polityce cookies</a></p>
+        </div>
         <div class="cookie-notice__actions">
             <button type="button" class="cookie-notice__button" data-cookie-accept>Rozumiem</button>
         </div>
@@ -209,4 +309,5 @@
 
     <script src="../assets/app.js" defer></script>
 </body>
+
 </html>
