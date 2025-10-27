@@ -264,7 +264,7 @@
                     <div class="cookie-notice__content">
                         <p>Używamy analityki (Google Analytics) i zewnętrznych mediów (YouTube). Dostosuj preferencje
                             poniżej.</p>
-                        <details class="cookie-notice__settings" open>
+                        <details class="cookie-notice__settings">
                             <summary>Ustawienia</summary>
                             <fieldset>
                                 <legend class="sr-only">Preferencje zgód</legend>
@@ -275,11 +275,14 @@
                             </fieldset>
                             <div class="cookie-notice__actions-row">
                                 <button type="button" class="button" data-consent-save>Zapisz wybór</button>
-                                <button type="button" class="button ghost" data-consent-reject>Odrzuć zbędne</button>
-                                <button type="button" class="button primary" data-consent-accept-all>Akceptuj
-                                    wszystko</button>
                             </div>
                         </details>
+                    </div>
+                    <div class="cookie-notice__actions">
+                        <button type="button" class="cookie-notice__button" data-consent-accept-all>Akceptuj
+                            wszystko</button>
+                        <button type="button" class="cookie-notice__button ghost" data-consent-reject>Odrzuć
+                            zbędne</button>
                     </div>
                 </div>
 

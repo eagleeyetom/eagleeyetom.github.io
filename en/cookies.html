@@ -256,7 +256,7 @@
                     <div class="cookie-notice__content">
                         <p>We use analytics (Google Analytics) and external media (YouTube). Adjust your preferences
                             below.</p>
-                        <details class="cookie-notice__settings" open>
+                        <details class="cookie-notice__settings">
                             <summary>Settings</summary>
                             <fieldset>
                                 <legend class="sr-only">Consent preferences</legend>
@@ -267,11 +267,13 @@
                             </fieldset>
                             <div class="cookie-notice__actions-row">
                                 <button type="button" class="button" data-consent-save>Save choices</button>
-                                <button type="button" class="button ghost" data-consent-reject>Reject
-                                    non‑essential</button>
-                                <button type="button" class="button primary" data-consent-accept-all>Accept all</button>
                             </div>
                         </details>
+                    </div>
+                    <div class="cookie-notice__actions">
+                        <button type="button" class="cookie-notice__button" data-consent-accept-all>Accept all</button>
+                        <button type="button" class="cookie-notice__button ghost" data-consent-reject>Reject
+                            non‑essential</button>
                     </div>
                 </div>
 
