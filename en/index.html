@@ -13,16 +13,35 @@
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", "G-CKB0FYJDGK");
-    </script>
+    <!-- Favicons -->
+    <link rel="icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="../assets/icons/site.webmanifest">
+    <meta name="theme-color" content="#111111">
+
+    <!-- Canonical & hreflang -->
+    <link rel="canonical" href="https://eagleeyetom.github.io/en/">
+    <link rel="alternate" href="https://eagleeyetom.github.io/pl/" hreflang="pl">
+    <link rel="alternate" href="https://eagleeyetom.github.io/en/" hreflang="en">
+    <link rel="alternate" href="https://eagleeyetom.github.io/" hreflang="x-default">
+
+    <!-- Open Graph & Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MASSKA Festival">
+    <meta property="og:title" content="MASSKA · Inclusive Theatre Festival">
+    <meta property="og:description"
+        content="Explore the modernized MASSKA International Theatre Review website with inclusive design and multilingual support.">
+    <meta property="og:url" content="https://eagleeyetom.github.io/en/">
+    <meta property="og:image" content="https://eagleeyetom.github.io/assets/img/head.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MASSKA · Inclusive Theatre Festival">
+    <meta name="twitter:description"
+        content="Explore the modernized MASSKA International Theatre Review website with inclusive design and multilingual support.">
+    <meta name="twitter:image" content="https://eagleeyetom.github.io/assets/img/head.webp">
+
+
 </head>
 
 <body data-redirect-to-preferred-language="true">
@@ -36,7 +55,7 @@
                         alt="XXIII International Inclusive Theatre Review · 2024"></p>
             </div>
             <nav class="site-nav" aria-label="Primary navigation">
-                <span class="nav-link is-active">Festival</span>
+                <a class="nav-link is-active" href="index.html" aria-current="page">Festival</a>
                 <a class="nav-link" href="online.html">Watch Online</a>
             </nav>
             <div class="header-tools">
@@ -274,18 +293,26 @@
         </div>
     </footer>
 
-    <div class="cookie-notice" data-cookie-notice>
-        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-            <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
-        </svg>
+    <div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden>
+        <img src="../assets/img/cookie.webp" alt="" width="48" height="48" loading="lazy" decoding="async" />
         <div class="cookie-notice__content">
-            <p>This website stores your preferences locally in your browser and uses Google Analytics to analyze
-                traffic.</p>
-            <p><a href="cookies.html">Learn more about the cookie policy</a></p>
+            <p>We use analytics (Google Analytics) and external media (YouTube). See <a href="cookies.html">cookie
+                    policy</a>.</p>
+            <details class="cookie-notice__settings">
+                <summary>Settings</summary>
+                <fieldset>
+                    <legend class="sr-only">Consent preferences</legend>
+                    <label><input type="checkbox" data-consent-toggle="analytics"> Analytics (Google Analytics)</label>
+                    <label><input type="checkbox" data-consent-toggle="media"> Media (YouTube embeds)</label>
+                </fieldset>
+                <div class="cookie-notice__actions-row">
+                    <button type="button" class="button" data-consent-save>Save choices</button>
+                </div>
+            </details>
         </div>
         <div class="cookie-notice__actions">
-            <button type="button" class="cookie-notice__button" data-cookie-accept>I understand</button>
+            <button type="button" class="cookie-notice__button" data-consent-accept-all>Accept all</button>
+            <button type="button" class="cookie-notice__button ghost" data-consent-reject>Reject non‑essential</button>
         </div>
     </div>
 

@@ -1,4 +1,6 @@
 const STORAGE_KEY = "masskaModernSettings";
+const CONSENT_KEY = "masskaConsent";
+const GA_ID = "G-CKB0FYJDGK";
 const FONT_MIN = 0.9;
 const FONT_MAX = 1.3;
 const FONT_STEP = 0.1;
@@ -99,6 +101,115 @@ document.addEventListener("DOMContentLoaded", () => {
   const cookieNotice = document.querySelector("[data-cookie-notice]");
   const acceptCookiesButton = document.querySelector("[data-cookie-accept]");
 
+  // --- Consent management (media: YouTube) ---
+  function loadConsent() {
+    if (!storageAvailable) return { media: false, analytics: false };
+    try {
+      const raw = window.localStorage.getItem(CONSENT_KEY);
+      if (!raw) return { media: false, analytics: false };
+      const parsed = JSON.parse(raw);
+      return {
+        media: Boolean(parsed.media),
+        analytics: Boolean(parsed.analytics),
+      };
+    } catch (e) {
+      return { media: false, analytics: false };
+    }
+  }
+
+  function saveConsent(consent) {
+    if (!storageAvailable) return;
+    try {
+      window.localStorage.setItem(
+        CONSENT_KEY,
+        JSON.stringify({
+          media: !!consent.media,
+          analytics: !!consent.analytics,
+        })
+      );
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  const consent = loadConsent();
+
+  // --- Google Analytics lazy loader (requires consent.analytics) ---
+  function loadGA() {
+    if (window.__masskaGAInit || !GA_ID) return;
+    window.__masskaGAInit = true;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    window.gtag = window.gtag || gtag;
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(
+      GA_ID
+    )}`;
+    s.onload = () => {
+      gtag("js", new Date());
+      gtag("config", GA_ID, { anonymize_ip: true });
+    };
+    document.head.appendChild(s);
+  }
+
+  function buildYTFrame(videoId, title = "YouTube video") {
+    const lang = (document.documentElement.lang || "en").slice(0, 2);
+    const iframe = document.createElement("iframe");
+    iframe.width = "560";
+    iframe.height = "315";
+    iframe.loading = "lazy";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    iframe.title = title;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(
+      videoId
+    )}?rel=0&modestbranding=1&hl=${encodeURIComponent(lang)}`;
+    return iframe;
+  }
+
+  function processExternalMedia() {
+    const blocks = document.querySelectorAll(".external-media[data-yt-id]");
+    blocks.forEach((block) => {
+      const videoId = block.getAttribute("data-yt-id");
+      const title = block.getAttribute("data-title") || "YouTube video";
+      const placeholder = block.querySelector(".external-media__placeholder");
+      const loadBtn = block.querySelector(
+        '[data-action="load-external-media"]'
+      );
+      const enableBtn = block.querySelector(
+        '[data-action="enable-media-consent"]'
+      );
+
+      function mount() {
+        const frame = buildYTFrame(videoId, title);
+        block.innerHTML = "";
+        block.appendChild(frame);
+      }
+
+      if (consent.media === true) {
+        mount();
+      } else {
+        if (loadBtn) {
+          loadBtn.addEventListener("click", () => {
+            mount();
+          });
+        }
+        if (enableBtn) {
+          enableBtn.addEventListener("click", () => {
+            consent.media = true;
+            saveConsent(consent);
+            mount();
+          });
+        }
+      }
+    });
+  }
+
   function applyContrast(isHighContrast) {
     body.classList.toggle("high-contrast", isHighContrast);
     if (contrastButton) {
@@ -187,6 +298,85 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
+  }
+
+  // --- Consent banner (analytics/media) ---
+  const banner = document.querySelector("[data-consent-banner]");
+  if (banner) {
+    const chkAnalytics = banner.querySelector(
+      '[data-consent-toggle="analytics"]'
+    );
+    const chkMedia = banner.querySelector('[data-consent-toggle="media"]');
+    const btnAcceptAll = banner.querySelector("[data-consent-accept-all]");
+    const btnReject = banner.querySelector("[data-consent-reject]");
+    const btnSave = banner.querySelector("[data-consent-save]");
+
+    if (chkAnalytics) chkAnalytics.checked = !!consent.analytics;
+    if (chkMedia) chkMedia.checked = !!consent.media;
+
+    const hideBanner = () => banner.setAttribute("hidden", "");
+    const showBanner = () => banner.removeAttribute("hidden");
+
+    // Show banner if no stored choice exists
+    try {
+      const raw = storageAvailable
+        ? window.localStorage.getItem(CONSENT_KEY)
+        : null;
+      if (!raw) showBanner();
+      else hideBanner();
+    } catch (_) {
+      showBanner();
+    }
+
+    if (btnAcceptAll) {
+      btnAcceptAll.addEventListener("click", () => {
+        consent.analytics = true;
+        consent.media = true;
+        saveConsent(consent);
+        hideBanner();
+        if (consent.analytics) loadGA();
+        processExternalMedia();
+      });
+    }
+    if (btnReject) {
+      btnReject.addEventListener("click", () => {
+        consent.analytics = false;
+        consent.media = false;
+        saveConsent(consent);
+        hideBanner();
+      });
+    }
+    if (btnSave) {
+      btnSave.addEventListener("click", () => {
+        consent.analytics = chkAnalytics ? !!chkAnalytics.checked : false;
+        consent.media = chkMedia ? !!chkMedia.checked : false;
+        saveConsent(consent);
+        hideBanner();
+        if (consent.analytics) loadGA();
+        if (consent.media) processExternalMedia();
+      });
+    }
+  }
+
+  // Privacy settings buttons (reset/enable)
+  document
+    .querySelectorAll('[data-action="reset-media-consent"]')
+    .forEach((btn) => {
+      btn.addEventListener("click", () => {
+        try {
+          if (storageAvailable) window.localStorage.removeItem(CONSENT_KEY);
+        } catch (e) {}
+        // Show a simple message or reload to re-evaluate embeds
+        window.location.reload();
+      });
+    });
+
+  // Process YouTube placeholders
+  processExternalMedia();
+
+  // Load analytics if already consented
+  if (consent.analytics) {
+    loadGA();
   }
 
   const storedLanguage = settings.language;

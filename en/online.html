@@ -12,16 +12,15 @@
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", "G-CKB0FYJDGK");
-    </script>
+    <!-- Favicons -->
+    <link rel="icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="../assets/icons/site.webmanifest">
+    <meta name="theme-color" content="#111111">
+
+
 </head>
 
 <body data-redirect-to-preferred-language="true">
@@ -36,7 +35,7 @@
             </div>
             <nav class="site-nav" aria-label="Primary navigation">
                 <a class="nav-link" href="index.html">Festival</a>
-                <span class="nav-link is-active">Watch Online</span>
+                <a class="nav-link is-active" href="online.html" aria-current="page">Watch Online</a>
             </nav>
             <div class="header-tools">
                 <div class="site-actions" role="group" aria-label="Display options">
@@ -295,18 +294,26 @@
         </div>
     </footer>
 
-    <div class="cookie-notice" data-cookie-notice>
-        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-            <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
-        </svg>
+    <div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden>
+        <img src="../assets/img/cookie.webp" alt="" width="48" height="48" loading="lazy" decoding="async" />
         <div class="cookie-notice__content">
-            <p>This website stores your preferences locally in your browser and uses Google Analytics to analyze
-                traffic.</p>
-            <p><a href="cookies.html">Learn more about the cookie policy</a></p>
+            <p>We use analytics (Google Analytics) and external media (YouTube). See <a href="cookies.html">cookie
+                    policy</a>. You can always revisit these settings from the policy page.</p>
+            <details class="cookie-notice__settings">
+                <summary>Settings</summary>
+                <fieldset>
+                    <legend class="sr-only">Consent preferences</legend>
+                    <label><input type="checkbox" data-consent-toggle="analytics"> Analytics (Google Analytics)</label>
+                    <label><input type="checkbox" data-consent-toggle="media"> Media (YouTube embeds)</label>
+                </fieldset>
+                <div class="cookie-notice__actions-row">
+                    <button type="button" class="button" data-consent-save>Save choices</button>
+                </div>
+            </details>
         </div>
         <div class="cookie-notice__actions">
-            <button type="button" class="cookie-notice__button" data-cookie-accept>I understand</button>
+            <button type="button" class="cookie-notice__button" data-consent-accept-all>Accept all</button>
+            <button type="button" class="cookie-notice__button ghost" data-consent-reject>Reject non‑essential</button>
         </div>
     </div>
 

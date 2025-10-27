@@ -11,16 +11,15 @@
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", "G-CKB0FYJDGK");
-    </script>
+    <!-- Favicons -->
+    <link rel="icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="../assets/icons/site.webmanifest">
+    <meta name="theme-color" content="#111111">
+
+
 </head>
 
 <body data-redirect-to-preferred-language="true">
@@ -35,7 +34,7 @@
             </div>
             <nav class="site-nav" aria-label="Nawigacja główna">
                 <a class="nav-link" href="index.html">Festiwal</a>
-                <span class="nav-link is-active">Oglądaj online</span>
+                <a class="nav-link is-active" href="online.html" aria-current="page">Oglądaj online</a>
             </nav>
             <div class="header-tools">
                 <div class="site-actions" role="group" aria-label="Opcje dostępności">
@@ -293,18 +292,26 @@
         </div>
     </footer>
 
-    <div class="cookie-notice" data-cookie-notice>
-        <svg class="cookie-notice__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-            <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-5.52 0-10-4.48-10-10S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm-1-15h2v6h-2zm0 8h2v2h-2z" />
-        </svg>
+    <div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden>
+        <img src="../assets/img/cookie.webp" alt="" width="48" height="48" loading="lazy" decoding="async" />
         <div class="cookie-notice__content">
-            <p>Ta strona zapisuje Twoje preferencje lokalnie w przeglądarce oraz używa Google Analytics do analizy
-                ruchu.</p>
-            <p><a href="cookies.html">Dowiedz się więcej o polityce cookies</a></p>
+            <p>Korzystamy z analityki (Google Analytics) i zewnętrznych mediów (YouTube). Zobacz <a
+                    href="cookies.html">politykę cookies</a>.</p>
+            <details class="cookie-notice__settings">
+                <summary>Ustawienia</summary>
+                <fieldset>
+                    <legend class="sr-only">Preferencje zgód</legend>
+                    <label><input type="checkbox" data-consent-toggle="analytics"> Analityka (Google Analytics)</label>
+                    <label><input type="checkbox" data-consent-toggle="media"> Media (osadzenia YouTube)</label>
+                </fieldset>
+                <div class="cookie-notice__actions-row">
+                    <button type="button" class="button" data-consent-save>Zapisz wybór</button>
+                </div>
+            </details>
         </div>
         <div class="cookie-notice__actions">
-            <button type="button" class="cookie-notice__button" data-cookie-accept>Rozumiem</button>
+            <button type="button" class="cookie-notice__button" data-consent-accept-all>Akceptuj wszystko</button>
+            <button type="button" class="cookie-notice__button ghost" data-consent-reject>Odrzuć zbędne</button>
         </div>
     </div>
 

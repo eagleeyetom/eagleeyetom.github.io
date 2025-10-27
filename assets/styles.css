@@ -1049,14 +1049,17 @@ caption {
     position: fixed;
     inset-inline: var(--spacing-md);
     bottom: var(--spacing-md);
-    max-width: 480px;
+    max-width: 520px;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     padding: var(--spacing-md);
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+        "icon actions"
+        "icon content";
     gap: var(--spacing-md);
     align-items: start;
     transition: transform var(--transition-base), opacity var(--transition-base);
@@ -1069,8 +1072,8 @@ caption {
 
 .cookie-notice img,
 .cookie-notice__icon {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     flex-shrink: 0;
     object-fit: contain;
 }
@@ -1081,6 +1084,21 @@ caption {
 
 body.high-contrast .cookie-notice img {
     filter: invert(1) brightness(1.2);
+}
+
+/* Grid placement to show actions above text */
+.cookie-notice>img,
+.cookie-notice>.cookie-notice__icon {
+    grid-area: icon;
+}
+
+.cookie-notice__actions {
+    grid-area: actions;
+    align-self: start;
+}
+
+.cookie-notice__content {
+    grid-area: content;
 }
 
 .cookie-notice__content {
@@ -1133,15 +1151,18 @@ body.high-contrast .cookie-notice img {
 @media (max-width: 540px) {
     .cookie-notice {
         grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto;
+        grid-template-areas:
+            "icon actions"
+            "icon content";
     }
 
     .cookie-notice__actions {
-        grid-column: 1 / -1;
-        justify-content: stretch;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        flex-wrap: wrap;
     }
 
     .cookie-notice__button {
-        width: 100%;
+        width: auto;
     }
 }

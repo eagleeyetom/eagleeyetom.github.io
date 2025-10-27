@@ -11,16 +11,15 @@
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-        gtag("config", "G-CKB0FYJDGK");
-    </script>
+    <!-- Favicons -->
+    <link rel="icon" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="../assets/icons/site.webmanifest">
+    <meta name="theme-color" content="#111111">
+
+
 </head>
 
 <body>
@@ -111,6 +110,22 @@
                 </ul>
                 <p><strong>Google Analytics DOES NOT collect</strong> personal data such as name, surname, email, or
                     address.</p>
+
+                <h3>2.3. YouTube video (media cookies)</h3>
+                <p>Videos may be embedded from YouTube using <strong>privacy‑enhanced mode</strong>
+                    (<code>youtube-nocookie.com</code>). When you click the load button or consent to media,
+                    YouTube may set its own cookies and process device data.</p>
+                <ul>
+                    <li><strong>YSC</strong> – playback session identifier (session)</li>
+                    <li><strong>VISITOR_INFO1_LIVE</strong> – bandwidth measurement/player config (up to 6 months)</li>
+                    <li><strong>PREF</strong> – playback preferences (up to 8 months)</li>
+                    <li><strong>CONSENT</strong> – Google consent status</li>
+                </ul>
+                <p>More info: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google
+                        Privacy Policy</a>,
+                    <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube Terms of
+                        Service</a>.
+                </p>
 
                 <h2>3. Purpose of processing</h2>
 
@@ -223,6 +238,42 @@
                 <p>Email: <a href="mailto:biuro@masska.org">biuro@masska.org</a></p>
 
                 <hr style="margin: 3rem 0; border: 0; border-top: 1px solid var(--color-border);">
+
+                <h2>13. Consents and external media (YouTube)</h2>
+                <p>YouTube videos are <strong>blocked by default</strong>. You can:</p>
+                <ul>
+                    <li>Load a single video via the “Load video” button in the embed placeholder</li>
+                    <li>Give persistent consent to media with the “Always allow media” button</li>
+                </ul>
+                <p>To reset media consent and see the block again:</p>
+                <button class="button secondary" type="button" data-action="reset-media-consent">Reset media
+                    consent</button>
+
+                <div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden
+                    style="margin-top: 2rem;">
+                    <img src="../assets/img/cookie.webp" alt="" width="48" height="48" loading="lazy"
+                        decoding="async" />
+                    <div class="cookie-notice__content">
+                        <p>We use analytics (Google Analytics) and external media (YouTube). Adjust your preferences
+                            below.</p>
+                        <details class="cookie-notice__settings" open>
+                            <summary>Settings</summary>
+                            <fieldset>
+                                <legend class="sr-only">Consent preferences</legend>
+                                <label><input type="checkbox" data-consent-toggle="analytics"> Analytics (Google
+                                    Analytics)</label>
+                                <label><input type="checkbox" data-consent-toggle="media"> Media (YouTube
+                                    embeds)</label>
+                            </fieldset>
+                            <div class="cookie-notice__actions-row">
+                                <button type="button" class="button" data-consent-save>Save choices</button>
+                                <button type="button" class="button ghost" data-consent-reject>Reject
+                                    non‑essential</button>
+                                <button type="button" class="button primary" data-consent-accept-all>Accept all</button>
+                            </div>
+                        </details>
+                    </div>
+                </div>
 
                 <h2>Summary for users</h2>
                 <div class="info-panel" style="margin-top: 2rem;">
