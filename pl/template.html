@@ -21,9 +21,9 @@
     <meta name="theme-color" content="#111111">
 
     <!-- Kanoniczny (wyłączenie indeksowania) i alternatywy -->
-    <link rel="canonical" href="https://eagleeyetom.github.io/pl/template.html">
-    <link rel="alternate" href="https://eagleeyetom.github.io/pl/template.html" hreflang="pl">
-    <link rel="alternate" href="https://eagleeyetom.github.io/en/template.html" hreflang="en">
+    <link rel="canonical" href="https://masska.org/pl/template.html">
+    <link rel="alternate" href="https://masska.org/pl/template.html" hreflang="pl">
+    <link rel="alternate" href="https://masska.org/en/template.html" hreflang="en">
 
 
 </head>
@@ -35,8 +35,8 @@
         <div class="header-inner">
             <div class="site-branding">
                 <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
-                <p class="brand-subtitle"><img src="../assets/img/przeglad.webp"
-                        alt="XXIII Międzynarodowy Przegląd Teatralny · 2024"></p>
+                <a class="brand-subtitle" href="index.html"><img src="../assets/img/przeglad.webp"
+                        alt="XXIII Międzynarodowy Przegląd Teatralny · 2025"></a>
             </div>
             <nav class="site-nav" aria-label="Nawigacja główna">
                 <a class="nav-link" href="index.html">Festiwal</a>
@@ -183,7 +183,7 @@
         </section>
 
         <div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden>
-            <img src="../assets/img/cookie.webp" alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <img src="../assets/img/cookie.webp" alt="" width="64" height="64" loading="lazy" decoding="async" />
             <div class="cookie-notice__content">
                 <p>Używamy analityki (Google Analytics) i zewnętrznych mediów (YouTube). Zobacz <a
                         href="cookies.html">politykę cookies</a>.</p>
@@ -296,19 +296,30 @@
                     <p>Email: <a href="mailto:kontakt@masska.org">kontakt@masska.org</a></p>
                 </section>
             </div>
-            <p class="footer-note">© 2024 MASSKA Międzynarodowy Przegląd Teatralny · Szablon profilu teatru.</p>
+            <p class="footer-note">© 2025 MASSKA Międzynarodowy Przegląd Teatralny · Szablon profilu teatru.</p>
         </div>
     </footer>
 
-    <div class="cookie-notice" data-cookie-notice>
-        <img src="../assets/img/cookie.webp" alt="" width="48" height="48" loading="lazy" decoding="async" />
+    <div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden>
+        <img src="../assets/img/cookie.webp" alt="" width="64" height="64" loading="lazy" decoding="async" />
         <div class="cookie-notice__content">
-            <p>Ta strona zapisuje Twoje preferencje lokalnie w przeglądarce oraz używa Google Analytics do analizy
-                ruchu.</p>
-            <p><a href="cookies.html">Dowiedz się więcej o polityce cookies</a></p>
+            <p>Używamy analityki (Google Analytics) i zewnętrznych mediów (YouTube). Zobacz <a
+                    href="cookies.html">politykę cookies</a>.</p>
+            <details class="cookie-notice__settings">
+                <summary>Ustawienia</summary>
+                <fieldset>
+                    <legend class="sr-only">Preferencje zgód</legend>
+                    <label><input type="checkbox" data-consent-toggle="analytics"> Analityka (Google Analytics)</label>
+                    <label><input type="checkbox" data-consent-toggle="media"> Media (osadzenia YouTube)</label>
+                </fieldset>
+                <div class="cookie-notice__actions-row">
+                    <button type="button" class="button" data-consent-save>Zapisz wybór</button>
+                </div>
+            </details>
         </div>
         <div class="cookie-notice__actions">
-            <button type="button" class="cookie-notice__button" data-cookie-accept>Rozumiem</button>
+            <button type="button" class="cookie-notice__button" data-consent-accept-all>Akceptuj wszystko</button>
+            <button type="button" class="cookie-notice__button ghost" data-consent-reject>Odrzuć zbędne</button>
         </div>
     </div>
 
