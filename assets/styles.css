@@ -1063,6 +1063,7 @@ caption {
     gap: var(--spacing-md);
     align-items: start;
     transition: transform var(--transition-base), opacity var(--transition-base);
+    align-items: center
 }
 
 .cookie-notice[hidden] {
