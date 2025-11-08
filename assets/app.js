@@ -398,38 +398,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // --- Block "Watch Online" link until November 21, 2025 00:00 CET ---
 (function blockOnlineLinks() {
-  const unlockDate = new Date('2025-11-21T00:00:00+01:00'); // CET timezone
+  const unlockDate = new Date("2025-11-21T00:00:00+01:00"); // CET timezone
   const now = new Date();
-  
+
   if (now < unlockDate) {
     // Find all links to online.html
     const onlineLinks = document.querySelectorAll('a[href*="online.html"]');
-    
-    onlineLinks.forEach(link => {
+
+    onlineLinks.forEach((link) => {
       // Prevent default click behavior
-      link.addEventListener('click', (e) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
-        
+
         // Show message
-        const lang = document.documentElement.lang || 'pl';
-        const message = lang === 'en' 
-          ? 'MASSKA Online will be available from November 21, 2025 at midnight.'
-          : 'MASSKA Online będzie dostępna od 21 listopada 2025 o północy.';
-        
+        const lang = document.documentElement.lang || "pl";
+        const message =
+          lang === "en"
+            ? "MASSKA Online will be available from November 21, 2025 at midnight."
+            : "MASSKA Online będzie dostępna od 21 listopada 2025 o północy.";
+
         alert(message);
       });
-      
+
       // Add visual indication
-      link.style.opacity = '0.6';
-      link.style.cursor = 'not-allowed';
-      link.setAttribute('aria-disabled', 'true');
-      
+      link.style.opacity = "0.6";
+      link.style.cursor = "not-allowed";
+      link.setAttribute("aria-disabled", "true");
+
       // Add title/tooltip
-      const lang = document.documentElement.lang || 'pl';
-      const titleText = lang === 'en'
-        ? 'Available from November 21, 2025'
-        : 'Dostępne od 21 listopada 2025';
-      link.setAttribute('title', titleText);
+      const lang = document.documentElement.lang || "pl";
+      const titleText =
+        lang === "en"
+          ? "Available from November 21, 2025"
+          : "Dostępne od 21 listopada 2025";
+      link.setAttribute("title", titleText);
     });
   }
 })();
