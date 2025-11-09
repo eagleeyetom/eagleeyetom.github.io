@@ -19,6 +19,23 @@
     <link rel="manifest" href="../assets/icons/site.webmanifest">
     <meta name="theme-color" content="#111111">
 
+    <!-- Kanoniczne i hreflang -->
+    <link rel="canonical" href="https://masska.org/pl/cookies.html">
+    <link rel="alternate" href="https://masska.org/pl/cookies.html" hreflang="pl">
+    <link rel="alternate" href="https://masska.org/en/cookies.html" hreflang="en">
+    <link rel="alternate" href="https://masska.org/cookies.html" hreflang="x-default">
+
+    <!-- Open Graph & Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MASSKA Festival">
+    <meta property="og:title" content="Polityka cookies · MASSKA Festival">
+    <meta property="og:description" content="Polityka plików cookies i localStorage strony MASSKA Festival.">
+    <meta property="og:url" content="https://masska.org/pl/cookies.html">
+    <meta property="og:image" content="https://masska.org/assets/img/head.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Polityka cookies · MASSKA Festival">
+    <meta name="twitter:description" content="Polityka plików cookies i localStorage strony MASSKA Festival.">
+    <meta name="twitter:image" content="https://masska.org/assets/img/head.webp">
 
 </head>
 
@@ -116,7 +133,18 @@
                 <p><strong>Google Analytics NIE zbiera</strong> danych osobowych, takich jak imię, nazwisko, email czy
                     adres.</p>
 
-                <h3>2.3. Wideo YouTube (media cookies)</h3>
+                <h3>2.3. Google Maps (media cookies)</h3>
+                <p>Osadzone mapy Google Maps mogą ustawiać własne pliki cookies oraz przetwarzać dane urządzenia:</p>
+                <ul>
+                    <li><strong>NID</strong> – identyfikator preferencji Google (do 6 miesięcy)</li>
+                    <li><strong>1P_JAR, CONSENT</strong> – zgody i ustawienia prywatności Google</li>
+                    <li><strong>Dane lokalizacji</strong> – współrzędne geograficzne wyświetlanej lokalizacji</li>
+                    <li><strong>Dane techniczne</strong> – typ przeglądarki, rozdzielczość ekranu</li>
+                </ul>
+                <p>Więcej informacji: <a href="https://policies.google.com/privacy" target="_blank"
+                        rel="noopener">Polityka prywatności Google</a></p>
+
+                <h3>2.4. Wideo YouTube (media cookies)</h3>
                 <p>Materiały wideo mogą być osadzane z YouTube w trybie <strong>privacy-enhanced</strong>
                     (<code>youtube-nocookie.com</code>). Po kliknięciu w przycisk odblokowania wideo lub wyrażeniu
                     zgody na media YouTube może ustawić własne pliki cookies oraz przetwarzać dane urządzenia.</p>
@@ -149,6 +177,15 @@
                     <li>Optymalizacja dostępności i użyteczności witryny</li>
                     <li>Tworzenie statystyk oglądalności festiwalu</li>
                 </ul>
+
+                <h3>3.3. Google Maps</h3>
+                <ul>
+                    <li>Wyświetlanie interaktywnej mapy z lokalizacją festiwalu (Mamuszki 14, Sopot)</li>
+                    <li>Umożliwienie łatwego znalezienia drogi na miejsce wydarzenia</li>
+                    <li>Zapewnienie precyzyjnych informacji geograficznych</li>
+                </ul>
+
+                <h3>3.4. YouTube</h3>
 
                 <h2>4. Podstawa prawna</h2>
                 <p>Przetwarzanie danych odbywa się na podstawie:</p>
@@ -250,12 +287,14 @@
 
                 <hr style="margin: 3rem 0; border: 0; border-top: 1px solid var(--color-border);">
 
-                <h2>13. Zgody i zewnętrzne media (YouTube)</h2>
+                <h2>13. Zgody i zewnętrzne media (YouTube, Google Maps)</h2>
                 <p>Filmy YouTube są <strong>domyślnie zablokowane</strong>. Możesz:</p>
                 <ul>
-                    <li>Jednorazowo załadować wideo przyciskiem „Załaduj wideo” w miejscu osadzenia</li>
-                    <li>Wyrazić trwałą zgodę na media przyciskiem „Zawsze pozwalaj na media”</li>
+                    <li>Jednorazowo załadować wideo przyciskiem „Załaduj wideo" w miejscu osadzenia</li>
+                    <li>Wyrazić trwałą zgodę na media przyciskiem „Zawsze pozwalaj na media"</li>
                 </ul>
+                <p><strong>Mapy Google Maps są ładowane automatycznie</strong> i wykorzystują cookies opisane w sekcji
+                    2.3.</p>
                 <p>Aby zresetować zgodę na media i ponownie zobaczyć blokadę:</p>
                 <button class="button secondary" type="button" data-action="reset-media-consent">Resetuj zgodę na
                     media</button>
@@ -265,7 +304,8 @@
                     <img src="../assets/img/cookie.webp" alt="" width="48" height="48" loading="lazy"
                         decoding="async" />
                     <div class="cookie-notice__content">
-                        <p>Używamy analityki (Google Analytics) i zewnętrznych mediów (YouTube). Dostosuj preferencje
+                        <p>Używamy analityki (Google Analytics), map (Google Maps) i zewnętrznych mediów (YouTube).
+                            Dostosuj preferencje
                             poniżej.</p>
                         <details class="cookie-notice__settings">
                             <summary>Ustawienia</summary>
@@ -293,13 +333,14 @@
                 <div class="info-panel" style="margin-top: 2rem;">
                     <p><strong>W skrócie:</strong></p>
                     <ul>
-                        <li>Używamy localStorage (preferencje) i Google Analytics (statystyki)</li>
+                        <li>Używamy localStorage (preferencje), Google Analytics (statystyki) i Google Maps (mapy)</li>
                         <li>LocalStorage: zapisujemy tylko Twoje ustawienia wyświetlania (kontrast, czcionka, język)
                         </li>
                         <li>Google Analytics: anonimowe statystyki odwiedzin (bez danych osobowych)</li>
+                        <li>Google Maps: interaktywne mapy z lokalizacją festiwalu</li>
                         <li>Możesz wyłączyć Google Analytics dodatkiem do przeglądarki</li>
                         <li>Dane localStorage są tylko u Ciebie w przeglądarce</li>
-                        <li>Akceptując banner, zgadzasz się na oba mechanizmy</li>
+                        <li>Akceptując banner, zgadzasz się na wszystkie mechanizmy</li>
                     </ul>
                 </div>
             </div>

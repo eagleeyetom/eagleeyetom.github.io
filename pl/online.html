@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Oglądaj występy festiwalu MASSKA online i poznaj integracyjne zespoły teatralne.">
+    <meta name="description" content="Oglądaj występy festiwalu MASSKA online. Transmisje spektakli teatralnych.">
     <title>MASSKA · Scena Online</title>
     <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -19,6 +19,37 @@
     <link rel="manifest" href="../assets/icons/site.webmanifest">
     <meta name="theme-color" content="#111111">
 
+    <!-- Kanoniczne i hreflang -->
+    <link rel="canonical" href="https://masska.org/pl/online.html">
+    <link rel="alternate" href="https://masska.org/pl/online.html" hreflang="pl">
+    <link rel="alternate" href="https://masska.org/en/online.html" hreflang="en">
+    <link rel="alternate" href="https://masska.org/online.html" hreflang="x-default">
+
+    <!-- Open Graph & Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MASSKA Festival">
+    <meta property="og:title" content="MASSKA · Scena Online">
+    <meta property="og:description"
+        content="Oglądaj występy festiwalu MASSKA online. Transmisje spektakli teatralnych.">
+    <meta property="og:url" content="https://masska.org/pl/online.html">
+    <meta property="og:image" content="https://masska.org/assets/img/head.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MASSKA · Scena Online">
+    <meta name="twitter:description"
+        content="Oglądaj występy festiwalu MASSKA online. Transmisje spektakli teatralnych.">
+    <meta name="twitter:image" content="https://masska.org/assets/img/head.webp">
+
+    <script>
+        // Przekierowanie do 21 listopada 2025
+        (function () {
+            var redirectUntil = new Date('2025-11-21T00:00:00+01:00');
+            var now = new Date();
+
+            if (now < redirectUntil) {
+                window.location.replace('index.html');
+            }
+        })();
+    </script>
 
 </head>
 
@@ -82,7 +113,7 @@
             <div class="hero-text">
                 <p class="eyebrow">Dostępne od 21 listopada 2025 o północy</p>
                 <h1>MASSKA Online — Transmisje Spektakli</h1>
-                <p>Oglądaj wybrane spektakle zespołów integracyjnych online. Każdy materiał zawiera napisy, opis i
+                <p>Oglądaj wybrane spektakle polskich zespołów teatralnych online. Każdy materiał zawiera napisy, opis i
                     materiały do
                     pobrania. Transmisje będą dostępne od 21 listopada 2025 o północy, po zakończeniu festiwalu
                     stacjonarnego.</p>
@@ -93,7 +124,7 @@
             </div>
             <figure class="hero-media" aria-hidden="true">
                 <img src="https://via.placeholder.com/1200x720?text=Scena+Online" alt="" role="presentation">
-                <figcaption>Integracyjne spektakle dostępne całodobowo.</figcaption>
+                <figcaption>Spektakle dostępne całodobowo.</figcaption>
             </figure>
         </section>
 
@@ -103,15 +134,15 @@
                 <div class="theater-grid">
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=Azdaki+Baghi"
-                                alt="Kadr z przedstawienia Azdaki Baghi">
-                            <figcaption>Azdaki Baghi · Gruzja</figcaption>
+                            <img src="https://via.placeholder.com/640x420?text=Teatr+Polski"
+                                alt="Kadr z przedstawienia">
+                            <figcaption>Teatr · Polska</figcaption>
                         </figure>
                         <div class="card-body">
-                            <h3>Teatr Integracyjny „Azdaki Baghi"</h3>
+                            <h3>Teatr [Nazwa]</h3>
                             <ul class="meta-list">
-                                <li>Spektakl: Lekcja pozalekcyjna</li>
-                                <li>Czas trwania: 112 minut</li>
+                                <li>Spektakl: [Tytuł]</li>
+                                <li>Czas trwania: -- minut</li>
                                 <li>Napisy: polskie / angielskie</li>
                             </ul>
                             <a class="button secondary"
@@ -121,45 +152,15 @@
                     </article>
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=Teatr+Baltazar"
-                                alt="Kadr z teatru Baltazar">
-                            <figcaption>Teatr Baltazar · Węgry</figcaption>
+                            <img src="https://via.placeholder.com/640x420?text=Teatr+Polski"
+                                alt="Kadr z przedstawienia">
+                            <figcaption>Teatr · Polska</figcaption>
                         </figure>
                         <div class="card-body">
-                            <h3>Teatr Baltazar</h3>
+                            <h3>Teatr [Nazwa]</h3>
                             <ul class="meta-list">
-                                <li>Spektakl: Jasne kroki</li>
-                                <li>Czas trwania: 64 minuty</li>
-                                <li>Napisy: angielskie / węgierskie</li>
-                            </ul>
-                            <a class="button secondary" href="#">Wkrótce</a>
-                        </div>
-                    </article>
-                    <article class="theater-card">
-                        <figure>
-                            <img src="https://via.placeholder.com/640x420?text=Parostki" alt="Kadr z teatru Parostki">
-                            <figcaption>Parostki · Ukraina</figcaption>
-                        </figure>
-                        <div class="card-body">
-                            <h3>Parostki Theatre Studio</h3>
-                            <ul class="meta-list">
-                                <li>Spektakl: Złote Pole</li>
-                                <li>Czas trwania: 58 minut</li>
-                                <li>Napisy: polskie / ukraińskie</li>
-                            </ul>
-                            <a class="button secondary" href="#">Wkrótce</a>
-                        </div>
-                    </article>
-                    <article class="theater-card">
-                        <figure>
-                            <img src="https://via.placeholder.com/640x420?text=Krug+II" alt="Kadr z teatru Krug II">
-                            <figcaption>Krug II · Polska</figcaption>
-                        </figure>
-                        <div class="card-body">
-                            <h3>Specjalny Teatr Krug II</h3>
-                            <ul class="meta-list">
-                                <li>Spektakl: Wspólne historie</li>
-                                <li>Czas trwania: 70 minut</li>
+                                <li>Spektakl: [Tytuł]</li>
+                                <li>Czas trwania: -- minut</li>
                                 <li>Napisy: polskie / angielskie</li>
                             </ul>
                             <a class="button secondary" href="#">Wkrótce</a>
@@ -167,31 +168,64 @@
                     </article>
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=MTT" alt="Kadr z teatru MTT">
-                            <figcaption>MTT · Litwa</figcaption>
+                            <img src="https://via.placeholder.com/640x420?text=Teatr+Polski"
+                                alt="Kadr z przedstawienia">
+                            <figcaption>Teatr · Polska</figcaption>
                         </figure>
                         <div class="card-body">
-                            <h3>MTT Musical Theatre Troupe</h3>
+                            <h3>Teatr [Nazwa]</h3>
                             <ul class="meta-list">
-                                <li>Spektakl: Droga do światła</li>
-                                <li>Czas trwania: 74 minuty</li>
-                                <li>Napisy: litewskie / angielskie</li>
+                                <li>Spektakl: [Tytuł]</li>
+                                <li>Czas trwania: -- minut</li>
+                                <li>Napisy: polskie / angielskie</li>
                             </ul>
                             <a class="button secondary" href="#">Wkrótce</a>
                         </div>
                     </article>
                     <article class="theater-card">
                         <figure>
-                            <img src="https://via.placeholder.com/640x420?text=RambaZamba"
-                                alt="Kadr z teatru RambaZamba">
-                            <figcaption>Teatr RambaZamba · Niemcy</figcaption>
+                            <img src="https://via.placeholder.com/640x420?text=Teatr+Polski"
+                                alt="Kadr z przedstawienia">
+                            <figcaption>Teatr · Polska</figcaption>
                         </figure>
                         <div class="card-body">
-                            <h3>Teatr RambaZamba</h3>
+                            <h3>Teatr [Nazwa]</h3>
                             <ul class="meta-list">
-                                <li>Spektakl: Echo w ruchu</li>
-                                <li>Czas trwania: 62 minuty</li>
-                                <li>Napisy: niemieckie / angielskie</li>
+                                <li>Spektakl: [Tytuł]</li>
+                                <li>Czas trwania: -- minut</li>
+                                <li>Napisy: polskie / angielskie</li>
+                            </ul>
+                            <a class="button secondary" href="#">Wkrótce</a>
+                        </div>
+                    </article>
+                    <article class="theater-card">
+                        <figure>
+                            <img src="https://via.placeholder.com/640x420?text=Teatr+Polski"
+                                alt="Kadr z przedstawienia">
+                            <figcaption>Teatr · Polska</figcaption>
+                        </figure>
+                        <div class="card-body">
+                            <h3>Teatr [Nazwa]</h3>
+                            <ul class="meta-list">
+                                <li>Spektakl: [Tytuł]</li>
+                                <li>Czas trwania: -- minut</li>
+                                <li>Napisy: polskie / angielskie</li>
+                            </ul>
+                            <a class="button secondary" href="#">Wkrótce</a>
+                        </div>
+                    </article>
+                    <article class="theater-card">
+                        <figure>
+                            <img src="https://via.placeholder.com/640x420?text=Teatr+Polski"
+                                alt="Kadr z przedstawienia">
+                            <figcaption>Teatr · Polska</figcaption>
+                        </figure>
+                        <div class="card-body">
+                            <h3>Teatr [Nazwa]</h3>
+                            <ul class="meta-list">
+                                <li>Spektakl: [Tytuł]</li>
+                                <li>Czas trwania: -- minut</li>
+                                <li>Napisy: polskie / angielskie</li>
                             </ul>
                             <a class="button secondary" href="#">Wkrótce</a>
                         </div>
