@@ -40,6 +40,15 @@
     <script>
         // Redirect until November 21, 2025
         (function () {
+            // Don't redirect on localhost
+            var isLocalhost = window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1' ||
+                window.location.hostname === '';
+
+            if (isLocalhost) {
+                return;
+            }
+
             var redirectUntil = new Date('2025-11-21T00:00:00+01:00');
             var now = new Date();
 
@@ -299,29 +308,38 @@
         <div class="footer-inner">
             <div class="footer-columns">
                 <section>
-                    <h2>Festival home</h2>
-                    <p><a href="index.html">Return to the modernized festival homepage</a></p>
-                </section>
-                <section>
                     <h2>Contact</h2>
-                    <p><a href="contact.html">Contact form</a></p>
-                    <p><a href="mailto:p.lewandowska0209@gmail.com">p.lewandowska0209@gmail.com</a></p>
+                    <p><a href="contact.html">Contact form →</a></p>
                 </section>
                 <section>
-                    <h2>Additional resources</h2>
-                    <p><a href="cookies.html">Cookie policy</a></p>
-                    <p><a href="https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform"
-                            target="_blank" rel="noopener noreferrer">Online version submission</a></p>
+                    <h2>Visit in person</h2>
+                    <p>Mamuszki 14, Sopot</p>
+                    <div style="margin-top: 1rem;">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2321.7941234567!2d18.5659!3d54.4417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0b3e0e0e0e0e%3A0x0!2sMamuszki%2014%2C%20Sopot!5e0!3m2!1sen!2spl!4v1234567890"
+                            width="100%" height="200" style="border:0; border-radius: 8px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </section>
+                <section>
+                    <h2>More information</h2>
+                    <ul class="contact-list">
+                        <li><a href="online.html" aria-current="page">Streaming guide</a></li>
+                        <li><a href="https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform"
+                                target="_blank" rel="noopener noreferrer">Online version submission</a></li>
+                        <li><a href="cookies.html">Cookie policy</a></li>
+                    </ul>
                 </section>
             </div>
-            <p class="footer-note">© 2025 MASSKA International Theatre Review · Streaming programme.</p>
+            <p class="footer-note">© 2025 MASSKA International Theatre Review</p>
         </div>
     </footer>
 
     <div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden>
         <img src="../assets/img/cookie.webp" alt="" width="64" height="64" loading="lazy" decoding="async" />
         <div class="cookie-notice__content">
-            <p>We use analytics (Google Analytics) and external media (YouTube). See <a href="cookies.html">cookie
+            <p>We use analytics (Google Analytics) and external media (YouTube). See our <a href="cookies.html">cookie
                     policy</a>.</p>
             <details class="cookie-notice__settings">
                 <summary>Settings</summary>
@@ -331,13 +349,13 @@
                     <label><input type="checkbox" data-consent-toggle="media"> Media (YouTube embeds)</label>
                 </fieldset>
                 <div class="cookie-notice__actions-row">
-                    <button type="button" class="button" data-consent-save>Save choices</button>
+                    <button type="button" class="button" data-consent-save>Save choice</button>
                 </div>
             </details>
         </div>
         <div class="cookie-notice__actions">
             <button type="button" class="cookie-notice__button" data-consent-accept-all>Accept all</button>
-            <button type="button" class="cookie-notice__button ghost" data-consent-reject>Reject non‑essential</button>
+            <button type="button" class="cookie-notice__button ghost" data-consent-reject>Reject unnecessary</button>
         </div>
     </div>
 

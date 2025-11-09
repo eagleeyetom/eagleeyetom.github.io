@@ -745,11 +745,38 @@ blockquote {
 .footer-columns {
     display: grid;
     gap: var(--spacing-lg);
+    align-items: start;
 }
 
 .footer-columns section {
     display: grid;
     gap: 0.5rem;
+}
+
+.footer-columns section h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0;
+}
+
+.footer-columns section p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.footer-columns section p a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.footer-columns section p a:hover,
+.footer-columns section p a:focus-visible {
+    color: var(--color-accent-strong);
+    text-decoration: underline;
 }
 
 .partners {
@@ -906,6 +933,8 @@ blockquote {
     font-size: 0.85rem;
     color: var(--color-muted);
     text-align: center;
+    margin: 0;
+    padding-top: 0.5rem;
 }
 
 .timeline {
@@ -1043,12 +1072,22 @@ caption {
     gap: 0.5rem;
 }
 
-.contact-list a {
-    color: var(--color-text);
+.contact-list li {
+    line-height: 1.6;
 }
 
-.contact-list a:hover {
+.contact-list a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color var(--transition-base);
+    display: inline-block;
+}
+
+.contact-list a:hover,
+.contact-list a:focus-visible {
     color: var(--color-accent-strong);
+    text-decoration: underline;
 }
 
 .badges-row {

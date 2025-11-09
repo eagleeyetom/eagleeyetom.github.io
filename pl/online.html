@@ -42,6 +42,15 @@
     <script>
         // Przekierowanie do 21 listopada 2025
         (function () {
+            // Nie przekierowuj na localhost
+            var isLocalhost = window.location.hostname === 'localhost' ||
+                window.location.hostname === '127.0.0.1' ||
+                window.location.hostname === '';
+
+            if (isLocalhost) {
+                return;
+            }
+
             var redirectUntil = new Date('2025-11-21T00:00:00+01:00');
             var now = new Date();
 
@@ -315,22 +324,31 @@
         <div class="footer-inner">
             <div class="footer-columns">
                 <section>
-                    <h2>Strona główna</h2>
-                    <p><a href="index.html">Wróć do odświeżonej strony festiwalu</a></p>
-                </section>
-                <section>
                     <h2>Kontakt</h2>
-                    <p><a href="kontakt.html">Formularz kontaktowy</a></p>
-                    <p><a href="mailto:p.lewandowska0209@gmail.com">p.lewandowska0209@gmail.com</a></p>
+                    <p><a href="kontakt.html">Formularz kontaktowy →</a></p>
                 </section>
                 <section>
-                    <h2>Materiały dodatkowe</h2>
-                    <p><a href="cookies.html">Polityka cookies</a></p>
-                    <p><a href="https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform"
-                            target="_blank" rel="noopener noreferrer">Zgłoszenie do wersji online</a></p>
+                    <h2>Odwiedź na żywo</h2>
+                    <p>Mamuszki 14, Sopot</p>
+                    <div style="margin-top: 1rem;">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2321.7941234567!2d18.5659!3d54.4417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0b3e0e0e0e0e%3A0x0!2sMamuszki%2014%2C%20Sopot!5e0!3m2!1spl!2spl!4v1234567890"
+                            width="100%" height="200" style="border:0; border-radius: 8px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </section>
+                <section>
+                    <h2>Więcej informacji</h2>
+                    <ul class="contact-list">
+                        <li><a href="online.html" aria-current="page">Przewodnik po transmisji</a></li>
+                        <li><a href="https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform"
+                                target="_blank" rel="noopener noreferrer">Zgłoszenie do wersji online</a></li>
+                        <li><a href="cookies.html">Polityka cookies</a></li>
+                    </ul>
                 </section>
             </div>
-            <p class="footer-note">© 2025 MASSKA Międzynarodowy Przegląd Teatralny · Program online.</p>
+            <p class="footer-note">© 2025 MASSKA Międzynarodowy Przegląd Teatralny</p>
         </div>
     </footer>
 
