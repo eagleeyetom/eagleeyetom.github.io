@@ -1140,9 +1140,8 @@ caption {
         "icon content"
         "icon actions";
     gap: var(--spacing-md);
-    align-items: start;
+    align-items: center;
     transition: transform var(--transition-base), opacity var(--transition-base);
-    align-items: center
 }
 
 .cookie-notice[hidden] {

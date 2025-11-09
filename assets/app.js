@@ -6,6 +6,7 @@ const FONT_MAX = 1.3;
 const FONT_STEP = 0.1;
 const DEFAULT_FONT_SIZE = 16;
 
+// Utility: Check localStorage availability
 function canUseLocalStorage() {
   try {
     const key = "__masska_test__";
@@ -23,16 +24,13 @@ function canUseLocalStorage() {
 
 const storageAvailable = canUseLocalStorage();
 
+// Utility: Load settings from localStorage
 function loadSettings(defaults) {
-  if (!storageAvailable) {
-    return { ...defaults };
-  }
+  if (!storageAvailable) return { ...defaults };
 
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) {
-      return { ...defaults };
-    }
+    if (!raw) return { ...defaults };
     const parsed = JSON.parse(raw);
     return { ...defaults, ...parsed };
   } catch (error) {
@@ -41,10 +39,9 @@ function loadSettings(defaults) {
   }
 }
 
+// Utility: Save settings to localStorage
 function saveSettings(settings) {
-  if (!storageAvailable) {
-    return;
-  }
+  if (!storageAvailable) return;
 
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
@@ -53,16 +50,19 @@ function saveSettings(settings) {
   }
 }
 
+// Utility: Clamp number between min and max
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
+// Utility: Update font size indicator
 function updateFontIndicator(element, scale) {
   if (element) {
     element.textContent = `${Math.round(scale * 100)}%`;
   }
 }
 
+// Utility: Update contrast button label
 function updateContrastLabel(element, isHighContrast) {
   if (element) {
     element.setAttribute(
@@ -101,9 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const cookieNotice = document.querySelector("[data-cookie-notice]");
   const acceptCookiesButton = document.querySelector("[data-cookie-accept]");
 
-  // --- Consent management (media: YouTube) ---
+  // Consent management
   function loadConsent() {
     if (!storageAvailable) return { media: false, analytics: false };
+
     try {
       const raw = window.localStorage.getItem(CONSENT_KEY);
       if (!raw) return { media: false, analytics: false };
@@ -119,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function saveConsent(consent) {
     if (!storageAvailable) return;
+
     try {
       window.localStorage.setItem(
         CONSENT_KEY,
@@ -128,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       );
     } catch (e) {
-      // ignore
+      // Silently fail
     }
   }
 
@@ -396,84 +398,65 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// --- Block "Watch Online" link until November 21, 2025 00:00 CET ---
+// Block "Watch Online" link until November 21, 2025
 (function blockOnlineLinks() {
-  const unlockDate = new Date("2025-11-21T00:00:00+01:00"); // CET timezone
-  const now = new Date();
+  const unlockDate = new Date("2025-11-21T00:00:00+01:00");
+  if (new Date() >= unlockDate) return;
 
-  if (now < unlockDate) {
-    // Find all links to online.html
-    const onlineLinks = document.querySelectorAll('a[href*="online.html"]');
+  const lang = document.documentElement.lang || "pl";
+  const message =
+    lang === "en"
+      ? "MASSKA Online will be available from November 21, 2025 at midnight."
+      : "MASSKA Online będzie dostępna od 21 listopada 2025 o północy.";
+  const titleText =
+    lang === "en"
+      ? "Available from November 21, 2025"
+      : "Dostępne od 21 listopada 2025";
 
-    onlineLinks.forEach((link) => {
-      // Prevent default click behavior
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        // Show message
-        const lang = document.documentElement.lang || "pl";
-        const message =
-          lang === "en"
-            ? "MASSKA Online will be available from November 21, 2025 at midnight."
-            : "MASSKA Online będzie dostępna od 21 listopada 2025 o północy.";
-
-        alert(message);
-      });
-
-      // Add visual indication
-      link.style.opacity = "0.6";
-      link.style.cursor = "not-allowed";
-      link.setAttribute("aria-disabled", "true");
-
-      // Add title/tooltip
-      const lang = document.documentElement.lang || "pl";
-      const titleText =
-        lang === "en"
-          ? "Available from November 21, 2025"
-          : "Dostępne od 21 listopada 2025";
-      link.setAttribute("title", titleText);
+  document.querySelectorAll('a[href*="online.html"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert(message);
     });
-  }
+    link.style.opacity = "0.6";
+    link.style.cursor = "not-allowed";
+    link.setAttribute("aria-disabled", "true");
+    link.setAttribute("title", titleText);
+  });
 })();
 
 // Mobile hamburger menu
 (function initMobileMenu() {
   const menuToggle = document.querySelector(".mobile-menu-toggle");
   const navMenu = document.querySelector(".nav-menu");
+  if (!menuToggle || !navMenu) return;
 
-  if (!menuToggle || !navMenu) {
-    return;
-  }
+  const closeMenu = () => {
+    menuToggle.setAttribute("aria-expanded", "false");
+    navMenu.classList.remove("is-open");
+  };
 
-  menuToggle.addEventListener("click", () => {
+  const toggleMenu = () => {
     const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-
     menuToggle.setAttribute("aria-expanded", !isExpanded);
     navMenu.classList.toggle("is-open");
+  };
+
+  menuToggle.addEventListener("click", toggleMenu);
+
+  navMenu.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
 
-  // Close menu when clicking a link
-  const navLinks = navMenu.querySelectorAll(".nav-link");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      menuToggle.setAttribute("aria-expanded", "false");
-      navMenu.classList.remove("is-open");
-    });
-  });
-
-  // Close menu when clicking outside
   document.addEventListener("click", (e) => {
     if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-      menuToggle.setAttribute("aria-expanded", "false");
-      navMenu.classList.remove("is-open");
+      closeMenu();
     }
   });
 
-  // Close menu on escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && navMenu.classList.contains("is-open")) {
-      menuToggle.setAttribute("aria-expanded", "false");
-      navMenu.classList.remove("is-open");
+      closeMenu();
       menuToggle.focus();
     }
   });
