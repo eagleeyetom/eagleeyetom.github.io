@@ -792,13 +792,12 @@ blockquote {
 
 .partners {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 0;
     align-items: center;
     justify-content: center;
     background: #ffffff;
     padding: 0;
-    overflow-x: auto;
 }
 
 .partners figure {
@@ -828,7 +827,7 @@ blockquote {
 
 .partners figure img {
     width: auto;
-    height: 100px;
+    height: 90px;
     display: block;
     border-radius: 0;
     object-fit: contain;
