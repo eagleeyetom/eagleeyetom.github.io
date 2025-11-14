@@ -713,6 +713,44 @@ body.high-contrast .page-section.alt .info-panel {
     box-shadow: var(--shadow-sm);
 }
 
+.external-media {
+    display: grid;
+    gap: var(--spacing-md);
+    width: 100%;
+    max-width: 100%;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+.external-media iframe,
+.external-media__placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: var(--radius-md);
+    display: block;
+}
+
+.external-media iframe {
+    height: auto;
+}
+
+.external-media__placeholder {
+    background: linear-gradient(135deg, rgba(12, 18, 34, 0.8), rgba(12, 18, 34, 0.4));
+    position: relative;
+    overflow: hidden;
+}
+
+.external-media__placeholder::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon fill='rgba(255,255,255,0.45)' points='40,30 70,50 40,70'/%3E%3C/svg%3E") center / 60px 60px no-repeat;
+    opacity: 0.9;
+}
+
 /* Carousel theatre gallery (viewport + track + slides) */
 .theatre-gallery {
     position: relative;
