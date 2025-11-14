@@ -161,11 +161,68 @@
         <section class="page-section" aria-labelledby="gallery-title">
             <div class="section-inner">
                 <h2 id="gallery-title">Gallery</h2>
-                <div class="media-gallery">
-                    <img src="https://via.placeholder.com/640x420?text=Scene+1" alt="[Describe image #1]">
-                    <img src="https://via.placeholder.com/640x420?text=Scene+2" alt="[Describe image #2]">
-                    <img src="https://via.placeholder.com/640x420?text=Scene+3" alt="[Describe image #3]">
+                <div class="theatre-gallery" aria-label="Ensemble image carousel" role="region" data-gallery>
+                    <div class="theatre-gallery__track">
+                        <figure>
+                            <img src="https://picsum.photos/id/1015/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Expansive movement phrase in soft light" />
+                            <figcaption>Movement as primary dramaturgy</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://picsum.photos/id/1035/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Group devising through layered improvisation" />
+                            <figcaption>Collaborative improvisation session</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://picsum.photos/id/1050/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Minimal stage with sculpted LED light" />
+                            <figcaption>Light sculpting emotional space</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://picsum.photos/id/1069/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Close view of a hand emphasizing nonverbal detail" />
+                            <figcaption>Nonverbal micro‑gesture study</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://picsum.photos/id/1027/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Audience response to interactive sequence" />
+                            <figcaption>Audience interaction layer</figcaption>
+                        </figure>
+                    </div>
+                    <div class="theatre-gallery__controls" aria-hidden="false">
+                        <button type="button" class="gallery-btn" data-gallery-prev
+                            aria-label="Previous image">‹</button>
+                        <button type="button" class="gallery-btn" data-gallery-next aria-label="Next image">›</button>
+                    </div>
+                    <div class="theatre-gallery__dots" aria-hidden="true"></div>
                 </div>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="ensemble-info-title">
+            <div class="section-inner two-column">
+                <div>
+                    <h2 id="ensemble-info-title">About the ensemble</h2>
+                    <p><strong>Between Spaces Theatre</strong> is an interdisciplinary collective focused on sensory
+                        dramaturgy. Performances emerge from modular movement, rhythm and iterative pattern shifts that
+                        accumulate into emotional crescendos.</p>
+                    <p>At the core lies an <em>open composition</em> principle: segments evolve through daily
+                        micro‑improvs documented in performer notebooks. The group blends diverse movement backgrounds,
+                        prioritising a shared gesture vocabulary instead of traditional role hierarchies.</p>
+                    <p>Distinct traits: organic transitions between silence and polyphony of bodies, LED light mapping
+                        “emotional topographies”, and layered projections of abstract textures built with custom tools.
+                    </p>
+                </div>
+                <aside class="info-panel" aria-label="Creative practices">
+                    <h2>Creative practices</h2>
+                    <ul class="meta-list">
+                        <li><strong>Breath‑modulated movement</strong> – kinesthetic scores.</li>
+                        <li><strong>Contrast axis method</strong> – pairing opposing qualities (light / weight).</li>
+                        <li><strong>Silence lab</strong> – stimulus reduction sessions for deep focus.</li>
+                        <li><strong>Gesture notation</strong> – proprietary icon system for fast documentation.</li>
+                        <li><strong>Shared choreography workshop</strong> – iterative spatial trajectory mapping.</li>
+                    </ul>
+                </aside>
             </div>
         </section>
 

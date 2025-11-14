@@ -713,6 +713,111 @@ body.high-contrast .page-section.alt .info-panel {
     box-shadow: var(--shadow-sm);
 }
 
+/* Carousel theatre gallery (viewport + track + slides) */
+.theatre-gallery {
+    position: relative;
+    overflow: hidden;
+    padding: 0 0 1.25rem;
+}
+
+.theatre-gallery__track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(.22, .61, .36, 1);
+    will-change: transform;
+}
+
+.theatre-gallery figure {
+    flex: 0 0 100%;
+    margin: 0;
+    padding: 0 0.75rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.theatre-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    background: #000;
+}
+
+.theatre-gallery figcaption {
+    font-size: 0.75rem;
+    line-height: 1.25;
+    color: var(--color-muted);
+}
+
+.theatre-gallery__controls {
+    position: absolute;
+    inset: 0 0 auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    padding: 0.5rem;
+}
+
+.gallery-btn {
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.gallery-btn:hover, .gallery-btn:focus-visible {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+.gallery-btn:disabled {
+    opacity: .35;
+    cursor: default;
+}
+
+.theatre-gallery__dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0 0.25rem;
+}
+
+.gallery-dot {
+    background: var(--color-border);
+    border: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.gallery-dot.is-active {
+    background: var(--color-accent);
+}
+
+.gallery-dot:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
 .video-frame {
     position: relative;
     padding-top: 56.25%;

@@ -381,6 +381,81 @@ document.addEventListener("DOMContentLoaded", () => {
     loadGA();
   }
 
+  // --- Initialize galleries (carousel) ---
+  (function initGalleries() {
+    const galleries = document.querySelectorAll("[data-gallery]");
+    if (!galleries.length) return;
+    galleries.forEach((gallery) => {
+      const track = gallery.querySelector(".theatre-gallery__track");
+      if (!track) return;
+      const slides = Array.from(track.children);
+      const prevBtn = gallery.querySelector("[data-gallery-prev]");
+      const nextBtn = gallery.querySelector("[data-gallery-next]");
+      const dotsContainer = gallery.querySelector(".theatre-gallery__dots");
+      let index = 0;
+      let touchStartX = null;
+
+      function goTo(newIndex) {
+        index = Math.max(0, Math.min(slides.length - 1, newIndex));
+        track.style.transform = `translateX(-${index * 100}%)`;
+        if (prevBtn) prevBtn.disabled = index === 0;
+        if (nextBtn) nextBtn.disabled = index === slides.length - 1;
+        if (dotsContainer) {
+          dotsContainer.querySelectorAll(".gallery-dot").forEach((dot, i) => {
+            dot.classList.toggle("is-active", i === index);
+          });
+        }
+      }
+
+      // Dots
+      if (dotsContainer) {
+        slides.forEach((_, i) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "gallery-dot";
+          dot.setAttribute("aria-label", `Slide ${i + 1}`);
+          if (i === 0) dot.classList.add("is-active");
+          dot.addEventListener("click", () => goTo(i));
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      prevBtn && prevBtn.addEventListener("click", () => goTo(index - 1));
+      nextBtn && nextBtn.addEventListener("click", () => goTo(index + 1));
+
+      // Keyboard navigation
+      gallery.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          goTo(index - 1);
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          goTo(index + 1);
+        }
+      });
+
+      // Touch swipe
+      track.addEventListener(
+        "touchstart",
+        (e) => {
+          if (e.touches.length === 1) touchStartX = e.touches[0].clientX;
+        },
+        { passive: true }
+      );
+      track.addEventListener("touchend", (e) => {
+        if (touchStartX == null) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) {
+          if (dx < 0) goTo(index + 1);
+          else goTo(index - 1);
+        }
+        touchStartX = null;
+      });
+
+      goTo(0);
+    });
+  })();
+
   const storedLanguage = settings.language;
   if (
     storedLanguage &&

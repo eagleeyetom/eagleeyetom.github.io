@@ -159,11 +159,72 @@
         <section class="page-section" aria-labelledby="galeria-title">
             <div class="section-inner">
                 <h2 id="galeria-title">Galeria</h2>
-                <div class="media-gallery">
-                    <img src="https://via.placeholder.com/640x420?text=Scena+1" alt="[Opis zdjęcia nr 1]">
-                    <img src="https://via.placeholder.com/640x420?text=Scena+2" alt="[Opis zdjęcia nr 2]">
-                    <img src="https://via.placeholder.com/640x420?text=Scena+3" alt="[Opis zdjęcia nr 3]">
+                <div class="theatre-gallery" aria-label="Karuzela zdjęć zespołu" role="region" data-gallery>
+                    <div class="theatre-gallery__track">
+                        <figure>
+                            <img src="https://picsum.photos/id/1015/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Dynamiczna scena z ekspresją ruchu" />
+                            <figcaption>Ekspresja ruchu jako główny język zespołu</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://picsum.photos/id/1035/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Zespół podczas pracy nad improwizacją" />
+                            <figcaption>Praca warsztatowa i improwizacja</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://picsum.photos/id/1050/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Minimalistyczna scenografia wykorzystująca światło" />
+                            <figcaption>Światło jako element dramaturgii</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://picsum.photos/id/1069/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Detal dłoni podkreślający komunikację niewerbalną" />
+                            <figcaption>Komunikacja niewerbalna i detale gestu</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="https://picsum.photos/id/1027/800/560" width="800" height="560" loading="lazy"
+                                decoding="async" alt="Publiczność reagująca na interaktywne działania" />
+                            <figcaption>Relacja z widzem i interaktywność</figcaption>
+                        </figure>
+                    </div>
+                    <div class="theatre-gallery__controls" aria-hidden="false">
+                        <button type="button" class="gallery-btn" data-gallery-prev
+                            aria-label="Poprzednie zdjęcie">‹</button>
+                        <button type="button" class="gallery-btn" data-gallery-next
+                            aria-label="Następne zdjęcie">›</button>
+                    </div>
+                    <div class="theatre-gallery__dots" aria-hidden="true"></div>
                 </div>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="teatr-info-title">
+            <div class="section-inner two-column">
+                <div>
+                    <h2 id="teatr-info-title">O zespole</h2>
+                    <p><strong>Teatr Przestrzeni Między</strong> to interdyscyplinarny zespół koncentrujący się na
+                        dramaturgii sensorycznej. Buduje spektakle w oparciu o ruch, rytm i powtarzalne struktury, które
+                        stopniowo ewoluują w kierunku emocjonalnych kulminacji.</p>
+                    <p>W centrum pracy znajduje się zasada <em>otwartej kompozycji</em> – część scen powstaje w procesie
+                        codziennych mikro‑improwizacji dokumentowanych w notatnikach performerek. Zespół łączy osoby o
+                        zróżnicowanych doświadczeniach ruchowych, eksplorując wspólny słownik gestów zamiast klasycznych
+                        ról.</p>
+                    <p>Charakterystyczne elementy: organiczne przejścia między ciszą a wielogłosowością ciała,
+                        wykorzystanie światła LED do rysowania „map emocji” oraz warstwowe projekcje abstrakcyjnych
+                        tekstur przygotowywane autorskimi narzędziami.</p>
+                </div>
+                <aside class="info-panel" aria-label="Metody pracy zespołu">
+                    <h2>Praktyki twórcze</h2>
+                    <ul class="meta-list">
+                        <li><strong>Ruch modulowany oddechem</strong> – partytury kinestetyczne.</li>
+                        <li><strong>Metoda kontrastowych osi</strong> – zestawianie przeciwstawnych jakości (lekkość /
+                            ciężar).</li>
+                        <li><strong>Laboratorium ciszy</strong> – sesje redukcji bodźców dla pogłębienia uważności.</li>
+                        <li><strong>Notacja gestów</strong> – własny system ikon dla szybkiej dokumentacji.</li>
+                        <li><strong>Warsztat wspólnej koreografii</strong> – iteracyjne mapowanie trajektorii w
+                            przestrzeni.</li>
+                    </ul>
+                </aside>
             </div>
         </section>
 

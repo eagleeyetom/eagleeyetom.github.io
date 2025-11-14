@@ -366,6 +366,20 @@
     .partners-wide figure.partner-wide img {
         height: 100px;
     }
+
+    /* Mobile adjustments for horizontal theatre gallery */
+    .theatre-gallery {
+        gap: 1rem;
+        padding-bottom: 1.25rem;
+    }
+
+    .theatre-gallery figure {
+        width: 240px;
+    }
+
+    .theatre-gallery img {
+        box-shadow: var(--shadow-sm);
+    }
 }
 
 /* Enhanced focus styles for better mobile touch targets */
