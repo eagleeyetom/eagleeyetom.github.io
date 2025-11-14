@@ -392,14 +392,52 @@ document.addEventListener("DOMContentLoaded", () => {
       const prevBtn = gallery.querySelector("[data-gallery-prev]");
       const nextBtn = gallery.querySelector("[data-gallery-next]");
       const dotsContainer = gallery.querySelector(".theatre-gallery__dots");
+      const toggleBtn = gallery.querySelector("[data-gallery-toggle]");
       let index = 0;
       let touchStartX = null;
+      let pointerStartX = null;
+      let isPointerDown = false;
+      let autoTimer = null;
+      const AUTOPLAY_MS = 5000;
+      const COOKIE_NAME = "galleryAutoplay";
 
-      function goTo(newIndex) {
-        index = Math.max(0, Math.min(slides.length - 1, newIndex));
+      function setCookie(name, value, days = 30) {
+        try {
+          const expires = new Date(Date.now() + days * 864e5).toUTCString();
+          document.cookie =
+            name +
+            "=" +
+            encodeURIComponent(value) +
+            "; expires=" +
+            expires +
+            "; path=/";
+        } catch (_) {}
+      }
+
+      function getCookie(name) {
+        try {
+          return document.cookie
+            .split("; ")
+            .find((row) => row.startsWith(name + "="))
+            ?.split("=")[1];
+        } catch (_) {
+          return undefined;
+        }
+      }
+
+      let autoplayEnabled = getCookie(COOKIE_NAME) !== "off"; // 'off' disables autoplay
+
+      function goTo(newIndex, { loop = true } = {}) {
+        if (!slides.length) return;
+        const length = slides.length;
+        if (loop) {
+          index = ((newIndex % length) + length) % length;
+        } else {
+          index = Math.max(0, Math.min(length - 1, newIndex));
+        }
         track.style.transform = `translateX(-${index * 100}%)`;
-        if (prevBtn) prevBtn.disabled = index === 0;
-        if (nextBtn) nextBtn.disabled = index === slides.length - 1;
+        if (prevBtn) prevBtn.disabled = !loop && index === 0;
+        if (nextBtn) nextBtn.disabled = !loop && index === slides.length - 1;
         if (dotsContainer) {
           dotsContainer.querySelectorAll(".gallery-dot").forEach((dot, i) => {
             dot.classList.toggle("is-active", i === index);
@@ -407,30 +445,82 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Dots
+      function stopAuto() {
+        if (autoTimer) {
+          clearInterval(autoTimer);
+          autoTimer = null;
+        }
+      }
+
+      function startAuto() {
+        if (!autoplayEnabled || slides.length < 2) return;
+        stopAuto();
+        autoTimer = setInterval(() => {
+          goTo(index + 1, { loop: true });
+        }, AUTOPLAY_MS);
+      }
+
+      function userAdvance(step) {
+        goTo(index + step, { loop: true });
+        startAuto();
+      }
+
+      function updateToggle() {
+        if (!toggleBtn) return;
+        const iconPause = toggleBtn.dataset.iconPause || "❚❚";
+        const iconPlay = toggleBtn.dataset.iconPlay || "▶";
+        const labelPause = toggleBtn.dataset.labelPause || "Pause autoplay";
+        const labelPlay = toggleBtn.dataset.labelPlay || "Play autoplay";
+        if (autoplayEnabled) {
+          toggleBtn.textContent = iconPause;
+          toggleBtn.setAttribute("aria-label", labelPause);
+          toggleBtn.setAttribute("aria-pressed", "false");
+        } else {
+          toggleBtn.textContent = iconPlay;
+          toggleBtn.setAttribute("aria-label", labelPlay);
+          toggleBtn.setAttribute("aria-pressed", "true");
+        }
+      }
+
+      // Build dots
       if (dotsContainer) {
+        dotsContainer.innerHTML = "";
         slides.forEach((_, i) => {
           const dot = document.createElement("button");
           dot.type = "button";
           dot.className = "gallery-dot";
           dot.setAttribute("aria-label", `Slide ${i + 1}`);
           if (i === 0) dot.classList.add("is-active");
-          dot.addEventListener("click", () => goTo(i));
+          dot.addEventListener("click", () => {
+            goTo(i, { loop: true });
+            startAuto();
+          });
           dotsContainer.appendChild(dot);
         });
       }
 
-      prevBtn && prevBtn.addEventListener("click", () => goTo(index - 1));
-      nextBtn && nextBtn.addEventListener("click", () => goTo(index + 1));
+      // Buttons
+      if (prevBtn) prevBtn.addEventListener("click", () => userAdvance(-1));
+      if (nextBtn) nextBtn.addEventListener("click", () => userAdvance(1));
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          autoplayEnabled = !autoplayEnabled;
+          if (autoplayEnabled) startAuto();
+          else stopAuto();
+          setCookie(COOKIE_NAME, autoplayEnabled ? "on" : "off");
+          updateToggle();
+        });
+        updateToggle();
+      }
 
-      // Keyboard navigation
+      // Keyboard
       gallery.addEventListener("keydown", (e) => {
         if (e.key === "ArrowLeft") {
           e.preventDefault();
-          goTo(index - 1);
+          userAdvance(-1);
         } else if (e.key === "ArrowRight") {
           e.preventDefault();
-          goTo(index + 1);
+          userAdvance(1);
         }
       });
 
@@ -438,21 +528,53 @@ document.addEventListener("DOMContentLoaded", () => {
       track.addEventListener(
         "touchstart",
         (e) => {
-          if (e.touches.length === 1) touchStartX = e.touches[0].clientX;
+          if (e.touches.length === 1) {
+            touchStartX = e.touches[0].clientX;
+            stopAuto();
+          }
         },
         { passive: true }
       );
       track.addEventListener("touchend", (e) => {
         if (touchStartX == null) return;
         const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 50) {
-          if (dx < 0) goTo(index + 1);
-          else goTo(index - 1);
-        }
+        if (Math.abs(dx) > 50) userAdvance(dx < 0 ? 1 : -1);
         touchStartX = null;
       });
 
+      // Pointer (mouse) drag
+      track.addEventListener("pointerdown", (e) => {
+        if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
+        if (e.button !== 0) return;
+        isPointerDown = true;
+        pointerStartX = e.clientX;
+        stopAuto();
+        try {
+          track.setPointerCapture(e.pointerId);
+        } catch (_) {}
+      });
+      track.addEventListener("pointerup", (e) => {
+        if (!isPointerDown) return;
+        const dx = e.clientX - pointerStartX;
+        if (Math.abs(dx) > 50) userAdvance(dx < 0 ? 1 : -1);
+        else startAuto();
+        isPointerDown = false;
+        pointerStartX = null;
+        try {
+          track.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+      });
+      track.addEventListener("pointercancel", () => {
+        isPointerDown = false;
+        pointerStartX = null;
+        startAuto();
+      });
+
+      gallery.addEventListener("mouseenter", stopAuto);
+      gallery.addEventListener("mouseleave", startAuto);
+
       goTo(0);
+      startAuto();
     });
   })();
 
