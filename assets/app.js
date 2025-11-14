@@ -395,6 +395,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const toggleBtn = gallery.querySelector("[data-gallery-toggle]");
       let index = 0;
       let touchStartX = null;
+      let touchStartY = null;
+      let touchDX = 0;
+      let touchAxisLock = null; // 'x' | 'y' | null
+      const TOUCH_THRESHOLD = 30; // niższy próg dla większej czułości
+      const TOUCH_SLOP = 8; // martwa strefa zanim zablokujemy oś
       let pointerStartX = null;
       let isPointerDown = false;
       let autoTimer = null;
@@ -524,22 +529,86 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // Touch swipe
+      // Touch swipe – płynne przeciąganie palcem
       track.addEventListener(
         "touchstart",
         (e) => {
           if (e.touches.length === 1) {
-            touchStartX = e.touches[0].clientX;
+            const t = e.touches[0];
+            touchStartX = t.clientX;
+            touchStartY = t.clientY;
+            touchDX = 0;
+            touchAxisLock = null;
             stopAuto();
+            // Wyłącz przejście na czas przeciągania palcem
+            track.style.transition = "none";
           }
         },
         { passive: true }
       );
+      track.addEventListener(
+        "touchmove",
+        (e) => {
+          if (touchStartX == null || e.touches.length !== 1) return;
+          const t = e.touches[0];
+          const dx = t.clientX - touchStartX;
+          const dy = t.clientY - touchStartY;
+          // Ustal blokadę osi po minięciu martwej strefy
+          if (touchAxisLock == null) {
+            if (Math.abs(dx) > Math.abs(dy) + TOUCH_SLOP) {
+              touchAxisLock = "x";
+            } else if (Math.abs(dy) > Math.abs(dx) + TOUCH_SLOP) {
+              touchAxisLock = "y";
+            } else {
+              return; // jeszcze nie zdecydowano kierunku
+            }
+          }
+          if (touchAxisLock === "y") {
+            return; // pozwól przewijać stronę pionowo
+          }
+          // ruch poziomy – przejmujemy gest
+          e.preventDefault();
+          touchDX = dx;
+          // Podgląd przesunięcia – przesuwamy o touchDX w pikselach względem bieżącego slajdu
+          track.style.transform = `translate3d(calc(-${
+            index * 100
+          }% + ${touchDX}px), 0, 0)`;
+        },
+        { passive: false }
+      );
       track.addEventListener("touchend", (e) => {
         if (touchStartX == null) return;
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 50) userAdvance(dx < 0 ? 1 : -1);
+        // Jeśli użytkownik przewijał pionowo, nic nie rób
+        if (touchAxisLock === "y") {
+          touchStartX = null;
+          touchStartY = null;
+          touchAxisLock = null;
+          touchDX = 0;
+          return;
+        }
+        // Przywróć animację
+        track.style.transition = "transform .6s cubic-bezier(.22,.61,.36,1)";
+        if (Math.abs(touchDX) > TOUCH_THRESHOLD) {
+          userAdvance(touchDX < 0 ? 1 : -1);
+        } else {
+          // Powrót do aktualnego slajdu
+          goTo(index, { loop: true });
+          startAuto();
+        }
         touchStartX = null;
+        touchStartY = null;
+        touchAxisLock = null;
+        touchDX = 0;
+      });
+      track.addEventListener("touchcancel", () => {
+        if (touchStartX == null) return;
+        track.style.transition = "transform .6s cubic-bezier(.22,.61,.36,1)";
+        goTo(index, { loop: true });
+        startAuto();
+        touchStartX = null;
+        touchStartY = null;
+        touchAxisLock = null;
+        touchDX = 0;
       });
 
       // Pointer (mouse) drag – płynne przeciąganie
