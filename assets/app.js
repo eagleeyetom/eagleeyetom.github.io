@@ -542,32 +542,55 @@ document.addEventListener("DOMContentLoaded", () => {
         touchStartX = null;
       });
 
-      // Pointer (mouse) drag
+      // Pointer (mouse) drag – płynne przeciąganie
+      let dragDX = 0;
+      const DRAG_THRESHOLD = 60; // px minimalny ruch do zmiany slajdu
+
+      function endDrag(e) {
+        if (!isPointerDown) return;
+        const dx = dragDX;
+        // Przywróć animację
+        track.style.transition = "transform .6s cubic-bezier(.22,.61,.36,1)";
+        track.style.cursor = "grab";
+        if (Math.abs(dx) > DRAG_THRESHOLD) {
+          userAdvance(dx < 0 ? 1 : -1);
+        } else {
+          // Powrót do aktualnego slajdu
+          goTo(index, { loop: true });
+          startAuto();
+        }
+        isPointerDown = false;
+        pointerStartX = null;
+        dragDX = 0;
+      }
+
       track.addEventListener("pointerdown", (e) => {
         if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
         if (e.button !== 0) return;
+        e.preventDefault();
         isPointerDown = true;
         pointerStartX = e.clientX;
+        dragDX = 0;
         stopAuto();
-        try {
-          track.setPointerCapture(e.pointerId);
-        } catch (_) {}
+        // Wyłącz przejścia na czas przeciągania
+        track.style.transition = "none";
+        track.style.cursor = "grabbing";
       });
-      track.addEventListener("pointerup", (e) => {
+
+      track.addEventListener("pointermove", (e) => {
         if (!isPointerDown) return;
-        const dx = e.clientX - pointerStartX;
-        if (Math.abs(dx) > 50) userAdvance(dx < 0 ? 1 : -1);
-        else startAuto();
-        isPointerDown = false;
-        pointerStartX = null;
-        try {
-          track.releasePointerCapture(e.pointerId);
-        } catch (_) {}
+        e.preventDefault();
+        dragDX = e.clientX - pointerStartX;
+        // Podgląd przesunięcia – przesuwamy o dx w pikselach względem bieżącego slajdu
+        track.style.transform = `translateX(calc(-${index * 100}% + ${dragDX}px))`;
       });
-      track.addEventListener("pointercancel", () => {
-        isPointerDown = false;
-        pointerStartX = null;
-        startAuto();
+
+      track.addEventListener("pointerup", (e) => {
+        endDrag(e);
+      });
+      
+      track.addEventListener("pointercancel", (e) => {
+        endDrag(e);
       });
 
       gallery.addEventListener("mouseenter", stopAuto);
