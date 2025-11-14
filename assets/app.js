@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           index = Math.max(0, Math.min(length - 1, newIndex));
         }
-        track.style.transform = `translateX(-${index * 100}%)`;
+        track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
         if (prevBtn) prevBtn.disabled = !loop && index === 0;
         if (nextBtn) nextBtn.disabled = !loop && index === slides.length - 1;
         if (dotsContainer) {
@@ -582,13 +582,15 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         dragDX = e.clientX - pointerStartX;
         // Podgląd przesunięcia – przesuwamy o dx w pikselach względem bieżącego slajdu
-        track.style.transform = `translateX(calc(-${index * 100}% + ${dragDX}px))`;
+        track.style.transform = `translate3d(calc(-${
+          index * 100
+        }% + ${dragDX}px), 0, 0)`;
       });
 
       track.addEventListener("pointerup", (e) => {
         endDrag(e);
       });
-      
+
       track.addEventListener("pointercancel", (e) => {
         endDrag(e);
       });

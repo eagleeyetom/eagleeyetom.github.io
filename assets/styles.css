@@ -1,10 +1,12 @@
 /* Gallery carousel - single slide with arrows outside */
 .theatre-gallery {
     position: relative;
-    padding: 0 4rem;
+    padding: 0;
+    /* brak wewnętrznych rynienek – nic nie prześwituje */
     max-width: 960px;
     margin: 0 auto;
-    overflow: hidden; /* utrzymuje obraz w ramce */
+    overflow: hidden;
+    /* utrzymuje obraz w ramce */
 }
 
 .theatre-gallery__track {
@@ -13,6 +15,7 @@
     will-change: transform;
     cursor: grab;
     user-select: none;
+    gap: 0;
 }
 
 .theatre-gallery__track:active {
@@ -1442,4 +1445,12 @@ body.high-contrast .cookie-notice img {
     .cookie-notice__button {
         width: auto;
     }
+}
+
+/* Kontrast strzałek w trybie wysokiego kontrastu (ciemny) */
+body.high-contrast .gallery-btn {
+    background: #ffffff;
+    color: #111111;
+    border-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }
