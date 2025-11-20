@@ -164,6 +164,7 @@
         max-height: calc(100vh - 100px);
         overflow-y: auto;
         animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
     }
 
     @keyframes slideDown {
@@ -180,6 +181,7 @@
 
     .nav-menu.is-open {
         display: flex;
+        pointer-events: auto;
     }
 
     .nav-menu .nav-link {

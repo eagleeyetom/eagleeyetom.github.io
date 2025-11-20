@@ -80,41 +80,6 @@
     }
     </script>
 
-    <script>
-        (function () {
-            var supported = ['pl', 'en'];
-            var storedLang = null;
-
-            try {
-                var storedSettings = window.localStorage.getItem('masskaModernSettings');
-                if (storedSettings) {
-                    var parsed = JSON.parse(storedSettings);
-                    if (parsed && supported.includes(parsed.language)) {
-                        storedLang = parsed.language;
-                    }
-                }
-            } catch (error) {
-                storedLang = null;
-            }
-
-            if (!storedLang && window.navigator.languages) {
-                storedLang = window.navigator.languages
-                    .map(function (code) { return code.split('-')[0]; })
-                    .find(function (code) { return supported.includes(code); }) || null;
-            }
-
-            if (!storedLang && window.navigator.language) {
-                var fallback = window.navigator.language.split('-')[0];
-                if (supported.includes(fallback)) {
-                    storedLang = fallback;
-                }
-            }
-
-            var targetLang = storedLang || 'pl';
-            window.location.replace(targetLang + '/index.html');
-        }());
-    </script>
-
     <style>
         body {
             margin: 0;
@@ -165,11 +130,11 @@
 
 <body>
     <div class="redirect-message">
-        <h1>MASSKA Festival</h1>
-        <p>Redirecting to your preferred language...</p>
+        <h1>MASSKA Festival 2025</h1>
+        <p>XXIV Międzynarodowy Przegląd Teatralny · 16-20 listopada 2025 · Sopot</p>
         <p>
-            <a href="pl/index.html">Polski</a>
-            <a href="en/index.html">English</a>
+            <a href="pl/" rel="alternate" hreflang="pl">🇵🇱 Polski</a>
+            <a href="en/" rel="alternate" hreflang="en">🇬🇧 English</a>
         </p>
     </div>
 </body>
