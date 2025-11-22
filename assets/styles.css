@@ -653,7 +653,8 @@ body.high-contrast .page-section.alt .info-panel {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
 }
 
 .hero-media {
@@ -761,6 +762,11 @@ body.high-contrast .page-section.alt .info-panel {
     font-weight: var(--font-weight-medium);
     font-size: 0.85rem;
     letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+}
+
+.badge+h1 {
+    margin-top: 0;
 }
 
 .info-panel {
@@ -813,7 +819,8 @@ body.high-contrast .page-section.alt .info-panel {
 .theater-grid {
     display: grid;
     gap: var(--spacing-lg);
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+    justify-content: start;
 }
 
 .theater-card {
@@ -825,17 +832,49 @@ body.high-contrast .page-section.alt .info-panel {
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     transition: transform var(--transition-base), box-shadow var(--transition-base);
+    text-decoration: none !important;
+    color: inherit;
 }
 
 .theater-card:hover,
 .theater-card:focus-within {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
+    text-decoration: none !important;
+}
+
+.theater-card .theater-name {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+}
+
+.theater-card .theater-flag {
+    margin: 0.1em 0 0 0;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.theater-card h4 {
+    text-align: center;
 }
 
 .theater-card figure {
     margin: 0;
     position: relative;
+    overflow: hidden;
+    height: 160px;
+    min-height: 160px;
+    max-height: 160px;
+}
+
+.theater-card figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .theater-card figcaption {
@@ -1265,7 +1304,10 @@ caption {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    margin-top: var(--spacing-md);
     margin-bottom: var(--spacing-md);
+    list-style: none;
+    padding-left: 0;
 }
 
 .chip {

@@ -179,13 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
     blocks.forEach((block) => {
       const videoId = block.getAttribute("data-yt-id");
       const title = block.getAttribute("data-title") || "YouTube video";
-      const placeholder = block.querySelector(".external-media__placeholder");
-      const loadBtn = block.querySelector(
-        '[data-action="load-external-media"]'
-      );
-      const enableBtn = block.querySelector(
-        '[data-action="enable-media-consent"]'
-      );
 
       function mount() {
         const frame = buildYTFrame(videoId, title);
@@ -193,22 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
         block.appendChild(frame);
       }
 
-      if (consent.media === true) {
-        mount();
-      } else {
-        if (loadBtn) {
-          loadBtn.addEventListener("click", () => {
-            mount();
-          });
-        }
-        if (enableBtn) {
-          enableBtn.addEventListener("click", () => {
-            consent.media = true;
-            saveConsent(consent);
-            mount();
-          });
-        }
-      }
+      // Automatyczne ładowanie wideo bez zgody
+      mount();
     });
   }
 

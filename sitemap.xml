@@ -32,15 +32,27 @@
   </url>
   <url>
     <loc>https://masska.org/pl/online.html</loc>
-    <lastmod>2025-11-16</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://masska.org/en/online.html</loc>
-    <lastmod>2025-11-16</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://masska.org/pl/trupa-mtt.html</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://masska.org/en/troupe-mtt.html</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://masska.org/pl/cookies.html</loc>
