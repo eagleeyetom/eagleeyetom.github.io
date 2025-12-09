@@ -32,13 +32,13 @@
   </url>
   <url>
     <loc>https://masska.org/pl/online.html</loc>
-    <lastmod>2025-11-20</lastmod>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://masska.org/en/online.html</loc>
-    <lastmod>2025-11-20</lastmod>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -51,6 +51,18 @@
   <url>
     <loc>https://masska.org/en/troupe-mtt.html</loc>
     <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://masska.org/pl/teatr-parostky.html</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://masska.org/en/parostky.html</loc>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
