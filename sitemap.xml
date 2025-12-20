@@ -67,6 +67,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://masska.org/pl/teatr-tur.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://masska.org/en/tur.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://masska.org/pl/cookies.html</loc>
     <lastmod>2025-11-14</lastmod>
     <changefreq>yearly</changefreq>
