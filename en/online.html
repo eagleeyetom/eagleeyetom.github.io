@@ -43,27 +43,6 @@
     <meta name="twitter:description" content="Stream theatre performances from the MASSKA festival online.">
     <meta name="twitter:image" content="https://masska.org/assets/img/head.webp">
 
-    <script>
-        // Redirect until November 21, 2025
-        (function () {
-            // Don't redirect on localhost
-            var isLocalhost = window.location.hostname === 'localhost' ||
-                window.location.hostname === '127.0.0.1' ||
-                window.location.hostname === '';
-
-            if (isLocalhost) {
-                return;
-            }
-
-            var redirectUntil = new Date('2025-11-21T00:00:00+01:00');
-            var now = new Date();
-
-            if (now < redirectUntil) {
-                window.location.replace('index.html');
-            }
-        })();
-    </script>
-
 </head>
 
 <body data-redirect-to-preferred-language="true">
@@ -72,8 +51,8 @@
     <header class="site-header" role="banner">
         <div class="header-inner">
             <div class="site-branding">
-                <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
-                <a class="brand-subtitle" href="index.html"><img src="../assets/img/overview.webp"
+                <a class="brand" href="./"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
+                <a class="brand-subtitle" href="./"><img src="../assets/img/overview.webp"
                         alt="XXIV International Theatre Review · 2025"></a>
             </div>
             <nav class="site-nav" aria-label="Main navigation">
@@ -85,7 +64,7 @@
                     </span>
                 </button>
                 <div class="nav-menu">
-                    <a class="nav-link" href="index.html">Festival</a>
+                    <a class="nav-link" href="./">Festival</a>
                     <a class="nav-link" href="program.html">Program</a>
                     <a class="nav-link is-active" href="online.html" aria-current="page">Watch online</a>
                     <a class="nav-link" href="contact.html">Contact</a>
@@ -118,17 +97,14 @@
     <main id="main-content" class="page-content" role="main">
         <section class="hero">
             <div class="hero-text">
-                <p class="eyebrow">Available from November 21, 2025 at midnight</p>
+                <p class="eyebrow">Watch available performances</p>
                 <h1>MASSKA Online — Performance Streaming</h1>
-                <p>Watch selected performances from Polish theatre groups online. Each feature includes subtitles,
+                <p>Watch performances from Polish and international theatre groups online. Each feature includes subtitles,
                     context, and downloadable materials.</p>
-                <p><strong>Performances will be released every few days starting November 21, 2025.</strong> Follow our
-                    <a href="https://www.facebook.com/masskasopot" target="_blank" rel="noopener noreferrer">Facebook
-                        page</a> for announcements so you don't miss the premieres!
-                </p>
+                <p>Follow our social media on <a href="https://www.facebook.com/masskasopot" target="_blank" rel="noopener noreferrer">Facebook</a> to stay updated!</p>
                 <div class="hero-actions">
                     <a class="button primary" href="#theater-grid">Browse ensembles</a>
-                    <a class="button ghost" href="index.html">Return to festival home</a>
+                    <a class="button ghost" href="./">Return to festival home</a>
                 </div>
             </div>
             </div>
@@ -175,9 +151,27 @@
                             <h4>He and She - A Fairytale Without a Moral</h4>
                         </div>
                     </a>
+                    <a href="otczapy-theater.html" class="theater-card">
+                        <figure>
+                            <img src="../assets/img/teatr/otczapy/1.webp" alt="Otczapy Theatre – Scenario for Three Actors">
+                        </figure>
+                        <div class="card-body">
+                            <p class="theater-name">Otczapy Theatre</p>
+                            <p class="theater-flag"><span class="fi fi-pl"></span></p>
+                            <h4>Scenario for Three Actors</h4>
+                        </div>
+                    </a>
+                    <a href="rambazamba.html" class="theater-card">
+                        <figure>
+                            <img src="../assets/img/teatr/rambazamba/1.webp" alt="RambaZamba Theater – Heroes. Mythos Basquiat">
+                        </figure>
+                        <div class="card-body">
+                            <p class="theater-name">RambaZamba Theater</p>
+                            <p class="theater-flag"><span class="fi fi-de"></span></p>
+                            <h4>Heroes. Mythos Basquiat, just for one day.</h4>
+                        </div>
+                    </a>
                 </div>
-                <p class="muted" style="margin-top: 2rem; text-align: center;">More ensembles will be added soon.
-                    Streaming opens on 21 November 2025 at midnight.</p>
             </div>
         </section>
 

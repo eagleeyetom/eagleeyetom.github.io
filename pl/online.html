@@ -45,27 +45,6 @@
         content="Oglądaj występy festiwalu MASSKA online. Transmisje spektakli teatralnych.">
     <meta name="twitter:image" content="https://masska.org/assets/img/head.webp">
 
-    <script>
-        // Przekierowanie do 21 listopada 2025
-        (function () {
-            // Nie przekierowuj na localhost
-            var isLocalhost = window.location.hostname === 'localhost' ||
-                window.location.hostname === '127.0.0.1' ||
-                window.location.hostname === '';
-
-            if (isLocalhost) {
-                return;
-            }
-
-            var redirectUntil = new Date('2025-11-21T00:00:00+01:00');
-            var now = new Date();
-
-            if (now < redirectUntil) {
-                window.location.replace('index.html');
-            }
-        })();
-    </script>
-
 </head>
 
 <body data-redirect-to-preferred-language="true">
@@ -74,8 +53,8 @@
     <header class="site-header" role="banner">
         <div class="header-inner">
             <div class="site-branding">
-                <a class="brand" href="index.html"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
-                <a class="brand-subtitle" href="index.html"><img src="../assets/img/przeglad.webp"
+                <a class="brand" href="./"><img src="../assets/img/logo.webp" alt="MASSKA Festival"></a>
+                <a class="brand-subtitle" href="./"><img src="../assets/img/przeglad.webp"
                         alt="XXIV Międzynarodowy Przegląd Teatralny · 2025"></a>
             </div>
             <nav class="site-nav" aria-label="Główna nawigacja">
@@ -87,7 +66,7 @@
                     </span>
                 </button>
                 <div class="nav-menu">
-                    <a class="nav-link" href="index.html">Festiwal</a>
+                    <a class="nav-link" href="./">Festiwal</a>
                     <a class="nav-link" href="program.html">Program</a>
                     <a class="nav-link is-active" href="online.html" aria-current="page">Oglądaj online</a>
                     <a class="nav-link" href="kontakt.html">Kontakt</a>
@@ -135,17 +114,15 @@
     <main id="main-content" class="page-content" role="main">
         <section class="hero">
             <div class="hero-text">
-                <p class="eyebrow">Dostępne od 21 listopada 2025 o północy</p>
+                <p class="eyebrow">Oglądaj dostępne spektakle</p>
                 <h1>MASSKA Online — Transmisje Spektakli</h1>
-                <p>Oglądaj wybrane spektakle polskich zespołów teatralnych online. Każdy materiał zawiera napisy, opis i
-                    materiały do
-                    pobrania.</p>
-                <p><strong>Spektakle będą prezentowane co kilka dni od 21 listopada 2025.</strong> Śledź zapowiedzi na
-                    naszym <a href="https://www.facebook.com/masskasopot" target="_blank"
-                        rel="noopener noreferrer">Facebooku</a>, aby nie przegapić premier!</p>
+                <p>Oglądaj spektakle polskich i międzynarodowych zespołów teatralnych online. Każdy materiał zawiera napisy, opis i
+                    materiały do pobrania.</p>
+                <p>Śledź nasze social media na <a href="https://www.facebook.com/masskasopot" target="_blank"
+                        rel="noopener noreferrer">Facebooku</a>, aby być na bieżąco!</p>
                 <div class="hero-actions">
                     <a class="button primary" href="#theater-grid">Przeglądaj zespoły</a>
-                    <a class="button ghost" href="index.html">Wróć na stronę główną</a>
+                    <a class="button ghost" href="./">Wróć na stronę główną</a>
                 </div>
             </div>
             <figure class="hero-media" aria-hidden="true">
@@ -190,9 +167,27 @@
                             <h4>On i Ona - bajka bez morału</h4>
                         </div>
                     </a>
+                    <a href="teatr-otczapy.html" class="theater-card">
+                        <figure>
+                            <img src="../assets/img/teatr/otczapy/1.webp" alt="Teatr Otczapy – Scenariusz dla trzech aktorów">
+                        </figure>
+                        <div class="card-body">
+                            <p class="theater-name">Teatr Otczapy</p>
+                            <p class="theater-flag"><span class="fi fi-pl"></span></p>
+                            <h4>Scenariusz dla trzech aktorów</h4>
+                        </div>
+                    </a>
+                    <a href="teatr-rambazamba.html" class="theater-card">
+                        <figure>
+                            <img src="../assets/img/teatr/rambazamba/1.webp" alt="RambaZamba Theater – Bohaterowie. Mythos Basquiat">
+                        </figure>
+                        <div class="card-body">
+                            <p class="theater-name">RambaZamba Theater</p>
+                            <p class="theater-flag"><span class="fi fi-de"></span></p>
+                            <h4>Bohaterowie. Mythos Basquiat, tylko na jeden dzień.</h4>
+                        </div>
+                    </a>
                 </div>
-                <p class="muted" style="margin-top: 2rem; text-align: center;">Więcej zespołów pojawi się wkrótce.
-                    Emisja rozpoczyna się 21 listopada 2025 o północy.</p>
             </div>
         </section>
 

@@ -9,11 +9,13 @@ RewriteCond %{THE_REQUEST} ^GET\ .*/index\.html\ HTTP
 RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 
 # Language redirect for root index.html
+RewriteCond %{HTTP_USER_AGENT} !(bot|crawler|spider|googlebot|bingbot|duckduckbot|baiduspider|yandex|sogou|exabot|slurp|facebot|ia_archiver) [NC]
 RewriteCond %{REQUEST_URI} ^/index\.html$ [OR]
 RewriteCond %{REQUEST_URI} ^/$
 RewriteCond %{HTTP:Accept-Language} ^en [NC]
 RewriteRule ^(index\.html)?$ /en/ [R=302,L]
 
+RewriteCond %{HTTP_USER_AGENT} !(bot|crawler|spider|googlebot|bingbot|duckduckbot|baiduspider|yandex|sogou|exabot|slurp|facebot|ia_archiver) [NC]
 RewriteCond %{REQUEST_URI} ^/index\.html$ [OR]
 RewriteCond %{REQUEST_URI} ^/$
 RewriteRule ^(index\.html)?$ /pl/ [R=302,L]

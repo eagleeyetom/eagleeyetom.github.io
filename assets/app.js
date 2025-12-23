@@ -101,6 +101,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const cookieNotice = document.querySelector("[data-cookie-notice]");
   const acceptCookiesButton = document.querySelector("[data-cookie-accept]");
 
+  // Initialize language from browser for first-time visitors
+  try {
+    if (storageAvailable) {
+      const existing = window.localStorage.getItem(STORAGE_KEY);
+      if (!existing) {
+        const langs = navigator.languages || [navigator.language || defaultLanguage];
+        const prefersPl = Array.isArray(langs) && langs.some((l) => String(l).toLowerCase().startsWith("pl"));
+        settings.language = prefersPl ? "pl" : "en";
+        saveSettings(settings);
+      }
+    } else {
+      const langs = navigator.languages || [navigator.language || defaultLanguage];
+      const prefersPl = Array.isArray(langs) && langs.some((l) => String(l).toLowerCase().startsWith("pl"));
+      settings.language = prefersPl ? "pl" : "en";
+    }
+  } catch (_) {}
+
   // Consent management
   function loadConsent() {
     if (!storageAvailable) return { media: false, analytics: false };
@@ -652,16 +669,16 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
   const storedLanguage = settings.language;
+  const ua = (navigator.userAgent || "").toLowerCase();
+  const isBot = /bot|crawler|spider|googlebot|bingbot|duckduckbot|baiduspider|yandex|sogou|exabot|slurp|facebot|ia_archiver/.test(ua);
   if (
+    !isBot &&
     storedLanguage &&
     storedLanguage !== defaultLanguage &&
     body.dataset.redirectToPreferredLanguage === "true"
   ) {
     const currentPath = window.location.pathname;
-    const preferredPath = currentPath.replace(
-      /\/(en|pl)\//,
-      `/${storedLanguage}/`
-    );
+    const preferredPath = currentPath.replace(/\/(en|pl)\//, `/${storedLanguage}/`);
     if (preferredPath !== currentPath) {
       window.location.replace(preferredPath);
     }
