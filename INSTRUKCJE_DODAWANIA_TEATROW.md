@@ -1,23 +1,18 @@
 # 📋 INSTRUKCJE DODAWANIA NOWYCH TEATRÓW - MASSKA.ORG
 
-## 📊 STRUKTURA OBECNYCH TEATRÓW
+## 📊 Struktura plików (wzorzec)
 
 ```
 POLSKI (PL)                    ANGIELSKI (EN)
-├─ teatr-tur.html              ├─ tur.html
-├─ teatr-parostky.html         ├─ parostky.html
-└─ trupa-mtt.html              └─ troupe-mtt.html
+├─ teatr-[id].html             ├─ [id].html
+└─ (pozostałe strony w pl/)    └─ (pozostałe strony w en/)
 ```
 
-## 🎭 BIEŻĄCE TEATRY
+## 🎭 Zespoły i pliki — uwagi
 
-| Skrót | PL Nazwa | EN Nazwa | Flaga | PL Plik | EN Plik | Katalog img |
-|-------|----------|----------|-------|---------|---------|-------------|
-| TUR | Teatr Ubogi Relacji – TUR | Poor Theatre of Emotions – TUR | 🇵🇱 | teatr-tur.html | tur.html | tur/ |
-| PAROSTKI | Ludowy Amatorski Teatr – Studio PAROSTKI | Folk Amateur Theatre – Studio PAROSTKI | 🇺🇦 | teatr-parostky.html | parostky.html | parostky/ |
-| MTT | MTT Muzyczna Trupa Teatralna | MTT Musical Theatre Troupe | 🇱🇹 | trupa-mtt.html | troupe-mtt.html | mtt/ |
-| OTCZAPY | Teatr Otczapy | Otczapy Theatre | 🇵🇱 | teatr-otczapy.html | otczapy-theater.html | otczapy/ |
-| RAMBAZAMBA | RambaZamba Theater | RambaZamba Theater | 🇩🇪 | teatr-rambazamba.html | rambazamba.html | rambazamba/ |
+- Ten dokument ma charakter ogólny i nie utrzymuje listy konkretnych zespołów.
+- Każdy nowy teatr powinien stosować poniższe wzorce nazewnictwa, struktur i sekcji.
+- Przy aktualizacji nawigacji (dropdown) i list zespołów, uwzględnij wszystkie istniejące zespoły oraz nowe wpisy.
 
 ---
 
@@ -32,10 +27,10 @@ POLSKI (PL)                    ANGIELSKI (EN)
 ### KROK 2: Tworzenie pliku PL (pl/teatr-[id].html lub pl/[skrot].html)
 
 **KONWENCJE NAZEWNICTWA:**
-- Skrót w URL: `teatr-parostky.html` (skrót+litery) lub `teatr-tur.html`
-- Dla nowego: `teatr-[skrot_bez_spacji].html` (np. `teatr-tsb.html`)
+- PL: `teatr-[id].html` (id bez spacji/znaków specjalnych)
+- EN: `[id].html` (ten sam id co w PL, bez prefixu `teatr-`)
 
-**STRUKTURA (kopiuj z teatr-tur.html i modyfikuj):**
+**STRUKTURA (szablon do użycia):**
 
 #### HEAD sekcja:
 
@@ -51,16 +46,19 @@ POLSKI (PL)                    ANGIELSKI (EN)
 <link rel="alternate" href="https://masska.org/pl/teatr-[id].html" hreflang="x-default">
 ```
 
-#### Navigation dropdown (linie 47-55):
+#### Navigation dropdown (wzorzec):
 
 ```html
 <div class="nav-dropdown">
-    <span class="nav-link is-active" aria-current="page">[SKRÓT PEŁNY] <span class="fi fi-[kod_kraju]"></span></span>
+    <span class="nav-link is-active" aria-current="page">[NOWA NAZWA] <span class="fi fi-[kod]"></span></span>
     <div class="nav-dropdown-menu">
-        <a href="teatr-parostky.html" class="nav-dropdown-item">PAROSTKI <span class="fi fi-ua"></span></a>
-        <a href="trupa-mtt.html" class="nav-dropdown-item">MTT <span class="fi fi-lt"></span></a>
-        <a href="teatr-tur.html" class="nav-dropdown-item">Teatr Ubogi Relacji <span class="fi fi-pl"></span></a>
-        <a href="teatr-[nowy-id].html" class="nav-dropdown-item is-active">[NOWA NAZWA] <span class="fi fi-[kod]"></span></a>
+        <!-- Wstaw pełną listę zespołów istniejących na festiwalu -->
+        <a href="teatr-[ensemblA-id].html" class="nav-dropdown-item">[ZESPÓŁ A] <span class="fi fi-[kodA]"></span></a>
+        <a href="teatr-[ensemblB-id].html" class="nav-dropdown-item">[ZESPÓŁ B] <span class="fi fi-[kodB]"></span></a>
+        <a href="teatr-[ensemblC-id].html" class="nav-dropdown-item">[ZESPÓŁ C] <span class="fi fi-[kodC]"></span></a>
+        <a href="teatr-[id].html" class="nav-dropdown-item is-active">[NOWA NAZWA] <span class="fi fi-[kod]"></span></a>
+        <!-- Jeśli zespół ma kilka spektakli, dodaj osobne wpisy dla każdego tytułu -->
+        <!-- <a href="teatr-[id-spektakl-2].html" class="nav-dropdown-item">[NOWA NAZWA] – [TYTUŁ 2] <span class="fi fi-[kod]"></span></a> -->
     </div>
 </div>
 ```
@@ -121,7 +119,7 @@ POLSKI (PL)                    ANGIELSKI (EN)
 - **Video** (linie 155-161): YouTube ID z `data-yt-id="[ID]"`
 - **Gallery** (linie 163-193): 4 zdjęcia z `../assets/img/teatr/[skrot]/[1-4].jpg`
 - **About ensemble** (linie 195-222): Historia, założyciele, opis zespołu
-- **Ensemble list** (linie 224-238): **WSPÓLNE DLA WSZYSTKICH** - zawiera linki do 3 zespołów
+- **Ensemble list**: **WSPÓLNE DLA WSZYSTKICH** — zawiera pełną listę zespołów festiwalowych (wszystkie dostępne), w tym osobne wpisy dla kilku spektakli jednego zespołu.
 - **Partners section** (linie ~240-280): **KOMPLETNA SEKCJA PARTNERÓW** - musi zawierać WSZYSTKICH partnerów
 
 #### Sekcja partnerów (WYMAGANA PEŁNA STRUKTURA):
@@ -159,7 +157,7 @@ POLSKI (PL)                    ANGIELSKI (EN)
 2. `<div class="partners-wide">` z DWOMA dużymi logami: Sopot i Urząd Marszałkowski
 3. Skopiuj CAŁĄ sekcję z innej strony teatru (np. teatr-tur.html), nie skracaj!
 
-#### Sekcja zespołów (zawsze ta sama struktura):
+#### Sekcja zespołów (zawsze ta sama struktura — wzorzec):
 
 ```html
 <section class="page-section" aria-labelledby="ensemble-list-title">
@@ -168,17 +166,25 @@ POLSKI (PL)                    ANGIELSKI (EN)
         <details class="info-panel">
             <summary>Rozwiń listę zespołów</summary>
             <ul class="meta-list">
-                <li><a href="teatr-parostky.html">Ludowy Amatorski Teatr – Studio PAROSTKI <span class="fi fi-ua"></span></a></li>
-                <li><a href="trupa-mtt.html">MTT Muzyczna Trupa Teatralna <span class="fi fi-lt"></span></a></li>
-                <li><a href="teatr-tur.html">Teatr Ubogi Relacji – TUR <span class="fi fi-pl"></span></a></li>
-                <li><a href="teatr-[nowy-id].html">[NOWA NAZWA PEŁNA] <span class="fi fi-[kod]"></span></a></li>
+                <li><a href="teatr-[ensemblA-id].html">[ZESPÓŁ A] <span class="fi fi-[kodA]"></span></a></li>
+                <li><a href="teatr-[ensemblB-id].html">[ZESPÓŁ B] <span class="fi fi-[kodB]"></span></a></li>
+                <li><a href="teatr-[ensemblC-id].html">[ZESPÓŁ C] <span class="fi fi-[kodC]"></span></a></li>
+                <li><a href="teatr-[id].html">[NOWY ZESPÓŁ] <span class="fi fi-[kod]"></span></a></li>
+                <!-- Jeśli zespół ma kilka spektakli: -->
+                <!-- <li><a href="teatr-[id-spektakl-2].html">[NOWY ZESPÓŁ] – [TYTUŁ 2] <span class="fi fi-[kod]"></span></a></li> -->
             </ul>
         </details>
     </div>
 </section>
 ```
 
-**⚠️ WAŻNE:** Po dodaniu nowego teatru, ZAKTUALIZUJ tę sekcję na WSZYSTKICH 6 stronach (3 PL + 3 EN)!
+**Standard sekcji zespołów (PL/EN):**
+- Atrybut `aria-labelledby` zawsze wskazuje na identyfikator `ensemble-list-title`.
+- Nagłówek sekcji to `Zespoły festiwalowe` (PL) lub `Festival ensembles` (EN) z id `ensemble-list-title`.
+- `details.info-panel` zawiera `summary` z tekstem: `Rozwiń listę zespołów` (PL) lub `Expand ensemble list` (EN).
+- Lista (`ul.meta-list`) powinna zawierać aktualny, pełny zestaw zespołów (w tym osobne wpisy dla kilku spektakli jednego zespołu – patrz sekcja „Wiele spektakli jednego zespołu”).
+
+**⚠️ WAŻNE:** Po dodaniu nowego teatru, ZAKTUALIZUJ tę sekcję na WSZYSTKICH aktualnych stronach PL/EN (wszystkie istniejące teatry w pl/ i en/).
 
 #### Sekcja partnerów EN (WYMAGANA PEŁNA STRUKTURA):
 
@@ -217,8 +223,7 @@ POLSKI (PL)                    ANGIELSKI (EN)
 ### KROK 3: Tworzenie pliku EN (en/[id].html)
 
 **Nazewnictwo:**
-- Jeśli PL: `teatr-parostky.html` → EN: `parostky.html` (bez "teatr-")
-- Przykład: `teatr-tur.html` → `tur.html`
+- PL: `teatr-[id].html` → EN: `[id].html` (bez prefixu `teatr-`)
 
 **IDENTYCZNE kroki co PL, ale:**
 - `lang="en"` zamiast `lang="pl"`
@@ -250,16 +255,10 @@ POLSKI (PL)                    ANGIELSKI (EN)
 
 ---
 
-### KROK 4: Aktualizacja sekcji zespołów na WSZYSTKICH istnieją stronach
+### KROK 4: Aktualizacja sekcji zespołów na WSZYSTKICH istniejących stronach
 
-**Edytuj sekcję zespołów na 6 plikach:**
-
-1. `pl/teatr-parostky.html`
-2. `pl/trupa-mtt.html`
-3. `en/parostky.html`
-4. `en/troupe-mtt.html`
-5. `en/tur.html` (jeśli mamy TUR na liście)
-6. `pl/teatr-tur.html` (jeśli mamy TUR na liście)
+- Zaktualizuj sekcję „Zespoły festiwalowe” na wszystkich stronach teatrów w folderach `pl/` i `en/`.
+- Każda strona powinna zawierać pełną, spójną listę zespołów festiwalowych (łącznie z nowo dodanym zespołem oraz dodatkowymi spektaklami, jeśli występują).
 
 **Struktura PL do skopiowania na każdą stronę:**
 
@@ -270,10 +269,12 @@ POLSKI (PL)                    ANGIELSKI (EN)
         <details class="info-panel">
             <summary>Rozwiń listę zespołów</summary>
             <ul class="meta-list">
-                <li><a href="teatr-parostky.html">Ludowy Amatorski Teatr – Studio PAROSTKI <span class="fi fi-ua"></span></a></li>
-                <li><a href="trupa-mtt.html">MTT Muzyczna Trupa Teatralna <span class="fi fi-lt"></span></a></li>
-                <li><a href="teatr-tur.html">Teatr Ubogi Relacji – TUR <span class="fi fi-pl"></span></a></li>
-                <li><a href="teatr-[nowy-id].html">[NOWA NAZWA] <span class="fi fi-[kod]"></span></a></li>
+                <li><a href="teatr-[ensemblA-id].html">[ZESPÓŁ A] <span class="fi fi-[kodA]"></span></a></li>
+                <li><a href="teatr-[ensemblB-id].html">[ZESPÓŁ B] <span class="fi fi-[kodB]"></span></a></li>
+                <li><a href="teatr-[ensemblC-id].html">[ZESPÓŁ C] <span class="fi fi-[kodC]"></span></a></li>
+                <li><a href="teatr-[id].html">[NOWY ZESPÓŁ] <span class="fi fi-[kod]"></span></a></li>
+                <!-- Opcjonalnie: dodatkowe spektakle tego samego zespołu -->
+                <!-- <li><a href="teatr-[id-spektakl-2].html">[NOWY ZESPÓŁ] – [TYTUŁ 2] <span class="fi fi-[kod]"></span></a></li> -->
             </ul>
         </details>
     </div>
@@ -289,15 +290,19 @@ POLSKI (PL)                    ANGIELSKI (EN)
         <details class="info-panel">
             <summary>Expand ensemble list</summary>
             <ul class="meta-list">
-                <li><a href="parostky.html">Folk Amateur Theatre – Studio PAROSTKI <span class="fi fi-ua"></span></a></li>
-                <li><a href="troupe-mtt.html">MTT Musical Theatre Troupe <span class="fi fi-lt"></span></a></li>
-                <li><a href="tur.html">Poor Theatre of Emotions – TUR <span class="fi fi-pl"></span></a></li>
+                <li><a href="[ensemblA-en-id].html">[ENSEMBLE A] <span class="fi fi-[codeA]"></span></a></li>
+                <li><a href="[ensemblB-en-id].html">[ENSEMBLE B] <span class="fi fi-[codeB]"></span></a></li>
+                <li><a href="[ensemblC-en-id].html">[ENSEMBLE C] <span class="fi fi-[codeC]"></span></a></li>
                 <li><a href="[en-id].html">[NEW THEATRE NAME] <span class="fi fi-[code]"></span></a></li>
+                <!-- Optional: multiple performances for one ensemble -->
+                <!-- <li><a href="[en-id-performance-2].html">[NEW THEATRE NAME] – [TITLE 2] <span class="fi fi-[code]"></span></a></li> -->
             </ul>
         </details>
     </div>
 </section>
 ```
+
+Po aktualizacji dodaj brakujące wpisy tak, aby KAŻDA strona teatru zawierała pełną listę zespołów dostępnych na festiwalu (wszystkie istniejące teatry oraz dodatkowe spektakle tego samego zespołu, jeśli występują).
 
 ---
 
@@ -306,6 +311,13 @@ POLSKI (PL)                    ANGIELSKI (EN)
 ### 1. **Navigation dropdown** (linie ~48-55 w każdym pliku)
    - ❌ WYMAGA: Aktualizacji na wszystkich 6 plikach HTML
    - Dodaj `<a href="...">NAZWA <span class="fi fi-[kod]"></span></a>`
+
+### ✅ Wiele spektakli jednego zespołu (multi-entry)
+- Jeśli jeden zespół ma kilka spektakli, dodaj OSOBNE pozycje w dwóch miejscach na KAŻDEJ stronie teatru PL/EN:
+    - w dropdownie nawigacji: osobny wpis dla każdego tytułu (np. `[ZESPÓŁ] – [TYTUŁ 2]`).
+    - w sekcji „Zespoły festiwalowe” / „Festival ensembles”: osobny `<li>` dla każdego tytułu zespołu.
+- Zaktualizuj stronę macierzystą zespołu (PL/EN), aby dropdown i lista zespołów zawierały linki do WSZYSTKICH jego spektakli.
+- Zachowaj spójne flagi (`fi-[kod kraju]`) i nazewnictwo w PL/EN.
 
 ### 2. **Sekcja zespołów** (linie ~224-238 w PL, ~240-254 w EN)
    - ❌ WYMAGA: Aktualizacji na wszystkich 6 plikach HTML
@@ -368,68 +380,56 @@ POLSKI (PL)                    ANGIELSKI (EN)
 
 ---
 
-## 📝 PROMPT SKRÓT DO SZYBKIEGO DODAWANIA
+## 📝 Wzorzec prompta — dodanie nowego teatru
 
-Gdy musisz dodać nowy teatr, użyj tego prompta zamiast długich wyjaśnień:
+Użyj poniższego wzorca. Wypełnij wszystkie pola, aby uniknąć dopowiedzeń.
 
 ```
 Dodaj nowy teatr:
-SKRÓT: [skrót]
-PL ID: teatr-[id].html
-EN ID: [id].html
-PL NAZWA: [pełna nazwa]
-EN NAZWA: [full name]
-KRAJ: [kraj]
-FLAGA: fi-[kod]
-YOUTUBE: [ID]
-SPEKTAKL: [tytuł]
-TYP: [typ teatru]
+ID: [id]                      # identyfikator (slug), bez spacji
+PL FILE: teatr-[id].html      # wynikowy plik PL
+EN FILE: [id].html            # wynikowy plik EN
+PL NAME: [pełna nazwa]
+EN NAME: [full name]
+CITY: [miasto]
+COUNTRY: [kraj]
+FLAG: fi-[kod kraju]
+GENRES: [gatunek1, gatunek2]
+DURATION: [xx min]
+SUBTITLES: [języki] / [brak]
+YOUTUBE_ID: [xxxxxxxxxxx]
+GALLERY: [liczba zdjęć, min 3]
+TYPE: [typ teatru]
 
-Aktualizuj sekcję zespołów na wszystkich 6 stronach.
-```
+MULTI-ENTRY (opcjonalnie):
+- TITLE 2 PL: [tytuł]
+- TITLE 2 EN: [title]
+- FILE 2 PL: teatr-[id-2].html
+- FILE 2 EN: [id-2].html
 
-Przykład:
-```
-Dodaj nowy teatr:
-SKRÓT: TSB
-PL ID: teatr-tsb.html
-EN ID: tsb.html
-PL NAZWA: Teatr Statku Białego
-EN NAZWA: White Ship Theatre
-KRAJ: Polska
-FLAGA: fi-pl
-YOUTUBE: abc123def456
-SPEKTAKL: Historia Morska
-TYP: Teatr dramatyczny
-
-Aktualizuj sekcję zespołów na wszystkich 6 stronach.
+TASKS:
+- Utwórz strony PL/EN z pełną strukturą (hero, info-panel, synopsis, video, gallery, ensemble list, partners).
+- Zaktualizuj dropdowny i listy zespołów na wszystkich stronach PL/EN.
+- Dodaj kartę na pl/online.html i en/online.html.
+- Dodaj obrazy do assets/img/teatr/[id]/ i skonwertuj do WebP.
+- Ustaw canonical + hreflang (PL/EN/x-default).
+- Zaktualizuj sitemap.xml (url + lastmod).
 ```
 
 ---
 
-## ⚡ SZYBKA LISTA DO PAMIĘTANIA
+## ⚡ Szybka lista do pamiętania
 
-✅ **ZAWSZE updatuj razem:**
-1. `pl/teatr-[id].html` - NOWY (ze wszystkimi sekcjami!)
-2. `en/[id].html` - NOWY (ze wszystkimi sekcjami!)
-3. **`pl/online.html`** - dodaj kartę teatru do `<div class="theater-grid">`
-4. **`en/online.html`** - dodaj kartę teatru do `<div class="theater-grid">`
-5. `pl/teatr-parostky.html` - sekcja zespołów + nav dropdown
-6. `pl/teatr-tur.html` - sekcja zespołów + nav dropdown
-7. `pl/trupa-mtt.html` - sekcja zespołów + nav dropdown
-8. `pl/teatr-otczapy.html` - sekcja zespołów + nav dropdown
-9. `en/parostky.html` - sekcja zespołów + nav dropdown
-10. `en/tur.html` - sekcja zespołów + nav dropdown
-11. `en/troupe-mtt.html` - sekcja zespołów + nav dropdown
-12. `en/otczapy-theater.html` - sekcja zespołów + nav dropdown
+✅ **Zawsze aktualizuj razem:**
+- `pl/teatr-[id].html` i `en/[id].html` — pełna struktura strony.
+- `pl/online.html` i `en/online.html` — karta zespołu w `theater-grid`.
+- Wszystkie istniejące strony teatrów w `pl/` i `en/` — dropdown + „Zespoły festiwalowe”.
+- `assets/img/teatr/[id]/` — obrazy (min. 3) w WebP.
+- `sitemap.xml` — dodaj nowe URL-e + zaktualizuj `lastmod`.
 
-✅ **ZAWSZE dodaj folder:** `assets/img/teatr/[skrot]/` z 3-4 zdjęciami w formacie WebP (1.webp-4.webp)
-
-✅ **ZAWSZE skopiuj KOMPLETNĄ sekcję partnerów** z innego teatru (teatr-tur.html) - nie skracaj!
-
-✅ **ZAWSZE umieść `<aside class="info-panel">` w `two-column`** obok hero, NIE w osobnej sekcji!
-
-❌ **NIGDY nie zmieniaj:** Nazw plików istniejących stron, struktury HTML, CSS, JS
+✅ **Sekcja partnerów:** kopiuj kompletną strukturę z istniejącej strony (nie skracaj).
+✅ **Info panel:** `<aside class="info-panel">` musi być w `two-column` obok hero.
+❌ **Nie zmieniaj:** nazw istniejących plików, struktury HTML/CSS/JS.
 
 ---
 
@@ -449,14 +449,14 @@ Aktualizuj sekcję zespołów na wszystkich 6 stronach.
 
 ### ❌ BŁĄD 4: Niezaktualizowany nav-dropdown
 **Objaw:** Teatr nie pojawia się w menu dropdown na innych stronach  
-**Rozwiązanie:** Dodaj `<a href="..." class="nav-dropdown-item">NAZWA <span class="fi fi-[kod]"></span></a>` we WSZYSTKICH 6 plikach
+**Rozwiązanie:** Dodaj `<a href="..." class="nav-dropdown-item">NAZWA <span class="fi fi-[kod]"></span></a>` na wszystkich stronach teatrów w `pl/` i `en/`.
 
 ---
 
 ## 🐛 DEBUG - Jak sprawdzić czy wszystko OK?
 
-1. **Navbar dropdown** - wszystkie 3 zespoły widoczne?
-2. **Sekcja zespołów** - wszystkie 3 zespoły z linkami?
+1. **Navbar dropdown** — wszystkie zespoły widoczne?
+2. **Sekcja zespołów** — pełna lista zespołów z linkami?
 3. **Navigation cross-links** - linki nie zawierają błędów 404?
 4. **Zdjęcia galerii** - ścieżka `../assets/img/teatr/[skrot]/[1-4].jpg` OK?
 5. **Hreflang** - canonical i alternate hrefs poprawne?
