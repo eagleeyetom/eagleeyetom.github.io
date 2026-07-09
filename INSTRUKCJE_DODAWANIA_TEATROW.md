@@ -13,6 +13,8 @@ POLSKI (PL)                    ANGIELSKI (EN)
 - Ten dokument ma charakter ogólny i nie utrzymuje listy konkretnych zespołów.
 - Każdy nowy teatr powinien stosować poniższe wzorce nazewnictwa, struktur i sekcji.
 - Przy aktualizacji nawigacji (dropdown) i list zespołów, uwzględnij wszystkie istniejące zespoły oraz nowe wpisy.
+- **WAŻNE:** Tytuły spektakli muszą być napisane DUŻYMI literami dla nazwisk bohaterów (np. "Jaskier i Kurz" — gdzie "Kurz" to postać), ale bez "slash" (/) — używaj " i " (PL) lub " & " (EN).
+- **SPÓJNOŚĆ NAZW:** Wszystkie nazwy zespołów w nav-dropdown, sekcji zespołów i online.html muszą być identyczne (pisownia, formatowanie).
 
 ---
 
@@ -451,16 +453,121 @@ TASKS:
 **Objaw:** Teatr nie pojawia się w menu dropdown na innych stronach  
 **Rozwiązanie:** Dodaj `<a href="..." class="nav-dropdown-item">NAZWA <span class="fi fi-[kod]"></span></a>` na wszystkich stronach teatrów w `pl/` i `en/`.
 
+### ❌ BŁĄD 5: Tytuł spektaklu ze slashem (/) zamiast " i " (PL) lub " & " (EN)
+**Objaw:** Tytuł to "Jaskier/Pył" — niepoprawny format  
+**Rozwiązanie:** Zmień na "Jaskier i Kurz" (PL) lub "Dandelion & Dust" (EN)  
+**Gdzie zmienić:**
+- Meta description w HEAD
+- Page title (`<title>`)
+- Hero sekcja (strong tag)
+- Info panel `<dd>`
+- Video section `data-title`
+- Karta online.html `<h4>`
+- Wszystkie występy tego tytułu na każdej ze stron!
+
+### ❌ BŁĄD 6: Niezgodne nazwy zespołów w różnych miejscach
+**Objaw:** W nav-dropdown "RambaZamba Theater", ale w sekcji zespołów "RambaZamba" — nazwa zespołu musi być IDENTYCZNA  
+**Rozwiązanie:** Grep wszystkie okregi nazwy zespołu i upewnij się, że:
+- Pisownia jest spójna (capitalization, spacing)
+- Jeśli zespół ma wiele spektakli, każda strona zawiera osobne wpisy dla każdego tytułu
+- Flagi są identyczne (fi-pl, fi-de, etc.)
+
+### ❌ BŁĄD 7: Brak nowego zespołu w liście zespołów na ISTNIEJĄCYCH stronach
+**Objaw:** Nowy teatr dodany, ale stara strona teatru (np. teatr-parostky.html) nie zawiera go w sekcji "Zespoły festiwalowe"  
+**Rozwiązanie:** Po dodaniu nowego teatru, zaktualizuj sekcję zespołów na WSZYSTKICH istniejących stronach (wszystkie pliki w pl/ i en/)  
+**Ścieżka:** Szukaj `<section id="ensemble-list-title">` lub `<h2 id="ensemble-list-title">` i dodaj nowy zespół na KOŃCU listy
+
+### ❌ BŁĄD 8: Format obrazów galerii (JPG zamiast WebP)
+**Objaw:** Obrazy ładują się, ale format nie jest WebP  
+**Rozwiązanie:** Skonwertuj wszystkie zdjęcia z JPG na WebP używając skryptu Python (convert_[nazwa]_webp.py)
+
+### ❌ BŁĄD 9: Duplikacja zespołów w liście (np. MTT pojawia się dwa razy)
+**Objaw:** Sekcja zespołów zawiera duplikaty  
+**Rozwiązanie:** Sprawdź czy lista jest kopią z poprzedniego dodania — jeśli tak, usuń duplikaty i upewnij się że każdy zespół pojawia się DOKŁADNIE RAZ (chyba że ma kilka spektakli)
+
+### ❌ BŁĄD 10: Info-panel w osobnej sekcji zamiast w two-column
+**Objaw:** Info panel pojawia się poniżej hero zamiast obok niego  
+**Rozwiązanie:**  
+```html
+<!-- ✅ POPRAWNIE -->
+<section class="page-section">
+    <div class="section-inner two-column">
+        <div><!-- hero content --></div>
+        <aside class="info-panel"><!-- info --></aside>
+    </div>
+</section>
+
+<!-- ❌ ŹRÓDZO -->
+<section class="page-section">
+    <div class="section-inner two-column">
+        <div><!-- hero content --></div>
+    </div>
+</section>
+<section class="page-section">
+    <aside class="info-panel"><!-- BŁĄD! --></aside>
+</section>
+```
+
 ---
 
 ## 🐛 DEBUG - Jak sprawdzić czy wszystko OK?
 
 1. **Navbar dropdown** — wszystkie zespoły widoczne?
-2. **Sekcja zespołów** — pełna lista zespołów z linkami?
+2. **Sekcja zespołów** — pełna lista zespołów z linkami? Czy lista na nowej stronie pokrywa się z listą na innych stronach?
 3. **Navigation cross-links** - linki nie zawierają błędów 404?
-4. **Zdjęcia galerii** - ścieżka `../assets/img/teatr/[skrot]/[1-4].jpg` OK?
+4. **Zdjęcia galerii** - ścieżka `../assets/img/teatr/[skrot]/[1-4].webp` OK? (Format WebP!)
 5. **Hreflang** - canonical i alternate hrefs poprawne?
 6. **Language switcher** - polski/angielski link wskazuje na prawidłowy plik?
+7. **Spójność NAZW:**
+   - Tytuł spektaklu w info-panel (dt/dd) 
+   - Tytuł w hero sekcji (strong)
+   - Tytuł w meta description
+   - Tytuł na stronie online.html
+   - Tytuł w video section data-title
+   - Czy używasz "/" zamiast " i " (PL) lub " & " (EN)? ❌ Nie! Popraw!
+8. **Spójność NAZW ZESPOŁÓW:**
+   - Nav dropdown (all pages)
+   - Sekcja "Zespoły festiwalowe" (all pages)
+   - Karta online.html
+   - Czy nazwa zespołu jest identyczna wszędzie? Sprawdź pisownię "RambaZamba Theater", "MTT Musical Theatre Troupe", etc.
+9. **Kanoniczne linki PL:**
+   - Czy wszystkie strony PL mają navbar zawierający Baltazara/Krąg II?
+   - Czy lista zespołów na stronie pl/teatr-parostky.html zawiera Baltazara na końcu?
+10. **Kanoniczne linki EN:**
+   - Czy wszystkie strony EN mają navbar zawierający Baltazara/Krug II?
+   - Czy lista zespołów zawiera wszystkie 10 zespołów?
+
+---
+
+## � AKTUALNA LISTA ZESPOŁÓW FESTIWALU (stan na 2025-12-31)
+
+**Wszystkie zespoły muszą pojawić się na KAŻDEJ stronie w sekcji "Zespoły festiwalowe" w następującej kolejności:**
+
+### PL (Polska):
+1. `teatr-parostky.html` - Ludowy Amatorski Teatr – Studio PAROSTKI 🇺🇦
+2. `teatr-parostky-szczesliwi-wygnancy.html` - PAROSTKI – Szczęśliwi wygnańcy 🇺🇦
+3. `trupa-mtt.html` - MTT Muzyczna Trupa Teatralna 🇱🇹
+4. `teatr-tur.html` - Teatr Ubogi Relacji – TUR 🇵🇱
+5. `teatr-otczapy.html` - Teatr Otczapy 🇵🇱
+6. `teatr-rambazamba.html` - RambaZamba Theater 🇩🇪
+7. `teatr-krug-ii.html` - Teatr zintegrowany Krąg II 🇷🇺
+8. `teatr-lik.html` - Teatr Ruchu LIK 🇺🇿
+9. `teatr-danza-mobile.html` - Compañía Danza Mobile 🇪🇸
+10. `teatr-baltazar.html` - Teatr Baltazar 🇭🇺
+
+### EN (English):
+1. `parostky.html` - Folk Amateur Theatre – Studio PAROSTKI 🇺🇦
+2. `parostky-happy-exiles.html` - PAROSTKI – Happy Exiles 🇺🇦
+3. `troupe-mtt.html` - MTT Musical Theatre Troupe 🇱🇹
+4. `tur.html` - Poor Theatre of Emotions – TUR 🇵🇱
+5. `otczapy-theater.html` - Otczapy Theatre 🇵🇱
+6. `rambazamba.html` - RambaZamba Theater 🇩🇪
+7. `krug-ii.html` - Integrated Theatre Krug II 🇷🇺
+8. `lik.html` - LIK Movement Theater 🇺🇿
+9. `danza-mobile.html` - Compañía Danza Mobile 🇪🇸
+10. `baltazar.html` - Baltazar Theatre 🇭🇺
+
+**UWAGA:** Jeśli dodasz nowy zespół, zaktualizuj tę listę!
 
 ---
 
@@ -471,3 +578,6 @@ TASKS:
 - CSS i JS w: `/assets/`
 - Sekcja zespołów jest **najczęściej zmienianym elementem** przy dodaniu nowego teatru
 - Zawsze kopiuj cały blok HTML, nie edytuj na manju - ryzyko błędów tagów
+- **BRAK HALLUCYNACJI:** Wszystkie dane (opisy, zespoły, spektakle) muszą pochodzić wyłącznie z archiwum lub podanych źródeł
+- **SPÓJNOŚĆ:** Po każdym dodaniu nowego teatru uruchom grep na "Zespoły festiwalowe" aby upewnić się że lista jest identyczna na wszystkich stronach
+- **PULA ODPOWIEDZIALNOŚCI:** Zmiana jednego zespołu lub tytułu spektaklu = zmiany w 10+ plikach (każdy teatr ma nav dropdown + ensemble list)
