@@ -1,0 +1,34 @@
+---
+interface Props {
+  lang: 'pl' | 'en';
+}
+
+const { lang } = Astro.props;
+const isPl = lang === 'pl';
+---
+
+<div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden>
+    <img src="../assets/img/cookie.webp" alt="" width="64" height="64" loading="lazy" decoding="async" />
+    <div class="cookie-notice__content">
+        {isPl ? (
+            <p>Używamy analityki (Google Analytics) i zewnętrznych mediów (YouTube). Zobacz <a href="cookies.html">politykę cookies</a>.</p>
+        ) : (
+            <p>We use analytics (Google Analytics) and external media (YouTube). See <a href="cookies.html">cookie policy</a>.</p>
+        )}
+        <details class="cookie-notice__settings">
+            <summary>{isPl ? "Ustawienia" : "Settings"}</summary>
+            <fieldset>
+                <legend class="sr-only">{isPl ? "Preferencje zgód" : "Consent preferences"}</legend>
+                <label><input type="checkbox" data-consent-toggle="analytics"> {isPl ? "Analityka (Google Analytics)" : "Analytics (Google Analytics)"}</label>
+                <label><input type="checkbox" data-consent-toggle="media"> {isPl ? "Media (osadzenia YouTube)" : "Media (YouTube embeds)"}</label>
+            </fieldset>
+            <div class="cookie-notice__actions-row">
+                <button type="button" class="button" data-consent-save>{isPl ? "Zapisz wybór" : "Save choices"}</button>
+            </div>
+        </details>
+    </div>
+    <div class="cookie-notice__actions">
+        <button type="button" class="cookie-notice__button" data-consent-accept-all>{isPl ? "Akceptuj wszystko" : "Accept all"}</button>
+        <button type="button" class="cookie-notice__button ghost" data-consent-reject>{isPl ? "Odrzuć zbędne" : "Reject non‑essential"}</button>
+    </div>
+</div>

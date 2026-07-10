@@ -1,0 +1,157 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Partners from '../components/Partners.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'pl' | 'en';
+  robots?: string;
+  isTheatre?: boolean;
+  activeTheatreId?: string;
+  translationUrl?: string;
+  showPartners?: boolean;
+  redirectToPreferredLanguage?: boolean;
+}
+
+const {
+  title,
+  description,
+  lang,
+  robots,
+  isTheatre = false,
+  activeTheatreId,
+  translationUrl,
+  showPartners = true,
+  redirectToPreferredLanguage = true,
+} = Astro.props;
+
+const siteUrl = 'https://masska.org';
+const canonical = `${siteUrl}${Astro.url.pathname}`;
+
+// Map current page to its translated counterpart
+const staticMappings: Record<string, string> = {
+  '/pl/': '/en/',
+  '/pl/index.html': '/en/index.html',
+  '/pl/program.html': '/en/program.html',
+  '/pl/online.html': '/en/online.html',
+  '/pl/kontakt.html': '/en/contact.html',
+  '/pl/cookies.html': '/en/cookies.html',
+  
+  '/en/': '/pl/',
+  '/en/index.html': '/pl/index.html',
+  '/en/program.html': '/pl/program.html',
+  '/en/online.html': '/pl/online.html',
+  '/en/contact.html': '/pl/kontakt.html',
+  '/en/cookies.html': '/pl/cookies.html',
+};
+
+let alternatePl = '/pl/';
+let alternateEn = '/en/';
+
+if (translationUrl) {
+  if (lang === 'pl') {
+    alternatePl = Astro.url.pathname;
+    alternateEn = translationUrl;
+  } else {
+    alternatePl = translationUrl;
+    alternateEn = Astro.url.pathname;
+  }
+} else {
+  const mapped = staticMappings[Astro.url.pathname];
+  if (mapped) {
+    if (lang === 'pl') {
+      alternatePl = Astro.url.pathname;
+      alternateEn = mapped;
+    } else {
+      alternatePl = mapped;
+      alternateEn = Astro.url.pathname;
+    }
+  }
+}
+
+const isPl = lang === 'pl';
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content={description}>
+    {robots && <meta name="robots" content={robots}>}
+    <title>{title}</title>
+
+    <!-- Preloads & Fonts -->
+    <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="../assets/styles.css">
+    <link rel="stylesheet" href="../assets/styles-mobile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
+
+    <!-- Favicons -->
+    <link rel="icon" href="../assets/icons/favicon.ico?v=20251114" sizes="any">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png?v=20251114">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png?v=20251114">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png?v=20251114">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png?v=20251114">
+    <link rel="manifest" href="../assets/icons/site.webmanifest?v=20251114">
+    <meta name="theme-color" content="#111111">
+
+    <!-- Canonical & hreflang alternates -->
+    <link rel="canonical" href={canonical}>
+    <link rel="alternate" href={`${siteUrl}${alternatePl}`} hreflang="pl">
+    <link rel="alternate" href={`${siteUrl}${alternateEn}`} hreflang="en">
+    <link rel="alternate" href={`${siteUrl}${alternatePl}`} hreflang="x-default">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MASSKA Festival">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={canonical}>
+    <meta property="og:image" content={`${siteUrl}/assets/img/head.webp`}>
+    <meta property="og:locale" content={isPl ? "pl_PL" : "en_US"}>
+    <meta property="og:locale:alternate" content={isPl ? "en_US" : "pl_PL"}>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={`${siteUrl}/assets/img/head.webp`}>
+</head>
+
+<body data-redirect-to-preferred-language={redirectToPreferredLanguage ? "true" : "false"}>
+    <a class="skip-link" href="#main-content">{isPl ? "Przejdź do treści" : "Skip to content"}</a>
+
+    <Header 
+      lang={lang} 
+      isTheatre={isTheatre} 
+      activeTheatreId={activeTheatreId} 
+      translationUrl={isPl ? alternateEn : alternatePl}
+    />
+
+    <main id="main-content" class="page-content" role="main">
+        <slot />
+    </main>
+
+    {showPartners && <Partners lang={lang} />}
+
+    <Footer lang={lang} />
+
+    <CookieConsent lang={lang} />
+
+    <!-- Core App JS -->
+    <script src="../assets/app.js" defer></script>
+</body>
+
+</html>

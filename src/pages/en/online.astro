@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const enTheatres = await getCollection('theatres', ({ id }) => id.startsWith('en/'));
+enTheatres.sort((a, b) => a.data.name.localeCompare(b.data.name, 'en'));
+
+function getTheatreUrl(entry: any) {
+  const tSlug = entry.slug.split('/').pop();
+  return `${tSlug}.html`;
+}
+---
+
+<BaseLayout
+  title="MASSKA · Online Showcase"
+  description="Stream theatre performances from the MASSKA festival online."
+  lang="en"
+>
+    <section class="hero">
+        <div class="hero-text">
+            <p class="eyebrow">Watch available performances</p>
+            <h1>MASSKA Online — Performance Streaming</h1>
+            <p>Watch performances from Polish and international theatre groups online. Each feature includes
+                subtitles,
+                context, and downloadable materials.</p>
+            <p>Follow our social media on <a href="https://www.facebook.com/masskasopot" target="_blank"
+                    rel="noopener noreferrer">Facebook</a> to stay updated!</p>
+            <div class="hero-actions">
+                <a class="button primary" href="#theater-grid">Browse ensembles</a>
+                <a class="button ghost" href="index.html">Return to festival home</a>
+            </div>
+        </div>
+        <figure class="hero-media" aria-hidden="true">
+            <img src="https://via.placeholder.com/1200x720?text=Streaming+Stage" alt="" role="presentation">
+            <figcaption>Theatre streams available 24/7.</figcaption>
+        </figure>
+    </section>
+
+    <section class="page-section alt" id="theater-grid" aria-labelledby="ensembles-title">
+        <div class="section-inner">
+            <h2 id="ensembles-title">Ensembles on demand</h2>
+            <div class="theater-grid">
+                {enTheatres.map(theatre => {
+                    const imgUrl = theatre.data.gallery[0]?.src 
+                      ? `..${theatre.data.gallery[0].src}` 
+                      : "../assets/img/head.webp";
+                    return (
+                        <a href={getTheatreUrl(theatre)} class="theater-card">
+                            <figure>
+                                <img src={imgUrl} alt={`${theatre.data.name} – ${theatre.data.showTitle}`} loading="lazy" />
+                            </figure>
+                            <div class="card-body">
+                                <p class="theater-name">{theatre.data.name}</p>
+                                <p class="theater-flag"><span class={`fi fi-${theatre.data.countryCode}`}></span></p>
+                                <h4>{theatre.data.showTitle}</h4>
+                            </div>
+                        </a>
+                    );
+                })}
+            </div>
+        </div>
+    </section>
+</BaseLayout>

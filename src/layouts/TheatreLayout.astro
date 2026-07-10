@@ -1,0 +1,255 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+interface GalleryImage {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  frontmatter: {
+    id: string;
+    name: string;
+    showTitle: string;
+    countryCode: string;
+    badgeText: string;
+    genre: string;
+    duration: string;
+    subtitles: string;
+    city: string;
+    accessibility: string;
+    videoYtId: string;
+    videoTitle: string;
+    recordingUrl?: string;
+    quote?: string;
+    gallery: GalleryImage[];
+    synopsis: string; // Intro summary in hero
+    aboutShow: string; // Detailed description of the show
+    about: string; // About the ensemble
+    history?: string;
+    contactRole?: string;
+    contactName?: string;
+    contactEmail?: string;
+    contactSocialText?: string;
+    contactSocialUrl?: string;
+  };
+  lang: 'pl' | 'en';
+}
+
+const { frontmatter, lang } = Astro.props;
+const isPl = lang === 'pl';
+
+// Helper to convert absolute paths to relative paths based on language subfolder context
+function getRelativeUrl(targetPath: string) {
+  if (!targetPath) return '';
+  if (targetPath.startsWith('http') || targetPath.startsWith('mailto:') || targetPath.startsWith('#')) {
+    return targetPath;
+  }
+  
+  let cleanPath = targetPath;
+  if (cleanPath.startsWith('https://masska.org')) {
+    cleanPath = cleanPath.substring(18);
+  }
+  
+  if (cleanPath.startsWith('/pl/')) {
+    const file = cleanPath.substring(4);
+    return isPl ? file : `../pl/${file}`;
+  }
+  if (cleanPath.startsWith('/en/')) {
+    const file = cleanPath.substring(4);
+    return !isPl ? file : `../en/${file}`;
+  }
+  
+  // Handle root asset links
+  if (cleanPath.startsWith('/assets/')) {
+    return `..${cleanPath}`;
+  }
+  
+  return cleanPath;
+}
+
+// Find translation URL
+const allTheatres = await getCollection('theatres');
+const translationLang = isPl ? 'en' : 'pl';
+const translationEntry = allTheatres.find(
+  t => t.data.id === frontmatter.id && t.id.startsWith(`${translationLang}/`)
+);
+
+let translationUrl = undefined;
+if (translationEntry) {
+  const tSlug = translationEntry.slug.split('/').pop();
+  translationUrl = translationLang === 'pl' ? `/pl/${tSlug}.html` : `/en/${tSlug}.html`;
+}
+
+// Ensembles for the accordion list
+const listTheatres = allTheatres
+  .filter(t => t.id.startsWith(`${lang}/`))
+  .sort((a, b) => a.data.name.localeCompare(b.data.name, lang));
+
+function getTheatreUrl(entry: any) {
+  const tLang = entry.id.startsWith('pl/') ? 'pl' : 'en';
+  const tSlug = entry.slug.split('/').pop();
+  return tLang === 'pl' ? `/pl/${tSlug}.html` : `/en/${tSlug}.html`;
+}
+---
+
+<BaseLayout
+  title={`${frontmatter.name} · ${frontmatter.showTitle} · MASSKA`}
+  description={`${frontmatter.name} (${frontmatter.city}) · spektakl "${frontmatter.showTitle}" · ${frontmatter.genre}`}
+  lang={lang}
+  isTheatre={true}
+  activeTheatreId={frontmatter.id}
+  translationUrl={translationUrl}
+>
+    <!-- Hero Section -->
+    <section class="page-section">
+        <div class="section-inner two-column">
+            <div>
+                <span class="badge">
+                    {frontmatter.badgeText} <span class={`fi fi-${frontmatter.countryCode}`}></span>
+                </span>
+                <h1>{frontmatter.name}</h1>
+                <div set:html={frontmatter.synopsis} />
+                <div class="hero-actions">
+                    {frontmatter.recordingUrl && (
+                        <a class="button primary" href={frontmatter.recordingUrl} target="_blank" rel="noopener">
+                            {isPl ? "Odtwórz spektakl" : "Play video"}
+                        </a>
+                    )}
+                    <a class="button secondary" href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")}>
+                        {isPl ? "Wróć do programu online" : "Back to online program"}
+                    </a>
+                </div>
+                <ul class="chip-row" role="list">
+                    <li class="chip" role="listitem">{frontmatter.genre}</li>
+                    <li class="chip" role="listitem">{frontmatter.duration}</li>
+                    <li class="chip" role="listitem">{isPl ? `Napisy: ${frontmatter.subtitles}` : `Subtitles: ${frontmatter.subtitles}`}</li>
+                </ul>
+            </div>
+            <aside class="info-panel" aria-label={isPl ? "Informacje o spektaklu" : "Performance details"}>
+                <h2>{isPl ? "Przegląd spektaklu" : "Performance overview"}</h2>
+                <dl>
+                    <div>
+                        <dt>{isPl ? "Tytuł" : "Title"}</dt>
+                        <dd>{frontmatter.showTitle}</dd>
+                    </div>
+                    <div>
+                        <dt>{isPl ? "Miasto" : "City"}</dt>
+                        <dd>{frontmatter.city}</dd>
+                    </div>
+                    <div>
+                        <dt>{isPl ? "Gatunek" : "Genre"}</dt>
+                        <dd>{frontmatter.genre}</dd>
+                    </div>
+                    <div>
+                        <dt>{isPl ? "Czas trwania" : "Runtime"}</dt>
+                        <dd>{frontmatter.duration}</dd>
+                    </div>
+                    <div>
+                        <dt>{isPl ? "Dostępność" : "Accessibility"}</dt>
+                        <dd>{frontmatter.accessibility}</dd>
+                    </div>
+                </dl>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Detailed Synopsis Section -->
+    <section class="page-section alt" aria-labelledby="synopsis-title">
+        <div class="section-inner">
+            <h2 id="synopsis-title">{isPl ? "O spektaklu" : "Synopsis"}</h2>
+            <div set:html={frontmatter.aboutShow} />
+            {frontmatter.quote && (
+                <blockquote class="pull-quote">„{frontmatter.quote}”</blockquote>
+            )}
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="page-section" aria-label="Video">
+        <div class="section-inner">
+            <div class="external-media" data-yt-id={frontmatter.videoYtId} data-title={frontmatter.videoTitle}>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    {frontmatter.gallery && frontmatter.gallery.length > 0 && (
+        <section class="page-section" aria-label="Gallery">
+            <div class="section-inner">
+                <div class="theatre-gallery" aria-label={isPl ? "Karuzela zdjęć zespołu" : "Ensemble photo gallery"} role="region" data-gallery>
+                    <div class="theatre-gallery__track">
+                        {frontmatter.gallery.map(img => (
+                            <figure>
+                                <img src={getRelativeUrl(img.src)} width="800" height="560" loading="lazy" decoding="async" alt={img.alt} />
+                                <figcaption>{img.alt}</figcaption>
+                            </figure>
+                        ))}
+                    </div>
+                    <div class="theatre-gallery__controls" aria-hidden="false">
+                        <button type="button" class="gallery-btn" data-gallery-prev aria-label={isPl ? "Poprzednie zdjęcie" : "Previous photo"}>‹</button>
+                        <button type="button" class="gallery-btn" data-gallery-toggle data-icon-pause="❚❚" data-icon-play="▶" data-label-pause={isPl ? "Wstrzymaj automatyczne przewijanie" : "Pause autoplay"} data-label-play={isPl ? "Wznów automatyczne przewijanie" : "Resume autoplay"} aria-pressed="false">❚❚</button>
+                        <button type="button" class="gallery-btn" data-gallery-next aria-label={isPl ? "Następne zdjęcie" : "Next photo"}>›</button>
+                    </div>
+                    <div class="theatre-gallery__dots" aria-hidden="true"></div>
+                </div>
+            </div>
+        </section>
+    )}
+
+    <!-- About Ensemble Section -->
+    <section class="page-section" aria-labelledby="ensemble-info-title">
+        <div class="section-inner two-column">
+            <div>
+                <h2 id="ensemble-info-title">{isPl ? "O zespole" : "About the ensemble"}</h2>
+                <div set:html={frontmatter.about} />
+            </div>
+        </div>
+    </section>
+
+    <!-- History & Contact Section -->
+    {(frontmatter.history || frontmatter.contactEmail) && (
+        <section class="page-section alt" aria-labelledby="ensemble-history-title">
+            <div class="section-inner two-column">
+                <div>
+                    <h2 id="ensemble-history-title">{isPl ? "Historia zespołu" : "Ensemble history"}</h2>
+                    {frontmatter.history ? <div set:html={frontmatter.history} /> : <p />}
+                </div>
+                {frontmatter.contactEmail && (
+                    <aside class="info-panel" aria-label="Contact information">
+                        <h2>{isPl ? "Kontakt" : "Contact"}</h2>
+                        <ul class="contact-list">
+                            {frontmatter.contactName && (
+                                <li>{frontmatter.contactRole ? `${frontmatter.contactRole}: ` : ""}{frontmatter.contactName}</li>
+                            )}
+                            <li>Email: <a href={`mailto:${frontmatter.contactEmail}`}>{frontmatter.contactEmail}</a></li>
+                            {frontmatter.contactSocialUrl && (
+                                <li>Social media: <a href={frontmatter.contactSocialUrl} target="_blank" rel="noopener noreferrer">{frontmatter.contactSocialText || "Link"}</a></li>
+                            )}
+                        </ul>
+                    </aside>
+                )}
+            </div>
+        </section>
+    )}
+
+    <!-- Accordion list of all theatres -->
+    <section class="page-section" aria-labelledby="ensemble-list-title">
+        <div class="section-inner">
+            <h2 id="ensemble-list-title">{isPl ? "Zespoły festiwalowe" : "Festival ensembles"}</h2>
+            <details class="info-panel">
+                <summary>{isPl ? "Rozwiń listę zespołów" : "Expand ensemble list"}</summary>
+                <ul class="meta-list">
+                    {listTheatres.map(t => (
+                        <li>
+                            <a href={getRelativeUrl(getTheatreUrl(t))}>
+                                {t.data.name} <span class={`fi fi-${t.data.countryCode}`}></span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </details>
+        </div>
+    </section>
+</BaseLayout>

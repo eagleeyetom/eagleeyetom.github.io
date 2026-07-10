@@ -1,0 +1,69 @@
+---
+interface Props {
+  lang: 'pl' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const isPl = lang === 'pl';
+---
+
+<section class="page-section" aria-labelledby="partnerzy-title">
+    <div class="section-inner">
+        <h2 id="partnerzy-title">{isPl ? "Partnerzy festiwalu" : "Festival Partners"}</h2>
+        <div class="partners" role="list">
+            <div class="partner-text">{isPl ? "ORGANIZATORZY:" : "ORGANISERS:"}</div>
+            <figure role="listitem">
+                <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/img/na-drodze-ekspresji.webp" alt={isPl ? "Stowarzyszenie Na Drodze Ekspresji" : "Na Drodze Ekspresji Association"}>
+                </a>
+            </figure>
+            <figure role="listitem">
+                <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/img/prezydent-sopotu.webp" alt={isPl ? "Patronat honorowy Prezydentki Sopotu" : "Honorary patronage of the Mayor of Sopot"}>
+                </a>
+            </figure>
+            <div class="partner-text">{isPl ? "WSPÓŁPRACA:" : "COOPERATION:"}</div>
+            <figure role="listitem">
+                <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/img/pkps.webp" alt={isPl ? "Polski Komitet Pomocy Społecznej" : "Polish Committee for Social Assistance"}>
+                </a>
+            </figure>
+            <figure role="listitem">
+                <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/img/bart.webp" alt={isPl ? "Bałtycka Agencja Artystyczna BART" : "Baltic Artistic Agency BART"}>
+                </a>
+            </figure>
+            <figure role="listitem">
+                <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
+                </a>
+            </figure>
+            <figure role="listitem">
+                <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/img/teatr-wybrzeze.webp" alt={isPl ? "Teatr Wybrzeże" : "Wybrzeże Theatre"}>
+                </a>
+            </figure>
+            <div class="partner-text">{isPl ? "PATRONAT MEDIALNY:" : "MEDIA PATRONAGE:"}</div>
+            <figure role="listitem">
+                <a href="https://radiogdansk.pl/" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/img/RadioGdansk.webp" alt="Radio Gdańsk">
+                </a>
+            </figure>
+        </div>
+        <div class="partners-wide" role="list">
+            <figure role="listitem" class="partner-wide">
+                <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/img/sopot.webp" alt={isPl ? "Dofinansowano ze środków Gminy Miasta Sopot" : "Co-financed by the City of Sopot"}>
+                    <figcaption>{isPl ? "Dofinansowano ze środków Gminy Miasta Sopot" : "Co-financed by the City of Sopot"}</figcaption>
+                </a>
+            </figure>
+            <figure role="listitem" class="partner-wide">
+                <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/img/urzad-marszalkowski.webp" alt={isPl ? "Urząd Marszałkowski Województwa Pomorskiego" : "Marshal's Office of the Pomeranian Voivodeship"}>
+                    <figcaption>{isPl ? "oraz Urzędu Marszałkowskiego Województwa Pomorskiego" : "and the Marshal's Office of the Pomeranian Voivodeship"}</figcaption>
+                </a>
+            </figure>
+        </div>
+    </div>
+</section>

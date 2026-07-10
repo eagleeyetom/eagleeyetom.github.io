@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import TheatreLayout from '../../layouts/TheatreLayout.astro';
+
+export async function getStaticPaths() {
+  const plTheatres = await getCollection('theatres', ({ id }) => id.startsWith('pl/'));
+  return plTheatres.map(entry => {
+    const slug = entry.slug.split('/').pop();
+    return {
+      params: { slug },
+      props: { entry },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+---
+
+<TheatreLayout frontmatter={entry.data} lang="pl" />

@@ -1,0 +1,68 @@
+---
+interface Props {
+  lang: 'pl' | 'en';
+}
+
+const { lang } = Astro.props;
+const isPl = lang === 'pl';
+
+function getRelativeUrl(targetPath: string) {
+  if (!targetPath) return '';
+  if (targetPath.startsWith('http') || targetPath.startsWith('mailto:') || targetPath.startsWith('#')) {
+    return targetPath;
+  }
+  
+  let cleanPath = targetPath;
+  if (cleanPath.startsWith('https://masska.org')) {
+    cleanPath = cleanPath.substring(18);
+  }
+  
+  if (cleanPath.startsWith('/pl/')) {
+    const file = cleanPath.substring(4);
+    return isPl ? file : `../pl/${file}`;
+  }
+  if (cleanPath.startsWith('/en/')) {
+    const file = cleanPath.substring(4);
+    return !isPl ? file : `../en/${file}`;
+  }
+  
+  return cleanPath;
+}
+---
+
+<footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+        <div class="footer-columns">
+            <section>
+                <h2>{isPl ? "Kontakt" : "Contact"}</h2>
+                <p><a href={getRelativeUrl(isPl ? "/pl/kontakt.html" : "/en/contact.html")}>{isPl ? "Formularz kontaktowy →" : "Contact form →"}</a></p>
+            </section>
+            <section>
+                <h2>{isPl ? "Odwiedź na żywo" : "Visit in person"}</h2>
+                <p>Aleja Franciszka Mamuszki 14, Sopot</p>
+                <div style="margin-top: 1rem;">
+                    <iframe
+                        src={isPl 
+                          ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2321.7941234567!2d18.5659!3d54.4417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0b3e0e0e0e0e%3A0x0!2sMamuszki%2014%2C%20Sopot!5e0!3m2!1spl!2spl!4v1234567890"
+                          : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2321.7941234567!2d18.5659!3d54.4417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0b3e0e0e0e0e%3A0x0!2sMamuszki%2014%2C%20Sopot!5e0!3m2!1sen!2spl!4v1234567890"
+                        }
+                        width="100%" height="200" style="border:0; border-radius: 8px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </section>
+            <section>
+                <h2>{isPl ? "Więcej informacji" : "More information"}</h2>
+                <ul class="contact-list">
+                    <li><a href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")}>{isPl ? "Przewodnik po transmisji" : "Streaming guide"}</a></li>
+                    <li><a href="https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform"
+                            target="_blank" rel="noopener noreferrer">{isPl ? "Zgłoszenie do wersji online" : "Online version submission"}</a></li>
+                    <li><a href={getRelativeUrl(isPl ? "/pl/cookies.html" : "/en/cookies.html")}>{isPl ? "Polityka cookies" : "Cookie policy"}</a></li>
+                </ul>
+            </section>
+        </div>
+        <p class="footer-note">
+            {isPl ? "© 2025 MASSKA Międzynarodowy Przegląd Teatralny" : "© 2025 MASSKA International Theatre Review"}
+        </p>
+    </div>
+</footer>

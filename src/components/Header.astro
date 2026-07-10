@@ -1,0 +1,205 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  lang: 'pl' | 'en';
+  isTheatre?: boolean;
+  activeTheatreId?: string;
+  translationUrl?: string; // Optional custom translation URL passed from the page/layout
+}
+
+const { lang, isTheatre = false, activeTheatreId, translationUrl } = Astro.props;
+const isPl = lang === 'pl';
+
+// Helper to convert absolute paths to relative paths based on language subfolder context
+function getRelativeUrl(targetPath: string) {
+  if (!targetPath) return '';
+  if (targetPath.startsWith('http') || targetPath.startsWith('mailto:') || targetPath.startsWith('#')) {
+    return targetPath;
+  }
+  
+  let cleanPath = targetPath;
+  if (cleanPath.startsWith('https://masska.org')) {
+    cleanPath = cleanPath.substring(18);
+  }
+  
+  if (cleanPath === '/' || cleanPath === '/index.html' || cleanPath === '/pl' || cleanPath === '/pl/') {
+    return isPl ? 'index.html' : '../pl/index.html';
+  }
+  if (cleanPath === '/en' || cleanPath === '/en/') {
+    return !isPl ? 'index.html' : '../en/index.html';
+  }
+  
+  if (cleanPath.startsWith('/pl/')) {
+    const file = cleanPath.substring(4);
+    return isPl ? file : `../pl/${file}`;
+  }
+  if (cleanPath.startsWith('/en/')) {
+    const file = cleanPath.substring(4);
+    return !isPl ? file : `../en/${file}`;
+  }
+  
+  return cleanPath;
+}
+
+// Get current path
+const pathname = Astro.url.pathname;
+
+// Static pages translation mapping
+const staticMappings: Record<string, string> = {
+  '/': '/en/',
+  '/index.html': '/en/',
+  '/pl': '/en/',
+  '/pl/': '/en/',
+  '/pl/index.html': '/en/index.html',
+  '/pl/program.html': '/en/program.html',
+  '/pl/online.html': '/en/online.html',
+  '/pl/kontakt.html': '/en/contact.html',
+  '/pl/cookies.html': '/en/cookies.html',
+  
+  '/en': '/pl/',
+  '/en/': '/pl/',
+  '/en/index.html': '/pl/index.html',
+  '/en/program.html': '/pl/program.html',
+  '/en/online.html': '/pl/online.html',
+  '/en/contact.html': '/pl/kontakt.html',
+  '/en/cookies.html': '/pl/cookies.html',
+};
+
+// Determine language switcher URLs
+let plUrl = '/pl/';
+let enUrl = '/en/';
+
+if (translationUrl) {
+  if (isPl) {
+    plUrl = pathname;
+    enUrl = translationUrl;
+  } else {
+    plUrl = translationUrl;
+    enUrl = pathname;
+  }
+} else {
+  const mapped = staticMappings[pathname];
+  if (mapped) {
+    if (isPl) {
+      plUrl = pathname;
+      enUrl = mapped;
+    } else {
+      plUrl = mapped;
+      enUrl = pathname;
+    }
+  }
+}
+
+// Active link states
+const isFestiwal = pathname === '/pl/' || pathname === '/pl/index.html' || pathname === '/en/' || pathname === '/en/index.html';
+const isProgram = pathname.endsWith('program.html');
+const isOnline = pathname.endsWith('online.html');
+const isKontakt = pathname.endsWith('kontakt.html') || pathname.endsWith('contact.html');
+
+// Fetch and sort theatres for dropdown
+const allTheatres = await getCollection('theatres');
+const plTheatres = allTheatres
+  .filter(t => t.id.startsWith('pl/'))
+  .sort((a, b) => a.data.name.localeCompare(b.data.name, 'pl'));
+const enTheatres = allTheatres
+  .filter(t => t.id.startsWith('en/'))
+  .sort((a, b) => a.data.name.localeCompare(b.data.name, 'en'));
+
+const theatres = isPl ? plTheatres : enTheatres;
+const activeTheatre = theatres.find(t => {
+  const currentSlug = t.slug.split('/').pop();
+  return currentSlug === activeTheatreId;
+});
+
+function getTheatreUrl(entry: any) {
+  const tLang = entry.id.startsWith('pl/') ? 'pl' : 'en';
+  const tSlug = entry.slug.split('/').pop();
+  return tLang === 'pl' ? `/pl/${tSlug}.html` : `/en/${tSlug}.html`;
+}
+---
+
+<header class="site-header" role="banner">
+    <div class="header-inner">
+        <div class="site-branding">
+            <a class="brand" href={getRelativeUrl(isPl ? "/pl/index.html" : "/en/index.html")}>
+                <img src="../assets/img/logo.webp" alt="MASSKA Festival">
+            </a>
+            <a class="brand-subtitle" href={getRelativeUrl(isPl ? "/pl/index.html" : "/en/index.html")}>
+                <img src={isPl ? "../assets/img/przeglad.webp" : "../assets/img/overview.webp"} alt={isPl ? "XXIV Międzynarodowy Przegląd Teatralny · 2025" : "XXIV International Theatre Review · 2025"}>
+            </a>
+        </div>
+        <nav class="site-nav" aria-label={isPl ? "Nawigacja główna" : "Main navigation"}>
+            <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Menu nawigacji">
+                <span class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <div class="nav-menu">
+                <a class={`nav-link ${isFestiwal ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/index.html" : "/en/index.html")} aria-current={isFestiwal ? 'page' : undefined}>{isPl ? "Festiwal" : "Festival"}</a>
+                <a class={`nav-link ${isProgram ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/program.html" : "/en/program.html")} aria-current={isProgram ? 'page' : undefined}>Program</a>
+                <a class={`nav-link ${isOnline ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")} aria-current={isOnline ? 'page' : undefined}>{isPl ? "Oglądaj online" : "Watch online"}</a>
+                <a class={`nav-link ${isKontakt ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/kontakt.html" : "/en/contact.html")} aria-current={isKontakt ? 'page' : undefined}>{isPl ? "Kontakt" : "Contact"}</a>
+                
+                <div class="nav-link" style="padding: 0; background: transparent; border: none;">
+                    <div style="position: relative; width: 180px; height: 40px; max-width: 100%; overflow: hidden; border-radius: 999px; background: transparent;">
+                        <iframe style="position: absolute; top:0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; border: 0;"
+                            src="https://zrzutka.pl/bax8c7/widget/24" frameborder="0" scrolling="no" title="Zrzutka"></iframe>
+                    </div>
+                </div>
+
+                {isTheatre && activeTheatre && (
+                    <div class="nav-dropdown">
+                        <span class="nav-link is-active" aria-current="page">
+                            {activeTheatre.data.name} <span class={`fi fi-${activeTheatre.data.countryCode}`}></span>
+                        </span>
+                        <div class="nav-dropdown-menu">
+                            {theatres.map(t => (
+                                <a href={getRelativeUrl(getTheatreUrl(t))} class={`nav-dropdown-item ${t.slug.split('/').pop() === activeTheatreId ? 'is-active' : ''}`}>
+                                    {t.data.name} <span class={`fi fi-${t.data.countryCode}`}></span>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </nav>
+        <div class="header-tools">
+            <div class="site-actions" role="group" aria-label={isPl ? "Opcje dostępności" : "Display options"}>
+                <button type="button" data-action="font-decrease" aria-label={isPl ? "Zmniejsz rozmiar tekstu" : "Decrease text size"}>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                        <path d="M5 11v2h14v-2z"></path>
+                    </svg>
+                </button>
+                <span class="font-indicator" data-font-indicator>100%</span>
+                <button type="button" data-action="font-increase" aria-label={isPl ? "Zwiększ rozmiar tekstu" : "Increase text size"}>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                        <path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path>
+                    </svg>
+                </button>
+                <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false"
+                    data-contrast-label 
+                    data-label-on={isPl ? "Wysoki kontrast włączony" : "High contrast on"}
+                    data-label-off={isPl ? "Wysoki kontrast wyłączony" : "High contrast off"} 
+                    aria-label={isPl ? "Wysoki kontrast wyłączony" : "High contrast off"}>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="language-switcher" role="group" aria-label={isPl ? "Zmień język" : "Switch language"}>
+                <span class="sr-only">{isPl ? "Dostępne języki:" : "Available languages:"}</span>
+                <a class={`language-link ${!isPl ? 'is-active' : ''}`} href={getRelativeUrl(enUrl)} data-language="en" data-flag-emoji="🇬🇧">
+                    <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
+                    English
+                </a>
+                <a class={`language-link ${isPl ? 'is-active' : ''}`} href={getRelativeUrl(plUrl)} data-language="pl" data-flag-emoji="🇵🇱">
+                    <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
+                    Polski
+                </a>
+            </div>
+        </div>
+    </div>
+</header>

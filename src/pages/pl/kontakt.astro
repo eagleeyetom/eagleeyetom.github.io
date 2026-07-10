@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Static page generated automatically from HTML
+---
+<BaseLayout
+  title="Kontakt · MASSKA 2025"
+  description="Skontaktuj się z organizatorami festiwalu MASSKA. Formularz kontaktowy, adresy email i informacje o biurze festiwalu."
+  lang="pl"
+  showPartners={false}
+  redirectToPreferredLanguage={true}
+>
+<section class="hero">
+            <div class="hero-text">
+                <p class="eyebrow">Masz pytania?</p>
+                <h1>Skontaktuj się z nami</h1>
+                <p>Jesteśmy do dyspozycji, aby odpowiedzieć na wszystkie pytania dotyczące festiwalu MASSKA 2025.
+                    Wypełnij formularz lub napisz bezpośrednio na adres email.</p>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="formularz-kontaktowy">
+            <div class="section-inner two-column">
+                <div>
+                    <h2 id="formularz-kontaktowy">Formularz kontaktowy</h2>
+                    <p>Wypełnij poniższy formularz, a odpowiemy najszybciej jak to możliwe. Wszystkie pola są wymagane.
+                    </p>
+
+                    <form action="https://formspree.io/f/xanawjzb" method="POST" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Imię i nazwisko <span aria-label="wymagane">*</span></label>
+                            <input type="text" id="name" name="name" required aria-required="true">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Adres email <span aria-label="wymagane">*</span></label>
+                            <input type="email" id="email" name="_replyto" required aria-required="true">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Temat <span aria-label="wymagane">*</span></label>
+                            <input type="text" id="subject" name="_subject" required aria-required="true">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Wiadomość <span aria-label="wymagane">*</span></label>
+                            <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+                        </div>
+
+                        <input type="hidden" name="_language" value="pl">
+                        <input type="text" name="_gotcha" style="display:none">
+
+                        <button type="submit" class="button primary">Wyślij wiadomość</button>
+                    </form>
+                </div>
+
+                <aside class="info-panel" aria-label="Informacje o kontakcie">
+                    <h2>Informacje</h2>
+
+                    <h3>Formularz kontaktowy</h3>
+                    <p>
+                        Wypełnij formularz, a odpowiemy na Twoje pytanie najszybciej jak to możliwe.
+                    </p>
+
+                    <h3>Adres festiwalu</h3>
+                    <p>
+                        Aleja Franciszka Mamuszki 14<br>
+                        81-702 Sopot<br>
+                        Polska
+                    </p>
+
+                    <h3>Czas odpowiedzi</h3>
+                    <p>
+                        Odpowiadamy zazwyczaj w ciągu 2-3 dni roboczych. W okresie festiwalu (16–20 listopada) możliwe
+                        są krótsze opóźnienia.
+                    </p>
+
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+                        <p class="muted" style="font-size: 0.9rem;">
+                            <strong>Uwaga:</strong><br>
+                            Wszystkie zapytania prosimy kierować wyłącznie przez formularz kontaktowy.
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="page-section alt" aria-labelledby="czesto-zadawane-pytania">
+            <div class="section-inner">
+                <h2 id="czesto-zadawane-pytania">Często zadawane pytania</h2>
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Jak zarejestrować się na warsztaty?</h3>
+                        <p>Zapisy na warsztaty przyjmujemy przez formularz kontaktowy. W treści wiadomości proszę podać
+                            nazwę warsztatu, który Cię interesuje. Liczba miejsc jest ograniczona.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Czy spektakle są dostępne online?</h3>
+                        <p>Tak! Transmisje wybranych spektakli są dostępne na naszej
+                            <a href="online.html">platformie online</a>.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Jak dojechać do lokalizacji?</h3>
+                        <p>Wszystkie lokalizacje festiwalu znajdują się w Sopocie i są łatwo dostępne komunikacją
+                            miejską. Szczegółowe informacje dostępne w sekcji <a href="program.html">Program</a>.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        
+</BaseLayout>
