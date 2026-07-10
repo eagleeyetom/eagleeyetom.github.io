@@ -1,0 +1,112 @@
+---
+interface Props {
+  lang: 'pl' | 'en';
+}
+
+const { lang } = Astro.props;
+const isPl = lang === 'pl';
+
+interface Poster {
+  year: number;
+  src: string;
+}
+
+const posters: Poster[] = [
+  { year: 2025, src: "../assets/img/plakaty/2023.webp" }, // Placeholder / 2025 poster placeholder
+  { year: 2024, src: "../assets/img/plakaty/2023.webp" }, // Placeholder / 2024 poster placeholder
+  { year: 2023, src: "../assets/img/plakaty/2023.webp" },
+  { year: 2022, src: "../assets/img/plakaty/2022.webp" },
+  { year: 2021, src: "../assets/img/plakaty/2021.webp" },
+  { year: 2020, src: "../assets/img/plakaty/2020.webp" },
+  { year: 2019, src: "../assets/img/plakaty/2019.webp" },
+  { year: 2018, src: "../assets/img/plakaty/2018.webp" },
+  { year: 2017, src: "../assets/img/plakaty/2017.webp" },
+  { year: 2016, src: "../assets/img/plakaty/2016.webp" },
+  { year: 2015, src: "../assets/img/plakaty/2015.webp" },
+  { year: 2014, src: "../assets/img/plakaty/2014.webp" },
+  { year: 2013, src: "../assets/img/plakaty/2013.webp" }
+];
+---
+
+<section class="page-section alt" aria-labelledby="posters-gallery-title">
+    <div class="section-inner">
+        <h2 id="posters-gallery-title" class="section-title">
+            {isPl ? "Kronika Festiwalu: Archiwum Plakatów" : "Festival Chronicle: Poster Archive"}
+        </h2>
+        <div class="poster-grid" data-gallery>
+            {posters.map(poster => (
+                <figure class="poster-item">
+                    <a href={poster.src} data-pswp-width="1200" data-pswp-height="1680" target="_blank" rel="noopener noreferrer">
+                        <img src={poster.src} alt={`Plakat edycji MASSKA ${poster.year}`} loading="lazy" decoding="async" />
+                        <figcaption class="poster-caption">MASSKA {poster.year}</figcaption>
+                    </a>
+                </figure>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    .poster-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    .poster-item {
+        margin: 0;
+        overflow: hidden;
+        border-radius: 12px;
+        background: var(--color-bg-card, #222);
+        border: 1px solid var(--color-border, #333);
+        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .poster-item a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .poster-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        border-color: var(--color-accent, #ff6b6b);
+    }
+
+    .poster-item img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1.4;
+        object-fit: cover;
+        display: block;
+        transition: filter 0.3s ease;
+    }
+
+    .poster-item:hover img {
+        filter: brightness(1.05);
+    }
+
+    .poster-caption {
+        padding: 1rem;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        background: var(--color-bg-caption, #1b1b1b);
+        border-top: 1px solid var(--color-border, #333);
+    }
+
+    @media (max-width: 500px) {
+        .poster-grid {
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .poster-caption {
+            font-size: 0.95rem;
+            padding: 0.75rem;
+        }
+    }
+</style>

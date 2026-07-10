@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PosterGallery from '../../components/PosterGallery.astro';
 
 // Static page generated automatically from HTML
 ---
@@ -176,65 +177,5 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             </div>
         </section>
 
-        <section class="page-section" aria-labelledby="partners">
-            <div class="section-inner">
-                <h2 id="partners">Festival partners</h2>
-                <div class="partners" role="list">
-                    <div class="partner-text">ORGANIZERS:</div>
-                    <figure role="listitem">
-                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Na Drodze Ekspresji Association">
-                        </a>
-                    </figure>
-                    <figure role="listitem">
-                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/prezydent-sopotu.webp"
-                                alt="Honorary patronage of the Mayor of Sopot">
-                        </a>
-                    </figure>
-                    <div class="partner-text">COOPERATION:</div>
-                    <figure role="listitem">
-                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/pkps.webp" alt="Polish Committee for Social Assistance">
-                        </a>
-                    </figure>
-                    <figure role="listitem">
-                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/bart.webp" alt="Baltic Artistic Agency BART">
-                        </a>
-                    </figure>
-                    <figure role="listitem">
-                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
-                        </a>
-                    </figure>
-                    <figure role="listitem">
-                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Wybrzeże Theatre">
-                        </a>
-                    </figure>
-                    <div class="partner-text">MEDIA PATRONAGE:</div>
-                    <figure role="listitem">
-                        <a href="https://radiogdansk.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/RadioGdansk.webp" alt="Radio Gdańsk">
-                        </a>
-                    </figure>
-                </div>
-                <div class="partners-wide" role="list">
-                    <figure role="listitem" class="partner-wide">
-                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/sopot.webp" alt="Co-financed by the City of Sopot">
-                            <figcaption>Co-financed by the City of Sopot</figcaption>
-                        </a>
-                    </figure>
-                    <figure role="listitem" class="partner-wide">
-                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/urzad-marszalkowski.webp"
-                                alt="Marshal's Office of the Pomeranian Voivodeship">
-                            <figcaption>and the Marshal's Office of the Pomeranian Voivodeship</figcaption>
-                        </a>
-                    </figure>
-                </div>
-            </div>
-        </section>
+        <PosterGallery lang="en" />
 </BaseLayout>
