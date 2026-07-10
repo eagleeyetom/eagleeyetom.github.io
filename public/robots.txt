@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://masska.org/sitemap.xml
+Sitemap: https://masska.org/sitemap-index.xml
 
 # Nie indeksuj szablonów
 Disallow: /pl/template.html
