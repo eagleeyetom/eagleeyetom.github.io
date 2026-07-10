@@ -7,7 +7,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   title="Contact · MASSKA 2025"
   description="Contact the organizers of MASSKA festival. Contact form, email addresses and festival office information."
   lang="en"
-  showPartners={false}
+  showPartners={true}
   redirectToPreferredLanguage={true}
 >
 <section class="hero">
@@ -107,65 +107,61 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             </div>
         </section>
 
-        <section class="page-section" aria-labelledby="partners">
-            <div class="section-inner">
-                <h2 id="partners">Festival partners</h2>
-                <div class="partners" role="list">
-                    <div class="partner-text">ORGANIZERS:</div>
-                    <figure role="listitem">
-                        <a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/na-drodze-ekspresji.webp" alt="Na Drodze Ekspresji Association">
-                        </a>
-                    </figure>
-                    <figure role="listitem">
-                        <a href="https://bip.sopot.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/prezydent-sopotu.webp"
-                                alt="Honorary patronage of the Mayor of Sopot">
-                        </a>
-                    </figure>
-                    <div class="partner-text">COOPERATION:</div>
-                    <figure role="listitem">
-                        <a href="https://pkps.org.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/pkps.webp" alt="Polish Committee for Social Assistance">
-                        </a>
-                    </figure>
-                    <figure role="listitem">
-                        <a href="https://bart.sopot.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/bart.webp" alt="Baltic Artistic Agency BART">
-                        </a>
-                    </figure>
-                    <figure role="listitem">
-                        <a href="https://www.facebook.com/mamuszki14" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/mamuszki-14.webp" alt="Mamuszki 14">
-                        </a>
-                    </figure>
-                    <figure role="listitem">
-                        <a href="https://teatrwybrzeze.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/teatr-wybrzeze.webp" alt="Wybrzeże Theatre">
-                        </a>
-                    </figure>
-                    <div class="partner-text">MEDIA PATRONAGE:</div>
-                    <figure role="listitem">
-                        <a href="https://radiogdansk.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/RadioGdansk.webp" alt="Radio Gdańsk">
-                        </a>
-                    </figure>
-                </div>
-                <div class="partners-wide" role="list">
-                    <figure role="listitem" class="partner-wide">
-                        <a href="https://sopot.pl/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/sopot.webp" alt="Co-financed by the City of Sopot">
-                            <figcaption>Co-financed by the City of Sopot</figcaption>
-                        </a>
-                    </figure>
-                    <figure role="listitem" class="partner-wide">
-                        <a href="https://www.pomorskie.eu/" target="_blank" rel="noopener noreferrer">
-                            <img src="../assets/img/urzad-marszalkowski.webp"
-                                alt="Marshal's Office of the Pomeranian Voivodeship">
-                            <figcaption>and the Marshal's Office of the Pomeranian Voivodeship</figcaption>
-                        </a>
-                    </figure>
-                </div>
-            </div>
-        </section>
+        <style>
+            .contact-form {
+                max-width: 600px;
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+                color: var(--color-text);
+            }
+
+            .form-group label span {
+                color: var(--color-accent);
+            }
+
+            .form-group input[type="text"],
+            .form-group input[type="email"],
+            .form-group textarea {
+                width: 100%;
+                padding: 0.75rem;
+                border: 1px solid var(--color-border);
+                border-radius: 4px;
+                font-family: inherit;
+                font-size: 1rem;
+                background: #ffffff;
+                color: #000000;
+                transition: border-color 0.2s;
+            }
+
+            .form-group input:focus,
+            .form-group textarea:focus {
+                outline: none;
+                border-color: var(--color-accent);
+                box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+            }
+
+            .form-group textarea {
+                resize: vertical;
+                min-height: 150px;
+            }
+
+            body.high-contrast .form-group input,
+            body.high-contrast .form-group textarea {
+                border-width: 2px;
+            }
+
+            body.high-contrast .form-group input:focus,
+            body.high-contrast .form-group textarea:focus {
+                border-color: var(--color-text);
+                box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+            }
+        </style>
 </BaseLayout>
