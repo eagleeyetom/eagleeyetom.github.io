@@ -127,7 +127,64 @@ const isPl = lang === 'pl';
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
-    <meta name="twitter:image" content={`${siteUrl}/assets/img/head.webp`}>
+    <!-- JSON-LD Structured Data -->
+    {isTheatre ? (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "TheaterEvent",
+        "name": title,
+        "description": description,
+        "startDate": "2025-11-16T10:00:00+01:00",
+        "endDate": "2025-11-20T22:00:00+01:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+        "location": [
+          {
+            "@type": "Place",
+            "name": "Mamuszki 14",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Aleja Franciszka Mamuszki 14",
+              "addressLocality": "Sopot",
+              "postalCode": "81-702",
+              "addressCountry": "PL"
+            }
+          }
+        ],
+        "image": `${siteUrl}/assets/img/head.webp`,
+        "organizer": {
+          "@type": "Organization",
+          "name": "Stowarzyszenie Na Drodze Ekspresji",
+          "url": "https://ekspresja.org"
+        }
+      })} />
+    ) : (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Festival",
+        "name": isPl ? "XXIV Międzynarodowy Przegląd Teatralny MASSKA 2025" : "XXIV MASSKA International Theatre Review 2025",
+        "description": description,
+        "startDate": "2025-11-16",
+        "endDate": "2025-11-20",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Sopot",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Sopot",
+            "addressCountry": "PL"
+          }
+        },
+        "image": `${siteUrl}/assets/img/head.webp`,
+        "organizer": {
+          "@type": "Organization",
+          "name": "Stowarzyszenie Na Drodze Ekspresji",
+          "url": "https://ekspresja.org"
+        }
+      })} />
+    )}
 </head>
 
 <body data-redirect-to-preferred-language={redirectToPreferredLanguage ? "true" : "false"}>
