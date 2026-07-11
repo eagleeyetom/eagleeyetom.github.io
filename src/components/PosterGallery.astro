@@ -68,6 +68,11 @@ const posters: Poster[] = [
 
     let currentIndex = 0;
 
+    img?.addEventListener('load', () => {
+        img.classList.remove('is-switching');
+        caption?.classList.remove('is-switching');
+    });
+
     function openLightbox(index: number) {
         if (!modal || !img || !caption) return;
         currentIndex = index;
@@ -76,6 +81,8 @@ const posters: Poster[] = [
         const captionText = link.querySelector('.poster-caption')?.textContent || '';
 
         if (imageSrc) {
+            img.classList.remove('is-switching');
+            caption.classList.remove('is-switching');
             img.src = imageSrc;
             caption.textContent = captionText;
             modal.setAttribute('aria-hidden', 'false');
@@ -96,13 +103,27 @@ const posters: Poster[] = [
     }
 
     function navigate(direction: number) {
+        if (!img || !caption) return;
         let newIndex = currentIndex + direction;
         if (newIndex < 0) {
             newIndex = links.length - 1;
         } else if (newIndex >= links.length) {
             newIndex = 0;
         }
-        openLightbox(newIndex);
+
+        const link = links[newIndex];
+        const imageSrc = link.getAttribute('href');
+        const captionText = link.querySelector('.poster-caption')?.textContent || '';
+
+        if (imageSrc) {
+            img.classList.add('is-switching');
+            caption.classList.add('is-switching');
+            setTimeout(() => {
+                currentIndex = newIndex;
+                img.src = imageSrc;
+                caption.textContent = captionText;
+            }, 150); // wait for fade out
+        }
     }
 
     links.forEach((link, index) => {
@@ -257,6 +278,14 @@ const posters: Poster[] = [
         object-fit: contain;
         border-radius: 8px;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .lightbox-content img.is-switching {
+        opacity: 0;
+        transform: scale(0.97);
     }
 
     .lightbox-caption {
@@ -266,6 +295,12 @@ const posters: Poster[] = [
         font-weight: 500;
         letter-spacing: 0.5px;
         text-align: center;
+        transition: opacity 0.2s ease;
+        opacity: 1;
+    }
+
+    .lightbox-caption.is-switching {
+        opacity: 0;
     }
 
     .lightbox-close {
