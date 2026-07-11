@@ -142,13 +142,6 @@ function getTheatreUrl(entry: any) {
                 <a class={`nav-link ${isProgram ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/program.html" : "/en/program.html")} aria-current={isProgram ? 'page' : undefined}>Program</a>
                 <a class={`nav-link ${isOnline ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")} aria-current={isOnline ? 'page' : undefined}>{isPl ? "Oglądaj online" : "Watch online"}</a>
                 <a class={`nav-link ${isKontakt ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/kontakt.html" : "/en/contact.html")} aria-current={isKontakt ? 'page' : undefined}>{isPl ? "Kontakt" : "Contact"}</a>
-                
-                <div class="nav-link" style="padding: 0; background: transparent; border: none;">
-                    <div style="position: relative; width: 180px; height: 40px; max-width: 100%; overflow: hidden; border-radius: 999px; background: transparent;">
-                        <iframe style="position: absolute; top:0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; border: 0;"
-                            src="https://zrzutka.pl/bax8c7/widget/24" frameborder="0" scrolling="no" title="Zrzutka"></iframe>
-                    </div>
-                </div>
 
                 {isTheatre && activeTheatre && (
                     <div class="nav-dropdown">
