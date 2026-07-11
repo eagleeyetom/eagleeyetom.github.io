@@ -1044,10 +1044,17 @@ blockquote {
 }
 
 .footer {
-    background: var(--color-surface);
+    background: var(--color-surface-alt);
     border-top: 1px solid var(--color-border);
     padding: var(--spacing-lg) 1.5rem;
     color: var(--color-muted);
+}
+
+.footer h2 {
+    font-family: var(--font-family-headers, sans-serif) !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
 }
 
 .footer-inner {
@@ -1055,6 +1062,32 @@ blockquote {
     max-width: var(--max-width);
     display: grid;
     gap: var(--spacing-lg);
+}
+
+.footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.footer-socials a {
+    font-size: 0.85rem !important;
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text) !important;
+    font-weight: var(--font-weight-medium);
+    transition: background-color var(--transition-base), border-color var(--transition-base), transform var(--transition-base) !important;
+}
+
+.footer-socials a:hover {
+    background: var(--color-accent-soft);
+    border-color: var(--color-accent);
+    color: var(--color-accent-strong) !important;
+    transform: translateY(-2px);
+    text-decoration: none !important;
 }
 
 .footer-columns {

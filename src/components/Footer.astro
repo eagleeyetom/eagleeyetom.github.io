@@ -36,6 +36,11 @@ function getRelativeUrl(targetPath: string) {
             <section>
                 <h2>{isPl ? "Kontakt" : "Contact"}</h2>
                 <p><a href={getRelativeUrl(isPl ? "/pl/kontakt.html" : "/en/contact.html")}>{isPl ? "Formularz kontaktowy →" : "Contact form →"}</a></p>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/masskasopot" target="_blank" rel="noopener noreferrer" title="Facebook">Facebook</a>
+                    <a href="https://www.instagram.com/masska_przeglad_teatralny/" target="_blank" rel="noopener noreferrer" title="Instagram">Instagram</a>
+                    <a href="https://www.youtube.com/@masskaprzegladteatralny" target="_blank" rel="noopener noreferrer" title="YouTube">YouTube</a>
+                </div>
             </section>
             <section>
                 <h2>{isPl ? "Odwiedź na żywo" : "Visit in person"}</h2>
@@ -62,7 +67,7 @@ function getRelativeUrl(targetPath: string) {
             </section>
         </div>
         <p class="footer-note">
-            {isPl ? "© 2025 MASSKA Międzynarodowy Przegląd Teatralny" : "© 2025 MASSKA International Theatre Review"}
+            © 2013–{new Date().getFullYear()} {isPl ? "MASSKA Międzynarodowy Przegląd Teatralny" : "MASSKA International Theatre Review"}
         </p>
     </div>
 </footer>
