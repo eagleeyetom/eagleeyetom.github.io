@@ -143,17 +143,21 @@ const posters: Poster[] = [
     const swipeThreshold = 50; // minimum X diff to trigger swipe
 
     modal?.addEventListener('touchstart', (e: any) => {
-        touchStartX = e.changedTouches[0].screenX;
+        if (e.touches && e.touches.length > 0) {
+            touchStartX = e.touches[0].clientX;
+        }
     }, { passive: true });
 
     modal?.addEventListener('touchend', (e: any) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchEndX - touchStartX;
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                navigate(-1); // Swipe right -> previous
-            } else {
-                navigate(1);  // Swipe left -> next
+        if (e.changedTouches && e.changedTouches.length > 0) {
+            touchEndX = e.changedTouches[0].clientX;
+            const diff = touchEndX - touchStartX;
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    navigate(-1); // Swipe right -> previous
+                } else {
+                    navigate(1);  // Swipe left -> next
+                }
             }
         }
     }, { passive: true });
@@ -224,6 +228,7 @@ const posters: Poster[] = [
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
+        touch-action: none; /* Disable default browser scrolling/zooming on the modal to allow swipe */
     }
 
     .lightbox-modal.is-active {
