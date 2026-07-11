@@ -136,6 +136,27 @@ const posters: Poster[] = [
         if (e.key === 'ArrowLeft') navigate(-1);
         if (e.key === 'ArrowRight') navigate(1);
     });
+
+    // Touch Swipe Navigation for Mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const swipeThreshold = 50; // minimum X diff to trigger swipe
+
+    modal?.addEventListener('touchstart', (e: any) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    modal?.addEventListener('touchend', (e: any) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchEndX - touchStartX;
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                navigate(-1); // Swipe right -> previous
+            } else {
+                navigate(1);  // Swipe left -> next
+            }
+        }
+    }, { passive: true });
 </script>
 
 <style>
