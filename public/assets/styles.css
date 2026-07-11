@@ -1072,14 +1072,17 @@ blockquote {
 }
 
 .footer-socials a {
-    font-size: 0.85rem !important;
-    padding: 0.35rem 0.8rem;
-    border-radius: var(--radius-pill);
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     color: var(--color-text) !important;
-    font-weight: var(--font-weight-medium);
     transition: background-color var(--transition-base), border-color var(--transition-base), transform var(--transition-base) !important;
+    padding: 0;
 }
 
 .footer-socials a:hover {
