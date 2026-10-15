@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(s);
   }
 
-  function buildYTFrame(videoId, title = "YouTube video") {
+  function buildYTFrame(videoId, title = "YouTube video", autoplay = false) {
     const lang = (document.documentElement.lang || "en").slice(0, 2);
     const iframe = document.createElement("iframe");
     iframe.width = "560";
@@ -187,24 +187,48 @@ document.addEventListener("DOMContentLoaded", () => {
     iframe.title = title;
     iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(
       videoId
-    )}?rel=0&modestbranding=1&hl=${encodeURIComponent(lang)}`;
+    )}?rel=0&modestbranding=1&hl=${encodeURIComponent(lang)}${autoplay ? "&autoplay=1" : ""}`;
     return iframe;
   }
 
+  // YouTube embeds load only with media consent. Without it each video shows a local
+  // placeholder (no thumbnail, so nothing is requested from Google) and loads on click.
   function processExternalMedia() {
+    const isPl = (document.documentElement.lang || "pl").startsWith("pl");
     const blocks = document.querySelectorAll(".external-media[data-yt-id]");
     blocks.forEach((block) => {
+      if (block.querySelector("iframe")) return;
       const videoId = block.getAttribute("data-yt-id");
       const title = block.getAttribute("data-title") || "YouTube video";
 
-      function mount() {
-        const frame = buildYTFrame(videoId, title);
+      function mount(autoplay) {
+        const frame = buildYTFrame(videoId, title, autoplay);
         block.innerHTML = "";
         block.appendChild(frame);
+        if (autoplay) frame.focus();
       }
 
-      // Automatyczne ładowanie wideo bez zgody
-      mount();
+      if (consent.media) {
+        mount(false);
+        return;
+      }
+
+      if (block.querySelector(".media-facade")) return;
+      const facade = document.createElement("button");
+      facade.type = "button";
+      facade.className = "media-facade";
+      facade.innerHTML =
+        '<span class="media-facade__play" aria-hidden="true"></span>' +
+        '<span class="media-facade__title"></span>' +
+        '<span class="media-facade__note"></span>';
+      facade.querySelector(".media-facade__title").textContent =
+        (isPl ? "Odtwórz wideo: " : "Play video: ") + title;
+      facade.querySelector(".media-facade__note").textContent = isPl
+        ? "Film załaduje się z YouTube po kliknięciu"
+        : "The video loads from YouTube when you click";
+      facade.addEventListener("click", () => mount(true));
+      block.innerHTML = "";
+      block.appendChild(facade);
     });
   }
 

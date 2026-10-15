@@ -2065,3 +2065,54 @@ body:not(.high-contrast) [data-tone="dark"] {
 .fi-ru { background-image: url('icons/flags/ru.svg'); }
 .fi-ua { background-image: url('icons/flags/ua.svg'); }
 .fi-uz { background-image: url('icons/flags/uz.svg'); }
+
+/* Click-to-load placeholder for YouTube embeds without media consent */
+.media-facade {
+    position: relative;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: var(--spacing-lg);
+    border: 0;
+    border-radius: var(--radius-md);
+    background:
+        radial-gradient(circle at 80% 20%, rgba(183, 207, 210, 0.35) 0, transparent 55%),
+        radial-gradient(circle at 15% 85%, rgba(179, 134, 145, 0.35) 0, transparent 50%),
+        #1f1d1b;
+    color: #f5f2ee;
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+}
+
+.media-facade__play {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background: #f5f2ee url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%231f1d1b' d='M8 5v14l11-7z'/%3E%3C/svg%3E") 55% 50% / 2rem no-repeat;
+    transition: transform var(--transition-base);
+}
+
+.media-facade:hover .media-facade__play,
+.media-facade:focus-visible .media-facade__play {
+    transform: scale(1.08);
+}
+
+.media-facade:focus-visible {
+    outline: 3px solid var(--color-blue);
+    outline-offset: 3px;
+}
+
+.media-facade__title {
+    font-family: var(--font-family-headers);
+    font-size: clamp(1.1rem, 1vw + 0.8rem, 1.5rem);
+    font-weight: 600;
+}
+
+.media-facade__note {
+    font-size: 0.85rem;
+    color: #cfc8c0;
+}

@@ -43,7 +43,7 @@ function getTheatreUrl(entry: any) {
                 {enTheatres.map(theatre => {
                     const imgUrl = theatre.data.gallery[0]?.src 
                       ? `..${theatre.data.gallery[0].src}` 
-                      : "../assets/img/head.webp";
+                      : "../assets/img/plakaty/2026.webp";
                     return (
                         <a href={getTheatreUrl(theatre)} class="theater-card">
                             <figure>

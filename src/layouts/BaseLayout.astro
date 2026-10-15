@@ -122,7 +122,10 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
     <meta property="og:url" content={canonical}>
-    <meta property="og:image" content={`${siteUrl}/assets/img/head.webp`}>
+    <meta property="og:image" content={`${siteUrl}/assets/img/og-masska-2026.jpg`}>
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="XXV Jubileuszowy Przegląd Teatralny MASSKA 2026">
     <meta property="og:locale" content={isPl ? "pl_PL" : "en_US"}>
     <meta property="og:locale:alternate" content={isPl ? "en_US" : "pl_PL"}>
 
@@ -130,7 +133,7 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
-    <meta name="twitter:image" content={`${siteUrl}/assets/img/head.webp`}>
+    <meta name="twitter:image" content={`${siteUrl}/assets/img/og-masska-2026.jpg`}>
     <!-- JSON-LD Structured Data -->
     {isTheatre ? (
       <script type="application/ld+json" set:html={JSON.stringify({
@@ -155,7 +158,7 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
             }
           }
         ],
-        "image": `${siteUrl}/assets/img/head.webp`,
+        "image": `${siteUrl}/assets/img/og-masska-2026.jpg`,
         "organizer": {
           "@type": "Organization",
           "name": "Stowarzyszenie Na Drodze Ekspresji",
@@ -184,7 +187,7 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
             "addressCountry": edition.venue.country
           }
         },
-        "image": `${siteUrl}/assets/img/head.webp`,
+        "image": `${siteUrl}/assets/img/og-masska-2026.jpg`,
         "organizer": {
           "@type": "Organization",
           "name": "Stowarzyszenie Na Drodze Ekspresji",
