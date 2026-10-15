@@ -1,49 +1,60 @@
 ---
+import { edition, posterArchive, type Lang } from '../data/edition';
+
 interface Props {
-  lang: 'pl' | 'en';
+  lang: Lang;
 }
 
 const { lang } = Astro.props;
 const isPl = lang === 'pl';
-
-interface Poster {
-  year: number;
-  src: string;
-}
-
-const posters: Poster[] = [
-  { year: 2025, src: "../assets/img/plakaty/2023.webp" }, // Placeholder for current
-  { year: 2024, src: "../assets/img/plakaty/2023.webp" }, // Placeholder
-  { year: 2023, src: "../assets/img/plakaty/2023.webp" },
-  { year: 2022, src: "../assets/img/plakaty/2022.webp" },
-  { year: 2021, src: "../assets/img/plakaty/2021.webp" },
-  { year: 2020, src: "../assets/img/plakaty/2020.webp" },
-  { year: 2019, src: "../assets/img/plakaty/2019.webp" },
-  { year: 2018, src: "../assets/img/plakaty/2018.webp" },
-  { year: 2017, src: "../assets/img/plakaty/2017.webp" },
-  { year: 2016, src: "../assets/img/plakaty/2016.webp" },
-  { year: 2015, src: "../assets/img/plakaty/2015.webp" },
-  { year: 2014, src: "../assets/img/plakaty/2014.webp" },
-  { year: 2013, src: "../assets/img/plakaty/2013.webp" }
-];
 ---
 
-<section class="page-section alt" aria-labelledby="posters-gallery-title">
-    <div class="section-inner">
-        <h2 id="posters-gallery-title" class="section-title">
-            {isPl ? "Kronika Festiwalu: Archiwum Plakatów" : "Festival Chronicle: Poster Archive"}
-        </h2>
-        <div class="poster-grid">
-            {posters.map(poster => (
-                <figure class="poster-item">
-                    <a href={poster.src} class="poster-link">
-                        <img src={poster.src} alt={`Plakat edycji MASSKA ${poster.year}`} loading="lazy" decoding="async" />
-                        <figcaption class="poster-caption">MASSKA {poster.year}</figcaption>
-                    </a>
-                </figure>
-            ))}
+<section class="page-section timeline-section" aria-labelledby="timeline-title" data-tone="dark">
+    <div class="section-inner timeline-head">
+        <div>
+            <p class="timeline-eyebrow">{edition.firstYear} – {edition.year}</p>
+            <h2 id="timeline-title">{isPl ? "25 lat Masski" : "25 years of Masska"}</h2>
+            <p class="timeline-intro">
+                {isPl
+                    ? "Plakaty kolejnych edycji, od jubileuszowej XXV wstecz. Kliknij plakat, by go powiększyć."
+                    : "Posters of each edition, from the XXV anniversary backwards. Click a poster to enlarge it."}
+            </p>
+        </div>
+        <div class="timeline-controls">
+            <button type="button" class="timeline-btn" data-timeline-prev aria-label={isPl ? "Nowsze edycje" : "Newer editions"}>&#8249;</button>
+            <button type="button" class="timeline-btn" data-timeline-next aria-label={isPl ? "Starsze edycje" : "Older editions"}>&#8250;</button>
         </div>
     </div>
+
+    <ol class="poster-timeline" role="list" data-timeline tabindex="0" aria-labelledby="timeline-title">
+        {posterArchive.map(poster => (
+            <li class:list={["poster-item", { "is-current": poster.year === edition.year }]}>
+                <p class="poster-item__marker">
+                    <span class="poster-item__year">{poster.year}</span>
+                    {poster.year === edition.year && (
+                        <span class="poster-item__badge">{isPl ? "Jubileusz" : "Anniversary"}</span>
+                    )}
+                </p>
+                {poster.src ? (
+                    <a href={poster.src} class="poster-link">
+                        <img
+                            src={poster.src}
+                            alt={isPl ? `Plakat ${poster.numeral} edycji MASSKA ${poster.year}` : `Poster of the ${poster.numeral} MASSKA edition, ${poster.year}`}
+                            loading="lazy"
+                            decoding="async"
+                        />
+                        <span class="poster-caption">{poster.numeral} · MASSKA {poster.year}</span>
+                    </a>
+                ) : (
+                    <div class="poster-missing">
+                        <span class="poster-missing__numeral" aria-hidden="true">{poster.numeral}</span>
+                        <span class="poster-missing__text">{isPl ? "Plakat wkrótce w archiwum" : "Poster coming to the archive"}</span>
+                        <span class="poster-caption">{poster.numeral} · MASSKA {poster.year}</span>
+                    </div>
+                )}
+            </li>
+        ))}
+    </ol>
 </section>
 
 <!-- Modern Custom Lightbox Modal -->
@@ -58,6 +69,30 @@ const posters: Poster[] = [
 </div>
 
 <script>
+    // Timeline arrows scroll by roughly two posters and disable themselves at either end
+    const track = document.querySelector<HTMLElement>('[data-timeline]');
+    const prevTimeline = document.querySelector<HTMLButtonElement>('[data-timeline-prev]');
+    const nextTimeline = document.querySelector<HTMLButtonElement>('[data-timeline-next]');
+
+    function updateTimelineButtons() {
+        if (!track || !prevTimeline || !nextTimeline) return;
+        prevTimeline.disabled = track.scrollLeft <= 4;
+        nextTimeline.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    }
+
+    function scrollTimeline(direction: number) {
+        const item = track?.querySelector<HTMLElement>('.poster-item');
+        if (!track || !item) return;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        track.scrollBy({ left: direction * item.offsetWidth * 2, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    prevTimeline?.addEventListener('click', () => scrollTimeline(-1));
+    nextTimeline?.addEventListener('click', () => scrollTimeline(1));
+    track?.addEventListener('scroll', updateTimelineButtons, { passive: true });
+    window.addEventListener('resize', updateTimelineButtons);
+    updateTimelineButtons();
+
     const links = document.querySelectorAll('.poster-link');
     const modal = document.getElementById('poster-lightbox');
     const img = document.getElementById('lightbox-img') as HTMLImageElement;
@@ -185,55 +220,230 @@ const posters: Poster[] = [
 </script>
 
 <style>
-    .poster-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 2.5rem;
-        margin-top: 3rem;
+    .timeline-section {
+        padding-inline: 0;
+        background:
+            linear-gradient(180deg, var(--color-blue-soft) 0%, transparent 70%),
+            var(--color-bg);
+    }
+
+    .timeline-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: var(--spacing-md);
+        padding-inline: var(--gutter);
+    }
+
+    .timeline-eyebrow {
+        margin: 0 0 0.25rem;
+        font-size: 0.85rem;
+        font-weight: var(--font-weight-medium);
+        letter-spacing: 0.12em;
+        color: var(--color-blue-strong);
+    }
+
+    .timeline-intro {
+        max-width: 36rem;
+        margin: 0;
+    }
+
+    .timeline-controls {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .timeline-btn {
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 50%;
+        border: 1px solid var(--color-border);
+        background: var(--color-surface);
+        color: var(--color-text);
+        font-size: 1.6rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: background-color var(--transition-base), border-color var(--transition-base);
+    }
+
+    .timeline-btn:hover:not(:disabled),
+    .timeline-btn:focus-visible {
+        border-color: var(--color-blue-strong);
+        background: var(--color-blue);
+    }
+
+    .timeline-btn:disabled {
+        opacity: 0.35;
+        cursor: default;
+    }
+
+    .poster-timeline {
+        --item-width: clamp(170px, 19vw, 230px);
+        position: relative;
+        display: flex;
+        gap: 1.5rem;
+        margin: var(--spacing-lg) 0 0;
+        padding: 0 0 1.5rem;
+        /* Line the first poster up with the section heading, then let the row run full width */
+        padding-inline: max(var(--gutter), calc((100% - var(--max-width)) / 2));
+        scroll-padding-inline: max(var(--gutter), calc((100% - var(--max-width)) / 2));
+        list-style: none;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-blue-strong) transparent;
+    }
+
+    .poster-timeline:focus-visible {
+        outline: 3px solid var(--color-accent);
+        outline-offset: -3px;
     }
 
     .poster-item {
+        position: relative;
+        flex: 0 0 var(--item-width);
         margin: 0;
+        scroll-snap-align: start;
+    }
+
+    /* Timeline rail: each item draws its own segment so the line spans the whole row */
+    .poster-item::before {
+        content: '';
+        position: absolute;
+        top: 1.05rem;
+        left: 0;
+        right: -1.5rem;
+        height: 2px;
+        background: var(--color-blue-strong);
+        opacity: 0.35;
+    }
+
+    .poster-item:last-child::before {
+        right: 50%;
+    }
+
+    .poster-item__marker {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        height: 2.1rem;
+        margin: 0 0 0.75rem;
+    }
+
+    .poster-item__year {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding-right: 0.5rem;
+        background: transparent;
+        font-family: var(--font-family-headers);
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: var(--color-text);
+    }
+
+    .poster-item__year::before {
+        content: '';
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 50%;
+        background: var(--color-bg);
+        border: 2px solid var(--color-blue-strong);
+    }
+
+    .poster-item.is-current .poster-item__year::before {
+        width: 1rem;
+        height: 1rem;
+        background: var(--color-mauve);
+        border-color: var(--color-mauve);
+        box-shadow: 0 0 0 4px var(--color-blue);
+    }
+
+    .poster-item__badge {
+        padding: 0.15rem 0.6rem;
+        border-radius: var(--radius-pill);
+        background: var(--color-mauve);
+        color: var(--color-ink);
+        font-size: 0.75rem;
+        font-weight: var(--font-weight-medium);
+        letter-spacing: 0.04em;
+    }
+
+    .poster-link,
+    .poster-missing {
+        display: block;
         overflow: hidden;
-        border-radius: 12px;
-        background: var(--color-bg-card, #222);
-        border: 1px solid var(--color-border, #333);
+        border-radius: var(--radius-sm);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        color: inherit;
+        text-decoration: none;
         transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
-    .poster-item a {
+    .poster-link:hover,
+    .poster-link:focus-visible {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--color-blue-strong);
         text-decoration: none;
-        color: inherit;
-        display: block;
     }
 
-    .poster-item:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        border-color: var(--color-accent, #ff6b6b);
+    .poster-item.is-current .poster-link {
+        border: 2px solid var(--color-mauve);
     }
 
-    .poster-item img {
+    .poster-link img {
         width: 100%;
         height: auto;
         aspect-ratio: 1 / 1.4;
         object-fit: cover;
         display: block;
-        transition: filter 0.3s ease;
     }
 
-    .poster-item:hover img {
-        filter: brightness(1.05);
+    .poster-missing {
+        display: grid;
+        grid-template-rows: 1fr auto;
+        border-style: dashed;
+    }
+
+    .poster-missing__numeral,
+    .poster-missing__text {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    .poster-missing__numeral {
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1 / 1.4;
+        font-family: var(--font-family-headers);
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--color-blue);
+    }
+
+    .poster-missing__text {
+        align-self: end;
+        padding: 0.75rem;
+        font-size: 0.8rem;
+        text-align: center;
+        color: var(--color-muted);
     }
 
     .poster-caption {
-        padding: 1rem;
+        display: block;
+        padding: 0.65rem 0.75rem;
         text-align: center;
-        font-weight: 500;
-        font-size: 1.1rem;
-        letter-spacing: 0.5px;
-        background: var(--color-bg-caption, #1b1b1b);
-        border-top: 1px solid var(--color-border, #333);
+        font-family: var(--font-family-headers);
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+        color: var(--color-text);
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
     }
 
     /* Lightbox Modal Styles */
@@ -361,14 +571,18 @@ const posters: Poster[] = [
     }
 
     @media (max-width: 768px) {
-        .poster-grid {
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 1.5rem;
+        .poster-timeline {
+            --item-width: min(55vw, 210px);
+            gap: 1rem;
         }
-        
-        .poster-caption {
-            font-size: 0.95rem;
-            padding: 0.75rem;
+
+        .poster-item::before {
+            right: -1rem;
+        }
+
+        /* Swipe replaces the arrows on touch-sized screens */
+        .timeline-controls {
+            display: none;
         }
 
         .lightbox-nav {

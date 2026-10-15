@@ -1,0 +1,214 @@
+/* Design variants for live comparison on the dev server (see VariantPreview.astro).
+   html[data-variant="a"] = zachowawczy, html[data-variant="b"] = plakatowy (a + more).
+   Once a variant is chosen its rules move into styles.css and this file goes away. */
+
+/* ===================================================================
+   Shared by both variants
+   =================================================================== */
+
+/* Text and link colours that pass WCAG AA on the page background
+   (muted 6.1:1 instead of 4.45:1, accent 5.3:1 instead of 3.96:1) */
+html[data-variant] {
+    --color-muted: #57524d;
+    --color-accent: #854a5c;
+    --color-accent-strong: #6e3c4d;
+    --color-accent-soft: rgba(133, 74, 92, 0.14);
+}
+
+/* Warm alternate sections instead of the cold blue-white gradient */
+html[data-variant] body:not(.high-contrast) .page-section.alt {
+    background: var(--color-surface);
+}
+
+/* --- Compact header: text size and contrast fold into an "Aa" panel --- */
+html[data-variant] .a11y-menu {
+    display: block;
+    position: relative;
+    order: 2;
+}
+
+html[data-variant] .a11y-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 0;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-family-headers);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+}
+
+html[data-variant] .a11y-toggle:hover,
+html[data-variant] .a11y-menu.is-open .a11y-toggle {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+}
+
+html[data-variant] .a11y-menu .site-actions {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    z-index: 40;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-lg);
+    white-space: nowrap;
+}
+
+html[data-variant] .a11y-menu.is-open .site-actions {
+    display: flex;
+}
+
+html[data-variant] .a11y-menu .font-indicator {
+    display: inline-block;
+}
+
+/* Tools sit in one row next to the language links at every width */
+html[data-variant] .header-tools {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+html[data-variant] .language-switcher {
+    order: 1;
+}
+
+/* Below 1280px the nav is behind the hamburger anyway, so the header can stay slim */
+@media (max-width: 1280px) {
+    html[data-variant] .header-inner {
+        padding-block: 0.25rem;
+    }
+
+    html[data-variant] .site-header {
+        padding-block: 0.5rem;
+    }
+}
+
+/* Phones: flag + two-letter code instead of the full language name */
+@media (max-width: 600px) {
+    html[data-variant] .lang-name {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+
+    html[data-variant] .lang-code {
+        display: inline;
+    }
+
+    html[data-variant] .language-link {
+        padding: 0.35rem 0.5rem;
+    }
+
+    html[data-variant] .a11y-toggle {
+        width: 2.3rem;
+        height: 2.3rem;
+    }
+}
+
+/* ===================================================================
+   Plakatowy (b) only
+   =================================================================== */
+
+/* Condensed display face for headings, closer to the stamped type of the logo and posters */
+html[data-variant="b"] {
+    --font-family-headers: 'Oswald', 'Outfit', sans-serif;
+}
+
+html[data-variant="b"] h1,
+html[data-variant="b"] h2 {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+html[data-variant="b"] h2 {
+    font-size: clamp(2rem, 2.4vw + 1rem, 3rem);
+}
+
+html[data-variant="b"] .info-panel > h2 {
+    font-size: clamp(1.4rem, 1vw + 1rem, 1.8rem);
+}
+
+html[data-variant="b"] h3 {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* Dark sections in the poster's black: tokens are redefined locally so everything inside adapts */
+html[data-variant="b"] body:not(.high-contrast) [data-tone="dark"] {
+    --color-bg: #1f1d1b;
+    --color-surface: #2a2725;
+    --color-surface-alt: #34302d;
+    --color-text: #f5f2ee;
+    --color-muted: #cfc8c0;
+    --color-border: #3d3935;
+    --color-accent: #e3b8c3;
+    --color-accent-strong: #f0d0d8;
+    --color-accent-soft: rgba(227, 184, 195, 0.16);
+    --color-blue-strong: #9fd0d6;
+    --color-blue-soft: rgba(159, 208, 214, 0.12);
+    background:
+        radial-gradient(circle at 90% 0%, var(--color-blue-soft) 0, transparent 50%),
+        var(--color-bg);
+    color: var(--color-text);
+}
+
+/* Home page order: practical information first, the 25-year timeline as a dark finale */
+html[data-variant="b"] main.page-content:has(.jubilee-hero) {
+    display: flex;
+    flex-direction: column;
+}
+
+html[data-variant="b"] [data-home="intro"] { order: 1; }
+html[data-variant="b"] [data-home="schedule"] { order: 2; }
+html[data-variant="b"] [data-home="offer"] { order: 3; }
+html[data-variant="b"] .timeline-section { order: 4; }
+html[data-variant="b"] [data-home="video"] { order: 5; }
+
+/* Opening words shortened to their first paragraph, with "read more" */
+html[data-variant="b"] [data-intro]:not(.is-expanded) > p:nth-of-type(n + 2) {
+    display: none;
+}
+
+html[data-variant="b"] [data-intro] > p:first-of-type {
+    font-size: clamp(1.15rem, 0.6vw + 1rem, 1.35rem);
+    line-height: 1.55;
+    color: var(--color-text);
+}
+
+html[data-variant="b"] .intro-toggle {
+    display: inline-flex;
+}
+
+/* Feature cards lead with a festival photo */
+html[data-variant="b"] .card {
+    overflow: hidden;
+}
+
+html[data-variant="b"] .card__media {
+    display: block;
+    width: calc(100% + 2 * var(--spacing-lg));
+    max-width: none;
+    margin: calc(var(--spacing-lg) * -1) calc(var(--spacing-lg) * -1) var(--spacing-sm);
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 0;
+}

@@ -677,10 +677,17 @@ document.addEventListener("DOMContentLoaded", () => {
     storedLanguage !== defaultLanguage &&
     body.dataset.redirectToPreferredLanguage === "true"
   ) {
-    const currentPath = window.location.pathname;
-    const preferredPath = currentPath.replace(/\/(en|pl)\//, `/${storedLanguage}/`);
-    if (preferredPath !== currentPath) {
-      window.location.replace(preferredPath);
+    // Slugs differ between languages (kontakt/contact, teatr-baltazar/baltazar),
+    // so take the translated URL from the page's hreflang alternate
+    const alternate = document.querySelector(
+      `link[rel="alternate"][hreflang="${storedLanguage}"]`
+    );
+    if (alternate) {
+      const currentPath = window.location.pathname;
+      const preferredPath = new URL(alternate.href).pathname;
+      if (preferredPath !== currentPath) {
+        window.location.replace(preferredPath);
+      }
     }
   }
 });
@@ -746,5 +753,21 @@ document.addEventListener("DOMContentLoaded", () => {
       closeMenu();
       menuToggle.focus();
     }
+  });
+})();
+
+// Expand / collapse a shortened intro ("Czytaj całość" / "Read the full text")
+(function initIntroToggles() {
+  document.querySelectorAll("[data-intro-toggle]").forEach((button) => {
+    const target = document.getElementById(button.getAttribute("aria-controls"));
+    if (!target) return;
+
+    button.addEventListener("click", () => {
+      const expanded = target.classList.toggle("is-expanded");
+      button.setAttribute("aria-expanded", String(expanded));
+      button.textContent = expanded
+        ? button.dataset.labelLess
+        : button.dataset.labelMore;
+    });
   });
 })();

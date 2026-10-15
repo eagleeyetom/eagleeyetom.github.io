@@ -1,4 +1,6 @@
 ---
+import { edition } from '../data/edition';
+
 interface Props {
   lang: 'pl' | 'en';
 }
@@ -79,7 +81,7 @@ function getRelativeUrl(targetPath: string) {
             </section>
         </div>
         <p class="footer-note">
-            {isPl ? "© 2025 MASSKA Międzynarodowy Przegląd Teatralny" : "© 2025 MASSKA International Theatre Review"}
+            © {edition.year} {isPl ? "MASSKA Międzynarodowy Przegląd Teatralny" : "MASSKA International Theatre Review"}
         </p>
     </div>
 </footer>

@@ -1,0 +1,89 @@
+---
+// Dev-only switcher for comparing design variants live. BaseLayout renders it, and the
+// head script that applies the stored variant, only under `astro dev`, so production
+// builds always ship the current design.
+---
+
+<div class="variant-preview" role="group" aria-label="Podgląd wariantu projektu">
+    <span class="variant-preview__label">Wariant</span>
+    <button type="button" data-variant-choice="obecny">Obecny</button>
+    <button type="button" data-variant-choice="zachowawczy">Zachowawczy</button>
+    <button type="button" data-variant-choice="plakatowy">Plakatowy</button>
+</div>
+
+<script>
+    const codes: Record<string, string> = { obecny: '', zachowawczy: 'a', plakatowy: 'b' };
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-variant-choice]');
+
+    function current() {
+        const code = document.documentElement.dataset.variant ?? '';
+        return Object.keys(codes).find((name) => codes[name] === code) ?? 'obecny';
+    }
+
+    function apply(name: string) {
+        const code = codes[name] ?? '';
+        if (code) document.documentElement.dataset.variant = code;
+        else delete document.documentElement.dataset.variant;
+        try {
+            localStorage.setItem('masskaVariant', name);
+        } catch (_) {}
+        buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.variantChoice === name)));
+    }
+
+    buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.variantChoice ?? 'obecny')));
+    apply(current());
+</script>
+
+<style>
+    .variant-preview {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 20000;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.35rem;
+        border-radius: 999px;
+        background: #1f1d1b;
+        color: #f5f2ee;
+        font: 500 0.8rem/1 system-ui, sans-serif;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .variant-preview__label {
+        padding: 0 0.5rem;
+        opacity: 0.7;
+    }
+
+    .variant-preview button {
+        padding: 0.45rem 0.8rem;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+    }
+
+    .variant-preview button[aria-pressed='true'] {
+        background: #b7cfd2;
+        color: #1f1d1b;
+    }
+
+    .variant-preview button:focus-visible {
+        outline: 2px solid #b7cfd2;
+        outline-offset: 2px;
+    }
+
+    @media (max-width: 480px) {
+        .variant-preview {
+            right: 0.5rem;
+            bottom: 0.5rem;
+        }
+
+        .variant-preview__label {
+            display: none;
+        }
+    }
+</style>

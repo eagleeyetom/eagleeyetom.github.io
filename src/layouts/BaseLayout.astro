@@ -3,6 +3,11 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Partners from '../components/Partners.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import VariantPreview from '../components/VariantPreview.astro';
+import { edition } from '../data/edition';
+
+// Design-variant preview (zachowawczy / plakatowy) exists only on the dev server
+const showVariantPreview = import.meta.env.DEV;
 
 interface Props {
   title: string;
@@ -29,7 +34,9 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://masska.org';
-const canonical = `${siteUrl}${Astro.url.pathname}`;
+// build.format 'file' renders /pl/index.astro as /pl.html; postbuild moves it to /pl/index.html
+const pathname = Astro.url.pathname.replace(/^\/(pl|en)\.html$/, '/$1/');
+const canonical = `${siteUrl}${pathname}`;
 
 // Map current page to its translated counterpart
 const staticMappings: Record<string, string> = {
@@ -53,26 +60,28 @@ let alternateEn = '/en/';
 
 if (translationUrl) {
   if (lang === 'pl') {
-    alternatePl = Astro.url.pathname;
+    alternatePl = pathname;
     alternateEn = translationUrl;
   } else {
     alternatePl = translationUrl;
-    alternateEn = Astro.url.pathname;
+    alternateEn = pathname;
   }
 } else {
-  const mapped = staticMappings[Astro.url.pathname];
+  const mapped = staticMappings[pathname];
   if (mapped) {
     if (lang === 'pl') {
-      alternatePl = Astro.url.pathname;
+      alternatePl = pathname;
       alternateEn = mapped;
     } else {
       alternatePl = mapped;
-      alternateEn = Astro.url.pathname;
+      alternateEn = pathname;
     }
   }
 }
 
 const isPl = lang === 'pl';
+// The root index.html is the language chooser, so it is the x-default for both home pages
+const isHome = pathname === '/pl/' || pathname === '/en/';
 ---
 
 <!DOCTYPE html>
@@ -81,6 +90,19 @@ const isPl = lang === 'pl';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {showVariantPreview && (
+      <script is:inline>
+        (function () {
+          var codes = { obecny: '', zachowawczy: 'a', plakatowy: 'b' };
+          var name = new URLSearchParams(location.search).get('wariant');
+          try {
+            if (name && name in codes) localStorage.setItem('masskaVariant', name);
+            else name = localStorage.getItem('masskaVariant');
+          } catch (e) {}
+          if (name && codes[name]) document.documentElement.dataset.variant = codes[name];
+        })();
+      </script>
+    )}
     <meta name="description" content={description}>
     {robots && <meta name="robots" content={robots}>}
     <title>{title}</title>
@@ -92,10 +114,14 @@ const isPl = lang === 'pl';
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    {showVariantPreview && (
+      <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    )}
     
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
+    {showVariantPreview && <link rel="stylesheet" href="../assets/variants.css">}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
 
     <!-- Favicons -->
@@ -111,7 +137,7 @@ const isPl = lang === 'pl';
     <link rel="canonical" href={canonical}>
     <link rel="alternate" href={`${siteUrl}${alternatePl}`} hreflang="pl">
     <link rel="alternate" href={`${siteUrl}${alternateEn}`} hreflang="en">
-    <link rel="alternate" href={`${siteUrl}${alternatePl}`} hreflang="x-default">
+    <link rel="alternate" href={`${siteUrl}${isHome ? '/' : alternatePl}`} hreflang="x-default">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -127,6 +153,7 @@ const isPl = lang === 'pl';
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
     <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={`${siteUrl}/assets/img/head.webp`}>
     <!-- JSON-LD Structured Data -->
     {isTheatre ? (
       <script type="application/ld+json" set:html={JSON.stringify({
@@ -162,10 +189,12 @@ const isPl = lang === 'pl';
       <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Festival",
-        "name": isPl ? "XXIV Międzynarodowy Przegląd Teatralny MASSKA 2025" : "XXIV MASSKA International Theatre Review 2025",
+        "name": isPl
+          ? `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year}`
+          : `${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}`,
         "description": description,
-        "startDate": "2025-11-16",
-        "endDate": "2025-11-20",
+        "startDate": edition.start.slice(0, 10),
+        "endDate": edition.end.slice(0, 10),
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
         "location": {
@@ -206,6 +235,8 @@ const isPl = lang === 'pl';
     <Footer lang={lang} />
 
     <CookieConsent lang={lang} />
+
+    {showVariantPreview && <VariantPreview />}
 
     <!-- Core App JS -->
     <script src="../assets/app.js" defer></script>

@@ -1,5 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { edition } from '../data/edition';
 
 interface Props {
   lang: 'pl' | 'en';
@@ -43,7 +44,8 @@ function getRelativeUrl(targetPath: string) {
 }
 
 // Get current path
-const pathname = Astro.url.pathname;
+// build.format 'file' renders /pl/index.astro as /pl.html; postbuild moves it to /pl/index.html
+const pathname = Astro.url.pathname.replace(/^\/(pl|en)\.html$/, '/$1/');
 
 // Static pages translation mapping
 const staticMappings: Record<string, string> = {
@@ -107,10 +109,13 @@ const enTheatres = allTheatres
   .sort((a, b) => a.data.name.localeCompare(b.data.name, 'en'));
 
 const theatres = isPl ? plTheatres : enTheatres;
-const activeTheatre = theatres.find(t => {
-  const currentSlug = t.slug.split('/').pop();
-  return currentSlug === activeTheatreId;
-});
+const activeTheatre = theatres.find(t => t.data.id === activeTheatreId);
+
+// Ensembles with more than one show share a name; tell them apart by the show title
+function theatreLabel(entry: CollectionEntry<'theatres'>) {
+  const sameName = theatres.filter(t => t.data.name === entry.data.name).length > 1;
+  return sameName ? `${entry.data.name} – ${entry.data.showTitle}` : entry.data.name;
+}
 
 function getTheatreUrl(entry: any) {
   const tLang = entry.id.startsWith('pl/') ? 'pl' : 'en';
@@ -126,7 +131,9 @@ function getTheatreUrl(entry: any) {
                 <img src="../assets/img/logo.webp" alt="MASSKA Festival">
             </a>
             <a class="brand-subtitle" href={getRelativeUrl(isPl ? "/pl/index.html" : "/en/index.html")}>
-                <img src={isPl ? "../assets/img/przeglad.webp" : "../assets/img/overview.webp"} alt={isPl ? "XXIV Międzynarodowy Przegląd Teatralny · 2025" : "XXIV International Theatre Review · 2025"}>
+                <span class="brand-subtitle__numeral">{edition.numeral}</span>
+                <span class="brand-subtitle__text">{isPl ? "Jubileuszowy Przegląd Teatralny" : "Anniversary Theatre Review"} ·</span>
+                <span>{edition.year}</span>
             </a>
         </div>
         <nav class="site-nav" aria-label={isPl ? "Nawigacja główna" : "Main navigation"}>
@@ -150,8 +157,8 @@ function getTheatreUrl(entry: any) {
                         </span>
                         <div class="nav-dropdown-menu">
                             {theatres.map(t => (
-                                <a href={getRelativeUrl(getTheatreUrl(t))} class={`nav-dropdown-item ${t.slug.split('/').pop() === activeTheatreId ? 'is-active' : ''}`}>
-                                    {t.data.name} <span class={`fi fi-${t.data.countryCode}`}></span>
+                                <a href={getRelativeUrl(getTheatreUrl(t))} class={`nav-dropdown-item ${t.data.id === activeTheatreId ? 'is-active' : ''}`}>
+                                    {theatreLabel(t)} <span class={`fi fi-${t.data.countryCode}`}></span>
                                 </a>
                             ))}
                         </div>
@@ -160,7 +167,13 @@ function getTheatreUrl(entry: any) {
             </div>
         </nav>
         <div class="header-tools">
-            <div class="site-actions" role="group" aria-label={isPl ? "Opcje dostępności" : "Display options"}>
+            <div class="a11y-menu" data-a11y-menu>
+            <!-- The "Aa" toggle only shows in design variants that fold the display tools into a panel -->
+            <button type="button" class="a11y-toggle" aria-expanded="false" aria-controls="display-options"
+                aria-label={isPl ? "Opcje wyświetlania: rozmiar tekstu i kontrast" : "Display options: text size and contrast"}>
+                <span aria-hidden="true">Aa</span>
+            </button>
+            <div class="site-actions" id="display-options" role="group" aria-label={isPl ? "Opcje dostępności" : "Display options"}>
                 <button type="button" data-action="font-decrease" aria-label={isPl ? "Zmniejsz rozmiar tekstu" : "Decrease text size"}>
                     <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
                         <path d="M5 11v2h14v-2z"></path>
@@ -182,17 +195,44 @@ function getTheatreUrl(entry: any) {
                     </svg>
                 </button>
             </div>
+            </div>
             <div class="language-switcher" role="group" aria-label={isPl ? "Zmień język" : "Switch language"}>
                 <span class="sr-only">{isPl ? "Dostępne języki:" : "Available languages:"}</span>
                 <a class={`language-link ${!isPl ? 'is-active' : ''}`} href={getRelativeUrl(enUrl)} data-language="en" data-flag-emoji="🇬🇧">
                     <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
-                    English
+                    <span class="lang-name">English</span>
+                    <span class="lang-code" aria-hidden="true">EN</span>
                 </a>
                 <a class={`language-link ${isPl ? 'is-active' : ''}`} href={getRelativeUrl(plUrl)} data-language="pl" data-flag-emoji="🇵🇱">
                     <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
-                    Polski
+                    <span class="lang-name">Polski</span>
+                    <span class="lang-code" aria-hidden="true">PL</span>
                 </a>
             </div>
         </div>
     </div>
 </header>
+
+<script>
+    // Display-options panel behind the "Aa" toggle: opens on click, closes on Escape or outside click
+    document.querySelectorAll<HTMLElement>('[data-a11y-menu]').forEach((menu) => {
+        const toggle = menu.querySelector<HTMLButtonElement>('.a11y-toggle');
+        if (!toggle) return;
+
+        function setOpen(open: boolean) {
+            menu.classList.toggle('is-open', open);
+            toggle!.setAttribute('aria-expanded', String(open));
+        }
+
+        toggle.addEventListener('click', () => setOpen(!menu.classList.contains('is-open')));
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target as Node)) setOpen(false);
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+                setOpen(false);
+                toggle.focus();
+            }
+        });
+    });
+</script>

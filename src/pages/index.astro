@@ -1,105 +1,269 @@
+---
+import { edition } from '../data/edition';
+
+const siteUrl = 'https://masska.org';
+const title = `MASSKA ${edition.year} · ${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny`;
+const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year} w Sopocie. 25 lat Masski. ${edition.numeral} MASSKA Anniversary International Theatre Review in Sopot.`;
+---
+
 <!DOCTYPE html>
 <html lang="pl">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="XXIV Międzynarodowy Przegląd Teatralny MASSKA 2025. Spektakle teatralne 16-20 listopada w Sopocie, Dwór Artusa. Spektakle dostępne również online.">
-    <meta name="keywords"
-        content="MASSKA, festiwal teatralny, Sopot, teatr, przegląd teatralny, spektakle teatralne, Dwór Artusa, teatr w Sopocie">
-    <title>MASSKA · Międzynarodowy Przegląd Teatralny 2025 w Sopocie</title>
+    <title>{title}</title>
+    <meta name="description" content={description}>
 
-    <!-- Favicons -->
-    <link rel="icon" href="/assets/icons/favicon.ico?v=20251114" sizes="any">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png?v=20251114">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png?v=20251114">
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android-chrome-192x192.png?v=20251114">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=20251114">
-    <link rel="manifest" href="/assets/icons/site.webmanifest?v=20251114">
+    <!-- Same rule as the root redirect in .htaccess, for hosts without Apache (GitHub Pages, dev
+         server): people go straight to their language, crawlers stay on this x-default page -->
+    <script is:inline>
+        (function () {
+            try {
+                if (/bot|crawler|spider|googlebot|bingbot|duckduckbot|baiduspider|yandex|sogou|exabot|slurp|facebot|ia_archiver/i.test(navigator.userAgent)) return;
+                var stored = null;
+                try { stored = JSON.parse(localStorage.getItem('masskaModernSettings') || 'null'); } catch (e) {}
+                var lang = stored && stored.language;
+                if (lang !== 'pl' && lang !== 'en') {
+                    var langs = navigator.languages || [navigator.language || 'pl'];
+                    lang = langs.some(function (l) { return String(l).toLowerCase().indexOf('pl') === 0; }) ? 'pl' : 'en';
+                }
+                location.replace(lang + '/');
+            } catch (e) {}
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+
+    <link rel="icon" href="assets/icons/favicon.ico?v=20251114" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png?v=20251114">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png?v=20251114">
+    <link rel="manifest" href="assets/icons/site.webmanifest?v=20251114">
     <meta name="theme-color" content="#111111">
 
-    <!-- Canonical & hreflang -->
-    <link rel="canonical" href="https://masska.org/">
-    <link rel="alternate" href="https://masska.org/pl/" hreflang="pl">
-    <link rel="alternate" href="https://masska.org/en/" hreflang="en">
-    <link rel="alternate" href="https://masska.org/" hreflang="x-default">
+    <link rel="canonical" href={`${siteUrl}/`}>
+    <link rel="alternate" href={`${siteUrl}/pl/`} hreflang="pl">
+    <link rel="alternate" href={`${siteUrl}/en/`} hreflang="en">
+    <link rel="alternate" href={`${siteUrl}/`} hreflang="x-default">
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="MASSKA Festival">
-    <meta property="og:title" content="MASSKA · Międzynarodowy Przegląd Teatralny 2025">
-    <meta property="og:description"
-        content="XXIV Międzynarodowy Przegląd Teatralny MASSKA 2025. Spektakle teatralne 16-20 listopada w Sopocie, Dwór Artusa. Spektakle dostępne również online.">
-    <meta property="og:url" content="https://masska.org/">
-    <meta property="og:image" content="https://masska.org/assets/img/head.webp">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={`${siteUrl}/`}>
+    <meta property="og:image" content={`${siteUrl}/assets/img/head.webp`}>
     <meta property="og:locale" content="pl_PL">
     <meta property="og:locale:alternate" content="en_US">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MASSKA · Międzynarodowy Przegląd Teatralny 2025">
-    <meta name="twitter:description"
-        content="XXIV Międzynarodowy Przegląd Teatralny MASSKA 2025. Spektakle teatralne 16-20 listopada w Sopocie.">
-    <meta name="twitter:image" content="https://masska.org/assets/img/head.webp">
-
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: #f5f5f5;
-        }
-
-        .redirect-message {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .redirect-message h1 {
-            font-size: 1.5rem;
-            color: #111;
-            margin: 0 0 1rem;
-        }
-
-        .redirect-message p {
-            color: #666;
-            margin: 0 0 1.5rem;
-        }
-
-        .redirect-message a {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            margin: 0 0.5rem;
-            background: white;
-            color: #111;
-            text-decoration: none;
-            border-radius: 6px;
-            border: 2px solid #e0e0e0;
-            transition: all 0.2s ease;
-        }
-
-        .redirect-message a:hover,
-        .redirect-message a:focus {
-            border-color: #ffd300;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={`${siteUrl}/assets/img/head.webp`}>
 </head>
 
-<body>
-    <div class="redirect-message">
-        <h1>MASSKA Festival 2025</h1>
-        <p>XXIV Międzynarodowy Przegląd Teatralny · 16-20 listopada 2025 · Sopot</p>
-        <p>
-            <a href="pl/index.html" rel="alternate" hreflang="pl">🇵🇱 Polski</a>
-            <a href="en/index.html" rel="alternate" hreflang="en">🇬🇧 English</a>
-        </p>
-    </div>
+<body class="splash">
+    <main class="splash__inner">
+        <div class="splash__text">
+            <p class="splash__eyebrow">25 lat Masski · 25 years of Masska</p>
+            <h1 class="splash__title">
+                <span class="splash__numeral">{edition.numeral}</span>
+                <span class="splash__name">MASSKA {edition.year}</span>
+            </h1>
+            <p class="splash__subtitle">
+                <span lang="pl">Jubileuszowy Międzynarodowy Przegląd Teatralny</span>
+                <span lang="en">Anniversary International Theatre Review</span>
+            </p>
+            <p class="splash__meta">
+                <span lang="pl">{edition.dateLabel.pl} · {edition.city.pl}</span>
+            </p>
+
+            <nav class="splash__languages" aria-label="Wybierz język / Choose language">
+                <a class="splash__language" href="pl/" hreflang="pl" lang="pl">
+                    <img src="assets/icons/flag-pl.svg" alt="" width="24" height="18">
+                    <span>
+                        <strong>Polski</strong>
+                        <small>Wejdź na stronę festiwalu</small>
+                    </span>
+                </a>
+                <a class="splash__language" href="en/" hreflang="en" lang="en">
+                    <img src="assets/icons/flag-gb.svg" alt="" width="24" height="18">
+                    <span>
+                        <strong>English</strong>
+                        <small>Enter the festival site</small>
+                    </span>
+                </a>
+            </nav>
+        </div>
+
+        <figure class="splash__poster">
+            <img
+                src={edition.poster.replace('../', '')}
+                alt={`Plakat ${edition.numeral} Jubileuszowego Przeglądu Teatralnego MASSKA ${edition.year}`}
+                width={edition.posterSize.width}
+                height={edition.posterSize.height}
+                fetchpriority="high"
+            >
+        </figure>
+    </main>
 </body>
 
 </html>
+
+<style>
+    .splash {
+        min-height: 100vh;
+        min-height: 100dvh;
+        background:
+            radial-gradient(circle at 80% 30%, var(--color-blue-soft) 0, transparent 55%),
+            var(--color-bg);
+    }
+
+    .splash__inner {
+        flex: 1;
+        width: 100%;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: clamp(2rem, 6vw, 4rem) var(--gutter);
+        display: grid;
+        gap: clamp(2.5rem, 6vw, 4rem);
+        align-items: center;
+    }
+
+    @media (min-width: 860px) {
+        .splash__inner {
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        }
+    }
+
+    .splash__text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .splash__eyebrow {
+        margin: 0;
+        font-size: 0.85rem;
+        font-weight: var(--font-weight-medium);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-blue-strong);
+    }
+
+    .splash__title {
+        display: grid;
+        gap: 0.4rem;
+        margin: 0;
+    }
+
+    .splash__numeral {
+        font-size: clamp(6rem, 18vw, 12rem);
+        line-height: 0.82;
+        letter-spacing: -0.04em;
+        color: var(--color-mauve);
+        text-shadow: 0.04em 0.04em 0 var(--color-blue);
+    }
+
+    .splash__name {
+        font-size: clamp(2.4rem, 5vw, 3.6rem);
+        line-height: 1;
+        letter-spacing: 0.02em;
+    }
+
+    .splash__subtitle {
+        display: grid;
+        gap: 0.15rem;
+        margin: 0;
+        font-family: var(--font-family-headers);
+        font-size: clamp(1.1rem, 1.2vw + 0.7rem, 1.45rem);
+        font-weight: var(--font-weight-medium);
+        color: var(--color-text);
+    }
+
+    .splash__subtitle [lang="en"] {
+        color: var(--color-muted);
+        font-size: 0.85em;
+    }
+
+    .splash__meta {
+        margin: 0;
+        padding-block: var(--spacing-sm);
+        border-block: 1px solid var(--color-border);
+        font-family: var(--font-family-headers);
+        font-weight: 600;
+        color: var(--color-text);
+    }
+
+    .splash__languages {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-sm);
+    }
+
+    .splash__language {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        padding: 1rem 1.25rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-border);
+        background: var(--color-surface);
+        color: var(--color-text);
+        box-shadow: var(--shadow-sm);
+        transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .splash__language:hover,
+    .splash__language:focus-visible {
+        transform: translateY(-2px);
+        border-color: var(--color-blue-strong);
+        box-shadow: var(--shadow-lg);
+        text-decoration: none;
+        color: var(--color-text);
+    }
+
+    .splash__language img {
+        border-radius: 3px;
+        box-shadow: 0 0 0 1px var(--color-border);
+    }
+
+    .splash__language span {
+        display: grid;
+    }
+
+    .splash__language strong {
+        font-family: var(--font-family-headers);
+        font-size: 1.2rem;
+    }
+
+    .splash__language small {
+        font-size: 0.85rem;
+        color: var(--color-muted);
+    }
+
+    .splash__poster {
+        position: relative;
+        justify-self: center;
+        width: min(100%, 24rem);
+        margin: 0 1.25rem 1.25rem 0;
+    }
+
+    .splash__poster::before {
+        content: '';
+        position: absolute;
+        inset: 1.25rem -1.25rem -1.25rem 1.25rem;
+        border-radius: var(--radius-md);
+        background: var(--color-blue);
+    }
+
+    .splash__poster img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+    }
+</style>
