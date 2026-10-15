@@ -87,7 +87,7 @@ function getTheatreUrl(entry: any) {
         <div class="section-inner two-column">
             <div>
                 <span class="badge">
-                    {frontmatter.badgeText} <span class={`fi fi-${frontmatter.countryCode}`}></span>
+                    {frontmatter.badgeText} <span class={`fi fi-${frontmatter.countryCode}`} aria-hidden="true"></span>
                 </span>
                 <h1>{frontmatter.name}</h1>
                 <div set:html={frontmatter.synopsis} />
@@ -175,12 +175,12 @@ function getTheatreUrl(entry: any) {
                             </figure>
                         ))}
                     </div>
-                    <div class="theatre-gallery__controls" aria-hidden="false">
+                    <div class="theatre-gallery__controls">
                         <button type="button" class="gallery-btn" data-gallery-prev aria-label={isPl ? "Poprzednie zdjęcie" : "Previous photo"}>‹</button>
                         <button type="button" class="gallery-btn" data-gallery-toggle data-icon-pause="❚❚" data-icon-play="▶" data-label-pause={isPl ? "Wstrzymaj automatyczne przewijanie" : "Pause autoplay"} data-label-play={isPl ? "Wznów automatyczne przewijanie" : "Resume autoplay"} aria-pressed="false">❚❚</button>
                         <button type="button" class="gallery-btn" data-gallery-next aria-label={isPl ? "Następne zdjęcie" : "Next photo"}>›</button>
                     </div>
-                    <div class="theatre-gallery__dots" aria-hidden="true"></div>
+                    <div class="theatre-gallery__dots" role="group" aria-label={isPl ? "Wybierz zdjęcie" : "Choose photo"}></div>
                 </div>
             </div>
         </section>
@@ -244,7 +244,7 @@ function getTheatreUrl(entry: any) {
                     {listTheatres.map(t => (
                         <li>
                             <a href={getRelativeUrl(getTheatreUrl(t))}>
-                                {theatreLabel(t)} <span class={`fi fi-${t.data.countryCode}`}></span>
+                                {theatreLabel(t)} <span class={`fi fi-${t.data.countryCode}`} aria-hidden="true"></span>
                             </a>
                         </li>
                     ))}

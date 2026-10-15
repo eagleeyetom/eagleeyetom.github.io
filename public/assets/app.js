@@ -378,6 +378,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (consent.media) processExternalMedia();
       });
     }
+
+    // "Change consent settings" buttons reopen the banner with its settings expanded
+    document.querySelectorAll('[data-action="open-consent"]').forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (chkAnalytics) chkAnalytics.checked = !!consent.analytics;
+        if (chkMedia) chkMedia.checked = !!consent.media;
+        showBanner();
+        const settingsPanel = banner.querySelector("details");
+        if (settingsPanel) settingsPanel.open = true;
+        (chkAnalytics || banner.querySelector("button"))?.focus();
+      });
+    });
   }
 
   // Privacy settings buttons (reset/enable)
@@ -466,6 +478,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (dotsContainer) {
           dotsContainer.querySelectorAll(".gallery-dot").forEach((dot, i) => {
             dot.classList.toggle("is-active", i === index);
+            if (i === index) dot.setAttribute("aria-current", "true");
+            else dot.removeAttribute("aria-current");
           });
         }
       }
@@ -510,12 +524,19 @@ document.addEventListener("DOMContentLoaded", () => {
       // Build dots
       if (dotsContainer) {
         dotsContainer.innerHTML = "";
+        const isPl = (document.documentElement.lang || "pl").startsWith("pl");
         slides.forEach((_, i) => {
           const dot = document.createElement("button");
           dot.type = "button";
           dot.className = "gallery-dot";
-          dot.setAttribute("aria-label", `Slide ${i + 1}`);
-          if (i === 0) dot.classList.add("is-active");
+          dot.setAttribute(
+            "aria-label",
+            isPl ? `Zdjęcie ${i + 1} z ${slides.length}` : `Photo ${i + 1} of ${slides.length}`
+          );
+          if (i === 0) {
+            dot.classList.add("is-active");
+            dot.setAttribute("aria-current", "true");
+          }
           dot.addEventListener("click", () => {
             goTo(i, { loop: true });
             startAuto();

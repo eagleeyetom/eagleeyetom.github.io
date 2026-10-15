@@ -137,14 +137,14 @@ function getTheatreUrl(entry: any) {
             </a>
         </div>
         <nav class="site-nav" aria-label={isPl ? "Nawigacja główna" : "Main navigation"}>
-            <button class="mobile-menu-toggle" aria-expanded="false" aria-label="Menu nawigacji">
+            <button type="button" class="mobile-menu-toggle" aria-expanded="false" aria-controls="main-menu" aria-label={isPl ? "Menu nawigacji" : "Navigation menu"}>
                 <span class="hamburger-icon">
                     <span></span>
                     <span></span>
                     <span></span>
                 </span>
             </button>
-            <div class="nav-menu">
+            <div class="nav-menu" id="main-menu">
                 <a class={`nav-link ${isFestiwal ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/index.html" : "/en/index.html")} aria-current={isFestiwal ? 'page' : undefined}>{isPl ? "Festiwal" : "Festival"}</a>
                 <a class={`nav-link ${isProgram ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/program.html" : "/en/program.html")} aria-current={isProgram ? 'page' : undefined}>Program</a>
                 <a class={`nav-link ${isOnline ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")} aria-current={isOnline ? 'page' : undefined}>{isPl ? "Oglądaj online" : "Watch online"}</a>
@@ -153,12 +153,12 @@ function getTheatreUrl(entry: any) {
                 {isTheatre && activeTheatre && (
                     <div class="nav-dropdown">
                         <span class="nav-link is-active" aria-current="page">
-                            {activeTheatre.data.name} <span class={`fi fi-${activeTheatre.data.countryCode}`}></span>
+                            {activeTheatre.data.name} <span class={`fi fi-${activeTheatre.data.countryCode}`} aria-hidden="true"></span>
                         </span>
                         <div class="nav-dropdown-menu">
                             {theatres.map(t => (
                                 <a href={getRelativeUrl(getTheatreUrl(t))} class={`nav-dropdown-item ${t.data.id === activeTheatreId ? 'is-active' : ''}`}>
-                                    {theatreLabel(t)} <span class={`fi fi-${t.data.countryCode}`}></span>
+                                    {theatreLabel(t)} <span class={`fi fi-${t.data.countryCode}`} aria-hidden="true"></span>
                                 </a>
                             ))}
                         </div>
@@ -170,7 +170,7 @@ function getTheatreUrl(entry: any) {
             <div class="a11y-menu" data-a11y-menu>
             <!-- The "Aa" toggle only shows in design variants that fold the display tools into a panel -->
             <button type="button" class="a11y-toggle" aria-expanded="false" aria-controls="display-options"
-                aria-label={isPl ? "Opcje wyświetlania: rozmiar tekstu i kontrast" : "Display options: text size and contrast"}>
+                aria-label={isPl ? "Aa – opcje wyświetlania: rozmiar tekstu i kontrast" : "Aa – display options: text size and contrast"}>
                 <span aria-hidden="true">Aa</span>
             </button>
             <div class="site-actions" id="display-options" role="group" aria-label={isPl ? "Opcje dostępności" : "Display options"}>
@@ -198,15 +198,15 @@ function getTheatreUrl(entry: any) {
             </div>
             <div class="language-switcher" role="group" aria-label={isPl ? "Zmień język" : "Switch language"}>
                 <span class="sr-only">{isPl ? "Dostępne języki:" : "Available languages:"}</span>
-                <a class={`language-link ${!isPl ? 'is-active' : ''}`} href={getRelativeUrl(enUrl)} data-language="en" data-flag-emoji="🇬🇧">
+                <a class={`language-link ${!isPl ? 'is-active' : ''}`} href={getRelativeUrl(enUrl)} data-language="en" hreflang="en" lang="en" aria-current={!isPl ? "true" : undefined}>
                     <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
                     <span class="lang-name">English</span>
-                    <span class="lang-code" aria-hidden="true">EN</span>
+                    <span class="lang-code">EN</span>
                 </a>
-                <a class={`language-link ${isPl ? 'is-active' : ''}`} href={getRelativeUrl(plUrl)} data-language="pl" data-flag-emoji="🇵🇱">
+                <a class={`language-link ${isPl ? 'is-active' : ''}`} href={getRelativeUrl(plUrl)} data-language="pl" hreflang="pl" lang="pl" aria-current={isPl ? "true" : undefined}>
                     <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
                     <span class="lang-name">Polski</span>
-                    <span class="lang-code" aria-hidden="true">PL</span>
+                    <span class="lang-code">PL</span>
                 </a>
             </div>
         </div>

@@ -47,12 +47,12 @@ function getTheatreUrl(entry: any) {
                     return (
                         <a href={getTheatreUrl(theatre)} class="theater-card">
                             <figure>
-                                <img src={imgUrl} alt={`${theatre.data.name} – ${theatre.data.showTitle}`} loading="lazy" />
+                                <img src={imgUrl} alt="" loading="lazy" decoding="async" />
                             </figure>
                             <div class="card-body">
                                 <p class="theater-name">{theatre.data.name}</p>
-                                <p class="theater-flag"><span class={`fi fi-${theatre.data.countryCode}`}></span></p>
-                                <h4>{theatre.data.showTitle}</h4>
+                                <p class="theater-flag"><span class={`fi fi-${theatre.data.countryCode}`} role="img" aria-label={theatre.data.badgeText.split(" · ")[0]}></span></p>
+                                <h3>{theatre.data.showTitle}</h3>
                             </div>
                         </a>
                     );

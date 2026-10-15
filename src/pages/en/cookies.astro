@@ -200,41 +200,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                 <h2>13. Consents and external media (YouTube, Google Maps)</h2>
                 <p>YouTube videos are <strong>blocked by default</strong>. You can:</p>
                 <ul>
-                    <li>Load a single video via the "Load video" button in the embed placeholder</li>
-                    <li>Give persistent consent to media with the "Always allow media" button</li>
+                    <li>play a single video with the “Play video” button where it is embedded,</li>
+                    <li>allow media (YouTube) in the consent settings – videos then load straight away.</li>
                 </ul>
-                <p><strong>Google Maps are loaded automatically</strong> and use cookies described in section 2.3.</p>
-                <p>To reset media consent and see the block again:</p>
-                <button class="button secondary" type="button" data-action="reset-media-consent">Reset media
-                    consent</button>
-
-                <div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden
-                    style="margin-top: 2rem;">
-                    <img src="../assets/img/cookie.webp" alt="" width="48" height="48" loading="lazy"
-                        decoding="async" />
-                    <div class="cookie-notice__content">
-                        <p>We use analytics (Google Analytics), maps (Google Maps) and external media (YouTube). Adjust
-                            your preferences
-                            below.</p>
-                        <details class="cookie-notice__settings">
-                            <summary>Settings</summary>
-                            <fieldset>
-                                <legend class="sr-only">Consent preferences</legend>
-                                <label><input type="checkbox" data-consent-toggle="analytics"> Analytics (Google
-                                    Analytics)</label>
-                                <label><input type="checkbox" data-consent-toggle="media"> Media (YouTube
-                                    embeds)</label>
-                            </fieldset>
-                            <div class="cookie-notice__actions-row">
-                                <button type="button" class="button" data-consent-save>Save choices</button>
-                            </div>
-                        </details>
-                    </div>
-                    <div class="cookie-notice__actions">
-                        <button type="button" class="cookie-notice__button" data-consent-accept-all>Accept all</button>
-                        <button type="button" class="cookie-notice__button ghost" data-consent-reject>Reject
-                            non‑essential</button>
-                    </div>
+                <p>The Google map in the page footer loads <strong>only after you click “Show map”</strong>.</p>
+                <div class="hero-actions">
+                    <button class="button primary" type="button" data-action="open-consent">Change consent settings</button>
+                    <button class="button secondary" type="button" data-action="reset-media-consent">Reset media consent</button>
                 </div>
 
                 <h2>Summary for users</h2>

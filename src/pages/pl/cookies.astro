@@ -205,43 +205,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                 <h2>13. Zgody i zewnętrzne media (YouTube, Google Maps)</h2>
                 <p>Filmy YouTube są <strong>domyślnie zablokowane</strong>. Możesz:</p>
                 <ul>
-                    <li>Jednorazowo załadować wideo przyciskiem „Załaduj wideo" w miejscu osadzenia</li>
-                    <li>Wyrazić trwałą zgodę na media przyciskiem „Zawsze pozwalaj na media"</li>
+                    <li>jednorazowo odtworzyć film przyciskiem „Odtwórz wideo” w miejscu osadzenia,</li>
+                    <li>zgodzić się na media (YouTube) w ustawieniach zgód – wtedy filmy ładują się od razu.</li>
                 </ul>
-                <p><strong>Mapy Google Maps są ładowane automatycznie</strong> i wykorzystują cookies opisane w sekcji
-                    2.3.</p>
-                <p>Aby zresetować zgodę na media i ponownie zobaczyć blokadę:</p>
-                <button class="button secondary" type="button" data-action="reset-media-consent">Resetuj zgodę na
-                    media</button>
-
-                <div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden
-                    style="margin-top: 2rem;">
-                    <img src="../assets/img/cookie.webp" alt="" width="48" height="48" loading="lazy"
-                        decoding="async" />
-                    <div class="cookie-notice__content">
-                        <p>Używamy analityki (Google Analytics), map (Google Maps) i zewnętrznych mediów (YouTube).
-                            Dostosuj preferencje
-                            poniżej.</p>
-                        <details class="cookie-notice__settings">
-                            <summary>Ustawienia</summary>
-                            <fieldset>
-                                <legend class="sr-only">Preferencje zgód</legend>
-                                <label><input type="checkbox" data-consent-toggle="analytics"> Analityka (Google
-                                    Analytics)</label>
-                                <label><input type="checkbox" data-consent-toggle="media"> Media (osadzenia
-                                    YouTube)</label>
-                            </fieldset>
-                            <div class="cookie-notice__actions-row">
-                                <button type="button" class="button" data-consent-save>Zapisz wybór</button>
-                            </div>
-                        </details>
-                    </div>
-                    <div class="cookie-notice__actions">
-                        <button type="button" class="cookie-notice__button" data-consent-accept-all>Akceptuj
-                            wszystko</button>
-                        <button type="button" class="cookie-notice__button ghost" data-consent-reject>Odrzuć
-                            zbędne</button>
-                    </div>
+                <p>Mapa Google w stopce strony ładuje się <strong>dopiero po kliknięciu „Pokaż mapę”</strong>.</p>
+                <div class="hero-actions">
+                    <button class="button primary" type="button" data-action="open-consent">Zmień ustawienia zgód</button>
+                    <button class="button secondary" type="button" data-action="reset-media-consent">Resetuj zgodę na media</button>
                 </div>
 
                 <h2>Podsumowanie dla użytkownika</h2>

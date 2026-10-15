@@ -7,7 +7,7 @@ const { lang } = Astro.props;
 const isPl = lang === 'pl';
 ---
 
-<div class="cookie-notice" data-consent-banner role="dialog" aria-live="polite" hidden>
+<div class="cookie-notice" data-consent-banner role="dialog" aria-label={isPl ? "Ustawienia prywatności" : "Privacy settings"} aria-live="polite" hidden>
     <img src="../assets/img/cookie.webp" alt="" width="64" height="64" loading="lazy" decoding="async" />
     <div class="cookie-notice__content">
         {isPl ? (

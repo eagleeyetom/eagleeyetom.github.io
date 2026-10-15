@@ -22,7 +22,7 @@ const t = isPl
       countdownLabel: 'Do otwarcia festiwalu',
       countdownProvisional: 'Odliczanie do terminu orientacyjnego',
       live: 'Festiwal trwa!',
-      units: ['dni', 'godz.', 'min', 'sek.'],
+      units: ['dni', 'godz.', 'min'],
       posterAlt: 'Plakat XXV Jubileuszowego Przeglądu Teatralnego MASSKA 2026',
     }
   : {
@@ -38,7 +38,7 @@ const t = isPl
       countdownLabel: 'Until the festival opens',
       countdownProvisional: 'Counting down to the provisional date',
       live: 'The festival is on!',
-      units: ['days', 'hrs', 'min', 'sec'],
+      units: ['days', 'hrs', 'min'],
       posterAlt: 'Poster of the XXV MASSKA Anniversary Theatre Review 2026',
     };
 ---
@@ -118,41 +118,27 @@ const t = isPl
 </section>
 
 <script>
-    // Countdown to the festival start. It stays hidden without JS and after the festival;
-    // with reduced motion preferred it ticks once a minute instead of every second
+    // Countdown to the festival start, computed once on load. It deliberately does not tick:
+    // content that keeps updating on its own would need a pause control (WCAG 2.2.2).
+    // Hidden without JS and after the festival.
     document.querySelectorAll<HTMLElement>('[data-countdown]').forEach((root) => {
         const start = Date.parse(root.dataset.start ?? '');
         const end = Date.parse(root.dataset.end ?? '');
         if (Number.isNaN(start) || Number.isNaN(end) || Date.now() > end) return;
 
-        const parts = root.querySelectorAll<HTMLElement>('[data-countdown-part]');
-        const label = root.querySelector<HTMLElement>('.countdown__label');
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let timer: number | undefined;
-
-        function render() {
-            const diff = start - Date.now();
-            if (diff <= 0) {
-                if (label) label.textContent = root.dataset.liveText ?? '';
-                root.classList.add('is-live');
-                if (timer) window.clearInterval(timer);
-                return;
-            }
-            const seconds = Math.floor(diff / 1000);
-            const values = [
-                Math.floor(seconds / 86400),
-                Math.floor((seconds % 86400) / 3600),
-                Math.floor((seconds % 3600) / 60),
-                seconds % 60,
-            ];
-            parts.forEach((el, i) => {
+        const diff = start - Date.now();
+        if (diff <= 0) {
+            const label = root.querySelector<HTMLElement>('.countdown__label');
+            if (label) label.textContent = root.dataset.liveText ?? '';
+            root.classList.add('is-live');
+        } else {
+            const minutes = Math.floor(diff / 60000);
+            const values = [Math.floor(minutes / 1440), Math.floor((minutes % 1440) / 60), minutes % 60];
+            root.querySelectorAll<HTMLElement>('[data-countdown-part]').forEach((el, i) => {
                 el.textContent = i === 0 ? String(values[i]) : String(values[i]).padStart(2, '0');
             });
         }
-
         root.hidden = false;
-        render();
-        timer = window.setInterval(render, reduceMotion ? 60000 : 1000);
     });
 </script>
 
@@ -216,7 +202,7 @@ const t = isPl
         font-size: clamp(5.5rem, 14vw, 11rem);
         line-height: 0.82;
         letter-spacing: -0.04em;
-        color: var(--color-mauve);
+        color: var(--color-mauve-text);
         /* Echoes the cyan-on-mauve numerals of the poster */
         text-shadow: 0.04em 0.04em 0 var(--color-blue);
     }
