@@ -179,7 +179,7 @@
 
 :root {
     color-scheme: light;
-    --base-font-size: 16px;
+    --base-font-size: 17px;
     --font-scale: 1;
     --font-family-base: 'InterVariable', 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
     --font-family-headers: 'Oswald Variable', 'Oswald', 'Arial Narrow', sans-serif;
@@ -810,7 +810,7 @@ main.page-content {
 }
 
 .page-section {
-    padding: var(--spacing-xl) var(--gutter);
+    padding: clamp(3.5rem, 7vw, 6rem) var(--gutter);
 }
 
 body.high-contrast .page-section:not(.alt) {
@@ -904,11 +904,13 @@ body.high-contrast .page-section.alt .info-panel {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.65rem 1.4rem;
+    min-height: 2.9rem;
+    padding: 0.75rem 1.6rem;
     border-radius: var(--radius-pill);
-    border: 1px solid transparent;
-    font-weight: var(--font-weight-medium);
-    font-size: 0.95rem;
+    border: 1.5px solid transparent;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.2;
     cursor: pointer;
     transition: transform var(--transition-base), box-shadow var(--transition-base), background-color var(--transition-base), color var(--transition-base);
 }
@@ -916,7 +918,6 @@ body.high-contrast .page-section.alt .info-panel {
 .button.primary {
     background: var(--color-accent);
     color: #fff;
-    box-shadow: var(--shadow-sm);
 }
 
 .button.primary:hover,
@@ -956,22 +957,39 @@ body.high-contrast .page-section.alt .info-panel {
 }
 
 .card {
-    background: var(--color-surface);
+    position: relative;
+    background: var(--color-bg);
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
-    box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease;
-    border: 1px solid transparent;
+    border: 1px solid var(--color-border);
 }
 
 .card:hover,
 .card:focus-within {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
-    border-color: var(--color-accent-soft);
+    border-color: var(--color-accent);
+}
+
+/* The whole card is clickable: the card's own link stretches over it */
+.card > .button:last-child::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+.card:focus-within {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.card > .button:last-child:focus-visible {
+    outline: none;
 }
 
 .card p {
@@ -1004,9 +1022,9 @@ body.high-contrast .page-section.alt .info-panel {
 
 .info-panel {
     background: var(--color-surface);
-    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     padding: var(--spacing-lg);
-    box-shadow: var(--shadow-sm);
     display: grid;
     gap: var(--spacing-sm);
 }
@@ -2115,4 +2133,63 @@ body:not(.high-contrast) [data-tone="dark"] {
 .media-facade__note {
     font-size: 0.85rem;
     color: #cfc8c0;
+}
+
+/* Card buttons stay put: the whole card lifts instead, and a transformed button would
+   pull the stretched-link overlay back to the button's own box */
+.card > .button:last-child:hover,
+.card > .button:last-child:focus-visible {
+    transform: none;
+}
+
+.card__media {
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover .card__media,
+.card:focus-within .card__media {
+    transform: scale(1.04);
+}
+
+/* Header gains a hairline shadow once the page scrolls under it (class set in app.js) */
+.site-header.is-scrolled {
+    box-shadow: 0 1px 0 var(--color-border), 0 8px 24px rgba(31, 29, 27, 0.06);
+}
+
+/* Gentle reveal of section content as it scrolls into view. Pure CSS (scroll-driven
+   animations): browsers without support, or with reduced motion, show everything at once,
+   so no content can ever stay hidden. Uses `translate` so the cards' hover transform still works. */
+@keyframes reveal-up {
+    from {
+        opacity: 0;
+        translate: 0 18px;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+@supports (animation-timeline: view()) {
+    @media screen and (prefers-reduced-motion: no-preference) {
+        .page-section .section-inner > h2,
+        .card,
+        .info-panel,
+        .timeline-item,
+        .page-section .external-media {
+            animation: reveal-up linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 55%;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card:hover,
+    .card:focus-within,
+    .card:hover .card__media,
+    .card:focus-within .card__media {
+        transform: none;
+    }
 }

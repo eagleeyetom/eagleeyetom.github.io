@@ -4,7 +4,7 @@ const GA_ID = "G-CKB0FYJDGK";
 const FONT_MIN = 0.9;
 const FONT_MAX = 1.3;
 const FONT_STEP = 0.1;
-const DEFAULT_FONT_SIZE = 16;
+const DEFAULT_FONT_SIZE = 17;
 
 // Utility: Check localStorage availability
 function canUseLocalStorage() {
@@ -794,4 +794,13 @@ document.addEventListener("DOMContentLoaded", () => {
         : button.dataset.labelMore;
     });
   });
+})();
+
+// Header shadow once the page scrolls under it
+(function initHeaderShadow() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  const update = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+  window.addEventListener("scroll", update, { passive: true });
+  update();
 })();
