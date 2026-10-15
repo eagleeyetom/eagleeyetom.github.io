@@ -3,11 +3,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Partners from '../components/Partners.astro';
 import CookieConsent from '../components/CookieConsent.astro';
-import VariantPreview from '../components/VariantPreview.astro';
 import { edition } from '../data/edition';
-
-// Design-variant preview (zachowawczy / plakatowy) exists only on the dev server
-const showVariantPreview = import.meta.env.DEV;
+// Self-hosted heading font (no request to Google Fonts)
+import '@fontsource-variable/oswald/wght.css';
 
 interface Props {
   title: string;
@@ -90,39 +88,18 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {showVariantPreview && (
-      <script is:inline>
-        (function () {
-          var codes = { obecny: '', zachowawczy: 'a', plakatowy: 'b' };
-          var name = new URLSearchParams(location.search).get('wariant');
-          try {
-            if (name && name in codes) localStorage.setItem('masskaVariant', name);
-            else name = localStorage.getItem('masskaVariant');
-          } catch (e) {}
-          if (name && codes[name]) document.documentElement.dataset.variant = codes[name];
-        })();
-      </script>
-    )}
+    <!-- Lets CSS enhance only what JS can operate (e.g. the shortened intro) -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="description" content={description}>
     {robots && <meta name="robots" content={robots}>}
     <title>{title}</title>
 
-    <!-- Preloads & Fonts -->
+    <!-- Fonts are self-hosted: Inter from assets, Oswald bundled from @fontsource -->
     <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="dns-prefetch" href="https://www.google-analytics.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    {showVariantPreview && (
-      <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-    )}
-    
+
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="../assets/styles.css">
     <link rel="stylesheet" href="../assets/styles-mobile.css">
-    {showVariantPreview && <link rel="stylesheet" href="../assets/variants.css">}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
 
     <!-- Favicons -->
     <link rel="icon" href="../assets/icons/favicon.ico?v=20251114" sizes="any">
@@ -236,7 +213,6 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
 
     <CookieConsent lang={lang} />
 
-    {showVariantPreview && <VariantPreview />}
 
     <!-- Core App JS -->
     <script src="../assets/app.js" defer></script>

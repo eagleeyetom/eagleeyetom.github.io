@@ -182,7 +182,7 @@
     --base-font-size: 16px;
     --font-scale: 1;
     --font-family-base: 'InterVariable', 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-    --font-family-headers: 'Outfit', 'InterVariable', sans-serif;
+    --font-family-headers: 'Oswald Variable', 'Oswald', 'Arial Narrow', sans-serif;
     --font-weight-regular: 400;
     --font-weight-medium: 500;
     --font-weight-bold: 700;
@@ -191,11 +191,11 @@
     --color-surface: #f5f2ee;
     --color-surface-alt: #ddd8d2;
     --color-text: #3a3734;
-    --color-muted: #6b6661;
+    --color-muted: #57524d; /* 6.1:1 on --color-bg */
     --color-border: #c4bfb9;
-    --color-accent: #9d5b6f;
-    --color-accent-strong: #7a4456;
-    --color-accent-soft: rgba(157, 91, 111, 0.15);
+    --color-accent: #854a5c; /* 5.3:1 on --color-bg, white text on it 6.7:1 */
+    --color-accent-strong: #6e3c4d;
+    --color-accent-soft: rgba(133, 74, 92, 0.14);
     --color-success: #0f9d58;
     /* Second accent and ink taken from the XXV (2026) poster */
     --color-blue: #b7cfd2;
@@ -597,13 +597,6 @@ body.high-contrast .site-actions button:focus-visible {
     background: var(--color-surface-alt);
 }
 
-/* The +/- buttons stay; the percentage only shows where the header has room for it */
-@media (min-width: 1281px) and (max-width: 1440px) {
-    .font-indicator {
-        display: none;
-    }
-}
-
 body.high-contrast .font-indicator {
     background: #1d1d1d;
     color: var(--color-text);
@@ -638,17 +631,95 @@ body.high-contrast .partners-wide figure a img {
     align-items: center;
 }
 
-/* Hooks for the compact header, collapsible intro and photo cards. The current design keeps
-   the display tools inline and shows none of these; variants.css switches them on. */
+/* --- Compact header: text size and contrast fold into an "Aa" panel --- */
 .a11y-menu {
-    display: contents;
+    position: relative;
+    order: 2;
 }
 
-.a11y-toggle,
-.lang-code,
-.intro-toggle,
-.card__media {
+.a11y-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 0;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-family-headers);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.a11y-toggle:hover,
+.a11y-menu.is-open .a11y-toggle {
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
+}
+
+.a11y-menu .site-actions {
     display: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    z-index: 40;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-lg);
+    white-space: nowrap;
+}
+
+.a11y-menu.is-open .site-actions {
+    display: flex;
+}
+
+/* Tools sit in one row next to the language links at every width */
+.site-header .header-tools {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+.language-switcher {
+    order: 1;
+}
+
+.lang-code {
+    display: none;
+}
+
+/* Phones: flag + two-letter code instead of the full language name */
+@media (max-width: 600px) {
+    .lang-name {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+    }
+
+    .lang-code {
+        display: inline;
+    }
+
+    .language-switcher .language-link {
+        padding: 0.35rem 0.5rem;
+    }
+
+    .a11y-toggle {
+        width: 2.3rem;
+        height: 2.3rem;
+    }
 }
 
 .nav-link.nav-link--donate {
@@ -747,7 +818,7 @@ body.high-contrast .page-section:not(.alt) {
 }
 
 .page-section.alt {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(244, 246, 251, 0.95) 100%);
+    background: var(--color-surface);
 }
 
 body.high-contrast .page-section.alt {
@@ -1299,7 +1370,7 @@ blockquote {
     text-align: left;
     font-weight: var(--font-weight-medium);
     font-size: 0.9rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-family-base);
     color: var(--color-muted);
     letter-spacing: 0.05em;
     margin: 0;
@@ -1345,7 +1416,7 @@ blockquote {
 .partners-wide figcaption {
     display: block;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-family-base);
     font-size: 0.75rem;
     font-weight: 400;
     color: #333;
@@ -1884,3 +1955,113 @@ body.high-contrast .form-group textarea:focus {
     border-color: var(--color-text);
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
 }
+/* ===================================================================
+   Poster design (XXV edition): condensed headings, dark sections in the
+   poster's black, photo cards, shortened intro
+   =================================================================== */
+
+h1,
+h2 {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: clamp(2rem, 2.4vw + 1rem, 3rem);
+}
+
+.info-panel > h2 {
+    font-size: clamp(1.4rem, 1vw + 1rem, 1.8rem);
+}
+
+h3 {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+/* Dark sections: tokens are redefined locally so everything inside adapts */
+body:not(.high-contrast) [data-tone="dark"] {
+    --color-bg: #1f1d1b;
+    --color-surface: #2a2725;
+    --color-surface-alt: #34302d;
+    --color-text: #f5f2ee;
+    --color-muted: #cfc8c0;
+    --color-border: #3d3935;
+    --color-accent: #e3b8c3;
+    --color-accent-strong: #f0d0d8;
+    --color-accent-soft: rgba(227, 184, 195, 0.16);
+    --color-blue-strong: #9fd0d6;
+    --color-blue-soft: rgba(159, 208, 214, 0.12);
+    background:
+        radial-gradient(circle at 90% 0%, var(--color-blue-soft) 0, transparent 50%),
+        var(--color-bg);
+    color: var(--color-text);
+}
+
+/* Opening words shortened to their first paragraph, with "read more" */
+[data-intro] > p:first-of-type {
+    font-size: clamp(1.15rem, 0.6vw + 1rem, 1.35rem);
+    line-height: 1.55;
+    color: var(--color-text);
+}
+
+/* Without JS the text stays whole: shortening and the button need the .js class set in <head> */
+.intro-toggle {
+    display: none;
+}
+
+.js [data-intro]:not(.is-expanded) > p:nth-of-type(n + 2) {
+    display: none;
+}
+
+.js .intro-toggle {
+    display: inline-flex;
+}
+
+/* Feature cards lead with a festival photo */
+.card {
+    overflow: hidden;
+}
+
+.card__media {
+    display: block;
+    width: calc(100% + 2 * var(--spacing-lg));
+    max-width: none;
+    margin: calc(var(--spacing-lg) * -1) calc(var(--spacing-lg) * -1) var(--spacing-sm);
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+/* Below 1280px the nav sits behind the hamburger, so the header can stay slim */
+@media (max-width: 1280px) {
+    .site-header {
+        padding-block: 0.5rem;
+    }
+
+    .site-header .header-inner {
+        padding-block: 0.25rem;
+    }
+}
+
+/* Country flags (SVGs from flag-icons 7.2.3, MIT), only the countries the festival uses */
+.fi {
+    display: inline-block;
+    width: 1.333em;
+    height: 1em;
+    vertical-align: -0.12em;
+    background-size: cover;
+    background-position: center;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.fi-de { background-image: url('icons/flags/de.svg'); }
+.fi-es { background-image: url('icons/flags/es.svg'); }
+.fi-hu { background-image: url('icons/flags/hu.svg'); }
+.fi-lt { background-image: url('icons/flags/lt.svg'); }
+.fi-pl { background-image: url('icons/flags/pl.svg'); }
+.fi-ru { background-image: url('icons/flags/ru.svg'); }
+.fi-ua { background-image: url('icons/flags/ua.svg'); }
+.fi-uz { background-image: url('icons/flags/uz.svg'); }
