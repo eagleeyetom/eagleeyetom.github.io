@@ -1,44 +1,18 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import { getCollection } from 'astro:content';
-
-interface GalleryImage {
-  src: string;
-  alt: string;
-}
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 interface Props {
-  frontmatter: {
-    id: string;
-    name: string;
-    showTitle: string;
-    countryCode: string;
-    badgeText: string;
-    genre: string;
-    duration: string;
-    subtitles: string;
-    city: string;
-    accessibility: string;
-    videoYtId: string;
-    videoTitle: string;
-    recordingUrl?: string;
-    quote?: string;
-    gallery: GalleryImage[];
-    synopsis: string; // Intro summary in hero
-    aboutShow: string; // Detailed description of the show
-    about: string; // About the ensemble
-    history?: string;
-    contactRole?: string;
-    contactName?: string;
-    contactEmail?: string;
-    contactSocialText?: string;
-    contactSocialUrl?: string;
-  };
+  // Typed from the content schema so fields missing there fail `astro check`
+  frontmatter: CollectionEntry<'theatres'>['data'];
   lang: 'pl' | 'en';
 }
 
 const { frontmatter, lang } = Astro.props;
 const isPl = lang === 'pl';
+
+// Quotes in content come with mixed or missing quote marks; the layout adds its own
+const quoteText = frontmatter.quote?.trim().replace(/^["„“”]+|["„“”]+$/g, '').trim();
 
 // Helper to convert absolute paths to relative paths based on language subfolder context
 function getRelativeUrl(targetPath: string) {
@@ -86,6 +60,12 @@ if (translationEntry) {
 const listTheatres = allTheatres
   .filter(t => t.id.startsWith(`${lang}/`))
   .sort((a, b) => a.data.name.localeCompare(b.data.name, lang));
+
+// Ensembles with more than one show share a name; tell them apart by the show title
+function theatreLabel(entry: CollectionEntry<'theatres'>) {
+  const sameName = listTheatres.filter(t => t.data.name === entry.data.name).length > 1;
+  return sameName ? `${entry.data.name} – ${entry.data.showTitle}` : entry.data.name;
+}
 
 function getTheatreUrl(entry: any) {
   const tLang = entry.id.startsWith('pl/') ? 'pl' : 'en';
@@ -146,10 +126,18 @@ function getTheatreUrl(entry: any) {
                         <dt>{isPl ? "Czas trwania" : "Runtime"}</dt>
                         <dd>{frontmatter.duration}</dd>
                     </div>
-                    <div>
-                        <dt>{isPl ? "Dostępność" : "Accessibility"}</dt>
-                        <dd>{frontmatter.accessibility}</dd>
-                    </div>
+                    {frontmatter.language && (
+                        <div>
+                            <dt>{isPl ? "Język" : "Language"}</dt>
+                            <dd>{frontmatter.language}</dd>
+                        </div>
+                    )}
+                    {frontmatter.accessibility && (
+                        <div>
+                            <dt>{isPl ? "Dostępność" : "Accessibility"}</dt>
+                            <dd>{frontmatter.accessibility}</dd>
+                        </div>
+                    )}
                 </dl>
             </aside>
         </div>
@@ -161,7 +149,7 @@ function getTheatreUrl(entry: any) {
             <h2 id="synopsis-title">{isPl ? "O spektaklu" : "Synopsis"}</h2>
             <div set:html={frontmatter.aboutShow} />
             {frontmatter.quote && (
-                <blockquote class="pull-quote">„{frontmatter.quote}”</blockquote>
+                <blockquote class="pull-quote">{isPl ? "„" : "“"}{quoteText}”</blockquote>
             )}
         </div>
     </section>
@@ -199,14 +187,26 @@ function getTheatreUrl(entry: any) {
     )}
 
     <!-- About Ensemble Section -->
-    <section class="page-section" aria-labelledby="ensemble-info-title">
-        <div class="section-inner two-column">
-            <div>
-                <h2 id="ensemble-info-title">{isPl ? "O zespole" : "About the ensemble"}</h2>
-                <div set:html={frontmatter.about} />
+    {(frontmatter.about || frontmatter.credits) && (
+        <section class="page-section" aria-labelledby="ensemble-info-title">
+            <div class="section-inner two-column">
+                <div>
+                    <h2 id="ensemble-info-title">{isPl ? "O zespole" : "About the ensemble"}</h2>
+                    {frontmatter.about && <div set:html={frontmatter.about} />}
+                </div>
+                {frontmatter.credits && (
+                    <aside class="info-panel" aria-label={frontmatter.credits.title}>
+                        <h2>{frontmatter.credits.title}</h2>
+                        <ul class="meta-list">
+                            {frontmatter.credits.items.map(item => (
+                                <li><strong>{item.label}:</strong> {item.value}</li>
+                            ))}
+                        </ul>
+                    </aside>
+                )}
             </div>
-        </div>
-    </section>
+        </section>
+    )}
 
     <!-- History & Contact Section -->
     {(frontmatter.history || frontmatter.contactEmail) && (
@@ -244,7 +244,7 @@ function getTheatreUrl(entry: any) {
                     {listTheatres.map(t => (
                         <li>
                             <a href={getRelativeUrl(getTheatreUrl(t))}>
-                                {t.data.name} <span class={`fi fi-${t.data.countryCode}`}></span>
+                                {theatreLabel(t)} <span class={`fi fi-${t.data.countryCode}`}></span>
                             </a>
                         </li>
                     ))}

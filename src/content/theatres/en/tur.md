@@ -5,7 +5,7 @@ showTitle: "He and She - A Fairytale Without a Moral"
 countryCode: "pl"
 badgeText: "Poland · Inclusive theatre"
 genre: "Movement theatre, social theatre"
-duration: ""
+duration: "30 minutes"
 subtitles: "PL"
 city: "Sopot, Poland"
 accessibility: "English and Polish subtitles"
@@ -26,6 +26,19 @@ gallery:
     alt: "Ensemble on stage"
   - src: "/assets/img/teatr/tur/4.jpg"
     alt: "Group formation"
+credits:
+  title: "Ensemble leadership"
+  items:
+    - label: "Founder"
+      value: "Jacek Spica"
+    - label: "Directors"
+      value: "Jacek Spica & Paulina Lewandowska"
+    - label: "Host Institution"
+      value: "Community Self-Help Home Type B (Sopot)"
+    - label: "Host Organization"
+      value: "PZW PKPS (Polish Committee for Social Assistance)"
+    - label: "Artistic Residency"
+      value: "Teatr Atelier, Sopot (since 2024)"
 synopsis: |
   Poor Relations Theatre has been active since 1994, operating in a Community Self-Help Home
                           (Środowiskowy Dom Samopomocy) in Sopot. It is one of the oldest theatres in Poland dedicated to

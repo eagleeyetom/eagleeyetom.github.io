@@ -12,7 +12,8 @@ const theatresCollection = defineCollection({
     duration: z.string(),
     subtitles: z.string(),
     city: z.string(),
-    accessibility: z.string(),
+    accessibility: z.string().optional(),
+    language: z.string().optional(),
     videoYtId: z.string(),
     videoTitle: z.string(),
     recordingUrl: z.string().optional(),
@@ -26,8 +27,16 @@ const theatresCollection = defineCollection({
       src: z.string(),
       alt: z.string()
     })),
+    credits: z.object({
+      title: z.string(),
+      items: z.array(z.object({
+        label: z.string(),
+        value: z.string()
+      }))
+    }).optional(),
     synopsis: z.string(),
-    about: z.string(),
+    aboutShow: z.string(),
+    about: z.string().optional(),
     history: z.string().optional()
   })
 });

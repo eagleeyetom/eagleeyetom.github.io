@@ -22,6 +22,15 @@ gallery:
     alt: "Scena z komedii-baśni W noc Świętego Mikołaja"
   - src: "/assets/img/teatr/parostky/3.webp"
     alt: "Zespół w układzie grupowym w świetle scenicznym"
+credits:
+  title: "Twórcy spektaklu"
+  items:
+    - label: "Reżyseria"
+      value: "Sofia Nesterova"
+    - label: "Asystentka reżysera"
+      value: "Kateryna Pavlichenko"
+    - label: "Obsada"
+      value: "Maria Selezień, Marta Iwanyszyna, Anastasia Muchanova, Kateryna Poplavska, Polina Trubina, Polina Poplavska, Anastasia Narizna, Ołeksandr Steszenko, Wołodymyr Makucha, Ołeksandr Hołubenko"
 synopsis: |
   Ludowy Amatorski Teatr – Studio PAROSTKI działa od grudnia 2001 r., rozwijając innowacyjne metody
                           rehabilitacji poprzez teatr. Zespół buduje bezpieczną, twórczą przestrzeń dla osób z cechami

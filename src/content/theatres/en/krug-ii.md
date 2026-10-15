@@ -22,7 +22,9 @@ gallery:
   - src: "/assets/img/teatr/krug-ii/3.webp"
     alt: "Krug II – ensemble on stage"
 synopsis: "<strong>Behind the Voice</strong> is a multimedia stage action asking where the voice lives and how it shapes the body. The ensemble brings together actors with and without disabilities, combining musical and theatre experience since 1997."
-aboutShow: ""
+aboutShow: |
+  <p>The creators ask where a voice begins: what shapes it, how it sounds alone, in pairs, or inside a group. While developing the piece, actors discovered the strength and beauty of their voices, blending them with instruments and body movement.</p>
+  <p>The premiere took place on 7 December 2019. As a multimedia theatre action, the show fills the stage with diverse voices and bodies, inviting the audience to listen and resonate.</p>
 about: |
   <p><strong>Integrated Theatre "Krug II"</strong> has worked since 1997. The ensemble gathers young people and adults with varied experiences and needs: people with intellectual disabilities, somatic conditions, hearing or mobility disorders, and people without disabilities.</p>
   <p>The actors have performed on many stages in Russia and abroad, across different theatre and music genres. In 2014, the theatre received the National Theatre Award "Golden Mask".</p>

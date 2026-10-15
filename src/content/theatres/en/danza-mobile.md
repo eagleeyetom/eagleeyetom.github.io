@@ -5,7 +5,7 @@ showTitle: "In the Void"
 countryCode: "es"
 badgeText: "Spain · Contemporary dance"
 genre: "Contemporary dance"
-duration: ""
+duration: "55 minutes"
 subtitles: "PL"
 city: "Seville, Spain"
 accessibility: "No subtitle information provided"
@@ -24,7 +24,9 @@ gallery:
 synopsis: |
   <strong>In the Void</strong> invites us into the empty spaces opened by sculpture. The artists look at gaps and cracks—what we
                           do not see, yet can become a promise, a question, or a portrait. The piece explores these unseen places through movement and presence.
-aboutShow: ""
+aboutShow: |
+  <p>The artists begin with sculpture but focus on the “empty” zones—open, unseen, often overlooked. From these gaps their movement language starts. Each opening can be a promise, a question, a decision, or a portrait, a passage to the other side or inward. The void is both fragile and full of potential.</p>
+  <p>The piece asks how many thoughts, experiences, or powerful visions remain hidden in someone who is usually unnoticed. The journey starts in that empty space—in a small, seemingly insignificant moment that awakens movement and attention.</p>
 about: |
   <p><strong>Compañía Danza Mobile</strong> works in Seville and centers on inclusive contemporary dance. The ensemble started its activity
                           in 2001 and has become a reference point in Spain and beyond.</p>

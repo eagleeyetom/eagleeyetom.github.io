@@ -5,7 +5,7 @@ showTitle: "Bioforms. Identification."
 countryCode: "lt"
 badgeText: "Lithuania · Inclusive theatre"
 genre: "Physical theatre, performance"
-duration: ""
+duration: "30 minutes"
 subtitles: "PL"
 city: "Vilnius, Lithuania"
 accessibility: "English and Polish subtitles"
@@ -24,6 +24,21 @@ gallery:
     alt: "Scene from Bioforms. Identification."
   - src: "/assets/img/teatr/mtt/photo3.webp"
     alt: "MTT ensemble during workshop session"
+credits:
+  title: "Performance creators"
+  items:
+    - label: "Music"
+      value: "Snieguolė Dikčiūtė"
+    - label: "Painting"
+      value: "Audronė Brazauskaitė"
+    - label: "Text"
+      value: "Gasparas Aleksa"
+    - label: "Action"
+      value: "Sakalas Uždavinys"
+    - label: "Visualizations"
+      value: "Kęstutis Urbonas"
+    - label: "Director"
+      value: "Vitalij Ljubota"
 synopsis: |
   Musical Theatre Troupe operates under the Lithuanian Association of Disabled Persons, creating
                           expressive performances that combine movement, sound, and visual narrative. The ensemble

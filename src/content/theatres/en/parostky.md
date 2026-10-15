@@ -5,7 +5,7 @@ showTitle: "Saint Nicholas Night"
 countryCode: "ua"
 badgeText: "Ukraine · Inclusive theatre"
 genre: "Inclusive comedy-fairytale, social theatre"
-duration: ""
+duration: "30 minutes"
 subtitles: "PL"
 city: "Kyiv, Ukraine"
 accessibility: "English and Polish subtitles"
@@ -22,6 +22,15 @@ gallery:
     alt: "Scene from Saint Nicholas Night performance"
   - src: "/assets/img/teatr/parostky/3.webp"
     alt: "Group formation under stage light"
+credits:
+  title: "Performance creators"
+  items:
+    - label: "Director"
+      value: "Sofia Nesterova"
+    - label: "Assistant Director"
+      value: "Kateryna Pavlichenko"
+    - label: "Cast"
+      value: "Maria Selezen, Marta Ivanyshyna, Anastasia Mukhanova, Kateryna Poplavska, Polina Trubina, Polina Poplavska, Anastasia Narizhna, Oleksandr Steshenko, Volodymyr Makukha, Oleksandr Holubenko"
 synopsis: |
   Folk Amateur Theatre – Studio PAROSTKI has been active since December 2001, developing innovative
                           rehabilitation approaches through theatre. The ensemble cultivates a safe creative environment

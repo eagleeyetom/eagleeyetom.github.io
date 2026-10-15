@@ -25,5 +25,4 @@ synopsis: "<strong>Szczęśliwi wygnańcy</strong> to opowieść o otwartości i
 aboutShow: |
   <p>Każdy chce mieć miejsce pod słońcem – wąskie lub przestronne. Spektakl pyta, czy wszystkie środki prowadzące do własnego miejsca są uzasadnione. Opowieść o nas: otwartości i izolacji, samotności i wygnaniu, SERCU, WIERZE i MIŁOŚCI.</p>
   <p>Przedstawienie powstało na podstawie pomysłów i doświadczeń uczestników zespołu. PAROSTKI rozwijają język ruchu i sceny jako narzędzie rehabilitacji i wspólnej kreatywności.</p>
-about: ""
 ---

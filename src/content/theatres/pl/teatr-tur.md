@@ -26,11 +26,26 @@ gallery:
     alt: "Zespół na scenie"
   - src: "/assets/img/teatr/tur/4.jpg"
     alt: "Formacja zespołowa"
+credits:
+  title: "Kierownictwo zespołu"
+  items:
+    - label: "Założyciel"
+      value: "Jacek Spica"
+    - label: "Reżyserzy"
+      value: "Jacek Spica i Paulina Lewandowska"
+    - label: "Instytucja"
+      value: "Środowiskowy Dom Samopomocy Typ B (Sopot)"
+    - label: "Organizacja"
+      value: "PZW PKPS (Polski Komitet Pomocy Społecznej)"
+    - label: "Rezydencja artystyczna"
+      value: "Teatr Atelier, Sopot (od 2024)"
 synopsis: |
   Teatr Ubogi Relacji działa nieprzerwanie od 1994 roku w Środowiskowym Domu Samopomocy w
                           Sopocie. Jest jednym z najstarszych w Polsce teatrów dla osób z niepełnosprawnością
                           intelektualną, łamiąc stereotypy poprzez twórczą ekspresję i doskonałość artystyczną.
-aboutShow: ""
+aboutShow: |
+  <p><em>On i Ona - bajka bez morału</em> to prosta historia o próbie pokonania swoich zewnętrznych ograniczeń i nawiązania bliższych relacji z drugim człowiekiem. Spektakl eksploruje tematy połączenia, podatności i wzajemnego zrozumienia poprzez formy teatralne dostępne dla wszystkich.</p>
+  <p>Praca ta stanowi ukoronowanie kilkudziesięciu lat rozwoju artystycznego. Teatr służy jako narzędzie odkrywania indywidualnego potencjału, przezwyciężania ograniczeń oraz osiągania satysfakcji i radości. Wielopokoleniowy skład zespołu – z aktorami od 4 do 31 lat udziału – umożliwia pracę wielopokoleniową i wzajemną inspirację twórczą.</p>
 about: |
   <p><strong>Teatr Ubogi Relacji</strong> działa nieprzerwanie od 1994 roku przy Środowiskowym Domu
                           Samopomocy typu B w Sopocie, prowadzonym przez PZW PKPS (Polski Komitet Pomocy Społecznej).

@@ -8,7 +8,6 @@ genre: "Spektakl teatralny"
 duration: "75 minut"
 subtitles: "PL"
 city: "Września, Polska"
-accessibility: ""
 videoYtId: "WwKwSatXhBo"
 videoTitle: "Scenariusz dla trzech aktorów – Teatr Otczapy"
 recordingUrl: "https://youtu.be/WwKwSatXhBo"
@@ -33,5 +32,6 @@ aboutShow: |
                           prozą życia.</p>
   <p><strong>Teatr Otczapy</strong> działa we <strong>Wrzesińskim Ośrodku Kultury</strong>. Powstał w
                           2011 roku i od tego czasu przygotował około dziesięciu spektakli.</p>
-about: ""
+about: |
+  <p><strong>Teatr Otczapy</strong> działa we <strong>Wrzesińskim Ośrodku Kultury</strong>. Powstał w 2011 roku i od tego czasu przygotował około dziesięciu spektakli.</p>
 ---

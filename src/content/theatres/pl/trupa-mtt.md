@@ -24,6 +24,21 @@ gallery:
     alt: "Scena ze spektaklu Bioformas. Identefikacija."
   - src: "/assets/img/teatr/mtt/photo3.webp"
     alt: "Zespół MTT podczas pracy warsztatowej"
+credits:
+  title: "Twórcy spektaklu"
+  items:
+    - label: "Muzyka"
+      value: "Snieguolė Dikčiūtė"
+    - label: "Malarstwo"
+      value: "Audronė Brazauskaitė"
+    - label: "Tekst"
+      value: "Gasparas Aleksa"
+    - label: "Akcja"
+      value: "Sakalas Uždavinys"
+    - label: "Wizualizacje"
+      value: "Kęstutis Urbonas"
+    - label: "Reżyseria"
+      value: "Vitalij Ljubota"
 synopsis: |
   Muzyczna Trupa Teatralna działa przy Litewskim Związku Osób Niepełnosprawnych, tworząc
                           ekspresyjne spektakle łączące ruch, dźwięk i wizualną narrację. Zespół eksploruje tematy
