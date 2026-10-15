@@ -176,11 +176,12 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
         "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
         "location": {
           "@type": "Place",
-          "name": "Sopot",
+          "name": edition.venue.name,
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Sopot",
-            "addressCountry": "PL"
+            "streetAddress": edition.venue.street,
+            "addressLocality": edition.venue.city,
+            "addressCountry": edition.venue.country
           }
         },
         "image": `${siteUrl}/assets/img/head.webp`,

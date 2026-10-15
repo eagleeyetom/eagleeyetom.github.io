@@ -65,8 +65,8 @@ import { edition } from '../../data/edition';
                     <div class="timeline">
                         <div class="timeline-item">
                             <h3>{edition.dateLabel.pl} · Festiwal stacjonarny</h3>
-                            <p>Spektakle na żywo w Sopocie. {edition.venuesLabel.pl}. Warsztaty, spotkania z
-                                twórcami i wieczorne wydarzenia.</p>
+                            <p>Spektakle na żywo w Teatrze Atelier w Sopocie ({edition.venue.street}). Warsztaty,
+                                spotkania z twórcami i wieczorne wydarzenia.</p>
                         </div>
                         <div class="timeline-item">
                             <h3>MASSKA Online</h3>
@@ -90,6 +90,10 @@ import { edition } from '../../data/edition';
                         <div>
                             <dt>Terminy</dt>
                             <dd>{edition.dateLabel.pl}{!edition.datesConfirmed && " (do potwierdzenia)"}</dd>
+                        </div>
+                        <div>
+                            <dt>Miejsce</dt>
+                            <dd>{edition.venue.name}, {edition.venue.street}, {edition.venue.city}</dd>
                         </div>
                         <div>
                             <dt>Formuła</dt>

@@ -58,16 +58,26 @@ function getRelativeUrl(targetPath: string) {
             </section>
             <section>
                 <h2>{isPl ? "Odwiedź na żywo" : "Visit in person"}</h2>
-                <p>Aleja Franciszka Mamuszki 14, Sopot</p>
-                <div style="margin-top: 1rem;">
-                    <iframe
-                        src={isPl 
-                          ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2321.7941234567!2d18.5659!3d54.4417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0b3e0e0e0e0e%3A0x0!2sMamuszki%2014%2C%20Sopot!5e0!3m2!1spl!2spl!4v1234567890"
-                          : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2321.7941234567!2d18.5659!3d54.4417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd0b3e0e0e0e0e%3A0x0!2sMamuszki%2014%2C%20Sopot!5e0!3m2!1sen!2spl!4v1234567890"
-                        }
-                        width="100%" height="200" style="border:0; border-radius: 8px;" allowfullscreen=""
-                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                <address class="footer-venue">
+                    <strong>{edition.venue.name}</strong><br>
+                    {edition.venue.street}, {edition.venue.city}
+                </address>
+                <!-- Google Maps loads only when asked for, so the page sends nothing to Google by default -->
+                <div class="footer-map" data-map-embed={`https://www.google.com/maps?q=${encodeURIComponent(edition.venue.mapsQuery)}&hl=${lang}&output=embed`}
+                    data-map-title={isPl ? `Mapa: ${edition.venue.shortName}, ${edition.venue.city}` : `Map: ${edition.venue.shortName}, ${edition.venue.city}`}>
+                    <button type="button" class="button secondary" data-map-load>
+                        {isPl ? "Pokaż mapę" : "Show map"}
+                    </button>
+                    <a class="button ghost" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(edition.venue.mapsQuery)}`}
+                        target="_blank" rel="noopener noreferrer">
+                        {isPl ? "Otwórz w Mapach Google" : "Open in Google Maps"}
+                        <span class="sr-only">{isPl ? "(otwiera się w nowej karcie)" : "(opens in a new tab)"}</span>
+                    </a>
+                    <p class="footer-map__note">
+                        {isPl
+                            ? "Mapa ładuje się z serwerów Google dopiero po kliknięciu."
+                            : "The map loads from Google's servers only after you click."}
+                    </p>
                 </div>
             </section>
             <section>
@@ -85,3 +95,49 @@ function getRelativeUrl(targetPath: string) {
         </p>
     </div>
 </footer>
+
+<script>
+    // Swap the "Show map" button for the Google Maps iframe on request
+    document.querySelectorAll<HTMLElement>('[data-map-embed]').forEach((box) => {
+        const button = box.querySelector<HTMLButtonElement>('[data-map-load]');
+        button?.addEventListener('click', () => {
+            const iframe = document.createElement('iframe');
+            iframe.src = box.dataset.mapEmbed ?? '';
+            iframe.title = box.dataset.mapTitle ?? '';
+            iframe.loading = 'lazy';
+            iframe.referrerPolicy = 'no-referrer-when-downgrade';
+            iframe.className = 'footer-map__frame';
+            box.prepend(iframe);
+            button.remove();
+            box.querySelector('.footer-map__note')?.remove();
+            iframe.focus();
+        });
+    });
+</script>
+
+<style>
+    .footer-venue {
+        font-style: normal;
+        line-height: 1.6;
+    }
+
+    .footer-map {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+    }
+
+    .footer-map :global(.footer-map__frame) {
+        width: 100%;
+        height: 220px;
+        border: 0;
+        border-radius: var(--radius-sm);
+    }
+
+    .footer-map__note {
+        flex-basis: 100%;
+        margin: 0;
+        font-size: 0.8rem;
+    }
+</style>

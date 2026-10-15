@@ -65,14 +65,14 @@ const t = isPl
                     <dt>{t.when}</dt>
                     <dd>
                         <time datetime={edition.start.slice(0, 10)}>{edition.dateLabel[lang]}</time>
-                        {!edition.datesConfirmed && <span class="jubilee-hero__provisional">{t.provisional}</span>}
+                        {!edition.datesConfirmed && <span class="jubilee-hero__detail">{t.provisional}</span>}
                     </dd>
                 </div>
                 <div>
                     <dt>{t.where}</dt>
                     <dd>
-                        {edition.city[lang]}
-                        <span class="jubilee-hero__provisional">{edition.venuesLabel[lang]}</span>
+                        {edition.venue.shortName}, {edition.venue.city}
+                        <span class="jubilee-hero__detail">{edition.venue.street}</span>
                     </dd>
                 </div>
             </dl>
@@ -264,7 +264,7 @@ const t = isPl
         color: var(--color-text);
     }
 
-    .jubilee-hero__provisional {
+    .jubilee-hero__detail {
         font-family: var(--font-family-base);
         font-size: 0.8rem;
         font-weight: var(--font-weight-regular);

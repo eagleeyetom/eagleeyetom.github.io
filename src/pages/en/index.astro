@@ -64,8 +64,8 @@ import { edition } from '../../data/edition';
                     <div class="timeline">
                         <div class="timeline-item">
                             <h3>{edition.dateLabel.en} · In-Person Festival</h3>
-                            <p>Live performances in {edition.city.en}. {edition.venuesLabel.en}. Workshops, meetings with
-                                creators, and evening events.</p>
+                            <p>Live performances at {edition.venue.shortName} in {edition.venue.city} ({edition.venue.street}).
+                                Workshops, meetings with creators, and evening events.</p>
                         </div>
                         <div class="timeline-item">
                             <h3>MASSKA Online</h3>
@@ -90,6 +90,10 @@ import { edition } from '../../data/edition';
                         <div>
                             <dt>Dates</dt>
                             <dd>{edition.dateLabel.en}{!edition.datesConfirmed && " (to be confirmed)"}</dd>
+                        </div>
+                        <div>
+                            <dt>Venue</dt>
+                            <dd>{edition.venue.name}, {edition.venue.street}, {edition.venue.city}</dd>
                         </div>
                         <div>
                             <dt>Format</dt>

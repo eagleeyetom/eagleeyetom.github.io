@@ -21,9 +21,15 @@ export const edition = {
     en: 'XX–XX November 2026', // PLACEHOLDER
   },
   city: { pl: 'Sopot', en: 'Sopot' },
-  venuesLabel: {
-    pl: 'Miejsca zostaną ogłoszone wkrótce', // PLACEHOLDER
-    en: 'Venues to be announced', // PLACEHOLDER
+
+  // Masska always takes place at Teatr Atelier
+  venue: {
+    name: 'Teatr Atelier im. Agnieszki Osieckiej',
+    shortName: 'Teatr Atelier',
+    street: 'al. Franciszka Mamuszki 2',
+    city: 'Sopot',
+    country: 'PL',
+    mapsQuery: 'Teatr Atelier im. Agnieszki Osieckiej, al. Franciszka Mamuszki 2, Sopot',
   },
 
   poster: '../assets/img/plakaty/2026.webp',
