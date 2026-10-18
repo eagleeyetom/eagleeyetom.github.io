@@ -2,8 +2,8 @@
   "name": "MASSKA Festival",
   "short_name": "MASSKA",
   "display": "standalone",
-  "background_color": "#111111",
-  "theme_color": "#111111",
+  "background_color": "#b38691",
+  "theme_color": "#1f1d1b",
   "icons": [
     {
       "src": "android-chrome-192x192.png",
