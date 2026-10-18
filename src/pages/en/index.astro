@@ -14,8 +14,13 @@ import { edition } from '../../data/edition';
         <JubileeHero lang="en" />
 
         <section class="page-section" aria-labelledby="introduction">
-            <div class="section-inner section-narrow">
-                <h2 id="introduction">Opening Words</h2>
+            <div class="section-inner intro">
+                <div class="intro__side">
+                    <h2 id="introduction">Opening Words</h2>
+                    <p class="intro__byline"><span class="sr-only">Authors: </span>Paulina Lewandowska and Jacek Spica</p>
+                    <p class="intro__quote" aria-hidden="true">Masska reminds me why I do theatre.</p>
+                </div>
+                <div class="intro__body">
                 <div id="opening-words" data-intro>
                     <p>Sometimes I wonder how much you can receive from theatre. Not from the stage, spotlights, or
                         applause... but from the process itself – from people, from encounters, from being together. I
@@ -54,6 +59,7 @@ import { edition } from '../../data/edition';
                 </div>
                 <button type="button" class="button secondary intro-toggle" data-intro-toggle aria-expanded="false"
                     aria-controls="opening-words" data-label-more="Read the full text" data-label-less="Show less">Read the full text</button>
+                </div>
             </div>
         </section>
 

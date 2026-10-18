@@ -14,8 +14,13 @@ import { edition } from '../../data/edition';
         <JubileeHero lang="pl" />
 
         <section class="page-section" aria-labelledby="wstep">
-            <div class="section-inner section-narrow">
-                <h2 id="wstep">Słowo wstępu</h2>
+            <div class="section-inner intro">
+                <div class="intro__side">
+                    <h2 id="wstep">Słowo wstępu</h2>
+                    <p class="intro__byline"><span class="sr-only">Autorzy: </span>Paulina Lewandowska i Jacek Spica</p>
+                    <p class="intro__quote" aria-hidden="true">Masska przypomina mi, po co robię teatr.</p>
+                </div>
+                <div class="intro__body">
                 <div id="slowo-wstepu" data-intro>
                     <p>Czasami zastanawiam się, jak wiele można dostać od teatru. Nie od sceny, reflektorów czy braw…
                         ale od samego procesu – od ludzi, od spotkań, od wspólnego bycia ze sobą. Znajduje odpowiedź, bo
@@ -55,6 +60,7 @@ import { edition } from '../../data/edition';
                 </div>
                 <button type="button" class="button secondary intro-toggle" data-intro-toggle aria-expanded="false"
                     aria-controls="slowo-wstepu" data-label-more="Czytaj całość" data-label-less="Zwiń">Czytaj całość</button>
+                </div>
             </div>
         </section>
 

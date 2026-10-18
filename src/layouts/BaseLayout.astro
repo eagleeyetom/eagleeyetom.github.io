@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import Partners from '../components/Partners.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { edition } from '../data/edition';
+import { assetVersion } from '../data/build';
 // Self-hosted heading font (no request to Google Fonts)
 import '@fontsource-variable/oswald/wght.css';
 
@@ -98,17 +99,17 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
     <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- CSS Stylesheets -->
-    <link rel="stylesheet" href="../assets/styles.css">
-    <link rel="stylesheet" href="../assets/styles-mobile.css">
+    <link rel="stylesheet" href={`../assets/styles.css?v=${assetVersion}`}>
+    <link rel="stylesheet" href={`../assets/styles-mobile.css?v=${assetVersion}`}>
 
     <!-- Favicons -->
-    <link rel="icon" href="../assets/icons/favicon.ico?v=20251114" sizes="any">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png?v=20251114">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png?v=20251114">
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png?v=20251114">
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png?v=20251114">
-    <link rel="manifest" href="../assets/icons/site.webmanifest?v=20251114">
-    <meta name="theme-color" content="#111111">
+    <link rel="icon" href="../assets/icons/favicon.ico?v=20261018" sizes="any">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png?v=20261018">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png?v=20261018">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png?v=20261018">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png?v=20261018">
+    <link rel="manifest" href="../assets/icons/site.webmanifest?v=20261018">
+    <meta name="theme-color" content="#1f1d1b">
 
     <!-- Canonical & hreflang alternates -->
     <link rel="canonical" href={canonical}>
@@ -200,6 +201,9 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
 <body data-redirect-to-preferred-language={redirectToPreferredLanguage ? "true" : "false"}>
     <a class="skip-link" href="#main-content">{isPl ? "Przejdź do treści" : "Skip to content"}</a>
 
+    <!-- First in the tab order, so the consent choice is one Tab away; it is fixed to the bottom of the screen -->
+    <CookieConsent lang={lang} />
+
     <Header 
       lang={lang} 
       isTheatre={isTheatre} 
@@ -215,11 +219,10 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
 
     <Footer lang={lang} />
 
-    <CookieConsent lang={lang} />
 
 
     <!-- Core App JS -->
-    <script src="../assets/app.js" defer></script>
+    <script src={`../assets/app.js?v=${assetVersion}`} defer></script>
 </body>
 
 </html>

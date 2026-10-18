@@ -32,8 +32,9 @@ export const edition = {
     mapsQuery: 'Teatr Atelier im. Agnieszki Osieckiej, al. Franciszka Mamuszki 2, Sopot',
   },
 
-  poster: '../assets/img/plakaty/2026.webp',
-  posterSize: { width: 900, height: 1277 },
+  // Artwork without the title band, used in the hero next to the lettering
+  posterArt: '../assets/img/plakaty/2026-art.webp',
+  posterArtSize: { width: 900, height: 1142 },
 } as const;
 
 export function editionNumeral(year: number): string {

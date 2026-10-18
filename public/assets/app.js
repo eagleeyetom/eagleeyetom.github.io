@@ -336,8 +336,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (chkAnalytics) chkAnalytics.checked = !!consent.analytics;
     if (chkMedia) chkMedia.checked = !!consent.media;
 
-    const hideBanner = () => banner.setAttribute("hidden", "");
-    const showBanner = () => banner.removeAttribute("hidden");
+    // The bar is fixed to the bottom, so the page gets matching bottom space while it shows
+    const reserveSpace = () => {
+      document.body.style.paddingBottom = banner.hidden
+        ? ""
+        : `${banner.offsetHeight}px`;
+    };
+    const hideBanner = () => {
+      banner.setAttribute("hidden", "");
+      reserveSpace();
+    };
+    const showBanner = () => {
+      banner.removeAttribute("hidden");
+      reserveSpace();
+    };
+    window.addEventListener("resize", reserveSpace);
 
     // Show banner if no stored choice exists
     try {

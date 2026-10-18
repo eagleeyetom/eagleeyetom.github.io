@@ -1,5 +1,6 @@
 ---
 import { edition, type Lang } from '../data/edition';
+import JubileePlate from './JubileePlate.astro';
 
 interface Props {
   lang: Lang;
@@ -10,9 +11,7 @@ const isPl = lang === 'pl';
 
 const t = isPl
   ? {
-      eyebrow: 'Jubileuszowa edycja',
-      years: '25 lat Masski',
-      title: 'Międzynarodowy Przegląd Teatralny',
+      title: `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year}`,
       lead: 'Od ćwierć wieku Masska zbiera na jednej scenie teatry z Polski i z zagranicy. Na jubileusz zapraszamy do Sopotu: na spektakle, warsztaty i spotkania z twórcami, na żywo i online.',
       when: 'Termin',
       where: 'Miejsce',
@@ -20,15 +19,13 @@ const t = isPl
       program: 'Zobacz program',
       online: 'Oglądaj online',
       countdownLabel: 'Do otwarcia festiwalu',
-      countdownProvisional: 'Odliczanie do terminu orientacyjnego',
+      countdownProvisional: 'Do terminu orientacyjnego',
       live: 'Festiwal trwa!',
       units: ['dni', 'godz.', 'min'],
-      posterAlt: 'Plakat XXV Jubileuszowego Przeglądu Teatralnego MASSKA 2026',
+      artAlt: 'Ilustracja z plakatu XXV edycji MASSKA: kora drzewa z dwoma otworami przypominającymi oczy, a pod nią kwiat słonecznika',
     }
   : {
-      eyebrow: 'Anniversary edition',
-      years: '25 years of Masska',
-      title: 'International Theatre Review',
+      title: `${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}`,
       lead: 'For a quarter of a century Masska has brought theatres from Poland and abroad onto one stage. For the anniversary we invite you to Sopot: performances, workshops and meetings with the artists, live and online.',
       when: 'Dates',
       where: 'Venue',
@@ -36,26 +33,19 @@ const t = isPl
       program: 'See the programme',
       online: 'Watch online',
       countdownLabel: 'Until the festival opens',
-      countdownProvisional: 'Counting down to the provisional date',
+      countdownProvisional: 'To the provisional date',
       live: 'The festival is on!',
       units: ['days', 'hrs', 'min'],
-      posterAlt: 'Poster of the XXV MASSKA Anniversary Theatre Review 2026',
+      artAlt: 'Illustration from the poster of the XXV MASSKA edition: tree bark with two holes like eyes above a sunflower head',
     };
 ---
 
 <section class="jubilee-hero" aria-labelledby="jubilee-title">
     <div class="jubilee-hero__inner">
         <div class="jubilee-hero__text">
-            <p class="jubilee-hero__eyebrow">
-                <span>{t.eyebrow}</span>
-                <span class="jubilee-hero__dot" aria-hidden="true"></span>
-                <span>{t.years}</span>
-            </p>
-
             <h1 id="jubilee-title" class="jubilee-hero__title">
-                <span class="jubilee-hero__numeral">{edition.numeral}</span>
-                <span class="jubilee-hero__name">MASSKA {edition.year}</span>
-                <span class="jubilee-hero__subtitle">{t.title}</span>
+                <span class="sr-only">{t.title}</span>
+                <JubileePlate base="../" />
             </h1>
 
             <p class="jubilee-hero__lead">{t.lead}</p>
@@ -75,43 +65,43 @@ const t = isPl
                         <span class="jubilee-hero__detail">{edition.venue.street}</span>
                     </dd>
                 </div>
+                <div
+                    class="countdown"
+                    data-countdown
+                    data-start={edition.start}
+                    data-end={edition.end}
+                    hidden
+                >
+                    <dt class="countdown__label">
+                        {edition.datesConfirmed ? t.countdownLabel : t.countdownProvisional}
+                    </dt>
+                    <dd>
+                        <ol class="countdown__units" role="list">
+                            {t.units.map((unit, i) => (
+                                <li>
+                                    <span class="countdown__value" data-countdown-part={i}>–</span>
+                                    <span class="countdown__unit">{unit}</span>
+                                </li>
+                            ))}
+                        </ol>
+                        <span class="countdown__live" hidden>{t.live}</span>
+                    </dd>
+                </div>
             </dl>
 
             <div class="hero-actions">
                 <a class="button primary" href="program.html">{t.program}</a>
                 <a class="button secondary" href="online.html">{t.online}</a>
             </div>
-
-            <div
-                class="countdown"
-                data-countdown
-                data-start={edition.start}
-                data-end={edition.end}
-                data-live-text={t.live}
-                hidden
-            >
-                <p class="countdown__label">
-                    {edition.datesConfirmed ? t.countdownLabel : t.countdownProvisional}
-                </p>
-                <ol class="countdown__units" role="list">
-                    {t.units.map((unit, i) => (
-                        <li>
-                            <span class="countdown__value" data-countdown-part={i}>–</span>
-                            <span class="countdown__unit">{unit}</span>
-                        </li>
-                    ))}
-                </ol>
-            </div>
         </div>
 
-        <figure class="jubilee-hero__poster">
+        <figure class="jubilee-hero__art">
             <img
-                src={edition.poster}
-                alt={t.posterAlt}
-                width={edition.posterSize.width}
-                height={edition.posterSize.height}
+                src={edition.posterArt}
+                alt={t.artAlt}
+                width={edition.posterArtSize.width}
+                height={edition.posterArtSize.height}
                 decoding="async"
-                fetchpriority="high"
             />
         </figure>
     </div>
@@ -128,9 +118,8 @@ const t = isPl
 
         const diff = start - Date.now();
         if (diff <= 0) {
-            const label = root.querySelector<HTMLElement>('.countdown__label');
-            if (label) label.textContent = root.dataset.liveText ?? '';
-            root.classList.add('is-live');
+            root.querySelector<HTMLElement>('.countdown__units')?.setAttribute('hidden', '');
+            root.querySelector<HTMLElement>('.countdown__live')?.removeAttribute('hidden');
         } else {
             const minutes = Math.floor(diff / 60000);
             const values = [Math.floor(minutes / 1440), Math.floor((minutes % 1440) / 60), minutes % 60];
@@ -145,10 +134,9 @@ const t = isPl
 <style>
     .jubilee-hero {
         position: relative;
-        overflow: hidden;
-        padding: var(--spacing-xl) var(--gutter);
+        padding: clamp(1.5rem, 4vw, 3.5rem) var(--gutter) clamp(2.5rem, 5vw, 4rem);
         background:
-            radial-gradient(circle at 85% 20%, var(--color-blue-soft) 0, transparent 55%),
+            radial-gradient(circle at 88% 15%, var(--color-blue-soft) 0, transparent 55%),
             var(--color-bg);
     }
 
@@ -156,13 +144,13 @@ const t = isPl
         max-width: var(--max-width);
         margin: 0 auto;
         display: grid;
-        gap: var(--spacing-xl);
+        gap: clamp(1.5rem, 4vw, 3rem);
         align-items: center;
     }
 
     @media (min-width: 900px) {
         .jubilee-hero__inner {
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
         }
     }
 
@@ -172,51 +160,10 @@ const t = isPl
         gap: var(--spacing-md);
     }
 
-    .jubilee-hero__eyebrow {
-        display: inline-flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.6rem;
-        margin: 0;
-        font-size: 0.85rem;
-        font-weight: var(--font-weight-medium);
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--color-blue-strong);
-    }
-
-    .jubilee-hero__dot {
-        width: 0.4rem;
-        height: 0.4rem;
-        border-radius: 50%;
-        background: var(--color-mauve);
-    }
-
     .jubilee-hero__title {
-        display: grid;
-        gap: 0.35rem;
         margin: 0;
-    }
-
-    .jubilee-hero__numeral {
-        font-size: clamp(5.5rem, 14vw, 11rem);
-        line-height: 0.82;
-        letter-spacing: -0.04em;
-        color: var(--color-mauve-text);
-        /* Echoes the cyan-on-mauve numerals of the poster */
-        text-shadow: 0.04em 0.04em 0 var(--color-blue);
-    }
-
-    .jubilee-hero__name {
-        font-size: clamp(2.2rem, 4vw, 3.4rem);
-        line-height: 1;
-        letter-spacing: 0.02em;
-    }
-
-    .jubilee-hero__subtitle {
-        font-size: clamp(1.15rem, 1.4vw + 0.6rem, 1.6rem);
-        font-weight: var(--font-weight-medium);
-        color: var(--color-muted);
+        font-size: 1rem;
+        text-transform: none;
     }
 
     .jubilee-hero__lead {
@@ -228,6 +175,7 @@ const t = isPl
     .jubilee-hero__facts {
         display: flex;
         flex-wrap: wrap;
+        align-items: stretch;
         gap: var(--spacing-sm) var(--spacing-lg);
         margin: 0;
         padding: var(--spacing-md) 0;
@@ -261,74 +209,74 @@ const t = isPl
         margin: 0;
     }
 
+    /* Countdown: a blue chip in the facts row */
     .countdown {
-        align-self: flex-start;
-        padding: var(--spacing-md) var(--spacing-lg);
-        border-radius: var(--radius-md);
+        padding: 0.45rem 1rem 0.55rem;
+        border-radius: var(--radius-sm);
         background: var(--color-blue);
-        color: var(--color-ink);
     }
 
     .countdown[hidden] {
         display: none;
     }
 
-    .countdown__label {
-        margin: 0 0 0.5rem;
-        font-size: 0.8rem;
-        font-weight: var(--font-weight-medium);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+    .jubilee-hero__facts .countdown dt {
         color: var(--color-blue-strong);
+        font-weight: var(--font-weight-medium);
+    }
+
+    .jubilee-hero__facts .countdown dd {
+        display: block;
+        margin: 0;
     }
 
     .countdown__units {
         display: flex;
-        gap: clamp(0.75rem, 3vw, 1.75rem);
+        gap: 0.9rem;
         margin: 0;
         padding: 0;
         list-style: none;
     }
 
+    .countdown__units[hidden],
+    .countdown__live[hidden] {
+        display: none;
+    }
+
     .countdown__units li {
-        display: grid;
-        justify-items: center;
-        min-width: 3ch;
+        display: flex;
+        align-items: baseline;
+        gap: 0.25rem;
     }
 
     .countdown__value {
-        font-family: var(--font-family-headers);
-        font-size: clamp(1.8rem, 3vw, 2.6rem);
-        font-weight: 700;
-        line-height: 1;
+        font-size: 1.6rem;
+        line-height: 1.1;
         font-variant-numeric: tabular-nums;
         color: var(--color-ink);
     }
 
     .countdown__unit {
+        font-family: var(--font-family-base);
         font-size: 0.75rem;
+        font-weight: var(--font-weight-regular);
         color: var(--color-blue-strong);
     }
 
-    .countdown.is-live .countdown__units {
-        display: none;
-    }
-
-    .countdown.is-live .countdown__label {
-        margin: 0;
-        font-size: 1.1rem;
+    .countdown__live {
+        font-size: 1.25rem;
         color: var(--color-ink);
     }
 
-    .jubilee-hero__poster {
+    /* Artwork of the poster, in a card with an offset block in the poster's blue */
+    .jubilee-hero__art {
         position: relative;
         justify-self: center;
-        width: min(100%, 26rem);
-        margin: 0;
+        width: min(100%, 25rem);
+        margin: 0 1.25rem 1.25rem 0;
     }
 
-    /* Offset block in the poster's blue behind the image */
-    .jubilee-hero__poster::before {
+    .jubilee-hero__art::before {
         content: '';
         position: absolute;
         inset: 1.25rem -1.25rem -1.25rem 1.25rem;
@@ -336,7 +284,7 @@ const t = isPl
         background: var(--color-blue);
     }
 
-    .jubilee-hero__poster img {
+    .jubilee-hero__art img {
         position: relative;
         width: 100%;
         height: auto;
@@ -345,9 +293,8 @@ const t = isPl
     }
 
     @media (max-width: 899px) {
-        .jubilee-hero__poster {
-            width: min(80%, 22rem);
-            margin-inline-end: 1.25rem;
+        .jubilee-hero__art {
+            width: min(78%, 20rem);
         }
     }
 </style>
