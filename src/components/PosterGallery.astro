@@ -220,9 +220,9 @@ const isPl = lang === 'pl';
     .timeline-btn {
         width: 2.75rem;
         height: 2.75rem;
-        border-radius: 50%;
-        border: 1px solid var(--color-border);
-        background: var(--color-surface);
+        border-radius: var(--radius-ui);
+        border: 2px solid var(--color-text);
+        background: transparent;
         color: var(--color-text);
         font-size: 1.6rem;
         line-height: 1;
@@ -232,8 +232,8 @@ const isPl = lang === 'pl';
 
     .timeline-btn:hover:not(:disabled),
     .timeline-btn:focus-visible {
-        border-color: var(--color-blue-strong);
-        background: var(--color-blue);
+        background: var(--btn-hover);
+        color: var(--btn-hover-fg);
     }
 
     .timeline-btn:disabled {
@@ -326,7 +326,7 @@ const isPl = lang === 'pl';
 
     .poster-item__badge {
         padding: 0.15rem 0.6rem;
-        border-radius: var(--radius-pill);
+        border-radius: var(--radius-ui);
         background: var(--color-mauve);
         color: var(--color-on-mauve);
         font-size: 0.75rem;
@@ -496,7 +496,7 @@ const isPl = lang === 'pl';
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 50%;
+        border-radius: var(--radius-ui);
     }
 
     .lightbox-close:hover {
@@ -515,7 +515,7 @@ const isPl = lang === 'pl';
         font-size: 2.5rem;
         width: 60px;
         height: 60px;
-        border-radius: 50%;
+        border-radius: var(--radius-ui);
         cursor: pointer;
         display: flex;
         justify-content: center;
