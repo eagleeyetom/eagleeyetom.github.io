@@ -35,4 +35,68 @@ if (fs.existsSync(enHtml)) {
   console.warn(`Warning: ${enHtml} not found.`);
 }
 
+// ---------------------------------------------------------------------------
+// Make the build work when opened straight from disk (file://) and from any base path.
+// Astro emits absolute "/_astro/..." URLs and module scripts; browsers cannot resolve the
+// former from file:// and block the latter (modules need CORS). So every page gets
+// relative asset URLs and its module scripts inlined as classic scripts.
+// ---------------------------------------------------------------------------
+console.log('Relativizing asset URLs and inlining page scripts...');
+
+function listFiles(dir, ext) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) return listFiles(full, ext);
+    return full.endsWith(ext) ? [full] : [];
+  });
+}
+
+// Reads a built module and the side-effect-only modules it imports (import"./x.js"),
+// dependencies first, each wrapped in its own scope so top-level names cannot collide.
+function bundleModule(file, seen) {
+  if (seen.has(file)) return '';
+  seen.add(file);
+  let code = fs.readFileSync(file, 'utf8');
+  let out = '';
+  code = code.replace(/import\s*["']\.\/([^"']+)["']\s*;?/g, (_, dep) => {
+    out += bundleModule(path.join(path.dirname(file), dep), seen);
+    return '';
+  });
+  if (/\b(import|export)\b\s*[\w{*"']/.test(code)) {
+    throw new Error(`Cannot inline ${file}: it uses import/export beyond side-effect imports`);
+  }
+  return `${out}(()=>{${code}})();\n`;
+}
+
+for (const file of listFiles(distDir, '.html')) {
+  const depth = path.relative(distDir, path.dirname(file)).split(path.sep).filter(Boolean).length;
+  const prefix = depth === 0 ? './' : '../'.repeat(depth);
+  let html = fs.readFileSync(file, 'utf8');
+  const scripts = [];
+  const seen = new Set();
+
+  html = html.replace(
+    /<script type="module" src="\/_astro\/([^"]+)"><\/script>/g,
+    (_, name) => {
+      scripts.push(bundleModule(path.join(distDir, '_astro', name), seen));
+      return '';
+    }
+  );
+  html = html.replace(/(href|src)="\/_astro\//g, `$1="${prefix}_astro/`);
+  html = html.replace(/url\(\/_astro\//g, `url(${prefix}_astro/`);
+
+  if (scripts.length) {
+    const code = scripts.join('');
+    if (code.includes('</script')) throw new Error(`Inlined script in ${file} contains </script`);
+    html = html.replace('</body>', `<script>${code}</script>\n</body>`);
+  }
+  fs.writeFileSync(file, html);
+}
+
+// Fonts referenced from the built stylesheets sit next to them
+for (const file of listFiles(path.join(distDir, '_astro'), '.css')) {
+  const css = fs.readFileSync(file, 'utf8');
+  fs.writeFileSync(file, css.replace(/url\(\/_astro\//g, 'url(./'));
+}
+
 console.log('Post-build alignment complete!');
