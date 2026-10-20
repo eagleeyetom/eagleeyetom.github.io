@@ -1,25 +1,30 @@
-/* Gallery carousel - single slide with arrows outside */
+/* Gallery: the browser's own scroll-snap does the swiping, so it follows the finger with
+   native momentum on phones. The script only adds arrows, dots and the optional autoplay. */
 .theatre-gallery {
     position: relative;
-    padding: 0;
-    /* brak wewnętrznych rynienek – nic nie prześwituje */
     max-width: 960px;
     margin: 0 auto;
-    overflow: hidden;
-    /* utrzymuje obraz w ramce */
 }
 
 .theatre-gallery__track {
+    position: relative;
     display: flex;
-    transition: transform .6s cubic-bezier(.22, .61, .36, 1);
-    will-change: transform;
-    cursor: grab;
-    user-select: none;
-    gap: 0;
+    gap: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-md);
 }
 
-.theatre-gallery__track:active {
-    cursor: grabbing;
+.theatre-gallery__track::-webkit-scrollbar {
+    display: none;
+}
+
+.theatre-gallery__track:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
 }
 
 .theatre-gallery figure {
@@ -29,16 +34,29 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
 }
 
 .theatre-gallery img {
     width: 100%;
-    height: 560px;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    max-height: 560px;
     object-fit: cover;
     display: block;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     margin-bottom: 0;
+}
+
+/* Phones: a slide is a little narrower than the screen, so the next photo peeks in */
+@media (max-width: 720px) {
+    .theatre-gallery__track {
+        padding-inline: 8%;
+        scroll-padding-inline: 8%;
+        gap: 0.6rem;
+    }
 }
 
 .theatre-gallery figcaption {
@@ -53,7 +71,7 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 3.5rem;
     pointer-events: none;
     display: flex;
     align-items: center;
@@ -88,6 +106,9 @@
     font-size: 1.1rem;
     background: #f5f2ee;
     border-radius: var(--radius-ui);
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
     opacity: 0;
     transition: opacity var(--transition-base);
     pointer-events: auto;
@@ -166,24 +187,12 @@
     outline-offset: 3px;
 }
 
-@media (max-width:960px) {
-    .theatre-gallery {
-        padding: 0 3rem;
-    }
-}
-
 @media (max-width:720px) {
-    .theatre-gallery {
-        padding: 0 1rem;
-    }
-
     .gallery-btn[data-gallery-prev], .gallery-btn[data-gallery-next] {
         display: none;
     }
 
     .gallery-btn[data-gallery-toggle] {
-        bottom: .75rem;
-        right: .75rem;
         width: 2.2rem;
         height: 2.2rem;
     }
@@ -2159,6 +2168,89 @@ body:not(.high-contrast) [data-tone="dark"] {
             animation-range: entry 0% entry 55%;
         }
     }
+}
+
+/* Section headings get a mauve bar that draws itself in as the heading scrolls into view */
+.page-section .section-inner > h2::after {
+    content: '';
+    display: block;
+    width: 3.4rem;
+    height: 5px;
+    margin-top: 0.6rem;
+    background: var(--color-mauve);
+    transform-origin: 0 50%;
+}
+
+@keyframes bar-draw {
+    from {
+        scale: 0 1;
+    }
+
+    to {
+        scale: 1 1;
+    }
+}
+
+@supports (animation-timeline: view()) {
+    @media screen and (prefers-reduced-motion: no-preference) {
+        .page-section .section-inner > h2::after {
+            animation: bar-draw linear both;
+            animation-timeline: view();
+            animation-range: entry 25% entry 90%;
+        }
+    }
+}
+
+/* Confetti burst over the hero (created by app.js: once per visit, again on a click on the
+   title plate). Decorative, and never shown with reduced motion or high contrast. */
+.confetti {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.confetti i {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--w);
+    height: var(--h);
+    border-radius: var(--r);
+    background: var(--c);
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: confetti-burst var(--t) linear var(--d) both;
+}
+
+@keyframes confetti-burst {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg) scale(0.4);
+        animation-timing-function: cubic-bezier(0.1, 0.8, 0.3, 1);
+    }
+
+    22% {
+        opacity: 1;
+        transform: translate(calc(var(--dx) * 0.55), calc(var(--up) * -1)) rotate(calc(var(--rot) * 0.4)) scale(1);
+        animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.7);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--fall)) rotate(var(--rot)) scale(0.9);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .confetti {
+        display: none;
+    }
+}
+
+body.high-contrast .confetti {
+    display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

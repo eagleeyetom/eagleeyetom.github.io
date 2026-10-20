@@ -1,0 +1,85 @@
+---
+import { edition } from '../data/edition';
+
+interface Props {
+  lang: 'pl' | 'en';
+}
+
+const { lang } = Astro.props;
+const unit = [
+  edition.numeral,
+  lang === 'pl' ? '25 lat Masski' : '25 years of Masska',
+  `${edition.firstYear}–${edition.year}`,
+  'Sopot',
+];
+const items = Array.from({ length: 8 }).flatMap(() => unit);
+---
+
+<!-- Decorative strip: it slides sideways as the page scrolls (nothing moves on its own) -->
+<div class="band-wrap" aria-hidden="true">
+    <div class="band">
+        <div class="band__track">
+            {items.map((text) => <span>{text}</span>)}
+        </div>
+    </div>
+</div>
+
+<style>
+    .band-wrap {
+        overflow: hidden;
+        padding-block: 1.1rem;
+    }
+
+    .band {
+        width: 110%;
+        margin-left: -5%;
+        rotate: -1.2deg;
+        overflow: hidden;
+        border-block: 2px solid var(--color-ink);
+        background: var(--color-mauve);
+        color: var(--color-on-mauve);
+    }
+
+    .band__track {
+        display: flex;
+        width: max-content;
+        padding-block: 0.3em;
+        font-family: var(--font-family-headers);
+        font-size: clamp(1.4rem, 3.4vw, 2.4rem);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        line-height: 1.1;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .band__track span::after {
+        content: '';
+        display: inline-block;
+        width: 0.45em;
+        height: 0.45em;
+        margin-inline: 0.8em;
+        background: currentColor;
+        rotate: 45deg;
+        vertical-align: 0.1em;
+    }
+
+    @supports (animation-timeline: scroll()) {
+        @media (prefers-reduced-motion: no-preference) {
+            .band__track {
+                animation: band-slide linear both;
+                animation-timeline: scroll(root);
+            }
+        }
+    }
+
+    @keyframes band-slide {
+        from {
+            translate: 0 0;
+        }
+
+        to {
+            translate: -25% 0;
+        }
+    }
+</style>

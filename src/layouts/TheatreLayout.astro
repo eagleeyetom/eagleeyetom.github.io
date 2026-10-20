@@ -167,7 +167,7 @@ function getTheatreUrl(entry: any) {
         <section class="page-section" aria-label="Gallery">
             <div class="section-inner">
                 <div class="theatre-gallery" aria-label={isPl ? "Karuzela zdjęć zespołu" : "Ensemble photo gallery"} role="region" data-gallery>
-                    <div class="theatre-gallery__track">
+                    <div class="theatre-gallery__track" tabindex="0" role="group" aria-label={isPl ? "Zdjęcia, przewijaj w bok" : "Photos, scroll sideways"}>
                         {frontmatter.gallery.map(img => (
                             <figure>
                                 <img src={getRelativeUrl(img.src)} width="800" height="560" loading="lazy" decoding="async" alt={img.alt} />

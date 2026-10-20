@@ -123,9 +123,26 @@ const t = isPl
         } else {
             const minutes = Math.floor(diff / 60000);
             const values = [Math.floor(minutes / 1440), Math.floor((minutes % 1440) / 60), minutes % 60];
-            root.querySelectorAll<HTMLElement>('[data-countdown-part]').forEach((el, i) => {
-                el.textContent = i === 0 ? String(values[i]) : String(values[i]).padStart(2, '0');
-            });
+            const parts = root.querySelectorAll<HTMLElement>('[data-countdown-part]');
+            const show = (el: HTMLElement, i: number, v: number) => {
+                el.textContent = i === 0 ? String(v) : String(v).padStart(2, '0');
+            };
+            parts.forEach((el, i) => show(el, i, values[i]));
+
+            // A one-off count-up from zero when the page opens (skipped with reduced motion);
+            // the real numbers are already in the page and are what remains afterwards
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const duration = 1100;
+                const startedAt = performance.now();
+                const tick = (now: number) => {
+                    const t = Math.min((now - startedAt) / duration, 1);
+                    const eased = 1 - Math.pow(1 - t, 3);
+                    parts.forEach((el, i) => show(el, i, Math.round(values[i] * eased)));
+                    if (t < 1) requestAnimationFrame(tick);
+                };
+                parts.forEach((el, i) => show(el, i, 0));
+                requestAnimationFrame(tick);
+            }
         }
         root.hidden = false;
     });
@@ -290,6 +307,51 @@ const t = isPl
         height: auto;
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-lg);
+    }
+
+    /* The artwork tilts in, then its blue block grows behind it; afterwards it drifts down a
+       little while the page scrolls (scroll-driven, so nothing moves on its own) */
+    @media (prefers-reduced-motion: no-preference) {
+        .jubilee-hero__art img {
+            animation: art-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s both;
+        }
+
+        .jubilee-hero__art::before {
+            transform-origin: 0 0;
+            animation: art-block 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.75s both;
+        }
+    }
+
+    @supports (animation-timeline: scroll()) {
+        @media (prefers-reduced-motion: no-preference) {
+            .jubilee-hero__art {
+                animation: art-drift linear both;
+                animation-timeline: scroll(root);
+                animation-range: 0 70vh;
+            }
+        }
+    }
+
+    @keyframes art-in {
+        from {
+            opacity: 0;
+            translate: 0 36px;
+            rotate: 3deg;
+        }
+    }
+
+    @keyframes art-block {
+        from {
+            opacity: 0;
+            scale: 0.7;
+        }
+    }
+
+    @keyframes art-drift {
+        to {
+            translate: 0 56px;
+            rotate: 1.5deg;
+        }
     }
 
     @media (max-width: 899px) {

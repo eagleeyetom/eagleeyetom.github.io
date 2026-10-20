@@ -381,9 +381,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Initialize galleries (carousel) ---
+  // The track is a native scroll-snap scroller: swiping is the browser's own smooth, inertial
+  // scrolling. The script keeps the dots and arrows in sync and runs the optional autoplay.
   (function initGalleries() {
     const galleries = document.querySelectorAll("[data-gallery]");
     if (!galleries.length) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
     galleries.forEach((gallery) => {
       const track = gallery.querySelector(".theatre-gallery__track");
       if (!track) return;
@@ -393,15 +397,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const dotsContainer = gallery.querySelector(".theatre-gallery__dots");
       const toggleBtn = gallery.querySelector("[data-gallery-toggle]");
       let index = 0;
-      let touchStartX = null;
-      let touchStartY = null;
-      let touchDX = 0;
-      let touchAxisLock = null; // 'x' | 'y' | null
-      const TOUCH_THRESHOLD = 30; // niższy próg dla większej czułości
-      const TOUCH_SLOP = 8; // martwa strefa zanim zablokujemy oś
-      let pointerStartX = null;
-      let isPointerDown = false;
       let autoTimer = null;
+      let lastUserAction = 0;
+      let hovering = false;
       const AUTOPLAY_MS = 5000;
       const COOKIE_NAME = "galleryAutoplay";
 
@@ -409,12 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           const expires = new Date(Date.now() + days * 864e5).toUTCString();
           document.cookie =
-            name +
-            "=" +
-            encodeURIComponent(value) +
-            "; expires=" +
-            expires +
-            "; path=/";
+            name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=/";
         } catch (_) {}
       }
 
@@ -432,29 +425,50 @@ document.addEventListener("DOMContentLoaded", () => {
       // 'off' disables autoplay; without a saved choice it follows prefers-reduced-motion
       const savedAutoplay = getCookie(COOKIE_NAME);
       let autoplayEnabled =
-        savedAutoplay === "on" ||
-        (savedAutoplay !== "off" &&
-          !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+        savedAutoplay === "on" || (savedAutoplay !== "off" && !reduceMotion.matches);
 
-      function goTo(newIndex, { loop = true } = {}) {
-        if (!slides.length) return;
-        const length = slides.length;
-        if (loop) {
-          index = ((newIndex % length) + length) % length;
-        } else {
-          index = Math.max(0, Math.min(length - 1, newIndex));
-        }
-        track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
-        if (prevBtn) prevBtn.disabled = !loop && index === 0;
-        if (nextBtn) nextBtn.disabled = !loop && index === slides.length - 1;
-        if (dotsContainer) {
-          dotsContainer.querySelectorAll(".gallery-dot").forEach((dot, i) => {
-            dot.classList.toggle("is-active", i === index);
-            if (i === index) dot.setAttribute("aria-current", "true");
-            else dot.removeAttribute("aria-current");
-          });
-        }
+      function markActive(i) {
+        index = i;
+        if (!dotsContainer) return;
+        dotsContainer.querySelectorAll(".gallery-dot").forEach((dot, n) => {
+          dot.classList.toggle("is-active", n === i);
+          if (n === i) dot.setAttribute("aria-current", "true");
+          else dot.removeAttribute("aria-current");
+        });
       }
+
+      // Scrolls the slide to the middle of the track (the snap position)
+      function goTo(newIndex) {
+        const length = slides.length;
+        if (!length) return;
+        const i = ((newIndex % length) + length) % length;
+        const slide = slides[i];
+        const left = slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
+        track.scrollTo({ left, behavior: reduceMotion.matches ? "auto" : "smooth" });
+        markActive(i);
+      }
+
+      // Which slide sits in the middle, while the finger or the momentum moves the track
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          const middle = track.scrollLeft + track.clientWidth / 2;
+          let best = 0;
+          let bestDistance = Infinity;
+          slides.forEach((slide, n) => {
+            const distance = Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - middle);
+            if (distance < bestDistance) {
+              bestDistance = distance;
+              best = n;
+            }
+          });
+          if (best !== index) markActive(best);
+        });
+      }
+      track.addEventListener("scroll", onScroll, { passive: true });
 
       function stopAuto() {
         if (autoTimer) {
@@ -463,18 +477,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
+      // Autoplay never fights the visitor: it skips a tick after any touch, key or hover/focus
       function startAuto() {
-        if (!autoplayEnabled || slides.length < 2) return;
         stopAuto();
+        if (!autoplayEnabled || slides.length < 2) return;
         autoTimer = setInterval(() => {
-          goTo(index + 1, { loop: true });
+          if (hovering || gallery.contains(document.activeElement)) return;
+          if (Date.now() - lastUserAction < AUTOPLAY_MS) return;
+          goTo(index + 1);
         }, AUTOPLAY_MS);
       }
 
       function userAdvance(step) {
-        goTo(index + step, { loop: true });
-        startAuto();
+        lastUserAction = Date.now();
+        goTo(index + step);
       }
+
+      ["touchstart", "pointerdown", "wheel", "keydown"].forEach((type) =>
+        track.addEventListener(type, () => (lastUserAction = Date.now()), { passive: true })
+      );
 
       function updateToggle() {
         if (!toggleBtn) return;
@@ -482,15 +503,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const iconPlay = toggleBtn.dataset.iconPlay || "▶";
         const labelPause = toggleBtn.dataset.labelPause || "Pause autoplay";
         const labelPlay = toggleBtn.dataset.labelPlay || "Play autoplay";
-        if (autoplayEnabled) {
-          toggleBtn.textContent = iconPause;
-          toggleBtn.setAttribute("aria-label", labelPause);
-          toggleBtn.setAttribute("aria-pressed", "false");
-        } else {
-          toggleBtn.textContent = iconPlay;
-          toggleBtn.setAttribute("aria-label", labelPlay);
-          toggleBtn.setAttribute("aria-pressed", "true");
-        }
+        toggleBtn.textContent = autoplayEnabled ? iconPause : iconPlay;
+        toggleBtn.setAttribute("aria-label", autoplayEnabled ? labelPause : labelPlay);
+        toggleBtn.setAttribute("aria-pressed", autoplayEnabled ? "false" : "true");
       }
 
       // Build dots
@@ -510,14 +525,13 @@ document.addEventListener("DOMContentLoaded", () => {
             dot.setAttribute("aria-current", "true");
           }
           dot.addEventListener("click", () => {
-            goTo(i, { loop: true });
-            startAuto();
+            lastUserAction = Date.now();
+            goTo(i);
           });
           dotsContainer.appendChild(dot);
         });
       }
 
-      // Buttons
       if (prevBtn) prevBtn.addEventListener("click", () => userAdvance(-1));
       if (nextBtn) nextBtn.addEventListener("click", () => userAdvance(1));
       if (toggleBtn) {
@@ -531,8 +545,9 @@ document.addEventListener("DOMContentLoaded", () => {
         updateToggle();
       }
 
-      // Keyboard
+      // Arrow keys on the track scroll it natively; this keeps the dots in step
       gallery.addEventListener("keydown", (e) => {
+        if (e.target !== track) return;
         if (e.key === "ArrowLeft") {
           e.preventDefault();
           userAdvance(-1);
@@ -542,145 +557,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // Touch swipe – płynne przeciąganie palcem
-      track.addEventListener(
-        "touchstart",
-        (e) => {
-          if (e.touches.length === 1) {
-            const t = e.touches[0];
-            touchStartX = t.clientX;
-            touchStartY = t.clientY;
-            touchDX = 0;
-            touchAxisLock = null;
-            stopAuto();
-            // Wyłącz przejście na czas przeciągania palcem
-            track.style.transition = "none";
-          }
-        },
-        { passive: true }
-      );
-      track.addEventListener(
-        "touchmove",
-        (e) => {
-          if (touchStartX == null || e.touches.length !== 1) return;
-          const t = e.touches[0];
-          const dx = t.clientX - touchStartX;
-          const dy = t.clientY - touchStartY;
-          // Ustal blokadę osi po minięciu martwej strefy
-          if (touchAxisLock == null) {
-            if (Math.abs(dx) > Math.abs(dy) + TOUCH_SLOP) {
-              touchAxisLock = "x";
-            } else if (Math.abs(dy) > Math.abs(dx) + TOUCH_SLOP) {
-              touchAxisLock = "y";
-            } else {
-              return; // jeszcze nie zdecydowano kierunku
-            }
-          }
-          if (touchAxisLock === "y") {
-            return; // pozwól przewijać stronę pionowo
-          }
-          // ruch poziomy – przejmujemy gest
-          e.preventDefault();
-          touchDX = dx;
-          // Podgląd przesunięcia – przesuwamy o touchDX w pikselach względem bieżącego slajdu
-          track.style.transform = `translate3d(calc(-${
-            index * 100
-          }% + ${touchDX}px), 0, 0)`;
-        },
-        { passive: false }
-      );
-      track.addEventListener("touchend", (e) => {
-        if (touchStartX == null) return;
-        // Jeśli użytkownik przewijał pionowo, nic nie rób
-        if (touchAxisLock === "y") {
-          touchStartX = null;
-          touchStartY = null;
-          touchAxisLock = null;
-          touchDX = 0;
-          return;
-        }
-        // Przywróć animację
-        track.style.transition = "transform .6s cubic-bezier(.22,.61,.36,1)";
-        if (Math.abs(touchDX) > TOUCH_THRESHOLD) {
-          userAdvance(touchDX < 0 ? 1 : -1);
-        } else {
-          // Powrót do aktualnego slajdu
-          goTo(index, { loop: true });
-          startAuto();
-        }
-        touchStartX = null;
-        touchStartY = null;
-        touchAxisLock = null;
-        touchDX = 0;
-      });
-      track.addEventListener("touchcancel", () => {
-        if (touchStartX == null) return;
-        track.style.transition = "transform .6s cubic-bezier(.22,.61,.36,1)";
-        goTo(index, { loop: true });
-        startAuto();
-        touchStartX = null;
-        touchStartY = null;
-        touchAxisLock = null;
-        touchDX = 0;
-      });
+      gallery.addEventListener("mouseenter", () => (hovering = true));
+      gallery.addEventListener("mouseleave", () => (hovering = false));
 
-      // Pointer (mouse) drag – płynne przeciąganie
-      let dragDX = 0;
-      const DRAG_THRESHOLD = 60; // px minimalny ruch do zmiany slajdu
-
-      function endDrag(e) {
-        if (!isPointerDown) return;
-        const dx = dragDX;
-        // Przywróć animację
-        track.style.transition = "transform .6s cubic-bezier(.22,.61,.36,1)";
-        track.style.cursor = "grab";
-        if (Math.abs(dx) > DRAG_THRESHOLD) {
-          userAdvance(dx < 0 ? 1 : -1);
-        } else {
-          // Powrót do aktualnego slajdu
-          goTo(index, { loop: true });
-          startAuto();
-        }
-        isPointerDown = false;
-        pointerStartX = null;
-        dragDX = 0;
-      }
-
-      track.addEventListener("pointerdown", (e) => {
-        if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
-        if (e.button !== 0) return;
-        e.preventDefault();
-        isPointerDown = true;
-        pointerStartX = e.clientX;
-        dragDX = 0;
-        stopAuto();
-        // Wyłącz przejścia na czas przeciągania
-        track.style.transition = "none";
-        track.style.cursor = "grabbing";
-      });
-
-      track.addEventListener("pointermove", (e) => {
-        if (!isPointerDown) return;
-        e.preventDefault();
-        dragDX = e.clientX - pointerStartX;
-        // Podgląd przesunięcia – przesuwamy o dx w pikselach względem bieżącego slajdu
-        track.style.transform = `translate3d(calc(-${
-          index * 100
-        }% + ${dragDX}px), 0, 0)`;
-      });
-
-      track.addEventListener("pointerup", (e) => {
-        endDrag(e);
-      });
-
-      track.addEventListener("pointercancel", (e) => {
-        endDrag(e);
-      });
-
-      gallery.addEventListener("mouseenter", stopAuto);
-      gallery.addEventListener("mouseleave", startAuto);
-
-      goTo(0);
+      markActive(0);
       startAuto();
     });
   })();
@@ -769,4 +649,65 @@ document.addEventListener("DOMContentLoaded", () => {
   const update = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
   window.addEventListener("scroll", update, { passive: true });
   update();
+})();
+
+// Jubilee confetti: a short burst from the title plate, once per visit (and again on a click on
+// the plate). Purely decorative; skipped with reduced motion and in high-contrast mode.
+(function initConfetti() {
+  const origin = document.querySelector("[data-confetti-origin]");
+  if (!origin) return;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const COLORS = ["#b38691", "#b7cfd2", "#fbdcc5", "#1f1d1b", "#854a5c", "#f5f2ee"];
+  let running = false;
+
+  function burst() {
+    if (running || reduce.matches || document.body.classList.contains("high-contrast")) return;
+    const rect = origin.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+    running = true;
+
+    const layer = document.createElement("div");
+    layer.className = "confetti";
+    layer.setAttribute("aria-hidden", "true");
+    const ox = rect.left + rect.width * 0.5;
+    const oy = rect.top + rect.height * 0.3;
+    const count = window.innerWidth < 600 ? 30 : 48;
+    const spread = Math.min(window.innerWidth, 900);
+    const rand = (min, max) => min + Math.random() * (max - min);
+
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement("i");
+      const size = rand(6, 12);
+      const flat = Math.random() < 0.5;
+      const set = (name, value) => piece.style.setProperty(name, value);
+      set("--x", `${ox}px`);
+      set("--y", `${oy}px`);
+      set("--w", `${size}px`);
+      set("--h", `${flat ? size * 0.5 : size}px`);
+      set("--r", Math.random() < 0.3 ? "50%" : "1px");
+      set("--c", COLORS[Math.floor(Math.random() * COLORS.length)]);
+      set("--dx", `${rand(-spread / 2, spread / 2)}px`);
+      set("--up", `${rand(90, 260)}px`);
+      set("--fall", `${window.innerHeight - oy + rand(40, 160)}px`);
+      set("--rot", `${rand(260, 900) * (Math.random() < 0.5 ? -1 : 1)}deg`);
+      set("--d", `${rand(0, 0.2).toFixed(2)}s`);
+      set("--t", `${rand(1.9, 2.9).toFixed(2)}s`);
+      layer.appendChild(piece);
+    }
+
+    document.body.appendChild(layer);
+    setTimeout(() => {
+      layer.remove();
+      running = false;
+    }, 3400);
+  }
+
+  origin.addEventListener("click", burst);
+
+  let seen = false;
+  try {
+    seen = window.sessionStorage.getItem("masskaConfetti") === "1";
+    window.sessionStorage.setItem("masskaConfetti", "1");
+  } catch (_) {}
+  if (!seen) window.addEventListener("load", () => setTimeout(burst, 700));
 })();

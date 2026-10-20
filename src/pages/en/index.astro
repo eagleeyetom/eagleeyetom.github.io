@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PosterGallery from '../../components/PosterGallery.astro';
 import JubileeHero from '../../components/JubileeHero.astro';
+import JubileeBand from '../../components/JubileeBand.astro';
 import { edition } from '../../data/edition';
 ---
 <BaseLayout
@@ -12,6 +13,7 @@ import { edition } from '../../data/edition';
   redirectToPreferredLanguage={false}
 >
         <JubileeHero lang="en" />
+        <JubileeBand lang="en" />
 
         <section class="page-section" aria-labelledby="introduction">
             <div class="section-inner intro">
