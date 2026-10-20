@@ -1,5 +1,5 @@
 ---
-import { worldMap, project, countryPaths } from '../data/worldMap';
+import { worldMap, project, countryPaths, countryBoxes } from '../data/worldMap';
 
 export interface MapPin {
   id: string;
@@ -28,12 +28,24 @@ const placed = pins
   .map((p) => ({ ...p, ...project(p.lon as number, p.lat as number) }));
 const shown = mode === 'single' ? placed.filter((p) => p.id === activeId) : placed;
 
-// 'single': a fixed window around the one place (zoom z, left/top corner in percent of the map)
+// 'single': the country with its surroundings. The zoom follows the country's size, so Poland is
+// shown close up (with its neighbours) and Argentina or Japan from further away.
+// z = zoom, left/top = corner of the window in percent of the whole map.
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
-const z = mode === 'single' ? 3.2 : 1;
-const left = shown.length ? clamp(shown[0].x - 50 / z, 0, 100 - 100 / z) : 0;
-const top = shown.length ? clamp(shown[0].y - 50 / z, 0, 100 - 100 / z) : 0;
-const view = mode === 'single' ? { z, left, top } : { z: 1, left: 0, top: 0 };
+function singleView(code: string, pin: { x: number; y: number }) {
+  const box = countryBoxes[code] ?? [pin.x - 1, pin.y - 1, pin.x + 1, pin.y + 1];
+  const width = Math.max(box[2] - box[0], 0.6);
+  const height = Math.max(box[3] - box[1], 0.6);
+  const zoom = clamp(Math.min(100 / (width * 2.4), 100 / (height * 2.4)), 1.5, 7);
+  const cx = (box[0] + box[2]) / 2;
+  const cy = (box[1] + box[3]) / 2;
+  return {
+    z: zoom,
+    left: clamp(cx - 50 / zoom, 0, 100 - 100 / zoom),
+    top: clamp(cy - 50 / zoom, 0, 100 - 100 / zoom),
+  };
+}
+const view = mode === 'single' && shown.length ? singleView(shown[0].countryCode, shown[0]) : { z: 1, left: 0, top: 0 };
 
 // Countries to colour in: those with an ensemble
 const highlighted = [...new Set(shown.map((p) => p.countryCode))].filter((code) => countryPaths[code]);
@@ -58,7 +70,8 @@ const label =
                 </svg>
             </div>
             <div class="worldmap__dots" aria-hidden="true">
-                {shown.map((p) => (
+                {/* One dot per place: ensembles from the same city share it */}
+                {shown.filter((p, i) => shown.findIndex((q) => q.x.toFixed(1) === p.x.toFixed(1) && q.y.toFixed(1) === p.y.toFixed(1)) === i).map((p) => (
                     <span
                         class="worldmap__dot"
                         style={`left: ${((p.x - view.left) * view.z).toFixed(2)}%; top: ${((p.y - view.top) * view.z).toFixed(2)}%`}

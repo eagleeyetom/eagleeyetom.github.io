@@ -22,7 +22,7 @@ const WIDTH = 1000;
 const DIGITS = 1;
 // Share of the most detailed 50m points that is kept (the rest is simplified away): enough for a
 // map zoomed to a region, light enough to ship (about 100 KB for all land)
-const KEEP = 0.12;
+const KEEP = 0.2;
 
 function load(name) {
   const topo = presimplify(read(name));
@@ -52,10 +52,31 @@ writeFileSync('public/assets/img/world-map.svg', svg);
 
 const alpha2ByNumeric = new Map(countriesList.map((c) => [c.ccn3, c.cca2.toLowerCase()]));
 const countryPaths = {};
+const countryBoxes = {};
+const [vx, vy, vw, vh] = viewBox;
 for (const f of countries) {
   const code = alpha2ByNumeric.get(String(f.id).padStart(3, '0'));
   const d = path(f);
-  if (code && d) countryPaths[code] = d;
+  if (!code || !d) continue;
+  countryPaths[code] = d;
+
+  // Bounding box of the country proper, in percent of the map: the polygons that are at least a
+  // quarter the size of the biggest one, so far-away territories (French Guiana, Alaska) do not
+  // stretch it. The ensemble pages zoom to this box plus its surroundings.
+  const polygons = f.geometry.type === 'MultiPolygon'
+    ? f.geometry.coordinates.map((coordinates) => ({ type: 'Polygon', coordinates }))
+    : [f.geometry];
+  const sized = polygons.map((geometry) => ({ geometry, area: path.area(geometry) }));
+  const biggest = Math.max(...sized.map((p) => p.area));
+  const boxes = sized.filter((p) => p.area >= biggest * 0.25).map((p) => path.bounds(p.geometry));
+  const x0 = Math.min(...boxes.map((b) => b[0][0]));
+  const y0 = Math.min(...boxes.map((b) => b[0][1]));
+  const x1 = Math.max(...boxes.map((b) => b[1][0]));
+  const y1 = Math.max(...boxes.map((b) => b[1][1]));
+  countryBoxes[code] = [
+    +(((x0 - vx) / vw) * 100).toFixed(2), +(((y0 - vy) / vh) * 100).toFixed(2),
+    +(((x1 - vx) / vw) * 100).toFixed(2), +(((y1 - vy) / vh) * 100).toFixed(2),
+  ];
 }
 
 const k = projection.scale();
@@ -83,6 +104,9 @@ export function project(lon: number, lat: number): { x: number; y: number } {
   return { x: ((px - vx) / vw) * 100, y: ((py - vy) / vh) * 100 };
 }
 
+/** Bounding box [left, top, right, bottom] of each country, in percent of the map. */
+export const countryBoxes: Record<string, [number, number, number, number]> = ${JSON.stringify(countryBoxes)};
+
 /** One SVG path per country (ISO 3166-1 alpha-2, lower case), same coordinates as the viewBox. */
 export const countryPaths: Record<string, string> = ${JSON.stringify(countryPaths)};
 `;
@@ -90,7 +114,6 @@ writeFileSync('src/data/worldMap.ts', ts);
 
 // Self-check: the formula above must land where d3 puts the point
 const check = [['Tokyo', 139.69, 35.68], ['Cape Town', 18.42, -33.92], ['Buenos Aires', -58.38, -34.6], ['Gdańsk', 18.65, 54.35]];
-const [vx, vy, vw, vh] = viewBox;
 for (const [name, lon, lat] of check) {
   const [px, py] = projection([lon, lat]);
   console.log(name.padEnd(13), 'd3:', (((px - vx) / vw) * 100).toFixed(2), (((py - vy) / vh) * 100).toFixed(2));
