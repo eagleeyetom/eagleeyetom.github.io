@@ -68,3 +68,10 @@ build/
 # Git
 *.orig
 *.rej
+
+# Astro: pliki generowane przy buildzie (zmieniaja sie po kazdym buildzie)
+.astro/
+
+# Narzedzia AI / lokalne ustawienia edytora
+.claude/
+.roo/
