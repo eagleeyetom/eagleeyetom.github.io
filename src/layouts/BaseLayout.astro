@@ -79,6 +79,27 @@ if (translationUrl) {
 }
 
 const isPl = lang === 'pl';
+
+// Structured data comes from the edition; the dates only go in once they are confirmed,
+// so search engines never show a placeholder
+const eventDates = edition.datesConfirmed
+  ? { startDate: edition.start, endDate: edition.end }
+  : {};
+const festivalPlace = {
+  "@type": "Place",
+  "name": edition.venue.name,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": edition.venue.street,
+    "addressLocality": edition.venue.city,
+    "addressCountry": edition.venue.country
+  }
+};
+const organizer = {
+  "@type": "Organization",
+  "name": "Stowarzyszenie Na Drodze Ekspresji",
+  "url": "https://ekspresja.org"
+};
 // The root index.html is the language chooser, so it is the x-default for both home pages
 const isHome = pathname === '/pl/' || pathname === '/en/';
 ---
@@ -126,7 +147,7 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
     <meta property="og:image" content={`${siteUrl}/assets/img/og-masska-2026.jpg`}>
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="XXV Jubileuszowy Przegląd Teatralny MASSKA 2026">
+    <meta property="og:image:alt" content={isPl ? "XXV Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA 2026" : "XXV MASSKA Anniversary International Theatre Review 2026"}>
     <meta property="og:locale" content={isPl ? "pl_PL" : "en_US"}>
     <meta property="og:locale:alternate" content={isPl ? "en_US" : "pl_PL"}>
 
@@ -142,29 +163,12 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
         "@type": "TheaterEvent",
         "name": title,
         "description": description,
-        "startDate": "2025-11-16T10:00:00+01:00",
-        "endDate": "2025-11-20T22:00:00+01:00",
+        ...eventDates,
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
-        "location": [
-          {
-            "@type": "Place",
-            "name": "Mamuszki 14",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Aleja Franciszka Mamuszki 14",
-              "addressLocality": "Sopot",
-              "postalCode": "81-702",
-              "addressCountry": "PL"
-            }
-          }
-        ],
+        "location": festivalPlace,
         "image": `${siteUrl}/assets/img/og-masska-2026.jpg`,
-        "organizer": {
-          "@type": "Organization",
-          "name": "Stowarzyszenie Na Drodze Ekspresji",
-          "url": "https://ekspresja.org"
-        }
+        "organizer": organizer
       })} />
     ) : (
       <script type="application/ld+json" set:html={JSON.stringify({
@@ -174,26 +178,12 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
           ? `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year}`
           : `${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}`,
         "description": description,
-        "startDate": edition.start.slice(0, 10),
-        "endDate": edition.end.slice(0, 10),
+        ...eventDates,
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
-        "location": {
-          "@type": "Place",
-          "name": edition.venue.name,
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": edition.venue.street,
-            "addressLocality": edition.venue.city,
-            "addressCountry": edition.venue.country
-          }
-        },
+        "location": festivalPlace,
         "image": `${siteUrl}/assets/img/og-masska-2026.jpg`,
-        "organizer": {
-          "@type": "Organization",
-          "name": "Stowarzyszenie Na Drodze Ekspresji",
-          "url": "https://ekspresja.org"
-        }
+        "organizer": organizer
       })} />
     )}
 </head>

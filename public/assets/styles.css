@@ -94,8 +94,17 @@
     flex-shrink: 0;
 }
 
-.theatre-gallery:hover .gallery-btn[data-gallery-toggle] {
+/* The pause button belongs to the autoplay (WCAG 2.2.2): it shows on hover, on keyboard focus
+   and always on touch screens, where nothing can hover */
+.theatre-gallery:hover .gallery-btn[data-gallery-toggle],
+.theatre-gallery:focus-within .gallery-btn[data-gallery-toggle] {
     opacity: 1;
+}
+
+@media (hover: none) {
+    .gallery-btn[data-gallery-toggle] {
+        opacity: 1;
+    }
 }
 
 /* Dots (indicators) */
@@ -1036,22 +1045,6 @@ body.high-contrast .page-section.alt .info-panel {
     gap: var(--spacing-xl);
 }
 
-.feature-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: var(--spacing-md);
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-.feature-list li {
-    background: var(--color-surface);
-    padding: var(--spacing-md);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-}
-
 .theater-grid {
     display: grid;
     gap: var(--spacing-lg);
@@ -1143,17 +1136,6 @@ body.high-contrast .page-section.alt .info-panel {
     color: var(--color-muted);
 }
 
-.media-gallery {
-    display: grid;
-    gap: var(--spacing-md);
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
-
-.media-gallery img {
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-}
-
 .external-media {
     display: grid;
     gap: var(--spacing-md);
@@ -1165,8 +1147,7 @@ body.high-contrast .page-section.alt .info-panel {
     box-shadow: none;
 }
 
-.external-media iframe,
-.external-media__placeholder {
+.external-media iframe {
     width: 100%;
     aspect-ratio: 16 / 9;
     border: 0;
@@ -1176,37 +1157,6 @@ body.high-contrast .page-section.alt .info-panel {
 
 .external-media iframe {
     height: auto;
-}
-
-.external-media__placeholder {
-    background: linear-gradient(135deg, rgba(12, 18, 34, 0.8), rgba(12, 18, 34, 0.4));
-    position: relative;
-    overflow: hidden;
-}
-
-.external-media__placeholder::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon fill='rgba(255,255,255,0.45)' points='40,30 70,50 40,70'/%3E%3C/svg%3E") center / 60px 60px no-repeat;
-    opacity: 0.9;
-}
-
-
-.video-frame {
-    position: relative;
-    padding-top: 56.25%;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-}
-
-.video-frame iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
 }
 
 blockquote {
@@ -1484,29 +1434,8 @@ blockquote {
     box-shadow: 0 0 0 4px var(--color-accent-soft);
 }
 
-.language-options {
-    text-align: center;
-    display: grid;
-    gap: var(--spacing-lg);
-}
-
-.language-options .card {
-    align-items: center;
-    text-align: left;
-}
-
-.language-options .card p {
-    text-align: left;
-}
-
 .muted {
     color: var(--color-muted);
-}
-
-.icon-text {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
 }
 
 @media (min-width: 720px) {
@@ -1603,12 +1532,6 @@ caption {
 .contact-list a:focus-visible {
     color: var(--color-accent-strong);
     text-decoration: underline;
-}
-
-.badges-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
 }
 
 .pull-quote {
@@ -2247,7 +2170,6 @@ body:not(.high-contrast) [data-tone="dark"] {
     }
 }
 
-
 /* Grid and flex children may shrink below their content width (no forced overflow) */
 .external-media > *,
 .two-column > *,
@@ -2264,7 +2186,6 @@ body:not(.high-contrast) [data-tone="dark"] {
 :where(h1, h2, h3) {
     hyphens: auto;
 }
-
 
 /* Opening words: heading, authors and a pull quote beside the text */
 .intro {

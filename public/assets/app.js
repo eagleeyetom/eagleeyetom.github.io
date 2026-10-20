@@ -4,7 +4,6 @@ const GA_ID = "G-CKB0FYJDGK";
 const FONT_MIN = 0.9;
 const FONT_MAX = 1.3;
 const FONT_STEP = 0.1;
-const DEFAULT_FONT_SIZE = 17;
 
 // Utility: Check localStorage availability
 function canUseLocalStorage() {
@@ -62,18 +61,6 @@ function updateFontIndicator(element, scale) {
   }
 }
 
-// Utility: Update contrast button label
-function updateContrastLabel(element, isHighContrast) {
-  if (element) {
-    element.setAttribute(
-      "aria-label",
-      isHighContrast
-        ? element.dataset.labelOn ?? "High contrast on"
-        : element.dataset.labelOff ?? "High contrast off"
-    );
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const defaultLanguage = document.documentElement.lang || "en";
   const defaults = {
@@ -96,10 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     '[data-action="font-decrease"]'
   );
   const fontIndicator = document.querySelector("[data-font-indicator]");
-  const contrastLabel = document.querySelector("[data-contrast-label]");
   const languageLinks = document.querySelectorAll("[data-language]");
-  const cookieNotice = document.querySelector("[data-cookie-notice]");
-  const acceptCookiesButton = document.querySelector("[data-cookie-accept]");
 
   // Initialize language from browser for first-time visitors
   try {
@@ -237,16 +221,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (contrastButton) {
       contrastButton.setAttribute("aria-pressed", String(isHighContrast));
     }
-    updateContrastLabel(contrastLabel, isHighContrast);
   }
 
   function applyFontScale(scale) {
     const clamped = clamp(scale, FONT_MIN, FONT_MAX);
+    // html { font-size } is --base-font-size (CSS) times --font-scale
     root.style.setProperty("--font-scale", clamped.toFixed(2));
-    root.style.setProperty(
-      "--base-font-size",
-      `${DEFAULT_FONT_SIZE * clamped}px`
-    );
     updateFontIndicator(fontIndicator, clamped);
     if (increaseButton && decreaseButton) {
       increaseButton.disabled = clamped >= FONT_MAX;
@@ -295,32 +275,6 @@ document.addEventListener("DOMContentLoaded", () => {
       saveSettings(settings);
     });
   });
-
-  if (cookieNotice && acceptCookiesButton) {
-    const cookieKey = "masskaModernCookies";
-
-    try {
-      const consent = storageAvailable
-        ? window.localStorage.getItem(cookieKey)
-        : null;
-      if (consent === "accepted") {
-        cookieNotice.setAttribute("hidden", "");
-      }
-    } catch (error) {
-      console.warn("Unable to read cookie consent.", error);
-    }
-
-    acceptCookiesButton.addEventListener("click", () => {
-      cookieNotice.setAttribute("hidden", "");
-      if (storageAvailable) {
-        try {
-          window.localStorage.setItem(cookieKey, "accepted");
-        } catch (error) {
-          console.warn("Unable to persist cookie consent.", error);
-        }
-      }
-    });
-  }
 
   // --- Consent banner (analytics/media) ---
   const banner = document.querySelector("[data-consent-banner]");
@@ -475,7 +429,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      let autoplayEnabled = getCookie(COOKIE_NAME) !== "off"; // 'off' disables autoplay
+      // 'off' disables autoplay; without a saved choice it follows prefers-reduced-motion
+      const savedAutoplay = getCookie(COOKIE_NAME);
+      let autoplayEnabled =
+        savedAutoplay === "on" ||
+        (savedAutoplay !== "off" &&
+          !window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
       function goTo(newIndex, { loop = true } = {}) {
         if (!slides.length) return;
@@ -749,33 +708,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
-
-// Block "Watch Online" link until November 21, 2025
-(function blockOnlineLinks() {
-  const unlockDate = new Date("2025-11-21T00:00:00+01:00");
-  if (new Date() >= unlockDate) return;
-
-  const lang = document.documentElement.lang || "pl";
-  const message =
-    lang === "en"
-      ? "MASSKA Online will be available from November 21, 2025 at midnight."
-      : "MASSKA Online będzie dostępna od 21 listopada 2025 o północy.";
-  const titleText =
-    lang === "en"
-      ? "Available from November 21, 2025"
-      : "Dostępne od 21 listopada 2025";
-
-  document.querySelectorAll('a[href*="online.html"]').forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      alert(message);
-    });
-    link.style.opacity = "0.6";
-    link.style.cursor = "not-allowed";
-    link.setAttribute("aria-disabled", "true");
-    link.setAttribute("title", titleText);
-  });
-})();
 
 // Mobile hamburger menu
 (function initMobileMenu() {

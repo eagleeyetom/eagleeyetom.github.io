@@ -4,7 +4,3 @@ Allow: /
 
 # Sitemap
 Sitemap: https://masska.org/sitemap-index.xml
-
-# Nie indeksuj szablonów
-Disallow: /pl/template.html
-Disallow: /en/template.html

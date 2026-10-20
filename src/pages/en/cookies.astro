@@ -13,7 +13,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 <section class="page-section">
             <div class="section-inner">
                 <h1>Cookie and localStorage Policy</h1>
-                <p><strong>Last updated:</strong> October 27, 2025</p>
+                <p><strong>Last updated:</strong> October 20, 2026</p>
 
                 <h2>1. What are cookies and localStorage?</h2>
                 <p>Cookies are small text files stored in your web browser when you visit websites. LocalStorage is a
@@ -30,7 +30,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                     <li><strong>Text size</strong> – Your font zoom settings (from 0.9 to 1.3)</li>
                     <li><strong>High contrast mode</strong> – Whether you've enabled high contrast</li>
                     <li><strong>Preferred language</strong> – Choice between Polish and English version</li>
-                    <li><strong>Cookie consent</strong> – Information about accepting the informational banner</li>
+                    <li><strong>Consents</strong> – Your choice about analytics (Google Analytics) and media (YouTube)</li>
+                </ul>
+
+                <h3>2.1a. Functional cookie</h3>
+                <p>On the ensemble pages we set one first-party cookie:</p>
+                <ul>
+                    <li><strong>galleryAutoplay</strong> – remembers whether you paused the automatic photo
+                        slideshow (valid for 30 days)</li>
                 </ul>
 
                 <h3>2.2. Google Analytics (analytical cookies)</h3>
@@ -46,7 +53,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                     address.</p>
 
                 <h3>2.3. Google Maps (media cookies)</h3>
-                <p>Embedded Google Maps may set their own cookies and process device data:</p>
+                <p>Google Maps loads only after you click the “Show map” button. Google may then set its own cookies and process device data:</p>
                 <ul>
                     <li><strong>NID</strong> – Google preferences identifier (up to 6 months)</li>
                     <li><strong>1P_JAR, CONSENT</strong> – Google privacy and consent settings</li>
