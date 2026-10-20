@@ -492,12 +492,13 @@ const isPl = lang === 'pl';
         position: absolute;
         top: 2rem;
         right: 2rem;
-        background: none;
-        border: none;
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 3rem;
+        background: rgba(31, 29, 27, 0.7);
+        border: 2px solid #f5f2ee;
+        color: #f5f2ee;
+        font-size: 2.2rem;
+        line-height: 1;
         cursor: pointer;
-        transition: color 0.2s, transform 0.2s, background 0.2s;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s;
         z-index: 10100;
         width: 50px;
         height: 50px;
@@ -507,19 +508,22 @@ const isPl = lang === 'pl';
         border-radius: var(--radius-ui);
     }
 
-    .lightbox-close:hover {
-        color: #fff;
-        transform: rotate(90deg);
-        background: rgba(255, 255, 255, 0.1);
+    .lightbox-close:hover,
+    .lightbox-close:focus-visible,
+    .lightbox-nav:hover,
+    .lightbox-nav:focus-visible {
+        border-color: var(--btn-hover);
+        background: var(--btn-hover);
+        color: var(--btn-hover-fg);
     }
 
     .lightbox-nav {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #fff;
+        background: rgba(31, 29, 27, 0.7);
+        border: 2px solid #f5f2ee;
+        color: #f5f2ee;
         font-size: 2.5rem;
         width: 60px;
         height: 60px;
@@ -528,13 +532,8 @@ const isPl = lang === 'pl';
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: background 0.2s, transform 0.2s;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s;
         z-index: 10100;
-    }
-
-    .lightbox-nav:hover {
-        background: rgba(255, 255, 255, 0.15);
-        transform: translateY(-50%) scale(1.05);
     }
 
     .lightbox-prev {

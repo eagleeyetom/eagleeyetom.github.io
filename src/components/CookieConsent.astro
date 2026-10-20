@@ -30,14 +30,14 @@ const isPl = lang === 'pl';
                     <label><input type="checkbox" data-consent-toggle="media"> {isPl ? "Media (osadzenia YouTube)" : "Media (YouTube embeds)"}</label>
                 </fieldset>
                 <div class="cookie-notice__actions-row">
-                    <button type="button" class="cookie-notice__button" data-consent-save>{isPl ? "Zapisz wybór" : "Save choices"}</button>
+                    <button type="button" class="button secondary" data-consent-save>{isPl ? "Zapisz wybór" : "Save choices"}</button>
                 </div>
             </details>
         </div>
 
         <div class="cookie-notice__actions">
-            <button type="button" class="cookie-notice__button" data-consent-accept-all>{isPl ? "Akceptuj wszystko" : "Accept all"}</button>
-            <button type="button" class="cookie-notice__button cookie-notice__button--outline" data-consent-reject>{isPl ? "Odrzuć zbędne" : "Reject non‑essential"}</button>
+            <button type="button" class="button primary" data-consent-accept-all>{isPl ? "Akceptuj wszystko" : "Accept all"}</button>
+            <button type="button" class="button secondary" data-consent-reject>{isPl ? "Odrzuć zbędne" : "Reject non‑essential"}</button>
         </div>
     </div>
 </div>

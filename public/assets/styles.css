@@ -226,6 +226,8 @@
     --btn-line: #1f1d1b;
     --btn-hover: #b7cfd2;
     --btn-hover-fg: #1f1d1b;
+    --btn-primary-hover: #b7cfd2;
+    --btn-primary-hover-line: #1f1d1b;
     --shadow-sm: 0 8px 24px rgba(58, 55, 52, 0.04);
     --shadow-lg: 0 20px 48px rgba(58, 55, 52, 0.1);
     --radius-xs: 4px;
@@ -302,6 +304,8 @@ body.high-contrast {
     --btn-line: #ffffff;
     --btn-hover: #ffd300;
     --btn-hover-fg: #000000;
+    --btn-primary-hover: #ffffff;
+    --btn-primary-hover-line: #ffffff;
     --shadow-sm: 0 0 0 3px rgba(255, 255, 255, 0.3);
     --shadow-lg: 0 0 0 4px rgba(255, 211, 0, 0.4);
 }
@@ -726,6 +730,17 @@ body.high-contrast .utility-bar {
     }
 }
 
+/* The pressed toggle and the current language already wear the hover fill, so they turn
+   paper-white on hover instead: every control still reacts */
+.utility-bar .contrast-toggle[aria-pressed="true"]:hover,
+.utility-bar .contrast-toggle[aria-pressed="true"]:focus-visible,
+.utility-bar .language-link.is-active:hover,
+.utility-bar .language-link.is-active:focus-visible {
+    border-color: var(--bar-fg);
+    background: var(--bar-fg);
+    color: var(--bar-bg);
+}
+
 .font-indicator {
     min-width: 3.4ch;
     text-align: center;
@@ -875,7 +890,10 @@ body.high-contrast .page-section.alt .info-panel {
     text-decoration: none;
 }
 
-/* Primary: an ink block that sits on a mauve offset shadow and is pressed in on hover */
+/* Every button language in one place: solid (primary) or outlined, text in the same colour
+   as its edge, and one hover for all: cyan fill with ink text (--btn-hover). The primary
+   block also presses into its mauve shadow.
+   Primary: an ink block that sits on a mauve offset shadow */
 .button.primary {
     border-color: var(--btn-bg);
     background: var(--btn-bg);
@@ -885,8 +903,9 @@ body.high-contrast .page-section.alt .info-panel {
 
 .button.primary:hover,
 .button.primary:focus-visible {
-    background: var(--btn-bg);
-    color: var(--btn-fg);
+    border-color: var(--btn-primary-hover-line);
+    background: var(--btn-primary-hover);
+    color: var(--btn-hover-fg);
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0 var(--btn-shadow);
 }
@@ -899,7 +918,7 @@ body.high-contrast .page-section.alt .info-panel {
 /* Secondary and ghost: outlined; ghost is the quieter one inside cards */
 .button.ghost {
     border-color: var(--color-muted);
-    color: var(--color-text);
+    color: var(--btn-line);
 }
 
 .button.ghost:hover,
@@ -1651,6 +1670,18 @@ caption {
     pointer-events: none;
 }
 
+/* The banner is a dark block: it takes the dark-section button tokens */
+body:not(.high-contrast) .cookie-notice {
+    --btn-bg: #b7cfd2;
+    --btn-fg: #1f1d1b;
+    --btn-shadow: #b38691;
+    --btn-line: #f5f2ee;
+    --btn-hover: #b7cfd2;
+    --btn-hover-fg: #1f1d1b;
+    --btn-primary-hover: #f5f2ee;
+    --btn-primary-hover-line: #f5f2ee;
+}
+
 .cookie-notice__inner {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
@@ -1749,48 +1780,13 @@ caption {
     gap: 0.6rem;
 }
 
-.cookie-notice__button {
+.cookie-notice .button {
     min-height: 2.75rem;
     padding: 0.6rem 1.4rem;
-    border-radius: var(--radius-ui);
-    border: 2px solid #b7cfd2;
-    background: #b7cfd2;
-    color: #1f1d1b;
-    box-shadow: 3px 3px 0 #b38691;
-    font-family: var(--font-family-headers);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    line-height: 1.1;
     white-space: nowrap;
-    cursor: pointer;
-    transition: background var(--transition-base), color var(--transition-base), transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.cookie-notice__button--outline {
-    border-color: #f5f2ee;
-    background: transparent;
-    color: #f5f2ee;
-    box-shadow: none;
-}
-
-.cookie-notice__button:hover,
-.cookie-notice__button:focus-visible {
-    background: #f5f2ee;
-    border-color: #f5f2ee;
-    color: #1f1d1b;
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 #b38691;
-}
-
-.cookie-notice__button--outline:hover,
-.cookie-notice__button--outline:focus-visible {
-    box-shadow: none;
-    transform: none;
-}
-
-.cookie-notice__button:focus-visible,
+.cookie-notice .button:focus-visible,
 .cookie-notice__settings summary:focus-visible,
 .cookie-notice__settings input:focus-visible {
     outline: 3px solid #f5f2ee;
@@ -1827,7 +1823,7 @@ caption {
         flex-wrap: nowrap;
     }
 
-    .cookie-notice__actions .cookie-notice__button {
+    .cookie-notice__actions .button {
         flex: 1 1 0;
         padding-inline: 0.5rem;
         white-space: normal;
@@ -1841,17 +1837,6 @@ body.high-contrast .cookie-notice {
 
 body.high-contrast .cookie-notice::before {
     display: none;
-}
-
-body.high-contrast .cookie-notice__button:not(.cookie-notice__button--outline) {
-    background: #ffd300;
-    border-color: #ffd300;
-    color: #000;
-}
-
-body.high-contrast .cookie-notice__button--outline {
-    border-color: #fff;
-    color: #fff;
 }
 
 /* Kontrast strzałek w trybie wysokiego kontrastu (ciemny) */
@@ -2074,6 +2059,8 @@ body:not(.high-contrast) [data-tone="dark"] {
     --btn-line: #f5f2ee;
     --btn-hover: #b7cfd2;
     --btn-hover-fg: #1f1d1b;
+    --btn-primary-hover: #f5f2ee;
+    --btn-primary-hover-line: #f5f2ee;
     background:
         radial-gradient(circle at 90% 0%, var(--color-blue-soft) 0, transparent 50%),
         var(--color-bg);

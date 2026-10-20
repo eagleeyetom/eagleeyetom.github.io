@@ -40,36 +40,24 @@
         width: 48px;
         height: 48px;
         padding: 8px;
-        background: var(--color-surface);
-        border: 2px solid transparent;
-        border-radius: 8px;
+        background: transparent;
+        border: 2px solid var(--color-text);
+        border-radius: var(--radius-ui);
         cursor: pointer;
         grid-area: hamburger;
         z-index: 102;
         position: relative;
-        transition: all 0.2s ease;
+        transition: background-color 0.2s ease, color 0.2s ease;
     }
 
+    .mobile-menu-toggle:hover,
     .mobile-menu-toggle[aria-expanded="true"] {
-        background: #ffffff;
-        border-color: var(--color-accent);
-    }
-
-    .mobile-menu-toggle:hover {
-        border-color: rgba(255, 107, 107, 0.3);
-        transform: scale(1.05);
-    }
-
-    .mobile-menu-toggle[aria-expanded="true"]:hover {
-        background: #ffffff;
-        border-color: var(--color-accent);
-        transform: scale(1.05);
+        background: var(--btn-hover);
     }
 
     .mobile-menu-toggle:focus-visible {
-        outline: 2px solid var(--color-accent);
+        outline: 3px solid var(--color-accent);
         outline-offset: 2px;
-        border-color: var(--color-accent);
     }
 
     .hamburger-icon {
@@ -231,26 +219,21 @@
     body.high-contrast .mobile-menu-toggle {
         background: #000000;
         border-color: #ffffff;
-        border-width: 3px;
     }
 
+    body.high-contrast .mobile-menu-toggle:hover,
     body.high-contrast .mobile-menu-toggle[aria-expanded="true"] {
-        background: #000000;
-        border-color: #ffffff;
-        border-width: 3px;
-    }
-
-    body.high-contrast .mobile-menu-toggle:hover {
-        border-color: #ffffff;
-        background: #000000;
-        transform: scale(1.05);
+        background: var(--btn-hover);
     }
 
     body.high-contrast .hamburger-icon span {
         background: #ffffff;
-        height: 3px;
     }
 
+    body.high-contrast .mobile-menu-toggle:hover .hamburger-icon span,
+    body.high-contrast .mobile-menu-toggle[aria-expanded="true"] .hamburger-icon span {
+        background: #000000;
+    }
 }
 
 @media (max-width: 768px) {
