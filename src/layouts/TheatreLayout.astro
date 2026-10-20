@@ -100,7 +100,7 @@ function getTheatreUrl(entry: any) {
     )}
 
     <!-- Hero Section -->
-    <section class="page-section">
+    <section class="page-section theatre-hero">
         <div class="section-inner two-column">
             <div>
                 <span class="badge">
@@ -123,8 +123,24 @@ function getTheatreUrl(entry: any) {
                     <li class="chip" role="listitem">{frontmatter.duration}</li>
                     <li class="chip" role="listitem">{isPl ? `Napisy: ${frontmatter.subtitles}` : `Subtitles: ${frontmatter.subtitles}`}</li>
                 </ul>
+                <div class="theatre-hero__map">
+                <WorldMap
+                    lang={lang}
+                    mode="single"
+                    activeId={frontmatter.id}
+                    pins={[{
+                        id: frontmatter.id,
+                        name: frontmatter.name,
+                        city: frontmatter.city.split(',')[0],
+                        country: frontmatter.country,
+                        countryCode: frontmatter.countryCode,
+                        lat: frontmatter.lat,
+                        lon: frontmatter.lon,
+                    }]}
+                />
+                </div>
             </div>
-            <aside class="info-panel" aria-label={isPl ? "Informacje o spektaklu" : "Performance details"}>
+            <aside class="info-panel info-panel--facts" aria-label={isPl ? "Informacje o spektaklu" : "Performance details"}>
                 <h2>{isPl ? "Przegląd spektaklu" : "Performance overview"}</h2>
                 <dl>
                     <div>
@@ -138,14 +154,6 @@ function getTheatreUrl(entry: any) {
                     <div>
                         <dt>{isPl ? "Miasto" : "City"}</dt>
                         <dd>{frontmatter.city}</dd>
-                    </div>
-                    <div>
-                        <dt>{isPl ? "Gatunek" : "Genre"}</dt>
-                        <dd>{frontmatter.genre}</dd>
-                    </div>
-                    <div>
-                        <dt>{isPl ? "Czas trwania" : "Runtime"}</dt>
-                        <dd>{frontmatter.duration}</dd>
                     </div>
                     {frontmatter.language && (
                         <div>
@@ -166,20 +174,6 @@ function getTheatreUrl(entry: any) {
                         </div>
                     )}
                 </dl>
-                <WorldMap
-                    lang={lang}
-                    mode="single"
-                    activeId={frontmatter.id}
-                    pins={[{
-                        id: frontmatter.id,
-                        name: frontmatter.name,
-                        city: frontmatter.city.split(',')[0],
-                        country: frontmatter.country,
-                        countryCode: frontmatter.countryCode,
-                        lat: frontmatter.lat,
-                        lon: frontmatter.lon,
-                    }]}
-                />
             </aside>
         </div>
     </section>
@@ -327,6 +321,30 @@ function getTheatreUrl(entry: any) {
 </BaseLayout>
 
 <style>
+    /* Hero: less air above and below, the facts in two columns, the map under the text */
+    .theatre-hero {
+        padding-block: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .theatre-hero .two-column {
+        align-items: start;
+    }
+
+    .theatre-hero__map {
+        max-width: 30rem;
+    }
+
+    .info-panel--facts dl {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+        gap: var(--spacing-sm) var(--spacing-md);
+        margin: 0;
+    }
+
+    .info-panel--facts dl > div {
+        min-width: 0;
+    }
+
     .placeholder-note {
         padding: var(--spacing-sm) var(--gutter);
         background: var(--color-peach);
