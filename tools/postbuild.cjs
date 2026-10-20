@@ -99,4 +99,19 @@ for (const file of listFiles(path.join(distDir, '_astro'), '.css')) {
   fs.writeFileSync(file, css.replace(/url\(\/_astro\//g, 'url(./'));
 }
 
+// CSS masks are fetched with CORS, which file:// pages fail ("null" origin), so the ink-edge
+// texture would silently drop out and leave flat edges. Inline it into the stylesheet as a
+// data: URI; over http the result is identical.
+const styles = path.join(distDir, 'assets', 'styles.css');
+if (fs.existsSync(styles)) {
+  let css = fs.readFileSync(styles, 'utf8');
+  css = css.replace(/url\((['"]?)(img\/[^'")]+\.webp)\1\)(?=\s+repeat-x)/g, (match, _quote, rel) => {
+    const file = path.join(distDir, 'assets', rel);
+    if (!fs.existsSync(file)) return match;
+    return `url("data:image/webp;base64,${fs.readFileSync(file).toString('base64')}")`;
+  });
+  fs.writeFileSync(styles, css);
+  console.log('Inlined mask textures into styles.css');
+}
+
 console.log('Post-build alignment complete!');
