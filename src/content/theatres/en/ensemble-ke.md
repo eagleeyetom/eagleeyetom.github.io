@@ -5,6 +5,8 @@ showTitle: "Quis autem vel eum"
 countryCode: "ke"
 country: "Kenya"
 region: "africa"
+lat: -1.29
+lon: 36.82
 placeholder: true
 availability: "XX–XX November 2026"
 badgeText: "Kenya · Dance theatre"

@@ -5,6 +5,8 @@ showTitle: "Omnis voluptas assumenda"
 countryCode: "za"
 country: "RPA"
 region: "africa"
+lat: -33.92
+lon: 18.42
 placeholder: true
 availability: "XX–XX listopada 2026"
 badgeText: "RPA · Teatr muzyczny"

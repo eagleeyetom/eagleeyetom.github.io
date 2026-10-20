@@ -5,6 +5,8 @@ showTitle: "Nam libero tempore"
 countryCode: "ge"
 country: "Georgia"
 region: "europe"
+lat: 41.72
+lon: 44.79
 placeholder: true
 availability: "XX–XX November 2026"
 badgeText: "Georgia · Puppet theatre"

@@ -5,6 +5,8 @@ showTitle: "Nemo enim ipsam"
 countryCode: "br"
 country: "Brazylia"
 region: "americas"
+lat: -23.55
+lon: -46.63
 placeholder: true
 availability: "XX–XX listopada 2026"
 badgeText: "Brazylia · Teatr uliczny"

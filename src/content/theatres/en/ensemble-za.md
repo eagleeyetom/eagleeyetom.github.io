@@ -5,6 +5,8 @@ showTitle: "Omnis voluptas assumenda"
 countryCode: "za"
 country: "South Africa"
 region: "africa"
+lat: -33.92
+lon: 18.42
 placeholder: true
 availability: "XX–XX November 2026"
 badgeText: "South Africa · Musical theatre"

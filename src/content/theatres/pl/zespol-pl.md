@@ -5,6 +5,8 @@ showTitle: "Neque porro quisquam"
 countryCode: "pl"
 country: "Polska"
 region: "europe"
+lat: 54.35
+lon: 18.65
 placeholder: true
 availability: "XX–XX listopada 2026"
 badgeText: "Polska · Teatr aktora"

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import WorldMap from '../components/WorldMap.astro';
 
 interface Props {
   // Typed from the content schema so fields missing there fail `astro check`
@@ -165,6 +166,20 @@ function getTheatreUrl(entry: any) {
                         </div>
                     )}
                 </dl>
+                <WorldMap
+                    lang={lang}
+                    mode="single"
+                    activeId={frontmatter.id}
+                    pins={[{
+                        id: frontmatter.id,
+                        name: frontmatter.name,
+                        city: frontmatter.city.split(',')[0],
+                        country: frontmatter.country,
+                        countryCode: frontmatter.countryCode,
+                        lat: frontmatter.lat,
+                        lon: frontmatter.lon,
+                    }]}
+                />
             </aside>
         </div>
     </section>
@@ -315,7 +330,7 @@ function getTheatreUrl(entry: any) {
     .placeholder-note {
         padding: var(--spacing-sm) var(--gutter);
         background: var(--color-peach);
-        color: #1f1d1b;
+        color: var(--color-text);
         text-align: center;
     }
 

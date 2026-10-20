@@ -5,6 +5,8 @@ showTitle: "Nam libero tempore"
 countryCode: "ge"
 country: "Gruzja"
 region: "europe"
+lat: 41.72
+lon: 44.79
 placeholder: true
 availability: "XX–XX listopada 2026"
 badgeText: "Gruzja · Teatr lalek"

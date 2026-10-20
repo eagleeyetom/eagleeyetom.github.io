@@ -5,6 +5,8 @@ showTitle: "Sed ut perspiciatis"
 countryCode: "jp"
 country: "Japan"
 region: "asia"
+lat: 35.68
+lon: 139.69
 placeholder: true
 availability: "XX–XX November 2026"
 badgeText: "Japan · Puppet theatre"

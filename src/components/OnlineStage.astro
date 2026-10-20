@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { edition } from '../data/edition';
+import WorldMap from './WorldMap.astro';
 
 interface Props {
   lang: 'pl' | 'en';
@@ -21,6 +22,7 @@ const t = isPl
       browse: 'Przeglądaj spektakle',
       how: 'Jak to działa',
       countriesLabel: 'Kraje uczestniczące w festiwalu',
+      mapLabel: 'Mapa świata',
       stepsTitle: 'Jak oglądać',
       steps: [
         ['Wybierz spektakl', 'Każdy zespół ma własną stronę z opisem, zdjęciami i nagraniem spektaklu.'],
@@ -50,6 +52,7 @@ const t = isPl
       browse: 'Browse performances',
       how: 'How it works',
       countriesLabel: 'Countries taking part in the festival',
+      mapLabel: 'World map',
       stepsTitle: 'How to watch',
       steps: [
         ['Pick a performance', 'Every ensemble has its own page with a description, photos and the recording.'],
@@ -88,6 +91,16 @@ const applyUrl = 'https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQ
 function slugOf(entry: (typeof entries)[number]) {
   return entry.slug.split('/').pop();
 }
+
+const mapPins = entries.map((entry) => ({
+  id: entry.data.id,
+  name: entry.data.name,
+  city: entry.data.city.split(',')[0],
+  country: entry.data.country,
+  countryCode: entry.data.countryCode,
+  lat: entry.data.lat,
+  lon: entry.data.lon,
+}));
 function imageOf(entry: (typeof entries)[number]) {
   const src = entry.data.gallery[0]?.src;
   return src ? `..${src}` : '../assets/img/teatr/placeholder-1.webp';
@@ -136,6 +149,10 @@ function imageOf(entry: (typeof entries)[number]) {
             ))}
         </ul>
     </div>
+</section>
+
+<section class="stage-map" aria-label={t.mapLabel}>
+    <WorldMap lang={lang} pins={mapPins} />
 </section>
 
 <section class="page-section alt" id="jak" aria-labelledby="stage-steps-title">
@@ -365,6 +382,11 @@ function imageOf(entry: (typeof entries)[number]) {
         font-size: 2.4rem;
     }
 
+    .stage-map {
+        padding: 0 var(--gutter) clamp(2rem, 5vw, 3.5rem);
+        background: var(--color-bg);
+    }
+
     /* ---- How it works ---- */
     .stage-steps {
         display: grid;
@@ -523,7 +545,7 @@ function imageOf(entry: (typeof entries)[number]) {
         padding: 0.2rem 0.6rem;
         border-radius: var(--radius-ui);
         background: var(--color-peach);
-        color: #1f1d1b;
+        color: var(--color-text);
         font-size: 0.75rem;
         font-weight: var(--font-weight-medium);
         letter-spacing: 0.04em;

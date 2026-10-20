@@ -5,6 +5,8 @@ showTitle: "Temporibus autem quibusdam"
 countryCode: "in"
 country: "India"
 region: "asia"
+lat: 22.57
+lon: 88.36
 placeholder: true
 availability: "XX–XX November 2026"
 badgeText: "India · Traditional theatre"

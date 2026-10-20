@@ -5,6 +5,8 @@ showTitle: "At vero eos et accusamus"
 countryCode: "ar"
 country: "Argentina"
 region: "americas"
+lat: -34.6
+lon: -58.38
 placeholder: true
 availability: "XX–XX November 2026"
 badgeText: "Argentina · Mask theatre"

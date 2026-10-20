@@ -58,6 +58,8 @@ showTitle: "Dmuchawiec i Kurz"
 countryCode: "hu"              # kod ISO (flaga)
 country: "Węgry"               # kraj tak, jak ma być wypisany na stronie
 region: "europe"               # europe | asia | americas | africa | oceania (filtr na scenie online)
+lat: 47.50                     # opcjonalnie: współrzędne miasta (kropka na mapie świata; bez nich brak kropki)
+lon: 19.04
 placeholder: false             # true = zaślepka (noindex, pasek „Wpis zastępczy”)
 availability: "16–20 listopada 2026"   # opcjonalnie: kiedy spektakl jest dostępny online
 badgeText: "Węgry · Teatr integracyjny"
@@ -109,5 +111,9 @@ Błędne pole w nagłówku pliku zatrzyma build z komunikatem (walidacja Zod w `
   filtr regionów, liczniki (spektakle, kraje) i „ściana flag” w nagłówku liczą się z danych.
 - **Podstrona zespołu**: informacje o spektaklu, galeria (przewijana palcem), wideo YouTube ładowane dopiero po zgodzie
   lub kliknięciu, poprzedni/następny spektakl (w kolejności: kraj, nazwa) i lista wszystkich zespołów.
+- **Mapa świata** na scenie online (kraje zespołów zaznaczone kolorem, kropki w miastach) i mała mapa na stronie
+  każdego zespołu. Kraje są kolorowane po `countryCode`, kropki stawiane po `lat`/`lon`. Mapa jest zwykłym obrazem:
+  nie ma na niej linków, a dojście do spektaklu daje lista kafli. Zarys lądów generuje
+  `node tools/build_worldmap.mjs` (opis w nagłówku skryptu); zwykle nie trzeba go uruchamiać.
 - **Menu zespołów w nagłówku** i **SEO** (canonical, hreflang, dane strukturalne) dla każdej podstrony.
 - Zespoły są sortowane po kraju, potem po nazwie.

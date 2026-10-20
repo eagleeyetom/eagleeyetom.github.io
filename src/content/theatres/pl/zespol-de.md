@@ -5,6 +5,8 @@ showTitle: "Itaque earum rerum"
 countryCode: "de"
 country: "Niemcy"
 region: "europe"
+lat: 52.52
+lon: 13.4
 placeholder: true
 availability: "XX–XX listopada 2026"
 badgeText: "Niemcy · Teatr integracyjny"

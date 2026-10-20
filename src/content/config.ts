@@ -10,6 +10,9 @@ const theatresCollection = defineCollection({
     // Country as written on the page ("Japonia" / "Japan") and the world region it is filed under
     country: z.string(),
     region: z.enum(['europe', 'asia', 'americas', 'africa', 'oceania']),
+    // Where the ensemble comes from, for the pin on the world map (optional: no pin without it)
+    lat: z.number().min(-90).max(90).optional(),
+    lon: z.number().min(-180).max(180).optional(),
     // true while the entry is a stand-in: the page says so and is kept out of search engines
     placeholder: z.boolean().default(false),
     // Free text, e.g. "od XX do XX listopada 2026"; shown on the card and the page

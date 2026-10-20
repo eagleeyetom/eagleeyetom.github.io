@@ -5,6 +5,8 @@ showTitle: "Ut enim ad minima"
 countryCode: "au"
 country: "Australia"
 region: "oceania"
+lat: -37.81
+lon: 144.96
 placeholder: true
 availability: "XX–XX November 2026"
 badgeText: "Australia · Physical theatre"

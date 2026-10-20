@@ -1,0 +1,157 @@
+---
+import { worldMap, project, countryPaths } from '../data/worldMap';
+
+export interface MapPin {
+  id: string;
+  name: string;
+  city: string;
+  country: string;
+  countryCode: string;
+  lat?: number;
+  lon?: number;
+}
+
+interface Props {
+  lang: 'pl' | 'en';
+  pins: MapPin[];
+  /** 'full': the whole world; 'single': zoomed to one ensemble's surroundings (ensemble pages) */
+  mode?: 'full' | 'single';
+  activeId?: string;
+}
+
+const { lang, pins, mode = 'full', activeId } = Astro.props;
+const isPl = lang === 'pl';
+const [vx, vy, vw, vh] = worldMap.viewBox;
+
+const placed = pins
+  .filter((p) => typeof p.lat === 'number' && typeof p.lon === 'number')
+  .map((p) => ({ ...p, ...project(p.lon as number, p.lat as number) }));
+const shown = mode === 'single' ? placed.filter((p) => p.id === activeId) : placed;
+
+// 'single': a fixed window around the one place (zoom z, left/top corner in percent of the map)
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const z = mode === 'single' ? 3.2 : 1;
+const left = shown.length ? clamp(shown[0].x - 50 / z, 0, 100 - 100 / z) : 0;
+const top = shown.length ? clamp(shown[0].y - 50 / z, 0, 100 - 100 / z) : 0;
+const view = mode === 'single' ? { z, left, top } : { z: 1, left: 0, top: 0 };
+
+// Countries to colour in: those with an ensemble
+const highlighted = [...new Set(shown.map((p) => p.countryCode))].filter((code) => countryPaths[code]);
+const countryNames = [...new Set(shown.map((p) => p.country))];
+
+const label =
+  mode === 'single'
+    ? (isPl ? `Mapa: ${shown[0]?.city}, ${shown[0]?.country}` : `Map: ${shown[0]?.city}, ${shown[0]?.country}`)
+    : (isPl ? `Mapa świata. Kraje uczestniczące: ${countryNames.join(', ')}.` : `World map. Participating countries: ${countryNames.join(', ')}.`);
+---
+
+{shown.length > 0 && (
+    <figure class:list={['worldmap', { 'worldmap--single': mode === 'single' }]}>
+        <div class="worldmap__stage" style={`aspect-ratio: ${vw} / ${vh}`} role="img" aria-label={label}>
+            <div
+                class="worldmap__inner"
+                style={`transform: scale(${view.z}) translate(${-view.left}%, ${-view.top}%)`}
+            >
+                <img class="worldmap__base" src="../assets/img/world-map.svg" alt="" width={vw} height={vh} decoding="async" />
+                <svg class="worldmap__countries" viewBox={`${vx} ${vy} ${vw} ${vh}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                    {highlighted.map((code) => <path d={countryPaths[code]}></path>)}
+                </svg>
+            </div>
+            <div class="worldmap__dots" aria-hidden="true">
+                {shown.map((p) => (
+                    <span
+                        class="worldmap__dot"
+                        style={`left: ${((p.x - view.left) * view.z).toFixed(2)}%; top: ${((p.y - view.top) * view.z).toFixed(2)}%`}
+                    ></span>
+                ))}
+            </div>
+        </div>
+        {mode === 'single' && (
+            <figcaption class="worldmap__place">
+                <span class={`fi fi-${shown[0].countryCode}`} aria-hidden="true"></span>
+                {shown[0].city}, {shown[0].country}
+            </figcaption>
+        )}
+    </figure>
+)}
+
+<style>
+    .worldmap {
+        max-width: 1120px;
+        margin: 0 auto;
+    }
+
+    .worldmap--single {
+        max-width: none;
+        margin: var(--spacing-sm) 0 0;
+    }
+
+    .worldmap__stage {
+        position: relative;
+        overflow: hidden;
+        border: 2px solid var(--color-text);
+        border-radius: var(--radius-md);
+        background: var(--color-blue-soft);
+    }
+
+    .worldmap__inner {
+        position: absolute;
+        inset: 0;
+        transform-origin: 0 0;
+    }
+
+    .worldmap__base,
+    .worldmap__countries {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        border-radius: 0;
+    }
+
+    .worldmap__countries path {
+        fill: var(--color-mauve);
+        stroke: var(--color-text);
+        stroke-width: 0.6;
+        vector-effect: non-scaling-stroke;
+    }
+
+    /* High contrast: the light land turns dark, the highlighted countries stay yellow */
+    :global(body.high-contrast) .worldmap__base {
+        filter: invert(1);
+    }
+
+    .worldmap__dots {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .worldmap__dot {
+        position: absolute;
+        width: 0.8rem;
+        height: 0.8rem;
+        translate: -50% -50%;
+        border: 2px solid var(--color-bg);
+        border-radius: 50%;
+        background: var(--color-text);
+        box-shadow: 0 0 0 2px var(--color-text);
+    }
+
+    @media (max-width: 600px) {
+        .worldmap__dot {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+    }
+
+    .worldmap__place {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--color-text);
+    }
+</style>

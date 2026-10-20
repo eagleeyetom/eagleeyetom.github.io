@@ -5,6 +5,8 @@ showTitle: "Sed ut perspiciatis"
 countryCode: "jp"
 country: "Japonia"
 region: "asia"
+lat: 35.68
+lon: 139.69
 placeholder: true
 availability: "XX–XX listopada 2026"
 badgeText: "Japonia · Teatr lalek"
