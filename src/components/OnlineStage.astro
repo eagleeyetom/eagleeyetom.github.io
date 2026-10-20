@@ -93,11 +93,11 @@ function imageOf(entry: (typeof entries)[number]) {
 
 <section class="stage-hero" aria-labelledby="stage-title">
     <div class="stage-hero__inner">
+        <div class="stage-plate">
+            <p class="stage-plate__eyebrow">{t.eyebrow}</p>
+            <h1 id="stage-title">{t.title}</h1>
+        </div>
         <div class="stage-hero__text">
-            <div class="stage-plate">
-                <p class="stage-plate__eyebrow">{t.eyebrow}</p>
-                <h1 id="stage-title">{t.title}</h1>
-            </div>
             <p class="stage-hero__lead">{t.lead}</p>
 
             <dl class="stage-facts">
@@ -227,39 +227,42 @@ function imageOf(entry: (typeof entries)[number]) {
 <style>
     /* ---- Hero: a mauve title plate like the poster's, and a wall of the countries' flags ---- */
     .stage-hero {
-        padding: clamp(1.5rem, 4vw, 3rem) var(--gutter) clamp(1.5rem, 4vw, 2.5rem);
-        background:
-            radial-gradient(circle at 90% 10%, var(--color-blue-soft) 0, transparent 55%),
-            var(--color-bg);
+        padding: clamp(1rem, 2.5vw, 1.75rem) var(--gutter);
+        background: var(--color-bg);
     }
 
+    /* A slim band: the title plate and, beside it, the line of text and the facts */
     .stage-hero__inner {
         display: grid;
-        gap: clamp(1.5rem, 4vw, 3rem);
+        gap: var(--spacing-md) clamp(1.5rem, 4vw, 3rem);
         align-items: center;
         max-width: var(--max-width);
         margin: 0 auto;
     }
 
+    @media (min-width: 900px) {
+        .stage-hero__inner {
+            grid-template-columns: auto minmax(0, 1fr);
+        }
+    }
 
     .stage-hero__text {
-        max-width: 52rem;
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
     }
 
     .stage-plate {
-        padding: clamp(1rem, 3vw, 1.75rem);
+        padding: clamp(0.8rem, 2vw, 1.25rem) clamp(1rem, 3vw, 1.75rem);
         border-radius: var(--radius-md);
         background: var(--color-mauve);
         color: var(--color-on-mauve);
     }
 
     .stage-plate__eyebrow {
-        margin: 0 0 0.35rem;
+        margin: 0 0 0.2rem;
         font-family: var(--font-family-headers);
-        font-size: clamp(0.95rem, 2.4vw, 1.25rem);
+        font-size: clamp(0.8rem, 2vw, 1rem);
         font-weight: 600;
         letter-spacing: 0.16em;
         text-transform: uppercase;
@@ -268,7 +271,7 @@ function imageOf(entry: (typeof entries)[number]) {
 
     .stage-plate h1 {
         margin: 0;
-        font-size: clamp(3rem, 11vw, 6.5rem);
+        font-size: clamp(2.4rem, 6vw, 4rem);
         font-weight: 700;
         line-height: 0.95;
         letter-spacing: 0.01em;
@@ -277,18 +280,15 @@ function imageOf(entry: (typeof entries)[number]) {
     }
 
     .stage-hero__lead {
-        max-width: 38rem;
+        max-width: 42rem;
         margin: 0;
-        font-size: 1.1rem;
     }
 
     .stage-facts {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--spacing-sm) var(--spacing-lg);
+        gap: var(--spacing-xs) var(--spacing-lg);
         margin: 0;
-        padding: var(--spacing-md) 0;
-        border-block: 1px solid var(--color-border);
     }
 
     .stage-facts dt {
@@ -364,34 +364,31 @@ function imageOf(entry: (typeof entries)[number]) {
         font-size: 1.6rem;
     }
 
-    /* Phones: a lean hero, so the performances start as soon as possible */
     @media (max-width: 899px) {
-        .stage-hero {
-            padding-bottom: 1rem;
-        }
-
-        .stage-hero__inner {
-            gap: 0;
-        }
-
-        .stage-hero__text {
-            gap: var(--spacing-sm);
-        }
-
-        .stage-plate h1 {
-            font-size: clamp(2.4rem, 12vw, 4rem);
-        }
-
         .stage-facts {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            padding: var(--spacing-sm) 0;
         }
 
         .stage-facts > div:first-child {
             grid-column: 1 / -1;
         }
+    }
 
+    /* Phones: only the dates; the counts are already on the filter buttons */
+    @media (max-width: 599px) {
+        .stage-facts > div:not(:first-child) {
+            display: none;
+        }
+    }
+
+    /* The performances are the point of the page: they start right under the band */
+    #spektakle.page-section {
+        padding-top: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    #spektakle h2 {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
     }
 
     /* ---- Region filter ---- */

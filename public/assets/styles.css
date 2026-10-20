@@ -1499,6 +1499,10 @@ caption {
     font-weight: var(--font-weight-medium);
 }
 
+.announcement > p:last-child {
+    margin-bottom: 0;
+}
+
 .chip-row {
     display: flex;
     flex-wrap: wrap;
