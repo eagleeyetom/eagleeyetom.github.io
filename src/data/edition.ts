@@ -63,7 +63,7 @@ export interface PosterEntry {
 const posterFiles: Record<number, string | null> = {
   2026: '../assets/img/plakaty/2026.webp',
   2025: '../assets/img/plakaty/2025.webp',
-  2024: null,
+  2024: '../assets/img/plakaty/2024.webp',
   2023: '../assets/img/plakaty/2023.webp',
   2022: '../assets/img/plakaty/2022.webp',
   2021: '../assets/img/plakaty/2021.webp',

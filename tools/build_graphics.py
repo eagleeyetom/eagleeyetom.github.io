@@ -13,6 +13,7 @@ Usage (needs Pillow):  python tools/build_graphics.py
 Outputs (all under public/):
     assets/img/lettering/*.webp   poster lettering cut-outs + header and plate logos
     assets/img/plakaty/2026*.webp poster for the archive, and its artwork without the title band
+    assets/img/plakaty/<year>.webp older posters, from the scans in design/source/plakaty/<year>.jpg
     assets/img/og-masska-2026.jpg social sharing image (1200x630)
     assets/img/texture/ink-edge.webp printed-ink edge used above dark sections
     assets/icons/*, favicon.ico   favicons and app icons
@@ -106,6 +107,23 @@ def posters(poster):
     save(og, IMG / "og-masska-2026.jpg", quality=82, optimize=True, progressive=True)
 
 
+# Share of the scan to keep (left, top, right, bottom) where it has a paper margin around the print
+ARCHIVE_TRIM = {
+    "2024": (0.0245, 0.0175, 0.9825, 0.9825),
+}
+
+
+def archive_posters():
+    """Converts the scans in design/source/plakaty/<year>.jpg to the web posters of the timeline."""
+    print("Archive posters")
+    for src in sorted((SRC / "plakaty").glob("*.jpg")):
+        img = Image.open(src).convert("RGB")
+        if src.stem in ARCHIVE_TRIM:
+            l, t, r, b = ARCHIVE_TRIM[src.stem]
+            img = img.crop((round(img.width * l), round(img.height * t), round(img.width * r), round(img.height * b)))
+        save(resize_to_width(img, 900), IMG / "plakaty" / f"{src.stem}.webp", quality=72, method=6)
+
+
 def ink_edge(poster):
     """A strip of printed ink that thins out upwards, made from the poster's bark texture.
     Used as a mask above dark sections so the dark block bleeds into the page."""
@@ -169,6 +187,7 @@ def main():
     poster = Image.open(SRC / "plakat-2026.webp").convert("RGB")
     stamp = lettering(poster)
     posters(poster)
+    archive_posters()
     ink_edge(poster)
     icons(stamp)
     print("Done.")

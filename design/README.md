@@ -6,6 +6,7 @@ Tu leżą pliki, z których powstają grafiki strony. Do `public/` trafiają tyl
 |---|---|
 | `source/plakat-2026.webp` | pełny plakat bieżącej edycji |
 | `source/masska-stamp.webp` | wycięty napis „MASSKA” (przezroczyste tło) |
+| `source/plakaty/<rok>.jpg` | skany plakatów z poprzednich lat (np. `2024.jpg`, `2025.jpg`); skrypt zamienia je na `plakaty/<rok>.webp` o szerokości 900 px (przycięcie marginesu skanu: `ARCHIVE_TRIM` w skrypcie) |
 | `source/lettering/<nazwa>.png` | (opcjonalnie) własne wycięcia napisów: `xxv`, `jubileuszowy`, `przeglad-teatralny`, `2026`. Bez nich napisy są wycinane z plakatu |
 
 Po zmianie któregoś pliku uruchom (wymaga Pillow):
