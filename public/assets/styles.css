@@ -2038,6 +2038,9 @@ body:not(.high-contrast) [data-tone="dark"] {
 @media (max-width: 1280px) {
     .site-header {
         padding-block: 0.5rem;
+        /* The header is opaque here; a blur behind it would only cost frames while scrolling */
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
     }
 
     .site-header .header-inner {

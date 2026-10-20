@@ -30,7 +30,7 @@ const isPl = lang === 'pl';
     </div>
 
     <ol class="poster-timeline" role="list" data-timeline tabindex="0" aria-labelledby="timeline-title">
-        {posterArchive.map(poster => (
+        {posterArchive.map((poster, index) => (
             <li class:list={["poster-item", { "is-current": poster.year === edition.year }]}>
                 <p class="poster-item__marker">
                     <span class="poster-item__year">{poster.year}</span>
@@ -43,7 +43,7 @@ const isPl = lang === 'pl';
                         <img
                             src={poster.src}
                             alt={isPl ? `Plakat ${poster.numeral} edycji MASSKA ${poster.year}` : `Poster of the ${poster.numeral} MASSKA edition, ${poster.year}`}
-                            loading="lazy"
+                            loading={index < 6 ? "eager" : "lazy"}
                             decoding="async"
                         />
                         <span class="poster-caption">{poster.numeral} · MASSKA {poster.year}</span>
@@ -354,12 +354,18 @@ const isPl = lang === 'pl';
         transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
-    .poster-link:hover,
     .poster-link:focus-visible {
-        transform: translateY(-6px);
-        box-shadow: var(--shadow-lg);
         border-color: var(--color-blue-strong);
         text-decoration: none;
+    }
+
+    @media (hover: hover) {
+        .poster-link:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-blue-strong);
+            text-decoration: none;
+        }
     }
 
     .poster-item.is-current .poster-link {
@@ -552,10 +558,19 @@ const isPl = lang === 'pl';
     }
 
     @media (max-width: 768px) {
-        /* A bit under two thirds of the screen, so the next poster peeks in and invites a swipe */
+        /* A carousel: one poster is centred, its neighbours peek in from both sides, and a swipe
+           glides to the next one (the browser's own snapping, one poster per swipe) */
         .poster-timeline {
-            --item-width: min(62vw, 230px);
+            --item-width: min(66vw, 250px);
+            --centre: calc((100% - var(--item-width)) / 2);
             gap: 1rem;
+            padding-inline: var(--centre);
+            scroll-padding-inline: var(--centre);
+        }
+
+        .poster-item {
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
         }
 
         .timeline-hint {
