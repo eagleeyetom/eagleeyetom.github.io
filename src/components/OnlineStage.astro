@@ -19,16 +19,8 @@ const t = isPl
       provisional: 'termin do potwierdzenia',
       shows: 'Spektakle',
       countries: 'Kraje',
-      browse: 'Przeglądaj spektakle',
-      how: 'Jak to działa',
       countriesLabel: 'Kraje uczestniczące w festiwalu',
       mapTitle: 'Skąd przyjeżdżają zespoły',
-      stepsTitle: 'Jak oglądać',
-      steps: [
-        ['Wybierz spektakl', 'Każdy zespół ma własną stronę z opisem, zdjęciami i nagraniem spektaklu.'],
-        ['Włącz napisy', 'Spektakle mają napisy po polsku lub angielsku. Szczegóły podajemy przy każdym zespole.'],
-        ['Wideo po kliknięciu', 'Nagranie z YouTube wczytuje się dopiero po Twojej zgodzie albo po kliknięciu. Wcześniej nic nie trafia do Google.'],
-      ],
       gridTitle: 'Zespoły i spektakle',
       note: 'Lista zespołów w przygotowaniu: poniższe wpisy to zaślepki.',
       filterLabel: 'Pokaż zespoły z regionu',
@@ -49,16 +41,8 @@ const t = isPl
       provisional: 'dates to be confirmed',
       shows: 'Performances',
       countries: 'Countries',
-      browse: 'Browse performances',
-      how: 'How it works',
       countriesLabel: 'Countries taking part in the festival',
       mapTitle: 'Where the ensembles come from',
-      stepsTitle: 'How to watch',
-      steps: [
-        ['Pick a performance', 'Every ensemble has its own page with a description, photos and the recording.'],
-        ['Turn on subtitles', 'Performances have Polish or English subtitles. The details are given with each ensemble.'],
-        ['Video on click', 'The YouTube recording loads only after you consent or click. Nothing is sent to Google before that.'],
-      ],
       gridTitle: 'Ensembles and performances',
       note: 'The list of ensembles is being prepared: the entries below are placeholders.',
       filterLabel: 'Show ensembles from the region',
@@ -133,20 +117,7 @@ function imageOf(entry: (typeof entries)[number]) {
                     <dd>{countries.length}</dd>
                 </div>
             </dl>
-
-            <div class="hero-actions">
-                <a class="button secondary" href="#jak">{t.how}</a>
-            </div>
         </div>
-
-        <ul class="flag-wall" role="list" aria-label={t.countriesLabel}>
-            {countries.map(([code, name]) => (
-                <li>
-                    <span class={`fi fi-${code}`} aria-hidden="true"></span>
-                    <span>{name}</span>
-                </li>
-            ))}
-        </ul>
     </div>
 </section>
 
@@ -198,21 +169,17 @@ function imageOf(entry: (typeof entries)[number]) {
 <section class="page-section alt" aria-labelledby="stage-map-title">
     <div class="section-inner">
         <h2 id="stage-map-title">{t.mapTitle}</h2>
-        <WorldMap lang={lang} pins={mapPins} />
-    </div>
-</section>
-
-<section class="page-section" id="jak" aria-labelledby="stage-steps-title">
-    <div class="section-inner">
-        <h2 id="stage-steps-title">{t.stepsTitle}</h2>
-        <ol class="stage-steps" role="list">
-            {t.steps.map(([title, text]) => (
-                <li>
-                    <h3>{title}</h3>
-                    <p>{text}</p>
-                </li>
-            ))}
-        </ol>
+        <div class="stage-geo">
+            <WorldMap lang={lang} pins={mapPins} />
+            <ul class="flag-wall" role="list" aria-label={t.countriesLabel}>
+                {countries.map(([code, name]) => (
+                    <li>
+                        <span class={`fi fi-${code}`} aria-hidden="true"></span>
+                        <span>{name}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
     </div>
 </section>
 
@@ -274,13 +241,9 @@ function imageOf(entry: (typeof entries)[number]) {
         margin: 0 auto;
     }
 
-    @media (min-width: 900px) {
-        .stage-hero__inner {
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-        }
-    }
 
     .stage-hero__text {
+        max-width: 52rem;
         display: flex;
         flex-direction: column;
         gap: var(--spacing-md);
@@ -351,27 +314,43 @@ function imageOf(entry: (typeof entries)[number]) {
         color: var(--color-blue-strong);
     }
 
-    .stage-hero .hero-actions {
-        margin: 0;
+    /* ---- Map and countries side by side ---- */
+    .stage-geo {
+        display: grid;
+        gap: var(--spacing-lg);
+        align-items: start;
+    }
+
+    @media (min-width: 900px) {
+        .stage-geo {
+            grid-template-columns: minmax(0, 860px) 15rem;
+            justify-content: start;
+        }
     }
 
     .flag-wall {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
-        gap: 0.75rem;
+        gap: 0.5rem;
         margin: 0;
         padding: 0;
         list-style: none;
     }
 
+    @media (min-width: 900px) {
+        .flag-wall {
+            grid-template-columns: 1fr;
+        }
+    }
+
     .flag-wall li {
-        display: grid;
-        justify-items: start;
-        gap: 0.5rem;
-        padding: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.45rem 0.7rem;
         border: 2px solid var(--color-text);
         border-radius: var(--radius-sm);
-        background: var(--color-surface);
+        background: var(--color-bg);
         font-family: var(--font-family-headers);
         font-size: 0.95rem;
         font-weight: 600;
@@ -381,7 +360,8 @@ function imageOf(entry: (typeof entries)[number]) {
     }
 
     .flag-wall .fi {
-        font-size: 2.4rem;
+        flex: none;
+        font-size: 1.6rem;
     }
 
     /* Phones: a lean hero, so the performances start as soon as possible */
@@ -412,57 +392,6 @@ function imageOf(entry: (typeof entries)[number]) {
             grid-column: 1 / -1;
         }
 
-        .stage-hero .hero-actions,
-        .flag-wall {
-            display: none;
-        }
-    }
-
-    /* ---- How it works ---- */
-    .stage-steps {
-        display: grid;
-        gap: var(--spacing-md);
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        counter-reset: step;
-    }
-
-    .stage-steps li {
-        position: relative;
-        padding: var(--spacing-lg);
-        padding-top: 3.4rem;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-md);
-        background: var(--color-surface);
-        counter-increment: step;
-    }
-
-    .stage-steps li::before {
-        content: counter(step);
-        position: absolute;
-        top: var(--spacing-md);
-        left: var(--spacing-lg);
-        display: grid;
-        place-items: center;
-        width: 2rem;
-        height: 2rem;
-        border-radius: var(--radius-ui);
-        background: var(--color-mauve);
-        color: var(--color-on-mauve);
-        font-family: var(--font-family-headers);
-        font-size: 1.1rem;
-        font-weight: 700;
-    }
-
-    .stage-steps h3 {
-        margin: 0 0 0.35rem;
-        font-size: 1.25rem;
-    }
-
-    .stage-steps p {
-        margin: 0;
     }
 
     /* ---- Region filter ---- */
