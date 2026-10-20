@@ -22,7 +22,7 @@ const t = isPl
       browse: 'Przeglądaj spektakle',
       how: 'Jak to działa',
       countriesLabel: 'Kraje uczestniczące w festiwalu',
-      mapLabel: 'Mapa świata',
+      mapTitle: 'Skąd przyjeżdżają zespoły',
       stepsTitle: 'Jak oglądać',
       steps: [
         ['Wybierz spektakl', 'Każdy zespół ma własną stronę z opisem, zdjęciami i nagraniem spektaklu.'],
@@ -30,7 +30,7 @@ const t = isPl
         ['Wideo po kliknięciu', 'Nagranie z YouTube wczytuje się dopiero po Twojej zgodzie albo po kliknięciu. Wcześniej nic nie trafia do Google.'],
       ],
       gridTitle: 'Zespoły i spektakle',
-      note: 'Lista zespołów jest w przygotowaniu. Poniższe wpisy to zaślepki: prawdziwe spektakle pojawią się po zatwierdzeniu programu.',
+      note: 'Lista zespołów w przygotowaniu: poniższe wpisy to zaślepki.',
       filterLabel: 'Pokaż zespoły z regionu',
       all: 'Wszystkie',
       count: (n: number, total: number) => `Pokazano ${n} z ${total} spektakli`,
@@ -52,7 +52,7 @@ const t = isPl
       browse: 'Browse performances',
       how: 'How it works',
       countriesLabel: 'Countries taking part in the festival',
-      mapLabel: 'World map',
+      mapTitle: 'Where the ensembles come from',
       stepsTitle: 'How to watch',
       steps: [
         ['Pick a performance', 'Every ensemble has its own page with a description, photos and the recording.'],
@@ -60,7 +60,7 @@ const t = isPl
         ['Video on click', 'The YouTube recording loads only after you consent or click. Nothing is sent to Google before that.'],
       ],
       gridTitle: 'Ensembles and performances',
-      note: 'The list of ensembles is being prepared. The entries below are placeholders: the real performances will appear once the programme is confirmed.',
+      note: 'The list of ensembles is being prepared: the entries below are placeholders.',
       filterLabel: 'Show ensembles from the region',
       all: 'All',
       count: (n: number, total: number) => `Showing ${n} of ${total} performances`,
@@ -135,7 +135,6 @@ function imageOf(entry: (typeof entries)[number]) {
             </dl>
 
             <div class="hero-actions">
-                <a class="button primary" href="#spektakle">{t.browse}</a>
                 <a class="button secondary" href="#jak">{t.how}</a>
             </div>
         </div>
@@ -148,24 +147,6 @@ function imageOf(entry: (typeof entries)[number]) {
                 </li>
             ))}
         </ul>
-    </div>
-</section>
-
-<section class="stage-map" aria-label={t.mapLabel}>
-    <WorldMap lang={lang} pins={mapPins} />
-</section>
-
-<section class="page-section alt" id="jak" aria-labelledby="stage-steps-title">
-    <div class="section-inner">
-        <h2 id="stage-steps-title">{t.stepsTitle}</h2>
-        <ol class="stage-steps" role="list">
-            {t.steps.map(([title, text]) => (
-                <li>
-                    <h3>{title}</h3>
-                    <p>{text}</p>
-                </li>
-            ))}
-        </ol>
     </div>
 </section>
 
@@ -214,6 +195,27 @@ function imageOf(entry: (typeof entries)[number]) {
     </div>
 </section>
 
+<section class="page-section alt" aria-labelledby="stage-map-title">
+    <div class="section-inner">
+        <h2 id="stage-map-title">{t.mapTitle}</h2>
+        <WorldMap lang={lang} pins={mapPins} />
+    </div>
+</section>
+
+<section class="page-section" id="jak" aria-labelledby="stage-steps-title">
+    <div class="section-inner">
+        <h2 id="stage-steps-title">{t.stepsTitle}</h2>
+        <ol class="stage-steps" role="list">
+            {t.steps.map(([title, text]) => (
+                <li>
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                </li>
+            ))}
+        </ol>
+    </div>
+</section>
+
 <section class="page-section" data-tone="dark" aria-labelledby="stage-cta-title">
     <div class="section-inner section-narrow stage-cta">
         <h2 id="stage-cta-title">{t.ctaTitle}</h2>
@@ -258,7 +260,7 @@ function imageOf(entry: (typeof entries)[number]) {
 <style>
     /* ---- Hero: a mauve title plate like the poster's, and a wall of the countries' flags ---- */
     .stage-hero {
-        padding: clamp(1.5rem, 4vw, 3.5rem) var(--gutter) clamp(2rem, 5vw, 3.5rem);
+        padding: clamp(1.5rem, 4vw, 3rem) var(--gutter) clamp(1.5rem, 4vw, 2.5rem);
         background:
             radial-gradient(circle at 90% 10%, var(--color-blue-soft) 0, transparent 55%),
             var(--color-bg);
@@ -382,9 +384,38 @@ function imageOf(entry: (typeof entries)[number]) {
         font-size: 2.4rem;
     }
 
-    .stage-map {
-        padding: 0 var(--gutter) clamp(2rem, 5vw, 3.5rem);
-        background: var(--color-bg);
+    /* Phones: a lean hero, so the performances start as soon as possible */
+    @media (max-width: 899px) {
+        .stage-hero {
+            padding-bottom: 1rem;
+        }
+
+        .stage-hero__inner {
+            gap: 0;
+        }
+
+        .stage-hero__text {
+            gap: var(--spacing-sm);
+        }
+
+        .stage-plate h1 {
+            font-size: clamp(2.4rem, 12vw, 4rem);
+        }
+
+        .stage-facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .stage-facts > div:first-child {
+            grid-column: 1 / -1;
+        }
+
+        .stage-hero .hero-actions,
+        .flag-wall {
+            display: none;
+        }
     }
 
     /* ---- How it works ---- */
@@ -404,7 +435,7 @@ function imageOf(entry: (typeof entries)[number]) {
         padding-top: 3.4rem;
         border: 1px solid var(--color-border);
         border-radius: var(--radius-md);
-        background: var(--color-bg);
+        background: var(--color-surface);
         counter-increment: step;
     }
 
@@ -445,6 +476,22 @@ function imageOf(entry: (typeof entries)[number]) {
     .stage-filter[hidden],
     .stage-count[hidden] {
         display: none;
+    }
+
+    /* Phones: one swipeable row instead of three rows of buttons */
+    @media (max-width: 599px) {
+        .stage-filter {
+            flex-wrap: nowrap;
+            margin-inline: calc(var(--gutter) * -1);
+            padding: 0.25rem var(--gutter) 0.5rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .stage-filter button {
+            flex: none;
+            white-space: nowrap;
+        }
     }
 
     .stage-filter button {
