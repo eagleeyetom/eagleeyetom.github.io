@@ -11,6 +11,9 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // Stand-in ensemble pages (zespol-xx / ensemble-xx) are noindex, so they stay out of the
+      // sitemap as well; real ensembles get their own slugs and are listed automatically
+      filter: (page) => !/\/(zespol|ensemble)-[a-z]{2}(\.html)?$/.test(page),
       // With build.format 'file' the sitemap lists extensionless URLs, but the pages live at
       // /pl/program.html and the canonical links say so: list the real addresses
       serialize(item) {

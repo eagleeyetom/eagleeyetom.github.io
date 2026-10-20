@@ -1,104 +1,113 @@
-# 📋 INSTRUKCJE DODAWANIA NOWYCH TEATRÓW - MASSKA.ORG (Astro SSG)
+# Instrukcje: zespoły i spektakle na scenie online (MASSKA.org, Astro)
 
-Dzięki migracji serwisu do frameworka **Astro**, proces dodawania nowych teatrów został maksymalnie uproszczony. **Nie musisz już ręcznie edytować plików HTML, kopiować list partnerów, synchronizować menu rozwijanych ani aktualizować podstron "Online"**. Wszystkie te elementy generują się automatycznie na podstawie plików Markdown!
+Strona **Scena online** (`/pl/online.html`, `/en/online.html`) i podstrony zespołów powstają same z plików
+Markdown. Nie edytujesz HTML, menu ani listy zespołów: wszystko (kafel na scenie online, filtr regionów, flagi
+w nagłówku, menu zespołów, lista na dole podstron, tagi `hreflang`) generuje się z jednego pliku na język.
 
 ---
 
-## 🎭 Struktura plików w projekcie
+## Struktura plików
 
-Każdy profil teatru składa się z dwóch plików Markdown umieszczonych w kolekcjach danych:
 ```
 src/content/theatres/
-├── pl/
-│   └── [slug].md      <- Wersja polska (np. teatr-baltazar.md lub trupa-mtt.md)
-└── en/
-    └── [slug].md      <- Wersja angielska (np. baltazar.md lub troupe-mtt.md)
+├── pl/[slug].md      <- wersja polska
+└── en/[slug].md      <- wersja angielska
 ```
-*Nazwa pliku `.md` (slug) bezpośrednio definiuje końcowy adres URL podstrony (np. `/pl/teatr-baltazar.html` lub `/en/baltazar.html`).*
+
+Nazwa pliku (slug) to adres podstrony: `pl/teatr-baltazar.md` → `/pl/teatr-baltazar.html`.
+Wersje PL i EN łączy pole `id`, które musi być **identyczne** w obu plikach (na tej podstawie działa przełącznik
+języka).
 
 ---
 
-## ✅ KROKI DODAWANIA NOWEGO TEATRU
+## Wpisy zastępcze (zaślepki)
 
-### KROK 1: Przygotowanie zdjęć
-1. Utwórz folder dla zdjęć zespołu w: `public/assets/img/teatr/[unikalny-slug]/` (np. `public/assets/img/teatr/baltazar/`).
-2. Przygotuj min. 3 zdjęcia spektaklu (preferowane wymiary: 800x560px), nazwij je kolejno: `1.webp`, `2.webp`, `3.webp`.
-3. Skonwertuj pliki do zoptymalizowanego formatu **WebP**.
+Dopóki program nie jest zatwierdzony, w kolekcji leży 10 zespołów z polem `placeholder: true`
+(`zespol-xx.md` / `ensemble-xx.md`: Japonia, Brazylia, Kenia, Australia, Argentyna, Indie, Niemcy, Gruzja, RPA, Polska).
+Takie wpisy:
+
+- mają na stronie żółty pasek „Wpis zastępczy” i znacznik „Zaślepka” na kaflu,
+- mają `noindex` i nie trafiają do sitemapy, więc Lorem Ipsum nie wejdzie do Google,
+- używają zdjęć `public/assets/img/teatr/placeholder-1…5.webp` (kadry z plakatu, generuje je
+  `python tools/build_graphics.py`).
+
+**Zamiana zaślepki na prawdziwy zespół:** usuń parę plików `zespol-xx.md` + `ensemble-xx.md` i dodaj nowy wpis
+według kroków niżej (z `placeholder: false` albo bez tego pola). Dane zespołów z edycji 2025 leżą w
+`design/archive/theatres-2025/` (razem ze zdjęciami), poza buildem.
 
 ---
 
-### KROK 2: Tworzenie profilu PL
-Utwórz plik `src/content/theatres/pl/[nazwa-pliku].md`. 
+## Dodawanie zespołu
 
-**Szablon profilu PL:**
+### Krok 1: zdjęcia (opcjonalnie)
+1. Folder `public/assets/img/teatr/[slug]/`, min. 3 zdjęcia 3:2 (np. 1200×800 px), nazwane `1.webp`, `2.webp`, `3.webp`.
+2. Format **WebP**. Bez zdjęć strona działa: kafel i galeria pokażą kadr zastępczy lub nic.
+
+### Krok 2: flaga kraju
+Flaga pochodzi z `public/assets/icons/flags/[kod].svg` i reguły `.fi-[kod]` w `public/assets/styles.css`.
+Są już: `ar au br de es ge hu in jp ke lt pl ru ua uz za`. Dla nowego kraju skopiuj plik SVG (4×3, np. z pakietu
+`flag-icons`, licencja MIT) i dopisz jedną linię `.fi-xx { background-image: url('icons/flags/xx.svg'); }`.
+
+### Krok 3: profil PL (`src/content/theatres/pl/[slug].md`)
+
 ```yaml
 ---
-id: "unikalne-id-zespolu" # IDENTYCZNE jak w pliku EN (np. "baltazar")
+id: "baltazar"                 # takie samo w pliku EN
 name: "Teatr Baltazar"
 showTitle: "Dmuchawiec i Kurz"
-countryCode: "hu" # Dwuliterowy kod ISO kraju (flaga), np. pl, ua, de, hu
-badgeText: "Węgry · Teatr integracyjny" # Tekst wyświetlany na odznace obok flagi
+countryCode: "hu"              # kod ISO (flaga)
+country: "Węgry"               # kraj tak, jak ma być wypisany na stronie
+region: "europe"               # europe | asia | americas | africa | oceania (filtr na scenie online)
+placeholder: false             # true = zaślepka (noindex, pasek „Wpis zastępczy”)
+availability: "16–20 listopada 2026"   # opcjonalnie: kiedy spektakl jest dostępny online
+badgeText: "Węgry · Teatr integracyjny"
 genre: "Teatr integracyjny, dramat"
 duration: "29 minut"
-subtitles: "ang./pol." # Informacja o napisach
+subtitles: "EN / PL"
 city: "Budapeszt, Węgry"
-accessibility: "Angielskie napisy wypalone, napisy polskie dostępne na YouTube"
-videoYtId: "KUTkck5tqtU" # ID wideo YouTube (np. z linku watch?v=KUTkck5tqtU)
+language: "węgierski"          # opcjonalnie
+accessibility: "Napisy w języku angielskim i polskim"   # opcjonalnie
+videoYtId: "KUTkck5tqtU"       # opcjonalnie; bez niego strona pokaże „Nagranie pojawi się tutaj”
 videoTitle: "Dmuchawiec i Kurz – Teatr Baltazar"
-recordingUrl: "https://youtu.be/KUTkck5tqtU" # Opcjonalnie: link bezpośredni do filmu
-gallery:
-  - src: "/assets/img/teatr/baltazar/1.webp" # Ścieżki muszą zaczynać się od /assets/
+recordingUrl: "https://youtu.be/KUTkck5tqtU"   # opcjonalnie
+quote: "Ten teatr nie jest z litości – jest dla kreatywności."   # opcjonalnie
+gallery:                       # opcjonalnie (może być pusta)
+  - src: "/assets/img/teatr/baltazar/1.webp"     # ścieżki od /assets/
     alt: "Teatr Baltazar – taniec aktorów"
-  - src: "/assets/img/teatr/baltazar/2.webp"
-    alt: "Teatr Baltazar – fragment spektaklu"
-  - src: "/assets/img/teatr/baltazar/3.webp"
-    alt: "Teatr Baltazar – skład zespołu"
-synopsis: "<strong>Dmuchawiec i Kurz</strong> to dwuczęściowy, metateatralny dialog o ulotności..." # Krótki opis w sekcji Hero (akceptuje tagi HTML)
+credits:                       # opcjonalnie
+  title: "Zespół"
+  items:
+    - label: "Reżyseria"
+      value: "Dorka Farkas"
+synopsis: |
+  <p>Krótki opis w górnej części strony (dozwolone tagi HTML).</p>
 aboutShow: |
-  <p>„Dmuchawiec” otwiera wieczór jak wspomnienie...</p>
-  <p>„Kurz” zagęszcza atmosferę...</p>
-about: |
-  <p><strong>Teatr Baltazar</strong>, założony w 1998 roku...</p>
-  <p>Od samego początku celem...</p>
-history: | # Opcjonalnie: Sekcja historii zespołu
-  <p>Historia zespołu sięga...</p>
-quote: "Ten teatr nie jest z litości – jest dla kreatywności." # Opcjonalnie: cytat wyciągnięty (pull-quote)
-contactRole: "Reżyserka" # Opcjonalnie: rola osoby kontaktowej
-contactName: "Dorka Farkas" # Opcjonalnie: imię osoby kontaktowej
-contactEmail: "kontakt@baltazar.hu" # Opcjonalnie: email kontaktowy
-contactSocialText: "Facebook" # Opcjonalnie: nazwa linku social media
-contactSocialUrl: "https://facebook.com/baltazarszinhaz" # Opcjonalnie: url social media
+  <p>Dłuższy opis spektaklu.</p>
+about: |                       # opcjonalnie
+  <p>O zespole.</p>
+history: |                     # opcjonalnie
+  <p>Historia zespołu.</p>
+contactEmail: "kontakt@baltazar.hu"   # opcjonalnie (+ contactName, contactRole, contactSocialText, contactSocialUrl)
 ---
 ```
 
----
+### Krok 4: profil EN (`src/content/theatres/en/[slug].md`)
+Ten sam szablon po angielsku. **`id`, `countryCode` i `region` identyczne jak w PL**; `country`, `genre`,
+`city`, teksty i `availability` przetłumaczone. Slug EN może się różnić od PL (np. `baltazar.md`).
 
-### KROK 3: Tworzenie profilu EN
-Utwórz plik `src/content/theatres/en/[nazwa-pliku].md`. 
-
-**Ważne przy wersji EN:**
-- **`id` musi być DOKŁADNIE TAKIE SAMO jak w pliku PL** – to na jego podstawie system automatycznie łączy wersje językowe w przełączniku języków!
-- Wszystkie teksty i metadane powinny zostać przetłumaczone na język angielski.
-- Nazwa pliku `.md` nie musi mieć przedrostka `teatr-` (np. `baltazar.md`), dopasowując się do oryginalnej struktury URL-i EN.
-
----
-
-### KROK 4: Kompilacja i weryfikacja
-1. Aby przetestować wygląd lokalnie w przeglądarce, uruchom:
-   ```bash
-   npm run dev
-   ```
-   Strona będzie dostępna pod adresem: `http://localhost:4321/pl/`
-2. Zbuduj wersję produkcyjną (strony statyczne HTML zostaną wygenerowane w folderze `dist/`):
-   ```bash
-   npm run build
-   ```
+### Krok 5: weryfikacja
+```bash
+npm run dev      # podgląd: http://localhost:4321/pl/online.html
+npm run build    # strony statyczne trafiają do dist/
+```
+Błędne pole w nagłówku pliku zatrzyma build z komunikatem (walidacja Zod w `src/content/config.ts`).
 
 ---
 
-## 💡 CO DZIEJE SIĘ AUTOMATYCZNIE (BEZ TWOJEJ INGERENCJI)?
-- **Menu Dropdown (Header)**: Nowy teatr automatycznie pojawi się na liście wyboru we wszystkich nagłówkach stron.
-- **Lista zespołów (Accordion)**: Na dole każdej podstrony spektaklu lista zespołów festiwalowych rozwinie się o nowy wpis.
-- **Siatka Online (online.html)**: Nowy kafel z obrazkiem galerii, nazwą teatru, flagą państwa i tytułem spektaklu automatycznie wyrenderuje się w programie online.
-- **Sekcja partnerów (Stopka)**: Logotypy sponsorów są zunifikowanym komponentem i dołączają się automatycznie.
-- **SEO & Hreflang**: Generowanie tagów kanonicznych oraz alternatywnych wersji językowych dla robotów wyszukiwarek (Google) jest w pełni zautomatyzowane.
+## Co dzieje się automatycznie
+- **Scena online**: kafel z pierwszym zdjęciem galerii, flagą, krajem, tytułem, gatunkiem, czasem trwania i napisami;
+  filtr regionów, liczniki (spektakle, kraje) i „ściana flag” w nagłówku liczą się z danych.
+- **Podstrona zespołu**: informacje o spektaklu, galeria (przewijana palcem), wideo YouTube ładowane dopiero po zgodzie
+  lub kliknięciu, poprzedni/następny spektakl (w kolejności: kraj, nazwa) i lista wszystkich zespołów.
+- **Menu zespołów w nagłówku** i **SEO** (canonical, hreflang, dane strukturalne) dla każdej podstrony.
+- Zespoły są sortowane po kraju, potem po nazwie.

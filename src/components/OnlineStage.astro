@@ -1,0 +1,615 @@
+---
+import { getCollection } from 'astro:content';
+import { edition } from '../data/edition';
+
+interface Props {
+  lang: 'pl' | 'en';
+}
+
+const { lang } = Astro.props;
+const isPl = lang === 'pl';
+
+const t = isPl
+  ? {
+      eyebrow: `MASSKA Online · ${edition.numeral}`,
+      title: 'Scena online',
+      lead: 'Teatry z całego świata pokazują swoje spektakle w sieci. Wybierz zespół, włącz napisy i oglądaj, gdziekolwiek jesteś.',
+      when: 'Termin',
+      provisional: 'termin do potwierdzenia',
+      shows: 'Spektakle',
+      countries: 'Kraje',
+      browse: 'Przeglądaj spektakle',
+      how: 'Jak to działa',
+      countriesLabel: 'Kraje uczestniczące w festiwalu',
+      stepsTitle: 'Jak oglądać',
+      steps: [
+        ['Wybierz spektakl', 'Każdy zespół ma własną stronę z opisem, zdjęciami i nagraniem spektaklu.'],
+        ['Włącz napisy', 'Spektakle mają napisy po polsku lub angielsku. Szczegóły podajemy przy każdym zespole.'],
+        ['Wideo po kliknięciu', 'Nagranie z YouTube wczytuje się dopiero po Twojej zgodzie albo po kliknięciu. Wcześniej nic nie trafia do Google.'],
+      ],
+      gridTitle: 'Zespoły i spektakle',
+      note: 'Lista zespołów jest w przygotowaniu. Poniższe wpisy to zaślepki: prawdziwe spektakle pojawią się po zatwierdzeniu programu.',
+      filterLabel: 'Pokaż zespoły z regionu',
+      all: 'Wszystkie',
+      count: (n: number, total: number) => `Pokazano ${n} z ${total} spektakli`,
+      placeholder: 'Zaślepka',
+      available: 'Dostępny online',
+      ctaTitle: 'Jesteś teatrem?',
+      ctaText: 'Przyjmujemy zgłoszenia zespołów z Polski i z zagranicy. Wypełnij krótki formularz, a odezwiemy się do Ciebie.',
+      ctaButton: 'Zgłoś swój teatr',
+      regions: { europe: 'Europa', asia: 'Azja', americas: 'Ameryki', africa: 'Afryka', oceania: 'Oceania' },
+    }
+  : {
+      eyebrow: `MASSKA Online · ${edition.numeral}`,
+      title: 'Online stage',
+      lead: 'Theatres from all over the world show their performances online. Pick an ensemble, turn on the subtitles and watch wherever you are.',
+      when: 'Dates',
+      provisional: 'dates to be confirmed',
+      shows: 'Performances',
+      countries: 'Countries',
+      browse: 'Browse performances',
+      how: 'How it works',
+      countriesLabel: 'Countries taking part in the festival',
+      stepsTitle: 'How to watch',
+      steps: [
+        ['Pick a performance', 'Every ensemble has its own page with a description, photos and the recording.'],
+        ['Turn on subtitles', 'Performances have Polish or English subtitles. The details are given with each ensemble.'],
+        ['Video on click', 'The YouTube recording loads only after you consent or click. Nothing is sent to Google before that.'],
+      ],
+      gridTitle: 'Ensembles and performances',
+      note: 'The list of ensembles is being prepared. The entries below are placeholders: the real performances will appear once the programme is confirmed.',
+      filterLabel: 'Show ensembles from the region',
+      all: 'All',
+      count: (n: number, total: number) => `Showing ${n} of ${total} performances`,
+      placeholder: 'Placeholder',
+      available: 'Available online',
+      ctaTitle: 'Are you a theatre?',
+      ctaText: 'We accept applications from ensembles in Poland and abroad. Fill in a short form and we will get back to you.',
+      ctaButton: 'Apply with your theatre',
+      regions: { europe: 'Europe', asia: 'Asia', americas: 'The Americas', africa: 'Africa', oceania: 'Oceania' },
+    };
+
+const entries = await getCollection('theatres', ({ id }) => id.startsWith(`${lang}/`));
+entries.sort(
+  (a, b) => a.data.country.localeCompare(b.data.country, lang) || a.data.name.localeCompare(b.data.name, lang),
+);
+
+const regionOrder = ['europe', 'asia', 'americas', 'africa', 'oceania'] as const;
+const regions = regionOrder
+  .map((key) => ({ key, count: entries.filter((e) => e.data.region === key).length }))
+  .filter((r) => r.count > 0);
+
+// One flag per country, in the order of the list
+const countries = [...new Map(entries.map((e) => [e.data.countryCode, e.data.country])).entries()];
+const hasPlaceholders = entries.some((e) => e.data.placeholder);
+
+const applyUrl = 'https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform';
+
+function slugOf(entry: (typeof entries)[number]) {
+  return entry.slug.split('/').pop();
+}
+function imageOf(entry: (typeof entries)[number]) {
+  const src = entry.data.gallery[0]?.src;
+  return src ? `..${src}` : '../assets/img/teatr/placeholder-1.webp';
+}
+---
+
+<section class="stage-hero" aria-labelledby="stage-title">
+    <div class="stage-hero__inner">
+        <div class="stage-hero__text">
+            <div class="stage-plate">
+                <p class="stage-plate__eyebrow">{t.eyebrow}</p>
+                <h1 id="stage-title">{t.title}</h1>
+            </div>
+            <p class="stage-hero__lead">{t.lead}</p>
+
+            <dl class="stage-facts">
+                <div>
+                    <dt>{t.when}</dt>
+                    <dd>
+                        <time datetime={edition.start.slice(0, 10)}>{edition.dateLabel[lang]}</time>
+                        {!edition.datesConfirmed && <span class="stage-facts__detail">{t.provisional}</span>}
+                    </dd>
+                </div>
+                <div>
+                    <dt>{t.shows}</dt>
+                    <dd>{entries.length}</dd>
+                </div>
+                <div>
+                    <dt>{t.countries}</dt>
+                    <dd>{countries.length}</dd>
+                </div>
+            </dl>
+
+            <div class="hero-actions">
+                <a class="button primary" href="#spektakle">{t.browse}</a>
+                <a class="button secondary" href="#jak">{t.how}</a>
+            </div>
+        </div>
+
+        <ul class="flag-wall" role="list" aria-label={t.countriesLabel}>
+            {countries.map(([code, name]) => (
+                <li>
+                    <span class={`fi fi-${code}`} aria-hidden="true"></span>
+                    <span>{name}</span>
+                </li>
+            ))}
+        </ul>
+    </div>
+</section>
+
+<section class="page-section alt" id="jak" aria-labelledby="stage-steps-title">
+    <div class="section-inner">
+        <h2 id="stage-steps-title">{t.stepsTitle}</h2>
+        <ol class="stage-steps" role="list">
+            {t.steps.map(([title, text]) => (
+                <li>
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                </li>
+            ))}
+        </ol>
+    </div>
+</section>
+
+<section class="page-section" id="spektakle" aria-labelledby="stage-grid-title" data-stage>
+    <div class="section-inner">
+        <h2 id="stage-grid-title">{t.gridTitle}</h2>
+
+        {hasPlaceholders && <div class="announcement"><p>{t.note}</p></div>}
+
+        <div class="stage-filter" role="group" aria-label={t.filterLabel} hidden data-stage-filter>
+            <button type="button" aria-pressed="true" data-region="all">{t.all} ({entries.length})</button>
+            {regions.map((r) => (
+                <button type="button" aria-pressed="false" data-region={r.key}>{t.regions[r.key]} ({r.count})</button>
+            ))}
+        </div>
+        <p class="stage-count" aria-live="polite" hidden data-stage-count></p>
+
+        <ul class="stage-grid" role="list">
+            {entries.map((entry) => (
+                <li class="stage-card" data-region={entry.data.region}>
+                    <figure class="stage-card__media">
+                        <img src={imageOf(entry)} alt="" width="1000" height="667" loading="lazy" decoding="async" />
+                        {entry.data.placeholder && <span class="stage-card__tag">{t.placeholder}</span>}
+                    </figure>
+                    <div class="stage-card__body">
+                        <p class="stage-card__where">
+                            <span class={`fi fi-${entry.data.countryCode}`} aria-hidden="true"></span>
+                            {entry.data.country}
+                        </p>
+                        <h3 class="stage-card__title">
+                            <a href={`${slugOf(entry)}.html`}>{entry.data.showTitle}</a>
+                        </h3>
+                        <p class="stage-card__name">{entry.data.name}</p>
+                        <ul class="stage-card__chips" role="list">
+                            <li>{entry.data.genre}</li>
+                            <li>{entry.data.duration}</li>
+                            <li>{isPl ? 'Napisy' : 'Subtitles'}: {entry.data.subtitles}</li>
+                        </ul>
+                        {entry.data.availability && (
+                            <p class="stage-card__when">{t.available}: {entry.data.availability}</p>
+                        )}
+                    </div>
+                </li>
+            ))}
+        </ul>
+    </div>
+</section>
+
+<section class="page-section" data-tone="dark" aria-labelledby="stage-cta-title">
+    <div class="section-inner section-narrow stage-cta">
+        <h2 id="stage-cta-title">{t.ctaTitle}</h2>
+        <p>{t.ctaText}</p>
+        <a class="button primary" href={applyUrl} target="_blank" rel="noopener noreferrer">{t.ctaButton}</a>
+    </div>
+</section>
+
+<script define:vars={{ countTemplates: { pl: ['Pokazano ', ' z ', ' spektakli'], en: ['Showing ', ' of ', ' performances'] } }}>
+    // Region filter: without JS the buttons stay hidden and every performance is listed
+    (function () {
+        const root = document.querySelector('[data-stage]');
+        if (!root) return;
+        const group = root.querySelector('[data-stage-filter]');
+        const status = root.querySelector('[data-stage-count]');
+        const cards = Array.from(root.querySelectorAll('.stage-card'));
+        if (!group || !status) return;
+        const parts = (document.documentElement.lang || 'pl').startsWith('pl') ? countTemplates.pl : countTemplates.en;
+
+        function apply(region) {
+            let shown = 0;
+            cards.forEach((card) => {
+                const match = region === 'all' || card.dataset.region === region;
+                card.hidden = !match;
+                if (match) shown += 1;
+            });
+            group.querySelectorAll('button').forEach((button) => {
+                button.setAttribute('aria-pressed', String(button.dataset.region === region));
+            });
+            status.textContent = parts[0] + shown + parts[1] + cards.length + parts[2];
+            status.hidden = region === 'all';
+        }
+
+        group.addEventListener('click', (event) => {
+            const button = event.target.closest('button[data-region]');
+            if (button) apply(button.dataset.region);
+        });
+        group.hidden = false;
+    })();
+</script>
+
+<style>
+    /* ---- Hero: a mauve title plate like the poster's, and a wall of the countries' flags ---- */
+    .stage-hero {
+        padding: clamp(1.5rem, 4vw, 3.5rem) var(--gutter) clamp(2rem, 5vw, 3.5rem);
+        background:
+            radial-gradient(circle at 90% 10%, var(--color-blue-soft) 0, transparent 55%),
+            var(--color-bg);
+    }
+
+    .stage-hero__inner {
+        display: grid;
+        gap: clamp(1.5rem, 4vw, 3rem);
+        align-items: center;
+        max-width: var(--max-width);
+        margin: 0 auto;
+    }
+
+    @media (min-width: 900px) {
+        .stage-hero__inner {
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        }
+    }
+
+    .stage-hero__text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .stage-plate {
+        padding: clamp(1rem, 3vw, 1.75rem);
+        border-radius: var(--radius-md);
+        background: var(--color-mauve);
+        color: var(--color-on-mauve);
+    }
+
+    .stage-plate__eyebrow {
+        margin: 0 0 0.35rem;
+        font-family: var(--font-family-headers);
+        font-size: clamp(0.95rem, 2.4vw, 1.25rem);
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: inherit;
+    }
+
+    .stage-plate h1 {
+        margin: 0;
+        font-size: clamp(3rem, 11vw, 6.5rem);
+        font-weight: 700;
+        line-height: 0.95;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        color: inherit;
+    }
+
+    .stage-hero__lead {
+        max-width: 38rem;
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    .stage-facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm) var(--spacing-lg);
+        margin: 0;
+        padding: var(--spacing-md) 0;
+        border-block: 1px solid var(--color-border);
+    }
+
+    .stage-facts dt {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-muted);
+    }
+
+    .stage-facts dd {
+        display: grid;
+        margin: 0.15rem 0 0;
+        font-family: var(--font-family-headers);
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--color-text);
+    }
+
+    .stage-facts__detail {
+        font-family: var(--font-family-base);
+        font-size: 0.8rem;
+        font-weight: var(--font-weight-regular);
+        color: var(--color-blue-strong);
+    }
+
+    .stage-hero .hero-actions {
+        margin: 0;
+    }
+
+    .flag-wall {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+        gap: 0.75rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .flag-wall li {
+        display: grid;
+        justify-items: start;
+        gap: 0.5rem;
+        padding: 0.8rem;
+        border: 2px solid var(--color-text);
+        border-radius: var(--radius-sm);
+        background: var(--color-surface);
+        font-family: var(--font-family-headers);
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--color-text);
+    }
+
+    .flag-wall .fi {
+        font-size: 2.4rem;
+    }
+
+    /* ---- How it works ---- */
+    .stage-steps {
+        display: grid;
+        gap: var(--spacing-md);
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: step;
+    }
+
+    .stage-steps li {
+        position: relative;
+        padding: var(--spacing-lg);
+        padding-top: 3.4rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        background: var(--color-bg);
+        counter-increment: step;
+    }
+
+    .stage-steps li::before {
+        content: counter(step);
+        position: absolute;
+        top: var(--spacing-md);
+        left: var(--spacing-lg);
+        display: grid;
+        place-items: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: var(--radius-ui);
+        background: var(--color-mauve);
+        color: var(--color-on-mauve);
+        font-family: var(--font-family-headers);
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
+    .stage-steps h3 {
+        margin: 0 0 0.35rem;
+        font-size: 1.25rem;
+    }
+
+    .stage-steps p {
+        margin: 0;
+    }
+
+    /* ---- Region filter ---- */
+    .stage-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: var(--spacing-md) 0 var(--spacing-sm);
+    }
+
+    .stage-filter[hidden],
+    .stage-count[hidden] {
+        display: none;
+    }
+
+    .stage-filter button {
+        min-height: 2.5rem;
+        padding: 0.4rem 1rem;
+        border: 2px solid var(--btn-line);
+        border-radius: var(--radius-ui);
+        background: transparent;
+        color: var(--btn-line);
+        font-family: var(--font-family-headers);
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color var(--transition-base), color var(--transition-base);
+    }
+
+    .stage-filter button:hover,
+    .stage-filter button:focus-visible,
+    .stage-filter button[aria-pressed='true'] {
+        border-color: var(--btn-primary-hover-line);
+        background: var(--btn-hover);
+        color: var(--btn-hover-fg);
+    }
+
+    .stage-filter button[aria-pressed='true'] {
+        box-shadow: 3px 3px 0 var(--btn-shadow);
+    }
+
+    .stage-count {
+        margin: 0 0 var(--spacing-sm);
+        font-size: 0.9rem;
+    }
+
+    /* ---- Performance cards ---- */
+    .stage-grid {
+        display: grid;
+        gap: var(--spacing-lg);
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+        margin: var(--spacing-md) 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .stage-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        background: var(--color-surface);
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .stage-card[hidden] {
+        display: none;
+    }
+
+    .stage-card:focus-within {
+        outline: 3px solid var(--color-accent);
+        outline-offset: 3px;
+    }
+
+    @media (hover: hover) {
+        .stage-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: var(--shadow-lg);
+        }
+    }
+
+    .stage-card__media {
+        position: relative;
+        margin: 0;
+        aspect-ratio: 3 / 2;
+        overflow: hidden;
+        background: var(--color-blue-soft);
+    }
+
+    .stage-card__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @media (hover: hover) {
+        .stage-card:hover .stage-card__media img {
+            transform: scale(1.05);
+        }
+    }
+
+    .stage-card__tag {
+        position: absolute;
+        top: 0.6rem;
+        left: 0.6rem;
+        padding: 0.2rem 0.6rem;
+        border-radius: var(--radius-ui);
+        background: var(--color-peach);
+        color: #1f1d1b;
+        font-size: 0.75rem;
+        font-weight: var(--font-weight-medium);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .stage-card__body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 0.4rem;
+        padding: var(--spacing-md);
+    }
+
+    .stage-card__where {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+        font-family: var(--font-family-headers);
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-blue-strong);
+    }
+
+    .stage-card__title {
+        margin: 0;
+        font-size: 1.35rem;
+    }
+
+    .stage-card__title a {
+        color: var(--color-text);
+        text-decoration: none;
+    }
+
+    /* The whole card is the link */
+    .stage-card__title a::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+    }
+
+    .stage-card__title a:focus-visible {
+        outline: none;
+    }
+
+    .stage-card__name {
+        margin: 0;
+        font-weight: var(--font-weight-medium);
+        color: var(--color-text);
+    }
+
+    .stage-card__chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin: 0.25rem 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .stage-card__chips li {
+        padding: 0.2rem 0.6rem;
+        border-radius: var(--radius-ui);
+        background: var(--color-blue-soft);
+        font-size: 0.8rem;
+        color: var(--color-text);
+    }
+
+    .stage-card__when {
+        margin: auto 0 0;
+        padding-top: 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    /* ---- Call to action ---- */
+    .stage-cta {
+        display: grid;
+        justify-items: start;
+        gap: var(--spacing-sm);
+    }
+
+    .stage-cta p {
+        max-width: 36rem;
+        margin: 0 0 var(--spacing-sm);
+    }
+</style>

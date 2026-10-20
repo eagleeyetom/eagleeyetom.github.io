@@ -14,6 +14,7 @@ Outputs (all under public/):
     assets/img/lettering/*.webp   poster lettering cut-outs + header and plate logos
     assets/img/plakaty/2026*.webp poster for the archive, and its artwork without the title band
     assets/img/plakaty/<year>.webp older posters, from the scans in design/source/plakaty/<year>.jpg
+    assets/img/teatr/placeholder-N.webp stand-in photos for ensembles without pictures (poster details)
     assets/img/og-masska-2026.jpg social sharing image (1200x630)
     assets/img/texture/ink-edge.webp printed-ink edge used above dark sections
     assets/icons/*, favicon.ico   favicons and app icons
@@ -23,7 +24,7 @@ import random
 import sys
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageDraw, ImageFilter, ImageOps
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "design" / "source"
@@ -124,6 +125,33 @@ def archive_posters():
         save(resize_to_width(img, 900), IMG / "plakaty" / f"{src.stem}.webp", quality=72, method=6)
 
 
+# Poster details used as stand-in photos: (left, top, width) as fractions of the artwork below the
+# title band, and the colour the dark parts are turned into (None keeps the poster colours)
+PLACEHOLDER_CROPS = [
+    ((0.00, 0.02, 1.00), None),
+    ((0.00, 0.50, 1.00), None),
+    ((0.05, 0.18, 0.70), CYAN),
+    ((0.30, 0.10, 0.70), MAUVE),
+    ((0.20, 0.45, 0.80), PEACH),
+]
+
+
+def placeholder_photos(poster):
+    """3:2 photos for ensemble pages that have none yet, cut from the poster artwork."""
+    print("Placeholder photos")
+    band = round(poster.height * 0.1055)
+    art = poster.crop((0, band, poster.width, poster.height))
+    for n, ((left, top, width), tint) in enumerate(PLACEHOLDER_CROPS, start=1):
+        w = round(art.width * width)
+        h = round(w / 1.5)
+        x = min(round(art.width * left), art.width - w)
+        y = min(round(art.height * top), art.height - h)
+        crop = art.crop((x, y, x + w, y + h))
+        if tint:
+            crop = ImageOps.colorize(ImageOps.grayscale(crop), black=INK, white=tint)
+        save(resize_to_width(crop, 1000), IMG / "teatr" / f"placeholder-{n}.webp", quality=60, method=6)
+
+
 def ink_edge(poster):
     """A strip of printed ink that thins out upwards, made from the poster's bark texture.
     Used as a mask above dark sections so the dark block bleeds into the page."""
@@ -188,6 +216,7 @@ def main():
     stamp = lettering(poster)
     posters(poster)
     archive_posters()
+    placeholder_photos(poster)
     ink_edge(poster)
     icons(stamp)
     print("Done.")

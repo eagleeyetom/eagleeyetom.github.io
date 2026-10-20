@@ -2060,14 +2060,22 @@ body:not(.high-contrast) [data-tone="dark"] {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
 }
 
+.fi-ar { background-image: url('icons/flags/ar.svg'); }
+.fi-au { background-image: url('icons/flags/au.svg'); }
+.fi-br { background-image: url('icons/flags/br.svg'); }
 .fi-de { background-image: url('icons/flags/de.svg'); }
 .fi-es { background-image: url('icons/flags/es.svg'); }
+.fi-ge { background-image: url('icons/flags/ge.svg'); }
 .fi-hu { background-image: url('icons/flags/hu.svg'); }
+.fi-in { background-image: url('icons/flags/in.svg'); }
+.fi-jp { background-image: url('icons/flags/jp.svg'); }
+.fi-ke { background-image: url('icons/flags/ke.svg'); }
 .fi-lt { background-image: url('icons/flags/lt.svg'); }
 .fi-pl { background-image: url('icons/flags/pl.svg'); }
 .fi-ru { background-image: url('icons/flags/ru.svg'); }
 .fi-ua { background-image: url('icons/flags/ua.svg'); }
 .fi-uz { background-image: url('icons/flags/uz.svg'); }
+.fi-za { background-image: url('icons/flags/za.svg'); }
 
 /* Click-to-load placeholder for YouTube embeds without media consent */
 .media-facade {

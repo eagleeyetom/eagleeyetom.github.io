@@ -1,63 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const enTheatres = await getCollection('theatres', ({ id }) => id.startsWith('en/'));
-enTheatres.sort((a, b) => a.data.name.localeCompare(b.data.name, 'en'));
-
-function getTheatreUrl(entry: any) {
-  const tSlug = entry.slug.split('/').pop();
-  return `${tSlug}.html`;
-}
+import OnlineStage from '../../components/OnlineStage.astro';
+import { edition } from '../../data/edition';
 ---
 
 <BaseLayout
-  title="MASSKA · Online Showcase"
-  description="Stream theatre performances from the MASSKA festival online."
+  title={`Online stage · MASSKA ${edition.year}`}
+  description={`MASSKA Online ${edition.year}: performances by theatres from all over the world, with subtitles, available online during the ${edition.numeral} Anniversary International Theatre Review.`}
   lang="en"
 >
-    <section class="hero">
-        <div class="hero-text">
-            <p class="eyebrow">Watch available performances</p>
-            <h1>MASSKA Online — Performance Streaming</h1>
-            <p>Watch performances from Polish and international theatre groups online. Each feature includes
-                subtitles,
-                context, and downloadable materials.</p>
-            <p>Follow our social media on <a href="https://www.facebook.com/masskasopot" target="_blank"
-                    rel="noopener noreferrer">Facebook</a> to stay updated!</p>
-            <div class="hero-actions">
-                <a class="button primary" href="#theater-grid">Browse ensembles</a>
-                <a class="button ghost" href="index.html">Return to festival home</a>
-            </div>
-        </div>
-        <figure class="hero-media" aria-hidden="true">
-            <img src="../assets/img/teatr/baltazar/1.webp" alt="" width="1808" height="1207" decoding="async" fetchpriority="high">
-            <figcaption>Theatre streams available 24/7.</figcaption>
-        </figure>
-    </section>
-
-    <section class="page-section alt" id="theater-grid" aria-labelledby="ensembles-title">
-        <div class="section-inner">
-            <h2 id="ensembles-title">Ensembles on demand</h2>
-            <div class="theater-grid">
-                {enTheatres.map(theatre => {
-                    const imgUrl = theatre.data.gallery[0]?.src 
-                      ? `..${theatre.data.gallery[0].src}` 
-                      : "../assets/img/plakaty/2026.webp";
-                    return (
-                        <a href={getTheatreUrl(theatre)} class="theater-card">
-                            <figure>
-                                <img src={imgUrl} alt="" loading="lazy" decoding="async" />
-                            </figure>
-                            <div class="card-body">
-                                <p class="theater-name">{theatre.data.name}</p>
-                                <p class="theater-flag"><span class={`fi fi-${theatre.data.countryCode}`} role="img" aria-label={theatre.data.badgeText.split(" · ")[0]}></span></p>
-                                <h3>{theatre.data.showTitle}</h3>
-                            </div>
-                        </a>
-                    );
-                })}
-            </div>
-        </div>
-    </section>
+    <OnlineStage lang="en" />
 </BaseLayout>

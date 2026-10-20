@@ -59,7 +59,11 @@ if (translationEntry) {
 // Ensembles for the accordion list
 const listTheatres = allTheatres
   .filter(t => t.id.startsWith(`${lang}/`))
-  .sort((a, b) => a.data.name.localeCompare(b.data.name, lang));
+  .sort((a, b) => a.data.country.localeCompare(b.data.country, lang) || a.data.name.localeCompare(b.data.name, lang));
+
+const position = listTheatres.findIndex((t) => t.data.id === frontmatter.id);
+const previousTheatre = position > 0 ? listTheatres[position - 1] : undefined;
+const nextTheatre = position >= 0 && position < listTheatres.length - 1 ? listTheatres[position + 1] : undefined;
 
 // Ensembles with more than one show share a name; tell them apart by the show title
 function theatreLabel(entry: CollectionEntry<'theatres'>) {
@@ -81,7 +85,19 @@ function getTheatreUrl(entry: any) {
   isTheatre={true}
   activeTheatreId={frontmatter.id}
   translationUrl={translationUrl}
+  robots={frontmatter.placeholder ? 'noindex, follow' : undefined}
 >
+    {frontmatter.placeholder && (
+        <div class="placeholder-note">
+            <p>
+                <strong>{isPl ? "Wpis zastępczy." : "Placeholder entry."}</strong>
+                {isPl
+                    ? " Ten zespół i opis są zaślepką: prawdziwe dane pojawią się po zatwierdzeniu programu."
+                    : " This ensemble and its description are a stand-in: the real details will appear once the programme is confirmed."}
+            </p>
+        </div>
+    )}
+
     <!-- Hero Section -->
     <section class="page-section">
         <div class="section-inner two-column">
@@ -98,7 +114,7 @@ function getTheatreUrl(entry: any) {
                         </a>
                     )}
                     <a class="button secondary" href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")}>
-                        {isPl ? "Wróć do programu online" : "Back to online program"}
+                        {isPl ? "Wróć do sceny online" : "Back to the online stage"}
                     </a>
                 </div>
                 <ul class="chip-row" role="list">
@@ -113,6 +129,10 @@ function getTheatreUrl(entry: any) {
                     <div>
                         <dt>{isPl ? "Tytuł" : "Title"}</dt>
                         <dd>{frontmatter.showTitle}</dd>
+                    </div>
+                    <div>
+                        <dt>{isPl ? "Kraj" : "Country"}</dt>
+                        <dd><span class={`fi fi-${frontmatter.countryCode}`} aria-hidden="true"></span> {frontmatter.country}</dd>
                     </div>
                     <div>
                         <dt>{isPl ? "Miasto" : "City"}</dt>
@@ -130,6 +150,12 @@ function getTheatreUrl(entry: any) {
                         <div>
                             <dt>{isPl ? "Język" : "Language"}</dt>
                             <dd>{frontmatter.language}</dd>
+                        </div>
+                    )}
+                    {frontmatter.availability && (
+                        <div>
+                            <dt>{isPl ? "Dostępny online" : "Available online"}</dt>
+                            <dd>{frontmatter.availability}</dd>
                         </div>
                     )}
                     {frontmatter.accessibility && (
@@ -157,8 +183,19 @@ function getTheatreUrl(entry: any) {
     <!-- Video Section -->
     <section class="page-section" aria-label="Video">
         <div class="section-inner">
-            <div class="external-media" data-yt-id={frontmatter.videoYtId} data-title={frontmatter.videoTitle}>
-            </div>
+            {frontmatter.videoYtId ? (
+                <div class="external-media" data-yt-id={frontmatter.videoYtId} data-title={frontmatter.videoTitle ?? frontmatter.showTitle}>
+                </div>
+            ) : (
+                <div class="video-soon">
+                    <p class="video-soon__title">{isPl ? "Nagranie pojawi się tutaj" : "The recording will appear here"}</p>
+                    <p>
+                        {frontmatter.availability
+                            ? (isPl ? `Dostępne online: ${frontmatter.availability}` : `Available online: ${frontmatter.availability}`)
+                            : (isPl ? "Spektakl będzie dostępny w czasie festiwalu." : "The performance will be available during the festival.")}
+                    </p>
+                </div>
+            )}
         </div>
     </section>
 
@@ -234,6 +271,26 @@ function getTheatreUrl(entry: any) {
         </section>
     )}
 
+    <!-- Previous / next performance, in the order of the online stage -->
+    {(previousTheatre || nextTheatre) && (
+        <nav class="stage-pager" aria-label={isPl ? "Inne spektakle" : "More performances"}>
+            {previousTheatre ? (
+                <a class="stage-pager__link" href={getRelativeUrl(getTheatreUrl(previousTheatre))} rel="prev">
+                    <span class="stage-pager__label">&larr; {isPl ? "Poprzedni spektakl" : "Previous performance"}</span>
+                    <strong>{previousTheatre.data.showTitle}</strong>
+                    <small><span class={`fi fi-${previousTheatre.data.countryCode}`} aria-hidden="true"></span> {previousTheatre.data.name}, {previousTheatre.data.country}</small>
+                </a>
+            ) : <span></span>}
+            {nextTheatre ? (
+                <a class="stage-pager__link stage-pager__link--next" href={getRelativeUrl(getTheatreUrl(nextTheatre))} rel="next">
+                    <span class="stage-pager__label">{isPl ? "Następny spektakl" : "Next performance"} &rarr;</span>
+                    <strong>{nextTheatre.data.showTitle}</strong>
+                    <small><span class={`fi fi-${nextTheatre.data.countryCode}`} aria-hidden="true"></span> {nextTheatre.data.name}, {nextTheatre.data.country}</small>
+                </a>
+            ) : <span></span>}
+        </nav>
+    )}
+
     <!-- Accordion list of all theatres -->
     <section class="page-section" aria-labelledby="ensemble-list-title">
         <div class="section-inner">
@@ -253,3 +310,93 @@ function getTheatreUrl(entry: any) {
         </div>
     </section>
 </BaseLayout>
+
+<style>
+    .placeholder-note {
+        padding: var(--spacing-sm) var(--gutter);
+        background: var(--color-peach);
+        color: #1f1d1b;
+        text-align: center;
+    }
+
+    .placeholder-note p {
+        margin: 0;
+        color: inherit;
+    }
+
+    .video-soon {
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        gap: 0.35rem;
+        min-height: 16rem;
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-md);
+        background: #1f1d1b;
+        color: #f5f2ee;
+        text-align: center;
+    }
+
+    .video-soon p {
+        margin: 0;
+        color: inherit;
+    }
+
+    .video-soon__title {
+        font-family: var(--font-family-headers);
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .stage-pager {
+        display: grid;
+        gap: var(--spacing-md);
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: var(--spacing-lg) var(--gutter);
+    }
+
+    @media (min-width: 720px) {
+        .stage-pager {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .stage-pager__link {
+        display: grid;
+        gap: 0.2rem;
+        padding: var(--spacing-md);
+        border: 2px solid var(--color-text);
+        border-radius: var(--radius-ui);
+        color: var(--color-text);
+        text-decoration: none;
+        transition: background-color var(--transition-base), color var(--transition-base);
+    }
+
+    .stage-pager__link--next {
+        text-align: right;
+    }
+
+    .stage-pager__link:hover,
+    .stage-pager__link:focus-visible {
+        background: var(--btn-hover);
+        color: var(--btn-hover-fg);
+        text-decoration: none;
+    }
+
+    .stage-pager__label {
+        font-family: var(--font-family-headers);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    .stage-pager__link strong {
+        font-family: var(--font-family-headers);
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+</style>
