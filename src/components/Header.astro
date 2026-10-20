@@ -124,6 +124,37 @@ function getTheatreUrl(entry: any) {
 }
 ---
 
+<div class="utility-bar" role="region" aria-label={isPl ? "Dostępność i język" : "Accessibility and language"}>
+    <div class="utility-inner">
+        <div class="a11y-tools" role="group" aria-label={isPl ? "Opcje dostępności" : "Accessibility options"}>
+            <svg class="a11y-tools__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                <path d="M20.5 6c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 8c1.86.5 4 .83 6 1v13h2v-6h2v6h2V9c2-.17 4.14-.5 6-1l-.5-2zM12 6c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path>
+            </svg>
+            <span class="a11y-tools__label" aria-hidden="true">{isPl ? "Dostępność" : "Accessibility"}</span>
+            <div class="text-size" role="group" aria-label={isPl ? "Rozmiar tekstu" : "Text size"}>
+                <button type="button" data-action="font-decrease" aria-label={isPl ? "A− zmniejsz rozmiar tekstu" : "A− decrease text size"}>
+                    <span aria-hidden="true">A&minus;</span>
+                </button>
+                <span class="font-indicator" data-font-indicator>100%</span>
+                <button type="button" data-action="font-increase" aria-label={isPl ? "A+ zwiększ rozmiar tekstu" : "A+ increase text size"}>
+                    <span aria-hidden="true">A+</span>
+                </button>
+            </div>
+            <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false">
+                <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z" />
+                </svg>
+                <span class="label-long">{isPl ? "Wysoki kontrast" : "High contrast"}</span>
+                <span class="label-short">{isPl ? "Kontrast" : "Contrast"}</span>
+            </button>
+        </div>
+        <div class="language-switcher" role="group" aria-label={isPl ? "Zmień język" : "Switch language"}>
+            <a class={`language-link ${isPl ? 'is-active' : ''}`} href={getRelativeUrl(plUrl)} data-language="pl" hreflang="pl" lang="pl" aria-label="PL – Polski" aria-current={isPl ? "true" : undefined}>PL</a>
+            <a class={`language-link ${!isPl ? 'is-active' : ''}`} href={getRelativeUrl(enUrl)} data-language="en" hreflang="en" lang="en" aria-label="EN – English" aria-current={!isPl ? "true" : undefined}>EN</a>
+        </div>
+    </div>
+</div>
+
 <header class="site-header" role="banner">
     <div class="header-inner">
         <div class="site-branding">
@@ -166,73 +197,5 @@ function getTheatreUrl(entry: any) {
                 )}
             </div>
         </nav>
-        <div class="header-tools">
-            <div class="a11y-menu" data-a11y-menu>
-            <!-- The "Aa" toggle only shows in design variants that fold the display tools into a panel -->
-            <button type="button" class="a11y-toggle" aria-expanded="false" aria-controls="display-options"
-                aria-label={isPl ? "Aa – opcje wyświetlania: rozmiar tekstu i kontrast" : "Aa – display options: text size and contrast"}>
-                <span aria-hidden="true">Aa</span>
-            </button>
-            <div class="site-actions" id="display-options" role="group" aria-label={isPl ? "Opcje dostępności" : "Display options"}>
-                <button type="button" data-action="font-decrease" aria-label={isPl ? "Zmniejsz rozmiar tekstu" : "Decrease text size"}>
-                    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                        <path d="M5 11v2h14v-2z"></path>
-                    </svg>
-                </button>
-                <span class="font-indicator" data-font-indicator>100%</span>
-                <button type="button" data-action="font-increase" aria-label={isPl ? "Zwiększ rozmiar tekstu" : "Increase text size"}>
-                    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                        <path d="M11 5v6H5v2h6v6h2v-6h6v-2h-6V5z"></path>
-                    </svg>
-                </button>
-                <button type="button" class="contrast-toggle" data-action="toggle-contrast" aria-pressed="false"
-                    data-contrast-label 
-                    data-label-on={isPl ? "Wysoki kontrast włączony" : "High contrast on"}
-                    data-label-off={isPl ? "Wysoki kontrast wyłączony" : "High contrast off"} 
-                    aria-label={isPl ? "Wysoki kontrast wyłączony" : "High contrast off"}>
-                    <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8v16z" />
-                    </svg>
-                </button>
-            </div>
-            </div>
-            <div class="language-switcher" role="group" aria-label={isPl ? "Zmień język" : "Switch language"}>
-                <span class="sr-only">{isPl ? "Dostępne języki:" : "Available languages:"}</span>
-                <a class={`language-link ${!isPl ? 'is-active' : ''}`} href={getRelativeUrl(enUrl)} data-language="en" hreflang="en" lang="en" aria-current={!isPl ? "true" : undefined}>
-                    <img class="lang-icon" src="../assets/icons/flag-gb.svg" alt="" aria-hidden="true" />
-                    <span class="lang-name">English</span>
-                    <span class="lang-code">EN</span>
-                </a>
-                <a class={`language-link ${isPl ? 'is-active' : ''}`} href={getRelativeUrl(plUrl)} data-language="pl" hreflang="pl" lang="pl" aria-current={isPl ? "true" : undefined}>
-                    <img class="lang-icon" src="../assets/icons/flag-pl.svg" alt="" aria-hidden="true" />
-                    <span class="lang-name">Polski</span>
-                    <span class="lang-code">PL</span>
-                </a>
-            </div>
-        </div>
     </div>
 </header>
-
-<script>
-    // Display-options panel behind the "Aa" toggle: opens on click, closes on Escape or outside click
-    document.querySelectorAll<HTMLElement>('[data-a11y-menu]').forEach((menu) => {
-        const toggle = menu.querySelector<HTMLButtonElement>('.a11y-toggle');
-        if (!toggle) return;
-
-        function setOpen(open: boolean) {
-            menu.classList.toggle('is-open', open);
-            toggle!.setAttribute('aria-expanded', String(open));
-        }
-
-        toggle.addEventListener('click', () => setOpen(!menu.classList.contains('is-open')));
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target as Node)) setOpen(false);
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && menu.classList.contains('is-open')) {
-                setOpen(false);
-                toggle.focus();
-            }
-        });
-    });
-</script>
