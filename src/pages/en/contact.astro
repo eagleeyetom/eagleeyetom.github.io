@@ -63,9 +63,9 @@ import { edition } from '../../data/edition';
 
                     <h3>Festival address</h3>
                     <p>
-                        Teatr Atelier im. Agnieszki Osieckiej<br>
-                        al. Franciszka Mamuszki 2<br>
-                        Sopot<br>
+                        {edition.places.map((place) => (
+                            <>{place.when.en}: {place.venue.name}, {place.venue.street}, {place.venue.city}<br /></>
+                        ))}
                         Poland
                     </p>
 

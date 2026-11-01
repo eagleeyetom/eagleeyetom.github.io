@@ -50,7 +50,7 @@ import { edition } from '../../data/edition';
                     <div class="timeline">
                         <div class="timeline-item">
                             <h3>{edition.dateLabel.en} · In-Person Festival</h3>
-                            <p>Live performances at {edition.venue.shortName} in {edition.venue.city} ({edition.venue.street}).
+                            <p>Live performances in {edition.venue.city}: {edition.places[0].when.en} at the {edition.venues.wybrzeze.shortName} ({edition.venues.wybrzeze.street}), {edition.places[1].when.en} at {edition.venues.atelier.shortName} ({edition.venues.atelier.street}).
                                 Workshops, meetings with creators, and evening events.</p>
                         </div>
                         <div class="timeline-item">
@@ -79,7 +79,7 @@ import { edition } from '../../data/edition';
                         </div>
                         <div>
                             <dt>Venue</dt>
-                            <dd>{edition.venue.name}, {edition.venue.street}, {edition.venue.city}</dd>
+                            <dd>{edition.places.map((place) => <div>{place.when.en}: {place.venue.name}, {place.venue.street}</div>)}</dd>
                         </div>
                         <div>
                             <dt>Format</dt>

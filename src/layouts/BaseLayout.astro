@@ -85,16 +85,16 @@ const isPl = lang === 'pl';
 const eventDates = edition.datesConfirmed
   ? { startDate: edition.start, endDate: edition.end }
   : {};
-const festivalPlace = {
+const festivalPlace = Object.values(edition.venues).map((venue) => ({
   "@type": "Place",
-  "name": edition.venue.name,
+  "name": venue.name,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": edition.venue.street,
-    "addressLocality": edition.venue.city,
-    "addressCountry": edition.venue.country
+    "streetAddress": venue.street,
+    "addressLocality": venue.city,
+    "addressCountry": venue.country
   }
-};
+}));
 const organizer = {
   "@type": "Organization",
   "name": "Stowarzyszenie Na Drodze Ekspresji",

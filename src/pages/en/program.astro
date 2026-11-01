@@ -14,7 +14,7 @@ const days = [
 ---
 <BaseLayout
   title={`Schedule · MASSKA ${edition.year}`}
-  description={`Schedule of the ${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}. Performances, workshops and events at Teatr Atelier in Sopot.`}
+  description={`Schedule of the ${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}. Performances, workshops and events in Sopot.`}
   lang="en"
   showPartners={true}
   redirectToPreferredLanguage={true}
@@ -32,7 +32,7 @@ const days = [
                         target="_blank" rel="noopener noreferrer">Theatre submission</a>
                 </div>
                 <div class="chip-row" role="list">
-                    <span class="chip" role="listitem">{edition.venue.shortName}</span>
+                    {edition.places.map((place) => <span class="chip" role="listitem">{place.when.en} · {place.venue.shortName}</span>)}
                     <span class="chip" role="listitem">Performances & workshops</span>
                     <span class="chip" role="listitem">Live and online</span>
                 </div>
@@ -45,13 +45,15 @@ const days = [
 
         <section class="page-section alt" aria-labelledby="venues">
             <div class="section-inner">
-                <h2 id="venues">Festival venue</h2>
+                <h2 id="venues">Festival venues</h2>
                 <div class="card-grid">
-                    <article class="card">
-                        <h3>{edition.venue.name}</h3>
-                        <p>{edition.venue.street}, {edition.venue.city}. Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt.</p>
-                    </article>
+                    {edition.places.map((place) => (
+                        <article class="card">
+                            <h3>{place.venue.name}</h3>
+                            <p><strong>{place.when.en}</strong> · {place.venue.street}, {place.venue.city}. Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                        </article>
+                    ))}
                 </div>
             </div>
         </section>
@@ -68,8 +70,8 @@ const days = [
                 <div class="timeline">
                     {days.map((day) => (
                         <div class="timeline-item">
-                            <h3>{day.title} · {dayLabel(edition.days[days.indexOf(day)], 'en')}</h3>
-                            <p><strong>{edition.venue.shortName}</strong></p>
+                            <h3>{day.title} · {dayLabel(edition.days[days.indexOf(day)].date, 'en')}</h3>
+                            <p><strong>{edition.days[days.indexOf(day)].venue.shortName}</strong></p>
                             <ul>
                                 {day.entries.map((entry) => (
                                     <li><strong>00:00</strong> — {entry} (00 min)</li>
@@ -110,7 +112,7 @@ const days = [
                         </div>
                         <div>
                             <dt>Venue</dt>
-                            <dd>{edition.venue.name}<br>{edition.venue.street}<br>{edition.venue.city}</dd>
+                            <dd>{edition.places.map((place) => <div>{place.when.en}: {place.venue.name}<br>{place.venue.street}, {place.venue.city}</div>)}</dd>
                         </div>
                     </dl>
                 </aside>

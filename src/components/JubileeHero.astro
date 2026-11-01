@@ -63,8 +63,12 @@ const t = isPl
                 <div>
                     <dt>{t.where}</dt>
                     <dd>
-                        {edition.venue.shortName}, {edition.venue.city}
-                        <span class="jubilee-hero__detail">{edition.venue.street}</span>
+                        {edition.places.map((place) => (
+                            <span class="jubilee-hero__place">
+                                {place.when[lang]} · {place.venue.shortName}
+                                <span class="jubilee-hero__detail">{place.venue.street}, {place.venue.city}</span>
+                            </span>
+                        ))}
                     </dd>
                 </div>
                 <div
@@ -225,6 +229,12 @@ const t = isPl
         font-size: 1.25rem;
         font-weight: 600;
         color: var(--color-text);
+    }
+
+    .jubilee-hero__place {
+        display: grid;
+        margin-bottom: 0.35rem;
+        font-size: 1.05rem;
     }
 
     .jubilee-hero__detail {

@@ -50,7 +50,7 @@ import { edition } from '../../data/edition';
                     <div class="timeline">
                         <div class="timeline-item">
                             <h3>{edition.dateLabel.pl} · Festiwal stacjonarny</h3>
-                            <p>Spektakle na żywo w Teatrze Atelier w Sopocie ({edition.venue.street}). Warsztaty,
+                            <p>Spektakle na żywo w Sopocie: {edition.places[0].when.pl} w {edition.venues.wybrzeze.shortName} ({edition.venues.wybrzeze.street}), {edition.places[1].when.pl} w Teatrze Atelier ({edition.venues.atelier.street}). Warsztaty,
                                 spotkania z twórcami i wieczorne wydarzenia.</p>
                         </div>
                         <div class="timeline-item">
@@ -78,7 +78,7 @@ import { edition } from '../../data/edition';
                         </div>
                         <div>
                             <dt>Miejsce</dt>
-                            <dd>{edition.venue.name}, {edition.venue.street}, {edition.venue.city}</dd>
+                            <dd>{edition.places.map((place) => <div>{place.when.pl}: {place.venue.name}, {place.venue.street}</div>)}</dd>
                         </div>
                         <div>
                             <dt>Formuła</dt>

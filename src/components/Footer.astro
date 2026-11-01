@@ -58,10 +58,12 @@ function getRelativeUrl(targetPath: string) {
             </section>
             <section>
                 <h2>{isPl ? "Odwiedź na żywo" : "Visit in person"}</h2>
-                <address class="footer-venue">
-                    <strong>{edition.venue.name}</strong><br>
-                    {edition.venue.street}, {edition.venue.city}
-                </address>
+                {edition.places.map((place) => (
+                    <address class="footer-venue">
+                        {place.when[lang]}: <strong>{place.venue.name}</strong><br>
+                        {place.venue.street}, {place.venue.city}
+                    </address>
+                ))}
                 <!-- Google Maps loads only when asked for, so the page sends nothing to Google by default -->
                 <div class="footer-map" data-map-embed={`https://www.google.com/maps?q=${encodeURIComponent(edition.venue.mapsQuery)}&hl=${lang}&output=embed`}
                     data-map-title={isPl ? `Mapa: ${edition.venue.shortName}, ${edition.venue.city}` : `Map: ${edition.venue.shortName}, ${edition.venue.city}`}>

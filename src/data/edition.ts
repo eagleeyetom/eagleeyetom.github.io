@@ -3,6 +3,25 @@
 
 export type Lang = 'pl' | 'en';
 
+// 13 October is at the chamber stage of Teatr Wybrzeże, 15-18 October at Teatr Atelier
+const atelier = {
+  name: 'Teatr Atelier im. Agnieszki Osieckiej',
+  shortName: 'Teatr Atelier',
+  street: 'al. Franciszka Mamuszki 2',
+  city: 'Sopot',
+  country: 'PL',
+  mapsQuery: 'Teatr Atelier im. Agnieszki Osieckiej, al. Franciszka Mamuszki 2, Sopot',
+} as const;
+
+const wybrzeze = {
+  name: 'Scena Kameralna Teatru Wybrzeże',
+  shortName: 'Scena Kameralna Teatru Wybrzeże',
+  street: 'al. Bohaterów Monte Cassino 30',
+  city: 'Sopot',
+  country: 'PL',
+  mapsQuery: 'Scena Kameralna Teatru Wybrzeże, al. Bohaterów Monte Cassino 30, Sopot',
+} as const;
+
 export const edition = {
   number: 25,
   numeral: 'XXV',
@@ -14,9 +33,19 @@ export const edition = {
   datesConfirmed: true,
   start: '2026-10-13T10:00:00+02:00',
   end: '2026-10-18T22:00:00+02:00',
-  // The festival days, one per programme day
-  days: ['2026-10-13', '2026-10-15', '2026-10-16', '2026-10-17', '2026-10-18'],
-  // When each day runs (the countdown follows these; times are guesses until the programme is final)
+  // The festival days, one per programme day, and where each takes place
+  days: [
+    { date: '2026-10-13', venue: wybrzeze },
+    { date: '2026-10-15', venue: atelier },
+    { date: '2026-10-16', venue: atelier },
+    { date: '2026-10-17', venue: atelier },
+    { date: '2026-10-18', venue: atelier },
+  ],
+  // The same, grouped for the places where the dates are listed
+  places: [
+    { when: { pl: '13.10', en: '13 Oct' }, venue: wybrzeze },
+    { when: { pl: '15–18.10', en: '15–18 Oct' }, venue: atelier },
+  ],
   schedule: [
     { start: '2026-10-13T10:00:00+02:00', end: '2026-10-13T22:00:00+02:00' },
     { start: '2026-10-15T10:00:00+02:00', end: '2026-10-15T22:00:00+02:00' },
@@ -31,15 +60,9 @@ export const edition = {
   },
   city: { pl: 'Sopot', en: 'Sopot' },
 
-  // Masska always takes place at Teatr Atelier
-  venue: {
-    name: 'Teatr Atelier im. Agnieszki Osieckiej',
-    shortName: 'Teatr Atelier',
-    street: 'al. Franciszka Mamuszki 2',
-    city: 'Sopot',
-    country: 'PL',
-    mapsQuery: 'Teatr Atelier im. Agnieszki Osieckiej, al. Franciszka Mamuszki 2, Sopot',
-  },
+  // The main venue (footer, map): Teatr Atelier; both venues are in `venues` and `places`
+  venue: atelier,
+  venues: { atelier, wybrzeze },
 
   // Artwork without the title band, used in the hero next to the lettering
   posterArt: '../assets/img/plakaty/2026-art.webp',
