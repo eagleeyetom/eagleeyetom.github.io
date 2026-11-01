@@ -580,8 +580,16 @@ document.addEventListener("DOMContentLoaded", () => {
       `link[rel="alternate"][hreflang="${storedLanguage}"]`
     );
     if (alternate) {
+      // The alternate's href is absolute (https://masska.org/en/...), so only its file name is
+      // used: the target is built next to the current page. That keeps the redirect working
+      // from a folder on disk (file://) or under any base path, not only at the site root.
       const currentPath = window.location.pathname;
-      const preferredPath = new URL(alternate.href).pathname;
+      const folder = currentPath.slice(0, currentPath.lastIndexOf("/") + 1);
+      const siblingFolder = folder.replace(/(pl|en)\/$/, `${storedLanguage}/`);
+      const alternateFile = new URL(alternate.href).pathname.split("/").pop();
+      const preferredPath =
+        siblingFolder +
+        (alternateFile || (window.location.protocol === "file:" ? "index.html" : ""));
       if (preferredPath !== currentPath) {
         window.location.replace(preferredPath);
       }
