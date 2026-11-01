@@ -3,7 +3,7 @@
 
 export type Lang = 'pl' | 'en';
 
-// 13 October is at the chamber stage of Teatr Wybrzeże, 15-18 October at Teatr Atelier
+// 13 November is at the chamber stage of Teatr Wybrzeże, 15-18 November at Teatr Atelier
 const atelier = {
   name: 'Teatr Atelier im. Agnieszki Osieckiej',
   shortName: 'Teatr Atelier',
@@ -28,35 +28,35 @@ export const edition = {
   year: 2026,
   firstYear: 2002,
 
-  // Dates are confirmed: one day on its own (13 October) and then four days (15-18 October).
+  // Dates are confirmed: one day on its own (13 November) and then four days (15-18 November).
   // The opening and closing times are still guesses (used by the countdown only).
   datesConfirmed: true,
-  start: '2026-10-13T10:00:00+02:00',
-  end: '2026-10-18T22:00:00+02:00',
+  start: '2026-11-13T10:00:00+01:00',
+  end: '2026-11-18T22:00:00+01:00',
   // The festival days, one per programme day, and where each takes place
   days: [
-    { date: '2026-10-13', venue: wybrzeze },
-    { date: '2026-10-15', venue: atelier },
-    { date: '2026-10-16', venue: atelier },
-    { date: '2026-10-17', venue: atelier },
-    { date: '2026-10-18', venue: atelier },
+    { date: '2026-11-13', venue: wybrzeze },
+    { date: '2026-11-15', venue: atelier },
+    { date: '2026-11-16', venue: atelier },
+    { date: '2026-11-17', venue: atelier },
+    { date: '2026-11-18', venue: atelier },
   ],
   // The same, grouped for the places where the dates are listed
   places: [
-    { when: { pl: '13.10', en: '13 Oct' }, venue: wybrzeze },
-    { when: { pl: '15–18.10', en: '15–18 Oct' }, venue: atelier },
+    { when: { pl: '13.11', en: '13 Nov' }, venue: wybrzeze },
+    { when: { pl: '15–18.11', en: '15–18 Nov' }, venue: atelier },
   ],
   schedule: [
-    { start: '2026-10-13T10:00:00+02:00', end: '2026-10-13T22:00:00+02:00' },
-    { start: '2026-10-15T10:00:00+02:00', end: '2026-10-15T22:00:00+02:00' },
-    { start: '2026-10-16T10:00:00+02:00', end: '2026-10-16T22:00:00+02:00' },
-    { start: '2026-10-17T10:00:00+02:00', end: '2026-10-17T22:00:00+02:00' },
-    { start: '2026-10-18T10:00:00+02:00', end: '2026-10-18T22:00:00+02:00' },
+    { start: '2026-11-13T10:00:00+01:00', end: '2026-11-13T22:00:00+01:00' },
+    { start: '2026-11-15T10:00:00+01:00', end: '2026-11-15T22:00:00+01:00' },
+    { start: '2026-11-16T10:00:00+01:00', end: '2026-11-16T22:00:00+01:00' },
+    { start: '2026-11-17T10:00:00+01:00', end: '2026-11-17T22:00:00+01:00' },
+    { start: '2026-11-18T10:00:00+01:00', end: '2026-11-18T22:00:00+01:00' },
   ],
 
   dateLabel: {
-    pl: '13 oraz 15–18 października 2026',
-    en: '13 and 15–18 October 2026',
+    pl: '13 oraz 15–18 listopada 2026',
+    en: '13 and 15–18 November 2026',
   },
   city: { pl: 'Sopot', en: 'Sopot' },
 
@@ -113,7 +113,7 @@ export const posterArchive: PosterEntry[] = Object.entries(posterFiles)
   .map(([year, src]) => ({ year: Number(year), numeral: editionNumeral(Number(year)), src }))
   .sort((a, b) => b.year - a.year);
 
-/** "wtorek, 13 października 2026" / "Tuesday, 13 October 2026" */
+/** "piątek, 13 listopada 2026" / "Friday, 13 November 2026" */
 export function dayLabel(iso: string, lang: Lang): string {
   return new Date(`${iso}T12:00:00Z`).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-GB', {
     weekday: 'long',
