@@ -133,8 +133,9 @@ test.describe('text size and contrast buttons', () => {
     const plus = page.getByRole('button', { name: /A\+/ });
     for (let i = 0; i < 3; i++) await plus.click();
     await expect(page.locator('[data-font-indicator]')).toHaveText('130%');
-    const size = await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).fontSize));
-    expect(size).toBeCloseTo(22.1, 1);
+    await expect
+      .poll(() => page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).fontSize)))
+      .toBeCloseTo(22.1, 1);
   });
 
   test('high contrast switches the page and is remembered', async ({ page }) => {
