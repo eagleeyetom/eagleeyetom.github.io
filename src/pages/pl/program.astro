@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { edition } from '../../data/edition';
+import { edition, dayLabel } from '../../data/edition';
 
 // PLACEHOLDER: the 2026 programme is not announced yet. Replace the days below
 // (and the dates in src/data/edition.ts) once it is.
@@ -68,7 +68,7 @@ const days = [
                 <div class="timeline">
                     {days.map((day) => (
                         <div class="timeline-item">
-                            <h3>{day.title} · XX listopada {edition.year}</h3>
+                            <h3>{day.title} · {dayLabel(edition.days[days.indexOf(day)], 'pl')}</h3>
                             <p><strong>{edition.venue.shortName}</strong></p>
                             <ul>
                                 {day.entries.map((entry) => (

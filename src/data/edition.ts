@@ -9,16 +9,17 @@ export const edition = {
   year: 2026,
   firstYear: 2002,
 
-  // PLACEHOLDER: set to true once the dates below are final; until then the page
-  // marks dates as provisional and the countdown says so
-  datesConfirmed: false,
-  // PLACEHOLDER dates (used by the countdown and structured data)
-  start: '2026-11-16T10:00:00+01:00',
-  end: '2026-11-20T22:00:00+01:00',
+  // Dates are confirmed: one day on its own (13 October) and then four days (15-18 October).
+  // The opening and closing times are still guesses (used by the countdown only).
+  datesConfirmed: true,
+  start: '2026-10-13T10:00:00+02:00',
+  end: '2026-10-18T22:00:00+02:00',
+  // The festival days, one per programme day
+  days: ['2026-10-13', '2026-10-15', '2026-10-16', '2026-10-17', '2026-10-18'],
 
   dateLabel: {
-    pl: 'XX–XX listopada 2026', // PLACEHOLDER
-    en: 'XX–XX November 2026', // PLACEHOLDER
+    pl: '13 oraz 15–18 października 2026',
+    en: '13 and 15–18 October 2026',
   },
   city: { pl: 'Sopot', en: 'Sopot' },
 
@@ -80,3 +81,14 @@ const posterFiles: Record<number, string | null> = {
 export const posterArchive: PosterEntry[] = Object.entries(posterFiles)
   .map(([year, src]) => ({ year: Number(year), numeral: editionNumeral(Number(year)), src }))
   .sort((a, b) => b.year - a.year);
+
+/** "wtorek, 13 października 2026" / "Tuesday, 13 October 2026" */
+export function dayLabel(iso: string, lang: Lang): string {
+  return new Date(`${iso}T12:00:00Z`).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-GB', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
