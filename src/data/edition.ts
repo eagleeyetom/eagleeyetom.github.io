@@ -16,6 +16,14 @@ export const edition = {
   end: '2026-10-18T22:00:00+02:00',
   // The festival days, one per programme day
   days: ['2026-10-13', '2026-10-15', '2026-10-16', '2026-10-17', '2026-10-18'],
+  // When each day runs (the countdown follows these; times are guesses until the programme is final)
+  schedule: [
+    { start: '2026-10-13T10:00:00+02:00', end: '2026-10-13T22:00:00+02:00' },
+    { start: '2026-10-15T10:00:00+02:00', end: '2026-10-15T22:00:00+02:00' },
+    { start: '2026-10-16T10:00:00+02:00', end: '2026-10-16T22:00:00+02:00' },
+    { start: '2026-10-17T10:00:00+02:00', end: '2026-10-17T22:00:00+02:00' },
+    { start: '2026-10-18T10:00:00+02:00', end: '2026-10-18T22:00:00+02:00' },
+  ],
 
   dateLabel: {
     pl: '13 oraz 15–18 października 2026',

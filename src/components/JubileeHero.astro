@@ -19,6 +19,7 @@ const t = isPl
       program: 'Zobacz program',
       online: 'Oglądaj online',
       countdownLabel: 'Do otwarcia festiwalu',
+      countdownNext: 'Do kolejnego dnia festiwalu',
       countdownProvisional: 'Do terminu orientacyjnego',
       live: 'Festiwal trwa!',
       units: ['dni', 'godz.', 'min'],
@@ -33,6 +34,7 @@ const t = isPl
       program: 'See the programme',
       online: 'Watch online',
       countdownLabel: 'Until the festival opens',
+      countdownNext: 'Until the next festival day',
       countdownProvisional: 'To the provisional date',
       live: 'The festival is on!',
       units: ['days', 'hrs', 'min'],
@@ -68,11 +70,11 @@ const t = isPl
                 <div
                     class="countdown"
                     data-countdown
-                    data-start={edition.start}
-                    data-end={edition.end}
+                    data-schedule={JSON.stringify(edition.schedule)}
+                    data-label-next={t.countdownNext}
                     hidden
                 >
-                    <dt class="countdown__label">
+                    <dt class="countdown__label" data-countdown-label>
                         {edition.datesConfirmed ? t.countdownLabel : t.countdownProvisional}
                     </dt>
                     <dd>
@@ -112,16 +114,26 @@ const t = isPl
     // content that keeps updating on its own would need a pause control (WCAG 2.2.2).
     // Hidden without JS and after the festival.
     document.querySelectorAll<HTMLElement>('[data-countdown]').forEach((root) => {
-        const start = Date.parse(root.dataset.start ?? '');
-        const end = Date.parse(root.dataset.end ?? '');
-        if (Number.isNaN(start) || Number.isNaN(end) || Date.now() > end) return;
+        const days = (JSON.parse(root.dataset.schedule ?? '[]') as { start: string; end: string }[])
+            .map((day) => ({ start: Date.parse(day.start), end: Date.parse(day.end) }))
+            .filter((day) => !Number.isNaN(day.start) && !Number.isNaN(day.end))
+            .sort((a, b) => a.start - b.start);
+        const now = Date.now();
+        const current = days.find((day) => now >= day.start && now <= day.end);
+        const upcoming = days.find((day) => day.start > now);
+        // Nothing to count to once the last day is over
+        if (!current && !upcoming) return;
 
-        const diff = start - Date.now();
-        if (diff <= 0) {
+        if (current) {
             root.querySelector<HTMLElement>('.countdown__units')?.setAttribute('hidden', '');
             root.querySelector<HTMLElement>('.countdown__live')?.removeAttribute('hidden');
-        } else {
-            const minutes = Math.floor(diff / 60000);
+        } else if (upcoming) {
+            // Between the days (including the break between the 13th and the 15th): count to the next one
+            if (now > days[0].start) {
+                const label = root.querySelector<HTMLElement>('[data-countdown-label]');
+                if (label && root.dataset.labelNext) label.textContent = root.dataset.labelNext;
+            }
+            const minutes = Math.floor((upcoming.start - now) / 60000);
             const values = [Math.floor(minutes / 1440), Math.floor((minutes % 1440) / 60), minutes % 60];
             const parts = root.querySelectorAll<HTMLElement>('[data-countdown-part]');
             const show = (el: HTMLElement, i: number, v: number) => {
@@ -134,8 +146,8 @@ const t = isPl
             if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 const duration = 1100;
                 const startedAt = performance.now();
-                const tick = (now: number) => {
-                    const t = Math.min((now - startedAt) / duration, 1);
+                const tick = (time: number) => {
+                    const t = Math.min((time - startedAt) / duration, 1);
                     const eased = 1 - Math.pow(1 - t, 3);
                     parts.forEach((el, i) => show(el, i, Math.round(values[i] * eased)));
                     if (t < 1) requestAnimationFrame(tick);
