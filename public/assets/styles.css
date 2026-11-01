@@ -2336,6 +2336,50 @@ body.high-contrast .confetti {
 
 .intro__body {
     min-width: 0;
+    max-width: 40rem;
+}
+
+/* One reading size and colour for the whole text; the first paragraph leads */
+.intro__body p {
+    margin: 0 0 1.15rem;
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--color-text);
+}
+
+.intro__body > div > p:first-child {
+    font-size: clamp(1.25rem, 0.6vw + 1.1rem, 1.45rem);
+    line-height: 1.6;
+}
+
+/* Short standalone lines and the closing words */
+.intro__body p.intro__line,
+.intro__body p.intro__sign {
+    margin-block: 1.75rem;
+    font-family: var(--font-family-headers);
+    font-size: clamp(1.4rem, 1vw + 1.1rem, 1.8rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+
+.intro__body p.intro__leadin {
+    margin-bottom: 0.75rem;
+    font-weight: var(--font-weight-medium);
+}
+
+/* The one thought she wants people to take home */
+.intro__key {
+    margin: 0 0 1.75rem;
+    padding: 1.1rem 0 0.1rem 1.4rem;
+    border-left: 5px solid var(--color-mauve);
+}
+
+.intro__key p {
+    font-size: clamp(1.25rem, 0.8vw + 1.1rem, 1.55rem);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.55;
 }
 
 /* Printed-ink edge above the dark blocks: texture lifted from the poster (see
