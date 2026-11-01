@@ -75,3 +75,7 @@ build/
 # Narzedzia AI / lokalne ustawienia edytora
 .claude/
 .roo/
+
+# Wyniki testow
+test-results/
+playwright-report/
