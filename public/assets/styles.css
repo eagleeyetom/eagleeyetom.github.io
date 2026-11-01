@@ -466,7 +466,9 @@ body.high-contrast .site-header {
 
 .brand-subtitle {
     display: inline-flex;
-    align-items: baseline;
+    /* A target of at least 24px (WCAG 2.5.8), though the text is small */
+    min-height: 1.5rem;
+    align-items: center;
     gap: 0.35rem;
     margin: 0;
     font-family: var(--font-family-headers);
