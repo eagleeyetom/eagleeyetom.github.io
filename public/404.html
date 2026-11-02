@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>404 · MASSKA 2026</title>
+    <!-- Served for any address that does not exist, at any depth, so every path here is root-absolute
+         (the pages built by Astro use relative ones) -->
+    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="icon" href="/assets/icons/favicon.ico" sizes="any">
+    <meta name="theme-color" content="#111111">
+    <style>
+        .not-found { max-width: 40rem; margin: 0 auto; padding: 4rem 1.25rem; text-align: center; }
+        .not-found h1 { margin: 0 0 0.5rem; font-size: clamp(3rem, 14vw, 6rem); line-height: 1; color: #d32f13; }
+        .not-found p { margin: 0 0 1.5rem; }
+        .not-found .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+    </style>
+</head>
+<body>
+    <main class="not-found">
+        <h1>404</h1>
+        <p><strong>Nie znaleziono tej strony.</strong> Mogła zmienić adres albo nigdy jej nie było.</p>
+        <p lang="en"><strong>This page was not found.</strong> It may have moved, or it never existed.</p>
+        <div class="actions">
+            <a class="button primary" href="/pl/">Strona główna</a>
+            <a class="button secondary" href="/en/" lang="en">Home page</a>
+        </div>
+    </main>
+</body>
+</html>

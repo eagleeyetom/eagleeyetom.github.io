@@ -53,7 +53,7 @@ const translationEntry = allTheatres.find(
 
 let translationUrl = undefined;
 if (translationEntry) {
-  const tSlug = translationEntry.slug.split('/').pop();
+  const tSlug = translationEntry.id.split('/').pop();
   translationUrl = translationLang === 'pl' ? `/pl/${tSlug}.html` : `/en/${tSlug}.html`;
 }
 
@@ -74,7 +74,7 @@ function theatreLabel(entry: CollectionEntry<'theatres'>) {
 
 function getTheatreUrl(entry: any) {
   const tLang = entry.id.startsWith('pl/') ? 'pl' : 'en';
-  const tSlug = entry.slug.split('/').pop();
+  const tSlug = entry.id.split('/').pop();
   return tLang === 'pl' ? `/pl/${tSlug}.html` : `/en/${tSlug}.html`;
 }
 ---

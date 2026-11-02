@@ -4,8 +4,9 @@ import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { edition } from '../data/edition';
 import { assetVersion } from '../data/build';
-// Self-hosted heading font (no request to Google Fonts)
+// Self-hosted fonts (no request to Google Fonts): Oswald for headings, Inter for text
 import '@fontsource-variable/oswald/wght.css';
+import '@fontsource-variable/inter/wght.css';
 
 interface Props {
   title: string;
@@ -112,9 +113,6 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
     <meta name="description" content={description}>
     {robots && <meta name="robots" content={robots}>}
     <title>{title}</title>
-
-    <!-- Fonts are self-hosted: Inter from assets, Oswald bundled from @fontsource -->
-    <link rel="preload" href="../assets/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href={`../assets/styles.css?v=${assetVersion}`}>

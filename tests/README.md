@@ -8,7 +8,7 @@ Wszystkie testy działają na zbudowanej stronie (`dist/`).
 | `npm run test:browser` | prawdziwa przeglądarka (Playwright): axe WCAG 2.2 AA (zwykły i wysoki kontrast), błędy w konsoli, brak poziomego przewijania (320–1280 px), odliczanie na podstawie zegara, przekierowanie języka, przyciski A+/kontrast, baner zgód, filtr sceny online, galeria, menu na telefonie, otwieranie z dysku (`file://`) |
 | `npm test` | build, a potem oba zestawy |
 
-Przed pierwszym uruchomieniem testów przeglądarkowych: `npm ci`. Lokalnie używana jest zainstalowana
+Wymagany jest Node.js 22.23.4 lub nowszy. Przed pierwszym uruchomieniem testów przeglądarkowych: `npm ci`. Lokalnie używana jest zainstalowana
 przeglądarka Chrome; w CI Chromium pobierane przez `npx playwright install chromium`.
 
 Na GitHubie `deploy.yml` uruchamia testy statyczne przed publikacją (błąd zatrzymuje wdrożenie), a `tests.yml`

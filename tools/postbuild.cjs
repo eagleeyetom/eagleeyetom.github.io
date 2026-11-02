@@ -114,4 +114,18 @@ if (fs.existsSync(styles)) {
   console.log('Inlined mask textures into styles.css');
 }
 
+// 404.html is copied from public/ as it is and is served at any depth, so it keeps root-absolute
+// URLs; it gets the same ?v=<build> as the other pages, or the browser would keep an old
+// stylesheet for as long as the server allows
+const notFound = path.join(distDir, '404.html');
+const home = path.join(distDir, 'pl', 'index.html');
+if (fs.existsSync(notFound) && fs.existsSync(home)) {
+  const version = /assets\/styles\.css\?v=([a-z0-9]+)/.exec(fs.readFileSync(home, 'utf8'))?.[1];
+  if (version) {
+    const html = fs.readFileSync(notFound, 'utf8').replace('/assets/styles.css"', `/assets/styles.css?v=${version}"`);
+    fs.writeFileSync(notFound, html);
+    console.log('Versioned the stylesheet of 404.html');
+  }
+}
+
 console.log('Post-build alignment complete!');

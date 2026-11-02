@@ -18,8 +18,10 @@ function walk(dir) {
 }
 
 const htmlFiles = walk(DIST).filter((f) => f.endsWith('.html'));
+// 404.html is the one page served at any depth, so it is root-absolute on purpose and
+// has its own test below; the others are checked as a set
 const pages = new Map(
-  htmlFiles.map((file) => {
+  htmlFiles.filter((file) => relative(DIST, file) !== '404.html').map((file) => {
     const html = readFileSync(file, 'utf8');
     const body = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, '');
     return [file, { file, html, body, name: relative(DIST, file).split(sep).join('/') }];
@@ -233,4 +235,15 @@ test('no stale 2025 programme data left on the programme pages', () => {
     const text = pages.get(join(DIST, ...name.split('/'))).body.replace(/<[^>]+>/g, ' ');
     assert.doesNotMatch(text, /2025/, name);
   }
+});
+
+test('404.html is there, kept out of search engines and leads home in both languages', () => {
+  const file = join(DIST, '404.html');
+  assert.ok(existsSync(file), '404.html missing');
+  const html = readFileSync(file, 'utf8');
+  assert.match(html, /<meta name="robots" content="noindex">/);
+  assert.match(html, /href="\/pl\/"/);
+  assert.match(html, /href="\/en\/"/);
+  assert.match(html, /\/assets\/styles\.css\?v=[a-z0-9]+"/, 'the stylesheet carries the build version');
+  assert.ok(existsSync(join(DIST, 'assets', 'styles.css')));
 });

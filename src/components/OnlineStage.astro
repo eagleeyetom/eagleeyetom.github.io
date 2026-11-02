@@ -73,7 +73,7 @@ const hasPlaceholders = entries.some((e) => e.data.placeholder);
 const applyUrl = 'https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform';
 
 function slugOf(entry: (typeof entries)[number]) {
-  return entry.slug.split('/').pop();
+  return entry.id.split('/').pop();
 }
 
 const mapPins = entries.map((entry) => ({

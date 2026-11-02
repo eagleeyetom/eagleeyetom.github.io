@@ -1,7 +1,11 @@
-import { z, defineCollection } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
+// The ids of the entries are their paths without the extension ("pl/zespol-pl"), which the
+// pages and the language switch rely on
 const theatresCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/theatres' }),
   schema: z.object({
     id: z.string(),
     name: z.string(),

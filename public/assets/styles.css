@@ -199,18 +199,12 @@
 }
 
 /* MASSKA modernized styles */
-@font-face {
-    font-family: 'InterVariable';
-    src: url('./inter-variable.woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-display: swap;
-}
 
 :root {
     color-scheme: light;
     --base-font-size: 17px;
     --font-scale: 1;
-    --font-family-base: 'InterVariable', 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    --font-family-base: 'Inter Variable', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
     --font-family-headers: 'Oswald Variable', 'Oswald', 'Arial Narrow', sans-serif;
     --font-weight-regular: 400;
     --font-weight-medium: 500;
@@ -1038,87 +1032,6 @@ body.high-contrast .page-section.alt .info-panel {
     gap: var(--spacing-xl);
 }
 
-.theater-grid {
-    display: grid;
-    gap: var(--spacing-lg);
-    grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
-    justify-content: start;
-}
-
-.theater-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    background: var(--color-surface);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease;
-    text-decoration: none !important;
-    color: inherit;
-    border: 1px solid transparent;
-}
-
-.theater-card:hover,
-.theater-card:focus-within {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-accent-soft);
-    text-decoration: none !important;
-}
-
-.theater-card .theater-name {
-    margin: 0;
-    font-size: 0.9rem;
-    color: var(--color-muted);
-    font-weight: var(--font-weight-bold);
-    text-align: center;
-}
-
-.theater-card .theater-flag {
-    margin: 0.1em 0 0 0;
-    text-align: center;
-    font-size: 1.2rem;
-}
-
-.theater-card h3 {
-    text-align: center;
-    font-size: 1.15rem;
-}
-
-.theater-card figure {
-    margin: 0;
-    position: relative;
-    overflow: hidden;
-    height: 160px;
-    min-height: 160px;
-    max-height: 160px;
-}
-
-.theater-card figure img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.theater-card figcaption {
-    position: absolute;
-    inset-inline: 0;
-    bottom: 0;
-    padding: 0.8rem 1rem;
-    background: linear-gradient(180deg, rgba(12, 18, 34, 0) 0%, rgba(12, 18, 34, 0.8) 100%);
-    color: #fff;
-    font-size: 0.95rem;
-    font-weight: var(--font-weight-medium);
-}
-
-.theater-card .card-body {
-    padding: var(--spacing-md) var(--spacing-lg);
-    display: grid;
-    gap: var(--spacing-sm);
-}
-
 .meta-list {
     list-style: none;
     margin: 0;
@@ -1167,13 +1080,6 @@ blockquote {
     color: var(--color-muted);
 }
 
-.footer h2 {
-    font-family: var(--font-family-headers, sans-serif) !important;
-    font-size: 1.1rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.5px;
-}
-
 .footer-inner {
     margin: 0 auto;
     max-width: var(--max-width);
@@ -1198,16 +1104,16 @@ blockquote {
     border-radius: var(--radius-ui);
     background: transparent;
     border: 2px solid var(--color-text);
-    color: var(--color-text) !important;
-    transition: background-color var(--transition-base), border-color var(--transition-base), transform var(--transition-base) !important;
+    color: var(--color-text);
+    transition: background-color var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
     padding: 0;
 }
 
 .footer-socials a:hover {
     background: var(--btn-hover);
     border-color: var(--btn-hover);
-    color: var(--btn-hover-fg) !important;
-    text-decoration: none !important;
+    color: var(--btn-hover-fg);
+    text-decoration: none;
 }
 
 .footer-columns {
@@ -1222,7 +1128,8 @@ blockquote {
 }
 
 .footer-columns section h2 {
-    font-size: 1rem;
+    font-family: var(--font-family-headers, sans-serif);
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-text);
     margin: 0 0 0.5rem 0;
