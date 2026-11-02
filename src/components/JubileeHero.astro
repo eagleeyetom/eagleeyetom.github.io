@@ -165,6 +165,57 @@ const t = isPl
     });
 </script>
 
+<script>
+    // The flames lean with the phone's gyroscope, sideways only (the left-right tilt of the phone held
+    // upright). They keep pointing up in the room, so they turn against the phone. Not with reduced motion.
+    const flames = document.querySelectorAll<HTMLElement>('.jubilee-hero .flame');
+    const motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (flames.length && motionOk && 'DeviceOrientationEvent' in window) {
+        const MAX = 28; // degrees of lean at most
+        let target = 0;
+        let lean = 0;
+        let running = false;
+
+        const frame = () => {
+            lean += (target - lean) * 0.12;
+            flames.forEach((flame) => flame.style.setProperty('--lean', lean.toFixed(2)));
+            if (Math.abs(target - lean) > 0.05) requestAnimationFrame(frame);
+            else running = false;
+        };
+
+        const onTilt = (event: DeviceOrientationEvent) => {
+            if (event.gamma === null) return;
+            // Held upright (0 or 180), the left-right tilt is gamma; sideways the axes swap, so the lean is left
+            const angle = screen.orientation?.angle ?? 0;
+            if (angle !== 0 && angle !== 180) {
+                target = 0;
+            } else {
+                const side = angle === 180 ? -event.gamma : event.gamma;
+                target = Math.max(-MAX, Math.min(MAX, -side * 0.8));
+            }
+            if (!running) {
+                running = true;
+                requestAnimationFrame(frame);
+            }
+        };
+
+        const listen = () => window.addEventListener('deviceorientation', onTilt, { passive: true });
+        const needsPermission = typeof (DeviceOrientationEvent as any).requestPermission === 'function';
+        if (needsPermission) {
+            // iOS asks once, and only from a tap
+            const ask = () => {
+                (DeviceOrientationEvent as any)
+                    .requestPermission()
+                    .then((answer: string) => answer === 'granted' && listen())
+                    .catch(() => {});
+            };
+            window.addEventListener('pointerup', ask, { once: true });
+        } else {
+            listen();
+        }
+    }
+</script>
+
 <style>
     .jubilee-hero {
         position: relative;
@@ -376,8 +427,10 @@ const t = isPl
         translate: -50% -96%;
         border-radius: 50% 50% 45% 45% / 62% 62% 38% 38%;
         background: radial-gradient(ellipse at 50% 72%, #fff6c9 0 18%, #ffc531 38%, #ff7a1a 64%, rgba(211, 47, 19, 0) 72%);
-        filter: blur(0.3px);
+        filter: blur(0.3px) drop-shadow(0 0 0.4em rgba(255, 150, 40, 0.65));
         transform-origin: 50% 100%;
+        /* The lean the gyroscope sets (degrees); the flame keeps pointing up in the room */
+        transform: rotate(calc(var(--lean, 0) * 1deg));
         pointer-events: none;
     }
 
@@ -391,8 +444,8 @@ const t = isPl
         top: 1.12%;
     }
 
-    /* The figure rises in and the candles catch fire; the flames flicker a few times and then
-       burn steadily, so nothing keeps moving on its own (WCAG 2.2.2) */
+    /* The figure rises in and the candles catch fire; the flames then flicker without stopping,
+       each at its own pace. Only with reduced motion off: the flames then burn still and do not lean. */
     @media (prefers-reduced-motion: no-preference) {
         .jubilee-hero__art img {
             animation: art-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s both;
@@ -401,15 +454,17 @@ const t = isPl
         .flame {
             animation:
                 flame-light 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) var(--d) both,
-                flame-flicker 0.45s ease-in-out calc(var(--d) + 0.5s) 8 alternate;
+                flame-flicker var(--flicker) ease-in-out calc(var(--d) + 0.5s) infinite alternate;
         }
 
         .flame--left {
             --d: 1.2s;
+            --flicker: 0.43s;
         }
 
         .flame--right {
             --d: 1.45s;
+            --flicker: 0.57s;
         }
     }
 
@@ -444,9 +499,14 @@ const t = isPl
             rotate: -3deg;
         }
 
+        45% {
+            scale: 0.94 1.04;
+            rotate: 2deg;
+        }
+
         to {
-            scale: 0.88 1.1;
-            rotate: 4deg;
+            scale: 0.86 1.12;
+            rotate: 4.5deg;
         }
     }
 
