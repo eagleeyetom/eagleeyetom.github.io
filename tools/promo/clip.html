@@ -1,0 +1,327 @@
+<!doctype html>
+<!-- The promo clip, one frame at a time: render(t) draws the moment t (seconds) of the clip.
+     tools/promo/render.mjs steps t through the clip and turns the frames into a video.
+     Open the file in a browser and add #t=4.2 to the address to look at one moment. -->
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>MASSKA 2026 – klip</title>
+<style>
+    @font-face {
+        font-family: 'Oswald';
+        src: url('../../node_modules/@fontsource-variable/oswald/files/oswald-latin-ext-wght-normal.woff2') format('woff2');
+        font-weight: 200 700;
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+        font-family: 'Oswald';
+        src: url('../../node_modules/@fontsource-variable/oswald/files/oswald-latin-wght-normal.woff2') format('woff2');
+        font-weight: 200 700;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+
+    html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+    #stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+        font-family: 'Oswald', sans-serif;
+        color: #111111;
+    }
+
+    #stage > * {
+        position: absolute;
+        will-change: transform, opacity;
+    }
+
+    img {
+        display: block;
+    }
+
+    .flame {
+        position: absolute;
+        width: 15.7%;
+        aspect-ratio: 1 / 1.9;
+        border-radius: 50% 50% 45% 45% / 62% 62% 38% 38%;
+        background: radial-gradient(ellipse at 50% 72%, #fff6c9 0 18%, #ffc531 38%, #ff7a1a 64%, rgba(211, 47, 19, 0) 72%);
+        transform-origin: 50% 100%;
+    }
+
+    .line {
+        white-space: nowrap;
+        line-height: 1;
+    }
+
+    #band {
+        left: -100px;
+        width: 2200px;
+        height: 78px;
+        top: 975px;
+        overflow: hidden;
+        border-block: 5px solid #111111;
+        background: #d32f13;
+        rotate: -1.4deg;
+    }
+
+    #band-track {
+        display: flex;
+        width: max-content;
+        height: 100%;
+        align-items: center;
+        font-size: 44px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+
+    #band-track span::after {
+        content: '';
+        display: inline-block;
+        width: 0.42em;
+        height: 0.42em;
+        margin: 0 0.75em;
+        background: currentColor;
+        rotate: 45deg;
+        vertical-align: 0.12em;
+    }
+
+    #badge {
+        display: grid;
+        place-content: center;
+        width: 230px;
+        height: 230px;
+        border-radius: 50%;
+        background: #d32f13;
+        color: #ffffff;
+        text-align: center;
+        box-shadow: 8px 8px 0 #111111;
+    }
+
+    #badge b {
+        display: block;
+        font-size: 74px;
+        font-weight: 700;
+        line-height: 0.95;
+    }
+
+    #badge small {
+        display: block;
+        margin-top: 6px;
+        font-size: 26px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+    }
+
+    #dots {
+        inset: 0;
+        background-size: 36px 36px;
+    }
+</style>
+</head>
+<body>
+<div id="stage">
+    <img id="art" src="assets/art.png" alt="">
+    <img id="title" src="assets/title.png" alt="">
+    <img id="masska" src="assets/masska.png" alt="">
+    <div id="place" class="line"><span style="color:#b2221a">Sopot</span> <span style="color:#4a4a4a; letter-spacing:0.08em">2026</span></div>
+    <div id="dates" class="line"></div>
+    <div id="venues" class="line"></div>
+    <div id="url" class="line"></div>
+    <div id="badge"><b>25</b><small></small></div>
+    <div id="intro1" class="line"></div>
+    <div id="intro2" class="line"></div>
+    <div id="candles">
+        <img src="assets/candles.png" alt="" style="width:100%;height:100%">
+        <span class="flame" id="flame0"></span>
+        <span class="flame" id="flame1"></span>
+    </div>
+    <div id="band"><div id="band-track"></div></div>
+    <div id="dots"></div>
+</div>
+
+<script>
+    const TEXT = {
+        pl: {
+            intro1: '25 lat Masski',
+            intro2: 'Jubileuszowa XXV edycja · 2002–2026',
+            dates: '13 oraz 15–18 listopada 2026',
+            venues: 'Scena Kameralna Teatru Wybrzeże · Teatr Atelier · Sopot',
+            badge: '2002–2026',
+            band: ['XXV Jubileuszowy Międzynarodowy Przegląd Teatralny', 'spektakle', 'spotkania', 'dyskusje', 'masska.org'],
+        },
+        en: {
+            intro1: '25 years of Masska',
+            intro2: 'The XXV anniversary edition · 2002–2026',
+            dates: '13 and 15–18 November 2026',
+            venues: 'Wybrzeże Theatre Chamber Stage · Teatr Atelier · Sopot',
+            badge: '2002–2026',
+            band: ['XXV Anniversary International Theatre Review', 'performances', 'meetings', 'discussions', 'masska.org'],
+        },
+    };
+    const lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'pl';
+    const T = TEXT[lang];
+    document.documentElement.lang = lang;
+
+    const $ = (id) => document.getElementById(id);
+    $('intro1').textContent = T.intro1;
+    $('intro2').textContent = T.intro2;
+    $('dates').textContent = T.dates;
+    $('venues').textContent = T.venues;
+    $('url').textContent = 'masska.org';
+    $('badge').querySelector('small').textContent = T.badge;
+    $('band-track').innerHTML = Array.from({ length: 4 }, () => T.band.map((w) => `<span>${w}</span>`).join('')).join('');
+
+    // --- Layout (px on the 1920x1080 frame) -----------------------------------------
+    const META = { art: { width: 4134, height: 5724 }, candles: { left: 1760, top: 0, width: 840, height: 640 },
+        wicks: [{ x: 0.2571, y: 0.05 }, { x: 0.7405, y: 0.1 }] };
+    const ART = { left: 1030, top: 70, width: 830 };
+    ART.scale = ART.width / META.art.width;
+    ART.height = META.art.height * ART.scale;
+    // The candles where they stand on the hat, and big in the middle of the opening
+    const CANDLES_END = {
+        left: ART.left + META.candles.left * ART.scale,
+        top: ART.top + META.candles.top * ART.scale,
+        width: META.candles.width * ART.scale,
+        height: META.candles.height * ART.scale,
+    };
+    const CANDLES_START = { width: 760, height: 760 * 640 / 840 };
+    CANDLES_START.left = 960 - CANDLES_START.width / 2;
+    CANDLES_START.top = 120;
+
+    META.wicks.forEach((w, i) => {
+        const f = $(`flame${i}`);
+        f.style.left = `${w.x * 100}%`;
+        f.style.top = `${w.y * 100}%`;
+    });
+
+    Object.assign($('art').style, { left: `${ART.left}px`, top: `${ART.top}px`, width: `${ART.width}px` });
+    Object.assign($('title').style, { left: '110px', top: '70px', width: '520px' });
+    Object.assign($('masska').style, { left: '110px', top: '448px', width: '800px' });
+    Object.assign($('place').style, { left: '110px', width: '800px', top: '718px', fontSize: '92px', fontWeight: 700, textAlign: 'right' });
+    Object.assign($('dates').style, { left: '110px', top: '836px', fontSize: '58px', fontWeight: 600 });
+    Object.assign($('venues').style, { left: '112px', top: '912px', fontSize: '34px', fontWeight: 500, letterSpacing: '0.02em', color: '#4a4a4a' });
+    Object.assign($('url').style, { right: '64px', top: '64px', fontSize: '40px', fontWeight: 600, letterSpacing: '0.02em', borderBottom: '5px solid #d32f13', paddingBottom: '6px' });
+    Object.assign($('badge').style, { left: '700px', top: '120px' });
+    Object.assign($('intro1').style, { left: '0', width: '1920px', textAlign: 'center', top: '740px', fontSize: '128px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.01em' });
+    Object.assign($('intro2').style, { left: '0', width: '1920px', textAlign: 'center', top: '895px', fontSize: '50px', fontWeight: 500, color: '#4a4a4a', letterSpacing: '0.03em' });
+
+    // --- Timing helpers ------------------------------------------------------------------
+    const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+    const lerp = (a, b, p) => a + (b - a) * p;
+    const prog = (t, start, dur) => clamp((t - start) / dur);
+    const outCubic = (p) => 1 - Math.pow(1 - p, 3);
+    const inOutCubic = (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
+    const outBack = (p) => { const c = 1.9; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+
+    // A rubber stamp: comes down large and tilted, lands with a little bounce
+    function stamp(el, t, start, { dur = 0.5, from = 1.4, tilt = -5, rest = 0 } = {}) {
+        const p = prog(t, start, dur);
+        el.style.opacity = clamp(p * 2.5);
+        el.style.transform = `scale(${lerp(from, 1, outBack(p))}) rotate(${lerp(tilt, rest, outCubic(p))}deg)`;
+    }
+
+    // MASSKA slams down: overshoots, dips, settles
+    function slam(el, t, start) {
+        const p = prog(t, start, 0.65);
+        const keys = [[0, 1.75], [0.55, 0.95], [0.78, 1.03], [1, 1]];
+        let s = 1;
+        for (let i = 1; i < keys.length; i++) {
+            if (p <= keys[i][0]) {
+                const q = (p - keys[i - 1][0]) / (keys[i][0] - keys[i - 1][0]);
+                s = lerp(keys[i - 1][1], keys[i][1], i === 1 ? outCubic(q) : inOutCubic(q));
+                break;
+            }
+        }
+        el.style.opacity = clamp(p / 0.3);
+        el.style.transform = `scale(${s})`;
+    }
+
+    function slideIn(el, t, start, dx = -60, dur = 0.55) {
+        const p = outCubic(prog(t, start, dur));
+        el.style.opacity = p;
+        el.style.transform = `translateX(${lerp(dx, 0, p)}px)`;
+        el.style.clipPath = `inset(-20% ${lerp(100, 0, p)}% -20% 0)`;
+    }
+
+    function render(t) {
+        // 0.0-0.8  the screen opens through shrinking red halftone dots
+        const r = lerp(27, 0, Math.pow(prog(t, 0.05, 0.75), 1.6));
+        $('dots').style.background = r > 0 ? `radial-gradient(circle, #d32f13 ${r}px, transparent ${r + 0.8}px) 0 0 / 36px 36px` : 'none';
+
+        // 0.3-2.4  the "25" candles stamp in and light; 2.4-3.2 they fly onto the hat
+        const c = $('candles');
+        const fly = inOutCubic(prog(t, 2.4, 0.85));
+        const box = {};
+        for (const k of ['left', 'top', 'width', 'height']) box[k] = lerp(CANDLES_START[k], CANDLES_END[k], fly);
+        Object.assign(c.style, { left: `${box.left}px`, top: `${box.top}px`, width: `${box.width}px`, height: `${box.height}px` });
+        if (fly === 0) stamp(c, t, 0.3, { dur: 0.6, from: 1.8, tilt: 6 });
+        else { c.style.opacity = 1; c.style.transform = 'none'; }
+
+        [0.95, 1.15].forEach((start, i) => {
+            const f = $(`flame${i}`);
+            const on = prog(t, start, 0.35);
+            const flicker = 1 + 0.07 * Math.sin(t * 31 + i * 2) + 0.04 * Math.sin(t * 73 + i);
+            const sway = 3.5 * Math.sin(t * 17 + i * 1.3);
+            f.style.opacity = clamp(on * 3);
+            f.style.transform = `translate(-50%, -96%) scale(${lerp(0.15, 1, outBack(on)) * (2 - flicker)}, ${lerp(0.15, 1, outBack(on)) * flicker}) rotate(${sway}deg)`;
+        });
+
+        // 1.2-2.6  the jubilee in words, under the candles
+        for (const [id, start] of [['intro1', 1.25], ['intro2', 1.5]]) {
+            const inn = outCubic(prog(t, start, 0.5));
+            const out = inOutCubic(prog(t, 2.25, 0.4));
+            const el = $(id);
+            el.style.opacity = inn * (1 - out);
+            el.style.transform = `translateY(${lerp(50, 0, inn) - out * 40}px)`;
+        }
+
+        // 2.9-3.9  the figure appears under its hat, top to bottom
+        const reveal = outCubic(prog(t, 2.95, 1.0));
+        const art = $('art');
+        art.style.opacity = clamp(reveal * 4);
+        art.style.clipPath = `inset(0 0 ${lerp(100, 0, reveal)}% 0)`;
+
+        // 3.4-5.0  the title, MASSKA and Sopot 2026 are stamped in, as on the poster
+        stamp($('title'), t, 3.35);
+        slam($('masska'), t, 3.95);
+        stamp($('place'), t, 4.6, { from: 1.3, tilt: 3 });
+
+        // 5.1  the red band runs in and keeps running
+        const band = $('band');
+        const bandIn = outCubic(prog(t, 5.05, 0.7));
+        band.style.opacity = bandIn > 0 ? 1 : 0;
+        band.style.translate = `${lerp(-2300, 0, bandIn)}px 0`;
+        $('band-track').style.transform = `translateX(${-(Math.max(0, t - 5.05)) * 140}px)`;
+
+        // 5.6-6.4  dates and venues; 6.7 the badge; 7.4 the address
+        slideIn($('dates'), t, 5.6);
+        slideIn($('venues'), t, 5.9);
+        stamp($('badge'), t, 6.7, { dur: 0.55, from: 1.9, tilt: -25, rest: -9 });
+        slideIn($('url'), t, 7.4, 60);
+    }
+
+    window.render = render;
+    window.ready = Promise.all([
+        document.fonts.ready,
+        ...[...document.images].map((img) => img.decode()),
+    ]).then(() => Promise.all(['700 40px Oswald', '500 40px Oswald'].map((f) => document.fonts.load(f, 'ąęśćżź'))));
+
+    // Preview in a browser: clip.html#t=4.2 shows that moment
+    const show = () => render(parseFloat((location.hash.match(/t=([\d.]+)/) || [])[1] ?? '9.9'));
+    window.addEventListener('hashchange', show);
+    window.ready.then(show);
+</script>
+</body>
+</html>

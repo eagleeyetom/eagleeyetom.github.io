@@ -79,3 +79,6 @@ build/
 # Wyniki testow
 test-results/
 playwright-report/
+
+# Promo clip: high-resolution cut-outs and rendered frames (tools/promo/assets.py)
+tools/promo/assets/

@@ -1,0 +1,489 @@
+<!doctype html>
+<!-- The stage version of the promo clip: a dark theatre, spotlights in haze, the figure of the
+     poster in the light, then the title and confetti. render(t) draws the moment t (seconds);
+     tools/promo/render.mjs turns the frames into a video. Open with #t=4.2 to see one moment. -->
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>MASSKA 2026 – scena</title>
+<style>
+    @font-face {
+        font-family: 'Oswald';
+        src: url('../../node_modules/@fontsource-variable/oswald/files/oswald-latin-ext-wght-normal.woff2') format('woff2');
+        font-weight: 200 700;
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+        font-family: 'Oswald';
+        src: url('../../node_modules/@fontsource-variable/oswald/files/oswald-latin-wght-normal.woff2') format('woff2');
+        font-weight: 200 700;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000000;
+    }
+
+    #frame {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000000;
+        font-family: 'Oswald', sans-serif;
+        color: #ffffff;
+    }
+
+    #frame > *, #camera > *,
+    .lamp, .lamp-glow, .beam, .pool, .wash, .flame, .flame-glow {
+        position: absolute;
+    }
+
+    #camera {
+        position: absolute;
+        inset: 0;
+        transform-origin: 50% 55%;
+    }
+
+    /* Red stage curtain: folds of velvet that the light picks out */
+    #wall {
+        left: -700px;
+        width: 3320px;
+        top: 0;
+        height: 900px;
+        background:
+            repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0, rgba(0, 0, 0, 0.08) 46px, rgba(255, 120, 90, 0.07) 70px, rgba(0, 0, 0, 0.08) 94px, rgba(0, 0, 0, 0.62) 140px),
+            linear-gradient(#2a0603, #4a0d07 45%, #1d0402 88%, #080101);
+    }
+
+    #floor {
+        left: -700px;
+        width: 3320px;
+        top: 860px;
+        height: 260px;
+        background:
+            repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 180px),
+            linear-gradient(#1b1410, #070504 70%);
+        box-shadow: 0 -2px 0 rgba(255, 200, 150, 0.12);
+    }
+
+    .pool {
+        width: 520px;
+        height: 110px;
+        margin-left: -260px;
+        top: 870px;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(255, 222, 168, 0.55), rgba(255, 210, 150, 0.18) 45%, transparent 70%);
+        mix-blend-mode: screen;
+    }
+
+    .wash {
+        width: 700px;
+        height: 760px;
+        margin-left: -350px;
+        top: 160px;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at center, rgba(255, 150, 110, 0.28), transparent 65%);
+        mix-blend-mode: screen;
+    }
+
+    #truss {
+        left: -700px;
+        width: 3320px;
+        top: 26px;
+        height: 22px;
+        background:
+            repeating-linear-gradient(45deg, transparent 0 9px, rgba(120, 120, 120, 0.5) 9px 11px, transparent 11px 20px),
+            linear-gradient(#3a3a3a, #121212);
+        border-block: 2px solid #4d4d4d;
+    }
+
+    .lamp {
+        width: 34px;
+        height: 34px;
+        margin-left: -17px;
+        top: 40px;
+        border-radius: 8px 8px 50% 50%;
+        background: #1c1c1c;
+        border: 2px solid #444444;
+    }
+
+    .lamp-glow {
+        width: 160px;
+        height: 160px;
+        margin-left: -80px;
+        top: -20px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #fffbe8 0 9%, rgba(255, 214, 140, 0.85) 16%, rgba(255, 170, 90, 0.25) 38%, transparent 66%);
+        mix-blend-mode: screen;
+    }
+
+    .beam {
+        width: 380px;
+        height: 1180px;
+        margin-left: -190px;
+        top: 60px;
+        transform-origin: 50% 0;
+        clip-path: polygon(47% 0, 53% 0, 100% 100%, 0 100%);
+        background: linear-gradient(rgba(255, 236, 196, 0.5), rgba(255, 222, 170, 0.16) 55%, rgba(255, 200, 140, 0.02) 92%);
+        filter: blur(20px);
+        mix-blend-mode: screen;
+    }
+
+    #xxv {
+        left: 0;
+        width: 1920px;
+        top: 150px;
+        text-align: center;
+        font-size: 600px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        color: #ece4d6;
+        text-shadow:
+            1px 1px 0 #bfb4a3, 2px 2px 0 #b0a593, 3px 3px 0 #a19684, 4px 4px 0 #928775, 5px 5px 0 #837866,
+            6px 6px 0 #746957, 7px 7px 0 #655a48, 8px 8px 0 #564b39, 9px 9px 0 #473c2a, 10px 10px 0 #382d1b,
+            12px 14px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    #figure {
+        width: 640px;
+        left: 640px;
+        top: 150px;
+        -webkit-mask: linear-gradient(to bottom, #000 76%, transparent 99%), linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+        -webkit-mask-composite: source-in;
+        mask: linear-gradient(to bottom, #000 76%, transparent 99%) intersect, linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+        filter: drop-shadow(0 0 30px rgba(255, 200, 150, 0.18));
+    }
+
+    #figure img {
+        position: static;
+        display: block;
+        width: 100%;
+    }
+
+    .flame {
+        width: 22px;
+        height: 42px;
+        margin-left: -11px;
+        border-radius: 50% 50% 45% 45% / 62% 62% 38% 38%;
+        background: radial-gradient(ellipse at 50% 72%, #fff6c9 0 18%, #ffc531 38%, #ff7a1a 64%, rgba(211, 47, 19, 0) 72%);
+        transform-origin: 50% 100%;
+    }
+
+    .flame-glow {
+        width: 360px;
+        height: 360px;
+        margin-left: -180px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 190, 90, 0.5), rgba(255, 120, 40, 0.14) 35%, transparent 65%);
+        mix-blend-mode: screen;
+    }
+
+    .haze {
+        width: 2600px;
+        height: 1100px;
+        mix-blend-mode: screen;
+    }
+
+    #dust, #confetti {
+        inset: 0;
+    }
+
+    #vignette {
+        inset: 0;
+        background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.7));
+    }
+
+    #flash {
+        inset: 0;
+        background: #fff3dc;
+        mix-blend-mode: screen;
+    }
+
+    /* Words on top of everything, with a dark halo so confetti never hides them */
+    .text {
+        white-space: nowrap;
+        line-height: 1;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85), 0 0 2px rgba(0, 0, 0, 0.9);
+    }
+
+    .cut {
+        filter: drop-shadow(0 8px 26px rgba(0, 0, 0, 0.9));
+    }
+</style>
+</head>
+<body>
+<div id="frame">
+    <div id="camera">
+        <div id="wall"></div>
+        <div id="washes"></div>
+        <div id="floor"></div>
+        <div id="pools"></div>
+        <div id="beams"></div>
+        <div id="xxv">XXV</div>
+        <div id="figure"><img src="assets/figure.png" alt=""></div>
+        <div id="flames"></div>
+        <img class="haze" id="haze1" src="assets/haze.png" alt="">
+        <img class="haze" id="haze2" src="assets/haze.png" alt="">
+        <canvas id="dust" width="1920" height="1080"></canvas>
+        <div id="truss"></div>
+        <div id="lamps"></div>
+    </div>
+    <canvas id="confetti" width="1920" height="1080"></canvas>
+    <div id="vignette"></div>
+
+    <img id="title" class="cut" src="assets/title-light.png" alt="">
+    <div id="title-en" class="text"></div>
+    <div id="eyebrow" class="text"></div>
+    <img id="masska" class="cut" src="assets/masska-light.png" alt="">
+    <div id="place" class="text"><span style="color:#ff5a3c">Sopot</span> <span style="color:#e2dbd0; letter-spacing:0.08em">2026</span></div>
+    <div id="dates" class="text"></div>
+    <div id="venues" class="text"></div>
+    <div id="url" class="text">masska.org</div>
+    <div id="flash"></div>
+</div>
+
+<script>
+    const TEXT = {
+        pl: {
+            eyebrow: ['XXV Jubileuszowy Międzynarodowy', 'Przegląd Teatralny'],
+            dates: '13 oraz 15–18 listopada 2026',
+            venues: 'Scena Kameralna Teatru Wybrzeże · Teatr Atelier',
+        },
+        en: {
+            eyebrow: ['XXV Anniversary International', 'Theatre Review'],
+            title: ['XXV Anniversary', 'International', 'Theatre Review'],
+            dates: '13 and 15–18 November 2026',
+            venues: 'Wybrzeże Theatre Chamber Stage · Teatr Atelier',
+        },
+    };
+    const lang = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'pl';
+    const T = TEXT[lang];
+    document.documentElement.lang = lang;
+    const $ = (id) => document.getElementById(id);
+
+    // --- Fixed layout (px on the 1920x1080 frame) --------------------------------------
+    const LAMPS = [360, 660, 960, 1260, 1560];
+    const ORDER = [0, 4, 1, 3, 2]; // outside in
+    const FIGURE = { left: 640, top: 150, width: 640 };
+    FIGURE.scale = FIGURE.width / 4134;
+    const WICKS = [[1976, 32], [2382, 64]].map(([x, y]) => [FIGURE.left + x * FIGURE.scale, FIGURE.top + y * FIGURE.scale]);
+
+    for (const x of LAMPS) {
+        $('lamps').insertAdjacentHTML('beforeend', `<div class="lamp" style="left:${x}px"></div><div class="lamp-glow" style="left:${x}px"></div>`);
+        $('beams').insertAdjacentHTML('beforeend', `<div class="beam" style="left:${x}px"></div>`);
+        $('pools').insertAdjacentHTML('beforeend', '<div class="pool"></div>');
+        $('washes').insertAdjacentHTML('beforeend', '<div class="wash"></div>');
+    }
+    for (const [x, y] of WICKS) {
+        $('flames').insertAdjacentHTML('beforeend', `<div class="flame-glow" style="left:${x}px;top:${y - 200}px"></div><div class="flame" style="left:${x}px;top:${y - 40}px"></div>`);
+    }
+    const lampGlows = [...document.querySelectorAll('.lamp-glow')];
+    const beams = [...document.querySelectorAll('.beam')];
+    const pools = [...document.querySelectorAll('.pool')];
+    const washes = [...document.querySelectorAll('.wash')];
+    const flames = [...document.querySelectorAll('.flame')];
+    const flameGlows = [...document.querySelectorAll('.flame-glow')];
+
+    const place = (id, css) => Object.assign($(id).style, css);
+    place('haze1', { left: '-200px', top: '120px' });
+    place('haze2', { left: '-500px', top: '380px' });
+    place('title', { left: '130px', top: '200px', width: '760px', display: lang === 'pl' ? 'block' : 'none' });
+    place('title-en', { left: '130px', top: '230px', fontSize: '118px', fontWeight: 700, lineHeight: '1.02', textTransform: 'uppercase', color: '#f2ece2', display: lang === 'en' ? 'block' : 'none' });
+    $('title-en').innerHTML = (T.title || []).map((l, i) => `<div style="position:static;${i === 0 ? 'color:#ff5a3c' : ''}">${l}</div>`).join('');
+    place('eyebrow', { left: '130px', top: '146px', fontSize: '42px', fontWeight: 500, letterSpacing: '0.1em', lineHeight: '1.15', textTransform: 'uppercase', color: '#ff7a5c' });
+    $('eyebrow').innerHTML = T.eyebrow.map((l) => `<div style="position:static">${l}</div>`).join('');
+    place('masska', { left: '130px', top: '272px', width: '880px' });
+    place('place', { left: '130px', width: '880px', top: '578px', fontSize: '100px', fontWeight: 700, textAlign: 'right' });
+    place('dates', { left: '130px', top: '722px', fontSize: '64px', fontWeight: 600, color: '#ffffff' });
+    place('venues', { left: '132px', top: '806px', fontSize: '36px', fontWeight: 500, letterSpacing: '0.02em', color: '#d4cbbf' });
+    place('url', { left: '130px', top: '884px', fontSize: '42px', fontWeight: 600, letterSpacing: '0.03em', paddingBottom: '6px', borderBottom: '5px solid #d32f13' });
+    $('dates').textContent = T.dates;
+    $('venues').textContent = T.venues;
+
+    // --- Helpers -------------------------------------------------------------------------
+    const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+    const lerp = (a, b, p) => a + (b - a) * p;
+    const prog = (t, start, dur) => clamp((t - start) / dur);
+    const outCubic = (p) => 1 - Math.pow(1 - p, 3);
+    const inOutCubic = (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
+    const outBack = (p) => { const c = 1.9; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+    const pulse = (t, at, decay) => (t >= at ? Math.exp(-(t - at) * decay) : 0);
+
+    // Seeded random numbers, so every render of the clip is the same
+    function rng(seed) {
+        return () => {
+            seed = (seed + 0x6d2b79f5) | 0;
+            let x = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+            x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x;
+            return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+        };
+    }
+
+    const r1 = rng(7);
+    const DUST = Array.from({ length: 90 }, () => ({ x: r1() * 1920, y: 80 + r1() * 820, s: 1 + r1() * 2.2, a: 0.12 + r1() * 0.35, vx: (r1() - 0.5) * 14, vy: -4 - r1() * 10, ph: r1() * 6.28 }));
+
+    const r2 = rng(25);
+    const COLORS = ['#d32f13', '#d32f13', '#ff5a3c', '#ffffff', '#f4ede2', '#e8b04a', '#f2c766', '#c9c9c9'];
+    const CONFETTI = Array.from({ length: 320 }, () => ({
+        x: -60 + r2() * 2040, y: -30 - r2() * 900, start: 6.3 + r2() * 0.35,
+        vy: 170 + r2() * 190, vx: (r2() - 0.5) * 60, sway: 20 + r2() * 45, sf: 1.5 + r2() * 2.5,
+        w: 10 + r2() * 12, h: 5 + r2() * 6, rot: r2() * 6.28, vr: (r2() - 0.5) * 9, flip: 4 + r2() * 9,
+        c: COLORS[Math.floor(r2() * COLORS.length)],
+    }));
+
+    function stamp(el, t, start, { dur = 0.5, from = 1.4, tilt = -5 } = {}) {
+        const p = prog(t, start, dur);
+        el.style.opacity = clamp(p * 2.5);
+        el.style.transform = `scale(${lerp(from, 1, outBack(p))}) rotate(${lerp(tilt, 0, outCubic(p))}deg)`;
+    }
+
+    function slam(el, t, start) {
+        const p = prog(t, start, 0.65);
+        const keys = [[0, 1.8], [0.55, 0.95], [0.78, 1.03], [1, 1]];
+        let s = 1;
+        for (let i = 1; i < keys.length; i++) {
+            if (p <= keys[i][0]) {
+                const q = (p - keys[i - 1][0]) / (keys[i][0] - keys[i - 1][0]);
+                s = lerp(keys[i - 1][1], keys[i][1], i === 1 ? outCubic(q) : inOutCubic(q));
+                break;
+            }
+        }
+        el.style.opacity = clamp(p / 0.3);
+        el.style.transform = `scale(${s})`;
+    }
+
+    function slideIn(el, t, start, dx = -70, dur = 0.55) {
+        const p = outCubic(prog(t, start, dur));
+        el.style.opacity = p;
+        el.style.transform = `translateX(${lerp(dx, 0, p)}px)`;
+        el.style.clipPath = `inset(-30% ${lerp(100, 0, p)}% -30% -5%)`;
+    }
+
+    function render(t) {
+        // Camera: a slow push in, then a pan that leaves room for the words on the left
+        const pan = inOutCubic(prog(t, 4.2, 0.9));
+        $('camera').style.transform = `translateX(${pan * 400}px) scale(${1 + 0.035 * clamp(t / 4) + 0.02 * pan})`;
+
+        // Lights: the lamps come on one by one, from the outside in, each with a flash;
+        // on the finale they all flash again and swing out
+        const finale = inOutCubic(prog(t, 6.2, 0.9));
+        const boom = pulse(t, 6.2, 4);
+        let light = 0;
+        LAMPS.forEach((x, i) => {
+            const on = ORDER.indexOf(i);
+            const at = 0.25 + on * 0.17;
+            const level = prog(t, at, 0.08) * (1 + 0.9 * pulse(t, at, 7)) * (1 + 0.7 * boom);
+            light += Math.min(1, level) / LAMPS.length;
+            const crossed = LAMPS[LAMPS.length - 1 - i] * 0.42 + 960 * 0.58; // beams cross in the middle
+            const fanned = lerp(-150, 2070, i / (LAMPS.length - 1));
+            const target = lerp(crossed, fanned, finale) + 70 * Math.sin(t * 0.8 + i * 1.7);
+            const angle = -Math.atan2(target - x, 840) * 180 / Math.PI;
+            beams[i].style.opacity = clamp(level, 0, 1.6);
+            beams[i].style.transform = `rotate(${angle}deg)`;
+            lampGlows[i].style.opacity = clamp(level);
+            lampGlows[i].style.transform = `scale(${0.8 + 0.5 * clamp(level - 0.6)})`;
+            pools[i].style.left = `${target}px`;
+            pools[i].style.opacity = clamp(level * 0.9);
+            washes[i].style.left = `${lerp(x, target, 0.6)}px`;
+            washes[i].style.opacity = clamp(level * 0.8);
+        });
+        $('wall').style.filter = `brightness(${0.12 + 0.75 * light})`;
+        $('floor').style.filter = `brightness(${0.3 + 0.8 * light})`;
+        $('truss').style.filter = `brightness(${0.4 + 0.6 * light})`;
+
+        // Haze drifts through the beams
+        $('haze1').style.opacity = 0.2 * light;
+        $('haze1').style.translate = `${-t * 28}px ${Math.sin(t * 0.4) * 10}px`;
+        $('haze2').style.opacity = 0.16 * light;
+        $('haze2').style.translate = `${t * 18}px 0`;
+
+        // Dust floating in the light
+        const dust = $('dust').getContext('2d');
+        dust.clearRect(0, 0, 1920, 1080);
+        for (const d of DUST) {
+            const x = (d.x + d.vx * t + 1920) % 1920;
+            const y = ((d.y + d.vy * t) % 900 + 900) % 900 + 60;
+            dust.globalAlpha = d.a * light * (0.6 + 0.4 * Math.sin(t * 2 + d.ph));
+            dust.fillStyle = '#ffe9c4';
+            dust.beginPath();
+            dust.arc(x, y, d.s, 0, 6.283);
+            dust.fill();
+        }
+
+        // XXV rises in the light, then sinks back into the dark
+        const xxv = $('xxv');
+        const xin = outCubic(prog(t, 1.1, 0.9));
+        const xout = inOutCubic(prog(t, 2.5, 0.55));
+        xxv.style.opacity = xin * (1 - xout);
+        xxv.style.transform = `translateY(${lerp(60, 0, xin)}px) scale(${lerp(1.3, 1, xin) * lerp(1, 0.78, xout)})`;
+        xxv.style.filter = `blur(${lerp(22, 0, xin) + xout * 14}px)`;
+
+        // The figure steps into the centre spot; the candles on the hat catch fire
+        const fig = outCubic(prog(t, 2.7, 0.9));
+        $('figure').style.opacity = fig;
+        $('figure').style.filter = `brightness(${lerp(0.1, 1, fig)}) drop-shadow(0 0 30px rgba(255, 200, 150, ${0.2 * fig}))`;
+        $('figure').style.transform = `translateY(${lerp(40, 0, fig)}px)`;
+        [3.4, 3.58].forEach((at, i) => {
+            const on = prog(t, at, 0.3);
+            const flicker = 1 + 0.08 * Math.sin(t * 31 + i * 2) + 0.05 * Math.sin(t * 71 + i);
+            flames[i].style.opacity = clamp(on * 3);
+            flames[i].style.transform = `scale(${lerp(0.15, 1, outBack(on)) * (2 - flicker)}, ${lerp(0.15, 1, outBack(on)) * flicker}) rotate(${4 * Math.sin(t * 17 + i)}deg)`;
+            flameGlows[i].style.opacity = clamp(on) * (0.85 + 0.15 * flicker);
+        });
+
+        // The poster title is stamped in on the left, then makes way for MASSKA
+        const titleOut = inOutCubic(prog(t, 6.0, 0.35));
+        for (const id of ['title', 'title-en']) {
+            stamp($(id), t, 4.8, { dur: 0.55 });
+            if (t > 6.0) {
+                $(id).style.opacity = 1 - titleOut;
+                $(id).style.transform = `translateY(${-40 * titleOut}px) scale(${1 - 0.06 * titleOut})`;
+            }
+        }
+
+        // Finale: the full name, the dates and the address, under falling confetti
+        slideIn($('eyebrow'), t, 6.3);
+        slam($('masska'), t, 6.45);
+        stamp($('place'), t, 7.0, { from: 1.3, tilt: 3 });
+        slideIn($('dates'), t, 7.45);
+        slideIn($('venues'), t, 7.7);
+        slideIn($('url'), t, 8.1);
+
+        $('flash').style.opacity = 0.32 * pulse(t, 6.2, 6) * (t >= 6.2 ? 1 : 0);
+
+        const conf = $('confetti').getContext('2d');
+        conf.clearRect(0, 0, 1920, 1080);
+        for (const c of CONFETTI) {
+            const s = t - c.start;
+            if (s < 0) continue;
+            const y = c.y + c.vy * s + 260 * Math.min(s, 0.5);
+            if (y > 1120) continue;
+            const x = c.x + c.vx * s + c.sway * Math.sin(s * c.sf);
+            conf.save();
+            conf.translate(x, y);
+            conf.rotate(c.rot + c.vr * s);
+            conf.scale(1, Math.cos(s * c.flip));
+            conf.fillStyle = c.c;
+            conf.globalAlpha = 0.95;
+            conf.fillRect(-c.w / 2, -c.h / 2, c.w, c.h);
+            conf.restore();
+        }
+    }
+
+    window.render = render;
+    window.ready = Promise.all([document.fonts.ready, ...[...document.images].map((img) => img.decode())])
+        .then(() => Promise.all(['700 40px Oswald', '600 40px Oswald', '500 40px Oswald'].map((f) => document.fonts.load(f, 'ąęśćżź'))));
+
+    const show = () => render(parseFloat((location.hash.match(/t=([\d.]+)/) || [])[1] ?? '9.9'));
+    window.addEventListener('hashchange', show);
+    window.ready.then(show);
+</script>
+</body>
+</html>
