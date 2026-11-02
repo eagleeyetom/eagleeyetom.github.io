@@ -22,7 +22,7 @@ import { edition } from '../../data/edition';
                     <p class="intro__quote" aria-hidden="true">Każdy człowiek jest ważny.</p>
                 </div>
                 <div class="intro__body">
-                    <div id="slowo-wstepu">
+                    <div id="slowo-wstepu" data-intro>
                         <p>Zanim rozpoczniemy świętowanie naszego jubileuszu chciałabym na chwilę zatrzymać czas. Rozejrzyjmy się wokół. Popatrzmy na siebie. Bo nie spotykamy się tylko po to, żeby świętować jubileusz festiwalu. Spotykamy się, żeby uczcić coś znacznie większego. Ludzi. Ich historie. Ich odwagę. Ich obecność.</p>
                         <p>Dwadzieścia pięć lat temu Jacek uwierzył, że warto stworzyć miejsce, w którym każdy człowiek będzie mógł wyjść na scenę i zostać wysłuchany. Miejsce, w którym człowiek nie będzie oceniany przez pryzmat swojej niepełnosprawności. Miejsce, w którym najważniejsze będzie to, że po prostu jest. I tak narodziła się historia, która trwa już ćwierć wieku.</p>
                         <p>Przez te 25 lat na scenie wydarzyło się znacznie więcej niż tysiące teatralnych przedstawień. Ktoś po raz pierwszy odważył się wyjść przed publiczność. Ktoś pokonał własny lęk. Ktoś poczuł, że jest ważny. Że ma głos. Bo dla jednego człowieka występ może być po prostu spektaklem. I właśnie dlatego MASSKA jest tak potrzebna.</p>
@@ -38,18 +38,20 @@ import { edition } from '../../data/edition';
                         <p class="intro__line">A wtedy będziemy wiedzieli, że było warto.</p>
                         <p class="intro__sign">Z całego serca dziękuję, że jesteście częścią tej historii.</p>
                     </div>
+                    <button type="button" class="button secondary intro-toggle" aria-expanded="false" aria-controls="slowo-wstepu"
+                        data-intro-toggle data-label-more="Czytaj całość" data-label-less="Czytaj mniej">Czytaj całość</button>
                 </div>
             </div>
         </section>
 
-        <section class="page-section alt" aria-labelledby="harmonogram-festiwalu" data-tone="dark">
+        <section class="page-section alt" aria-labelledby="o-festiwalu" data-tone="dark">
             <div class="section-inner two-column">
                 <div>
-                    <h2 id="harmonogram-festiwalu">Harmonogram festiwalu</h2>
+                    <h2 id="o-festiwalu">O festiwalu</h2>
                     <div class="timeline">
                         <div class="timeline-item">
                             <h3>{edition.dateLabel.pl} · Festiwal stacjonarny</h3>
-                            <p>Spektakle na żywo w Sopocie: {edition.places[0].when.pl} w {edition.venues.wybrzeze.shortName} ({edition.venues.wybrzeze.street}), {edition.places[1].when.pl} w Teatrze Atelier ({edition.venues.atelier.street}). Warsztaty,
+                            <p>Spektakle na żywo w Sopocie: {edition.places[0].when.pl} na Scenie Kameralnej Teatru Wybrzeże ({edition.venues.wybrzeze.street}), {edition.places[1].when.pl} w Teatrze Atelier ({edition.venues.atelier.street}). Warsztaty,
                                 spotkania z twórcami i wieczorne wydarzenia.</p>
                         </div>
                         <div class="timeline-item">

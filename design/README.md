@@ -22,3 +22,12 @@ logotypy partnerów do stopki (`partners/`), zdjęcia zastępcze zespołów (`te
 obraz do udostępniania (`og-masska-2026.jpg`), rastrową krawędź ciemnych sekcji (`texture/ink-edge.webp`)
 oraz ikony i favicon (`public/assets/icons/`, `public/favicon.ico`). Wyniki są w repozytorium, więc build strony
 nie wymaga Pythona.
+
+## Angielski napis tytułowy
+Napis z plakatu jest polski, więc angielska wersja strony ma własny: `python tools/lettering_en.py` składa
+„International Anniversary Theatre Review” czcionkami Anton i Oswald (`tools/fonts`, licencja SIL OFL) w stylu
+plakatu i zapisuje `public/assets/img/lettering/title-en.webp`.
+
+## Pliki do pobrania dla mediów
+Plakat do internetu (JPG) i do druku (PDF, 70 × 100 cm) leżą w `public/assets/press/` i są linkowane ze strony
+„Dla mediów” (`src/components/PressPage.astro`). Nowy plakat: podmień oba pliki, nazwy zostaw.

@@ -11,6 +11,7 @@ const PAGES = [
   '/pl/online.html', '/en/online.html',
   '/pl/kontakt.html', '/en/contact.html',
   '/pl/cookies.html', '/en/cookies.html',
+  '/pl/dla-mediow.html', '/en/press.html',
   '/pl/zespol-jp.html', '/en/ensemble-de.html', '/pl/zespol-pl.html',
 ];
 

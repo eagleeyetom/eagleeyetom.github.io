@@ -1,0 +1,192 @@
+---
+// The press page ("Dla mediów" / "Press"): the facts in short and the poster to download.
+// The two pages (pl/dla-mediow, en/press) only choose the language.
+import { statSync } from 'node:fs';
+import { edition, type Lang } from '../data/edition';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const isPl = lang === 'pl';
+
+// Files in public/assets/press/; their sizes are read at build time so the page cannot go stale
+const megabytes = (file: string) => {
+  const mb = statSync(`public/assets/press/${file}`).size / 1024 / 1024;
+  return (mb >= 10 ? mb.toFixed(0) : mb.toFixed(1)).replace('.', isPl ? ',' : '.') + ' MB';
+};
+const files = [
+  {
+    href: '../assets/press/plakat-masska-2026.jpg',
+    name: 'plakat-masska-2026.jpg',
+    title: isPl ? 'Plakat do internetu' : 'Poster for the web',
+    detail: isPl ? 'JPG, 4134 × 5906 px' : 'JPG, 4134 × 5906 px',
+    size: megabytes('plakat-masska-2026.jpg'),
+  },
+  {
+    href: '../assets/press/plakat-masska-2026-druk-70x100cm.pdf',
+    name: 'plakat-masska-2026-druk-70x100cm.pdf',
+    title: isPl ? 'Plakat do druku' : 'Poster for print',
+    detail: isPl ? 'PDF, 70 × 100 cm' : 'PDF, 70 × 100 cm',
+    size: megabytes('plakat-masska-2026-druk-70x100cm.pdf'),
+  },
+];
+
+const t = isPl
+  ? {
+      eyebrow: 'Dla mediów',
+      title: 'Materiały dla mediów',
+      lead: 'Plakat i najważniejsze informacje o festiwalu. W sprawach prasowych napisz do nas przez formularz kontaktowy.',
+      factsTitle: 'Informacje w skrócie',
+      event: 'Wydarzenie',
+      eventName: `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year}`,
+      when: 'Termin',
+      where: 'Miejsce',
+      format: 'Formuła',
+      formatValue: 'Hybrydowa: na żywo w Sopocie oraz online',
+      organiser: 'Organizator',
+      about: 'Od ćwierć wieku Masska zbiera na jednej scenie teatry z Polski i z zagranicy. Na jubileusz zapraszamy do Sopotu: na spektakle, warsztaty i spotkania z twórcami, na żywo i online.',
+      downloadTitle: 'Do pobrania',
+      download: 'Pobierz',
+      contact: 'Kontakt w sprawach prasowych',
+      contactLink: 'Formularz kontaktowy',
+      contactHref: 'kontakt.html',
+      alt: 'Plakat XXV Jubileuszowego Międzynarodowego Przeglądu Teatralnego MASSKA 2026',
+    }
+  : {
+      eyebrow: 'Press',
+      title: 'Press materials',
+      lead: 'The poster and the key facts about the festival. For press enquiries, write to us through the contact form.',
+      factsTitle: 'The facts in short',
+      event: 'Event',
+      eventName: `${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}`,
+      when: 'Dates',
+      where: 'Venue',
+      format: 'Format',
+      formatValue: 'Hybrid: live in Sopot and online',
+      organiser: 'Organiser',
+      about: 'For a quarter of a century Masska has brought theatres from Poland and abroad onto one stage. For the anniversary we invite you to Sopot: performances, workshops and meetings with the artists, live and online.',
+      downloadTitle: 'Downloads',
+      download: 'Download',
+      contact: 'Press contact',
+      contactLink: 'Contact form',
+      contactHref: 'contact.html',
+      alt: 'Poster of the XXV MASSKA Anniversary International Theatre Review 2026',
+    };
+---
+
+<section class="hero">
+    <div class="hero-text">
+        <p class="eyebrow">{t.eyebrow}</p>
+        <h1>{t.title}</h1>
+        <p>{t.lead}</p>
+    </div>
+</section>
+
+<section class="page-section" aria-labelledby="press-facts">
+    <div class="section-inner two-column">
+        <div>
+            <h2 id="press-facts">{t.factsTitle}</h2>
+            <p>{t.about}</p>
+            <dl class="press-facts">
+                <div>
+                    <dt>{t.event}</dt>
+                    <dd>{t.eventName}</dd>
+                </div>
+                <div>
+                    <dt>{t.when}</dt>
+                    <dd>{edition.dateLabel[lang]}</dd>
+                </div>
+                <div>
+                    <dt>{t.where}</dt>
+                    <dd>
+                        {edition.places.map((place) => (
+                            <span>{place.when[lang]}: {place.venue.name}, {place.venue.street}, {place.venue.city}</span>
+                        ))}
+                    </dd>
+                </div>
+                <div>
+                    <dt>{t.format}</dt>
+                    <dd>{t.formatValue}</dd>
+                </div>
+                <div>
+                    <dt>{t.organiser}</dt>
+                    <dd>Stowarzyszenie Na Drodze Ekspresji (<a href="https://ekspresja.org" target="_blank" rel="noopener noreferrer">ekspresja.org<span class="sr-only">{isPl ? ' (otwiera się w nowej karcie)' : ' (opens in a new tab)'}</span></a>)</dd>
+                </div>
+            </dl>
+            <p><strong>{t.contact}:</strong> <a href={t.contactHref}>{t.contactLink}</a></p>
+        </div>
+
+        <aside class="info-panel press-downloads" aria-labelledby="press-downloads-title">
+            <h2 id="press-downloads-title">{t.downloadTitle}</h2>
+            <img class="press-downloads__preview" src="../assets/img/plakaty/2026.webp" alt={t.alt} width="900" height="1246" loading="lazy" decoding="async">
+            <ul>
+                {files.map((file) => (
+                    <li>
+                        <a class="button secondary" href={file.href} download={file.name}>
+                            {t.download}: {file.title}
+                            <span class="press-downloads__meta">{file.detail} · {file.size}</span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </aside>
+    </div>
+</section>
+
+<style>
+    .press-facts {
+        display: grid;
+        gap: var(--spacing-sm);
+        margin: var(--spacing-md) 0;
+    }
+
+    .press-facts dt {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-muted);
+    }
+
+    .press-facts dd {
+        display: grid;
+        margin: 0.1rem 0 0;
+        color: var(--color-text);
+    }
+
+    .press-downloads__preview {
+        display: block;
+        width: min(100%, 18rem);
+        height: auto;
+        margin: 0 auto var(--spacing-md);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .press-downloads ul {
+        display: grid;
+        gap: var(--spacing-sm);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .press-downloads .button {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
+        width: 100%;
+        height: auto;
+        text-align: left;
+    }
+
+    .press-downloads__meta {
+        font-family: var(--font-family-base);
+        font-size: 0.8rem;
+        font-weight: var(--font-weight-regular);
+        letter-spacing: 0;
+        text-transform: none;
+    }
+</style>

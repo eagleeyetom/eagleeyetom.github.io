@@ -7,19 +7,24 @@ import { edition } from '../data/edition';
 interface Props {
   /** Path from the current page to the site root: '../' for /pl and /en pages, '' for /. */
   base: string;
+  /** The lettering of the poster is Polish; the English title is set again (tools/lettering_en.py). */
+  lang?: 'pl' | 'en';
 }
 
-const { base } = Astro.props;
+const { base, lang = 'pl' } = Astro.props;
 const dir = `${base}assets/img/lettering/`;
+const title = lang === 'en'
+  ? { file: 'title-en.webp', width: 718, height: 494 }
+  : { file: 'title.webp', width: 720, height: 487 };
 ---
 
 <div class="plate-wrap">
     <div class="plate" aria-hidden="true" data-confetti-origin>
-        <img class="plate__title" src={`${dir}title.webp`} width="720" height="487" alt="" decoding="async" fetchpriority="high">
+        <img class="plate__title" src={`${dir}${title.file}`} width={title.width} height={title.height} alt="" decoding="async" fetchpriority="high">
         <div class="plate__side">
             <img class="plate__masska" src={`${dir}masska.webp`} width="760" height="250" alt="" decoding="async" fetchpriority="high">
             <span class="plate__place">
-                <span class="plate__city">{edition.city.pl}</span>
+                <span class="plate__city">{edition.city[lang]}</span>
                 <span class="plate__year">{edition.year}</span>
             </span>
         </div>

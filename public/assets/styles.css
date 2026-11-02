@@ -1738,6 +1738,12 @@ body.high-contrast .nav-dropdown-item.is-active {
     max-width: 600px;
 }
 
+.form-note {
+    margin: var(--spacing-sm) 0 0;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+}
+
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -1842,24 +1848,21 @@ body:not(.high-contrast) [data-tone="dark"] {
     color: var(--color-text);
 }
 
-/* Opening words shortened to their first paragraph, with "read more" */
-[data-intro] > p:first-of-type {
-    font-size: clamp(1.15rem, 0.6vw + 1rem, 1.35rem);
-    line-height: 1.55;
-    color: var(--color-text);
-}
-
-/* Without JS the text stays whole: shortening and the button need the .js class set in <head> */
+/* The opening words on phones: the first two paragraphs and a "read more" button. Without JS
+   (no .js class, set in <head>) and on wider screens the text stays whole. */
 .intro-toggle {
     display: none;
 }
 
-.js [data-intro]:not(.is-expanded) > p:nth-of-type(n + 2) {
-    display: none;
-}
+@media (max-width: 899px) {
+    .js [data-intro]:not(.is-expanded) > :nth-child(n + 3) {
+        display: none;
+    }
 
-.js .intro-toggle {
-    display: inline-flex;
+    .js .intro-toggle {
+        display: inline-flex;
+        margin-top: var(--spacing-xs);
+    }
 }
 
 /* Feature cards lead with a festival photo */

@@ -47,7 +47,7 @@ const t = isPl
         <div class="jubilee-hero__text">
             <h1 id="jubilee-title" class="jubilee-hero__title">
                 <span class="sr-only">{t.title}</span>
-                <JubileePlate base="../" />
+                <JubileePlate base="../" lang={lang} />
             </h1>
 
             <p class="jubilee-hero__lead">{t.lead}</p>
@@ -430,6 +430,15 @@ const t = isPl
         .jubilee-hero__facts,
         .jubilee-hero .hero-actions {
             grid-column: 1 / -1;
+        }
+
+        /* The two buttons come right after the lead, so they are on the first screen */
+        .jubilee-hero .hero-actions {
+            order: 1;
+        }
+
+        .jubilee-hero__facts {
+            order: 2;
         }
     }
 

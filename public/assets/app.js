@@ -646,6 +646,8 @@ document.addEventListener("DOMContentLoaded", () => {
       button.textContent = expanded
         ? button.dataset.labelLess
         : button.dataset.labelMore;
+      // Folded back up, the top of the text would be far above the button: bring it into view
+      if (!expanded) target.closest("section")?.scrollIntoView({ block: "start" });
     });
   });
 })();
