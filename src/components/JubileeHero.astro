@@ -23,6 +23,7 @@ const t = isPl
       countdownProvisional: 'Do terminu orientacyjnego',
       live: 'Festiwal trwa!',
       units: ['dni', 'godz.', 'min'],
+      horn: 'Dmuchnij w trąbkę urodzinową',
     }
   : {
       title: `${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}`,
@@ -37,6 +38,7 @@ const t = isPl
       countdownProvisional: 'To the provisional date',
       live: 'The festival is on!',
       units: ['days', 'hrs', 'min'],
+      horn: 'Blow the party horn',
     };
 ---
 
@@ -110,6 +112,14 @@ const t = isPl
             <!-- The candles on the hat are lit once the page opens -->
             <span class="flame flame--left" aria-hidden="true"></span>
             <span class="flame flame--right" aria-hidden="true"></span>
+            <!-- A tap on the head: the party horn unrolls from the lips -->
+            <svg class="horn" viewBox="0 0 900 1246" aria-hidden="true" focusable="false">
+                <path class="horn__outline"></path>
+                <path class="horn__base"></path>
+                <path class="horn__stripes"></path>
+                <circle class="horn__tip" r="1"></circle>
+            </svg>
+            <button type="button" class="horn-trigger" data-horn aria-label={t.horn}></button>
         </figure>
     </div>
 </section>
@@ -213,6 +223,101 @@ const t = isPl
         } else {
             listen();
         }
+    }
+</script>
+
+<script>
+    // A tap on the head and the party horn unrolls from the lips, wobbles and rolls back up.
+    // The horn is a tube of fixed length: the unrolled part is straight, the rest is wound into
+    // a spiral at its end, so the stripes stay on the same spots of the paper as it unrolls.
+    const trigger = document.querySelector<HTMLButtonElement>('[data-horn]');
+    const horn = document.querySelector<SVGSVGElement>('.horn');
+    if (trigger && horn) {
+        const paths = horn.querySelectorAll<SVGPathElement>('path');
+        const tip = horn.querySelector<SVGCircleElement>('.horn__tip')!;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const MOUTH = { x: 505, y: 708 }; // the lips, in pixels of the 900x1246 artwork
+        const LENGTH = 250; // of the whole tube
+        const PITCH = 3.2; // distance between the turns of the spiral, per radian
+        const CORE = 8; // radius of the innermost turn
+        const STEP = 3;
+        const UNROLL = 420;
+        const HOLD = 1500;
+        const ROLL_UP = 700;
+        const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+        const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+        // The tube when `open` (0..1) of it is unrolled
+        const draw = (open: number, shake: number) => {
+            const straight = open * LENGTH;
+            const coil = LENGTH - straight;
+            const angle = ((-3 + shake) * Math.PI) / 180;
+            let x = MOUTH.x + Math.cos(angle) * straight;
+            let y = MOUTH.y + Math.sin(angle) * straight;
+            tip.setAttribute('cx', x.toFixed(1));
+            tip.setAttribute('cy', y.toFixed(1));
+            let d = `M${MOUTH.x} ${MOUTH.y}L${x.toFixed(1)} ${y.toFixed(1)}`;
+            if (coil > 1) {
+                const joint = Math.sqrt(2 * PITCH * coil + CORE * CORE); // radius of the outer turn
+                let turned = 0;
+                for (let length = 0, n = 0; length < coil && n < 300; n++) {
+                    const step = Math.min(STEP, coil - length);
+                    const radius = Math.max(CORE, joint - PITCH * turned);
+                    turned += step / radius;
+                    length += step;
+                    x += Math.cos(angle - turned) * step;
+                    y += Math.sin(angle - turned) * step;
+                    d += `L${x.toFixed(1)} ${y.toFixed(1)}`;
+                }
+            }
+            paths.forEach((path) => path.setAttribute('d', d));
+        };
+
+        let running = false;
+        const play = () => {
+            if (running) return;
+            running = true;
+            horn.classList.add('is-open');
+            let party = false;
+            const startedAt = performance.now();
+
+            const finish = () => {
+                horn.classList.remove('is-open');
+                running = false;
+            };
+            const celebrate = () => {
+                party = true;
+                document.dispatchEvent(new CustomEvent('masska:party', { detail: { from: tip } }));
+            };
+
+            if (reduce.matches) {
+                draw(1, 0);
+                setTimeout(finish, 2000);
+                return;
+            }
+
+            const frame = (now: number) => {
+                const t = now - startedAt;
+                let open = 1;
+                let shake = 0;
+                if (t < UNROLL) {
+                    open = ease(t / UNROLL);
+                    shake = 5 * Math.sin(t / 18) * (1 - t / UNROLL);
+                } else if (t < UNROLL + HOLD) {
+                    shake = 2.2 * Math.sin(t / 55) * Math.max(0, 1 - (t - UNROLL) / 700);
+                } else {
+                    open = 1 - easeInOut(Math.min(1, (t - UNROLL - HOLD) / ROLL_UP));
+                }
+                draw(open, shake);
+                if (!party && open > 0.9) celebrate();
+                if (t < UNROLL + HOLD + ROLL_UP) requestAnimationFrame(frame);
+                else finish();
+            };
+            requestAnimationFrame(frame);
+        };
+
+        draw(0, 0);
+        trigger.addEventListener('click', play);
     }
 </script>
 
@@ -417,6 +522,71 @@ const t = isPl
     :global(body.high-contrast) .jubilee-hero__art img {
         border-radius: var(--radius-md);
         opacity: 0.92;
+    }
+
+    /* The party horn: black outline, white paper, red stripes (the inks of the poster) */
+    .horn {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    .horn.is-open {
+        visibility: visible;
+    }
+
+    .horn__outline {
+        stroke: #111111;
+        stroke-width: 30;
+    }
+
+    .horn__base {
+        stroke: #ffffff;
+        stroke-width: 20;
+    }
+
+    .horn__stripes {
+        stroke: #d32f13;
+        stroke-width: 20;
+        stroke-linecap: butt;
+        stroke-dasharray: 16 16;
+    }
+
+    .horn__tip {
+        fill: none;
+        stroke: none;
+    }
+
+    /* The head of the figure: hat and face */
+    .horn-trigger {
+        position: absolute;
+        left: 6%;
+        top: 9%;
+        width: 88%;
+        height: 72%;
+        padding: 0;
+        border: 0;
+        border-radius: 45% 45% 30% 30%;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .horn-trigger:focus-visible {
+        outline: 3px solid var(--color-red);
+        outline-offset: 2px;
+    }
+
+    :global(body.high-contrast) .horn-trigger:focus-visible {
+        outline-color: var(--color-accent);
     }
 
     /* Flames on the two wicks (their tips are at these points of the artwork) */

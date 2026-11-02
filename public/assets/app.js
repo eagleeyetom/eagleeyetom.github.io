@@ -668,9 +668,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const COLORS = ["#d32f13", "#111111", "#b2221a", "#7a7a7a", "#f26b4f"];
   let running = false;
 
-  function burst() {
+  // `from`: the element the confetti bursts out of (the plate by default)
+  function burst(from) {
     if (running || reduce.matches || document.body.classList.contains("high-contrast")) return;
-    const rect = origin.getBoundingClientRect();
+    const source = from instanceof Element ? from : origin;
+    const rect = source.getBoundingClientRect();
     if (rect.bottom < 0 || rect.top > window.innerHeight) return;
     running = true;
 
@@ -711,6 +713,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   origin.addEventListener("click", burst);
+  // The party horn of the hero (JubileeHero.astro) lets it go off at its tip
+  document.addEventListener("masska:party", (event) => burst(event.detail && event.detail.from));
 
   let seen = false;
   try {
