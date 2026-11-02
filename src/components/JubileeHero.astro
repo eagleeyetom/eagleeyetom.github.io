@@ -23,7 +23,6 @@ const t = isPl
       countdownProvisional: 'Do terminu orientacyjnego',
       live: 'Festiwal trwa!',
       units: ['dni', 'godz.', 'min'],
-      artAlt: 'Ilustracja z plakatu XXV edycji MASSKA: kora drzewa z dwoma otworami przypominającymi oczy, a pod nią kwiat słonecznika',
     }
   : {
       title: `${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}`,
@@ -38,7 +37,6 @@ const t = isPl
       countdownProvisional: 'To the provisional date',
       live: 'The festival is on!',
       units: ['days', 'hrs', 'min'],
-      artAlt: 'Illustration from the poster of the XXV MASSKA edition: tree bark with two holes like eyes above a sunflower head',
     };
 ---
 
@@ -104,11 +102,14 @@ const t = isPl
         <figure class="jubilee-hero__art">
             <img
                 src={edition.posterArt}
-                alt={t.artAlt}
+                alt={edition.posterArtAlt[lang]}
                 width={edition.posterArtSize.width}
                 height={edition.posterArtSize.height}
                 decoding="async"
             />
+            <!-- The candles on the hat are lit once the page opens -->
+            <span class="flame flame--left" aria-hidden="true"></span>
+            <span class="flame flame--right" aria-hidden="true"></span>
         </figure>
     </div>
 </section>
@@ -168,9 +169,7 @@ const t = isPl
     .jubilee-hero {
         position: relative;
         padding: clamp(1.5rem, 4vw, 3.5rem) var(--gutter) clamp(2.5rem, 5vw, 4rem);
-        background:
-            radial-gradient(circle at 88% 15%, var(--color-blue-soft) 0, transparent 55%),
-            var(--color-bg);
+        background: var(--color-bg);
     }
 
     .jubilee-hero__inner {
@@ -241,18 +240,19 @@ const t = isPl
         font-family: var(--font-family-base);
         font-size: 0.8rem;
         font-weight: var(--font-weight-regular);
-        color: var(--color-blue-strong);
+        color: var(--color-grey-strong);
     }
 
     .jubilee-hero .hero-actions {
         margin: 0;
     }
 
-    /* Countdown: a blue chip in the facts row */
+    /* Countdown: a black block in the facts row, like the suit on the poster */
     .countdown {
         padding: 0.45rem 1rem 0.55rem;
-        border-radius: var(--radius-sm);
-        background: var(--color-blue);
+        border-radius: var(--radius-ui);
+        background: #111111;
+        box-shadow: 4px 4px 0 var(--color-red);
     }
 
     .countdown[hidden] {
@@ -260,7 +260,7 @@ const t = isPl
     }
 
     .jubilee-hero__facts .countdown dt {
-        color: var(--color-blue-strong);
+        color: #ff9f8a;
         font-weight: var(--font-weight-medium);
     }
 
@@ -292,55 +292,94 @@ const t = isPl
         font-size: 1.6rem;
         line-height: 1.1;
         font-variant-numeric: tabular-nums;
-        color: var(--color-ink);
+        color: #ffffff;
     }
 
     .countdown__unit {
         font-family: var(--font-family-base);
         font-size: 0.75rem;
         font-weight: var(--font-weight-regular);
-        color: var(--color-blue-strong);
+        color: #d2d2d2;
     }
 
     .countdown__live {
         font-size: 1.25rem;
-        color: var(--color-ink);
+        color: #ffffff;
     }
 
-    /* Artwork of the poster, in a card with an offset block in the poster's blue */
+    :global(body.high-contrast) .countdown {
+        background: #000000;
+        border: 2px solid var(--color-text);
+        box-shadow: none;
+    }
+
+    :global(body.high-contrast) .jubilee-hero__facts .countdown dt {
+        color: var(--color-accent);
+    }
+
+    /* The figure of the poster, straight on the white page as on the poster itself */
     .jubilee-hero__art {
         position: relative;
         justify-self: center;
-        width: min(100%, 25rem);
-        margin: 0 1.25rem 1.25rem 0;
-    }
-
-    .jubilee-hero__art::before {
-        content: '';
-        position: absolute;
-        inset: 1.25rem -1.25rem -1.25rem 1.25rem;
-        border-radius: var(--radius-md);
-        background: var(--color-blue);
+        width: min(100%, 30rem);
+        margin: 1.5rem 0 0;
     }
 
     .jubilee-hero__art img {
         position: relative;
         width: 100%;
         height: auto;
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-lg);
+        border-radius: 0;
     }
 
-    /* The artwork tilts in, then its blue block grows behind it; afterwards it drifts down a
-       little while the page scrolls (scroll-driven, so nothing moves on its own) */
+    /* In high contrast the white of the artwork would glare on the black page */
+    :global(body.high-contrast) .jubilee-hero__art img {
+        border-radius: var(--radius-md);
+        opacity: 0.92;
+    }
+
+    /* Flames on the two wicks (their tips are at these points of the artwork) */
+    .flame {
+        position: absolute;
+        width: 3.2%;
+        aspect-ratio: 1 / 1.9;
+        translate: -50% -96%;
+        border-radius: 50% 50% 45% 45% / 62% 62% 38% 38%;
+        background: radial-gradient(ellipse at 50% 72%, #fff6c9 0 18%, #ffc531 38%, #ff7a1a 64%, rgba(211, 47, 19, 0) 72%);
+        filter: blur(0.3px);
+        transform-origin: 50% 100%;
+        pointer-events: none;
+    }
+
+    .flame--left {
+        left: 47.8%;
+        top: 0.56%;
+    }
+
+    .flame--right {
+        left: 57.6%;
+        top: 1.12%;
+    }
+
+    /* The figure rises in and the candles catch fire; the flames flicker a few times and then
+       burn steadily, so nothing keeps moving on its own (WCAG 2.2.2) */
     @media (prefers-reduced-motion: no-preference) {
         .jubilee-hero__art img {
             animation: art-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s both;
         }
 
-        .jubilee-hero__art::before {
-            transform-origin: 0 0;
-            animation: art-block 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.75s both;
+        .flame {
+            animation:
+                flame-light 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) var(--d) both,
+                flame-flicker 0.45s ease-in-out calc(var(--d) + 0.5s) 8 alternate;
+        }
+
+        .flame--left {
+            --d: 1.2s;
+        }
+
+        .flame--right {
+            --d: 1.45s;
         }
     }
 
@@ -358,27 +397,37 @@ const t = isPl
         from {
             opacity: 0;
             translate: 0 36px;
-            rotate: 3deg;
         }
     }
 
-    @keyframes art-block {
+    @keyframes flame-light {
         from {
             opacity: 0;
-            scale: 0.7;
+            scale: 0.2;
+        }
+    }
+
+    @keyframes flame-flicker {
+        from {
+            scale: 1 1;
+            rotate: -3deg;
+        }
+
+        to {
+            scale: 0.88 1.1;
+            rotate: 4deg;
         }
     }
 
     @keyframes art-drift {
         to {
-            translate: 0 56px;
-            rotate: 1.5deg;
+            translate: 0 48px;
         }
     }
 
     @media (max-width: 899px) {
         .jubilee-hero__art {
-            width: min(78%, 20rem);
+            width: min(86%, 24rem);
         }
     }
 </style>

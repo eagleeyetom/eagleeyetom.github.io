@@ -52,7 +52,7 @@ const path = geoPath(projection).digits(DIGITS);
 const viewBox = [0, 0, WIDTH, Math.round(HEIGHT)];
 
 const landPath = land.features.map((f) => path(f)).filter(Boolean).join('');
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox.join(' ')}"><path fill="#cfc8c0" d="${landPath}"/></svg>\n`;
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox.join(' ')}"><path fill="#d6d4d1" d="${landPath}"/></svg>\n`;
 writeFileSync('public/assets/img/world-map.svg', svg);
 
 const alpha2ByNumeric = new Map(countriesList.map((c) => [c.ccn3, c.cca2.toLowerCase()]));

@@ -81,9 +81,9 @@
 
 .gallery-btn {
     pointer-events: auto;
-    background: #f5f2ee;
-    border: 2px solid #1f1d1b;
-    color: #1f1d1b;
+    background: #ffffff;
+    border: 2px solid #111111;
+    color: #111111;
     width: 3rem;
     height: 3rem;
     font-size: 2rem;
@@ -93,7 +93,7 @@
     cursor: pointer;
     border-radius: var(--radius-ui);
     transition: background-color var(--transition-base);
-    box-shadow: 3px 3px 0 #b38691;
+    box-shadow: 3px 3px 0 #d32f13;
 }
 
 .gallery-btn[data-gallery-prev], .gallery-btn[data-gallery-next] {
@@ -104,7 +104,7 @@
     width: 2.5rem;
     height: 2.5rem;
     font-size: 1.1rem;
-    background: #f5f2ee;
+    background: #ffffff;
     border-radius: var(--radius-ui);
     position: absolute;
     top: 0.75rem;
@@ -178,8 +178,8 @@
 }
 
 .gallery-btn:hover, .gallery-btn:focus-visible {
-    background: #b7cfd2;
-    color: #1f1d1b;
+    background: #d32f13;
+    color: #ffffff;
 }
 
 .gallery-btn:focus-visible {
@@ -216,38 +216,38 @@
     --font-weight-medium: 500;
     --font-weight-bold: 700;
     --line-height-base: 1.65;
-    --color-bg: #e8e3dd;
-    --color-surface: #f5f2ee;
-    --color-surface-alt: #ddd8d2;
-    --color-text: #3a3734;
-    --color-muted: #57524d; /* 6.1:1 on --color-bg */
-    --color-border: #c4bfb9;
-    --color-accent: #854a5c; /* 5.3:1 on --color-bg, white text on it 6.7:1 */
-    --color-accent-strong: #6e3c4d;
-    --color-accent-soft: rgba(133, 74, 92, 0.14);
+    --color-bg: #ffffff; /* the poster's white paper */
+    --color-surface: #f4f3f1;
+    --color-surface-alt: #e8e6e3;
+    --color-text: #141414;
+    --color-muted: #4d4d4d; /* 8.6:1 on white */
+    --color-border: #d4d1cd;
+    --color-accent: #b2221a; /* the red of the poster lettering: 6.7:1 on white, white text on it 6.7:1 */
+    --color-accent-strong: #8c1a13;
+    --color-accent-soft: rgba(178, 34, 26, 0.1);
     --color-success: #0f9d58;
-    /* Second accent and ink taken from the XXV (2026) poster */
-    --color-blue: #b7cfd2;
-    --color-blue-soft: rgba(183, 207, 210, 0.45);
-    --color-blue-strong: #2f5a63; /* text-safe: 5.9:1 on --color-bg, 4.7:1 on --color-blue */
-    --color-mauve: #b38691;
-    --color-ink: #1f1d1b;
-    /* Text placed on accent / mauve fills, swapped per contrast mode */
-    --color-on-accent: #ffffff; /* 6.7:1 on --color-accent */
-    --color-on-mauve: #1f1d1b; /* 5.4:1 on --color-mauve */
-    --color-mauve-text: #976874; /* poster mauve darkened for large text: 3.6:1 on --color-bg */
-    --color-peach: #fbdcc5; /* poster peach: tags and hover fills, dark text on it 10:1 */
-    /* Buttons: ink block with a mauve offset "print" shadow; cyan fill on hover */
-    --btn-bg: #1f1d1b;
-    --btn-fg: #f5f2ee;
-    --btn-shadow: #b38691;
-    --btn-line: #1f1d1b;
-    --btn-hover: #b7cfd2;
-    --btn-hover-fg: #1f1d1b;
-    --btn-primary-hover: #b7cfd2;
-    --btn-primary-hover-line: #1f1d1b;
-    --shadow-sm: 0 8px 24px rgba(58, 55, 52, 0.04);
-    --shadow-lg: 0 20px 48px rgba(58, 55, 52, 0.1);
+    /* Taken from the XXV (2026) poster: the bowler hat, the halftone grey and the ink */
+    --color-grey: #ebeae8;
+    --color-grey-soft: rgba(20, 20, 20, 0.05);
+    --color-grey-strong: #4a4a4a; /* the grey of "2026": 8.9:1 on white */
+    --color-red: #d32f13; /* the hat: white text on it 5:1 */
+    --color-ink: #111111;
+    /* Text placed on accent / red fills, swapped per contrast mode */
+    --color-on-accent: #ffffff;
+    --color-on-red: #ffffff;
+    --color-red-text: #b2221a;
+    --color-red-soft: #fbe5df; /* tags and hover fills, dark text on it 15:1 */
+    /* Buttons: ink block with a red offset "print" shadow; red fill with white text on hover */
+    --btn-bg: #111111;
+    --btn-fg: #ffffff;
+    --btn-shadow: #d32f13;
+    --btn-line: #111111;
+    --btn-hover: #d32f13;
+    --btn-hover-fg: #ffffff;
+    --btn-primary-hover: #d32f13;
+    --btn-primary-hover-line: #111111;
+    --shadow-sm: 0 8px 24px rgba(20, 20, 20, 0.04);
+    --shadow-lg: 0 20px 48px rgba(20, 20, 20, 0.1);
     --radius-xs: 4px;
     --radius-sm: 6px;
     --radius-md: 10px;
@@ -307,15 +307,15 @@ body.high-contrast {
     --color-accent: #ffd300;
     --color-accent-strong: #ffea64;
     --color-accent-soft: rgba(255, 211, 0, 0.22);
-    --color-blue: #0f2a2f;
-    --color-blue-soft: rgba(15, 42, 47, 0.6);
-    --color-blue-strong: #9fe3ec;
-    --color-mauve: #ffd300;
+    --color-grey: #0f2a2f;
+    --color-grey-soft: rgba(15, 42, 47, 0.6);
+    --color-grey-strong: #9fe3ec;
+    --color-red: #ffd300;
     --color-ink: #ffffff;
     --color-on-accent: #000000;
-    --color-on-mauve: #000000;
-    --color-mauve-text: #ffd300;
-    --color-peach: #1d1d1d;
+    --color-on-red: #000000;
+    --color-red-text: #ffd300;
+    --color-red-soft: #1d1d1d;
     --btn-bg: #ffd300;
     --btn-fg: #000000;
     --btn-shadow: #ffffff;
@@ -419,10 +419,10 @@ ul, ol {
     position: sticky;
     top: 0;
     z-index: 20;
-    background: rgba(232, 227, 221, 0.85); /* Blends with --color-bg: #e8e3dd */
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(196, 191, 185, 0.4); /* Subtle transparent border matching --color-border */
+    border-bottom: 1px solid rgba(20, 20, 20, 0.12);
     padding: 0.75rem var(--gutter);
     transition: background-color var(--transition-base), border-color var(--transition-base);
 }
@@ -488,7 +488,7 @@ body.high-contrast .site-header {
 
 .brand-subtitle__numeral {
     font-weight: 700;
-    color: var(--color-blue-strong);
+    color: var(--color-grey-strong);
 }
 
 /* Next to the hamburger and tools the subtitle wraps instead of widening the header */
@@ -584,12 +584,12 @@ body.high-contrast .site-branding .brand img {
 
 .nav-link.is-active {
     color: var(--color-text);
-    background: var(--color-blue);
+    background: var(--color-grey);
 }
 
 .nav-link:hover,
 .nav-link:focus-visible {
-    background: var(--color-peach);
+    background: var(--color-red-soft);
     color: var(--color-text);
     text-decoration: none;
 }
@@ -597,8 +597,8 @@ body.high-contrast .site-branding .brand img {
 /* --- Utility bar above the header: accessibility tools and language switch.
    Always visible and labelled, so nobody has to find a hidden panel --- */
 .utility-bar {
-    --bar-bg: #1f1d1b;
-    --bar-fg: #f5f2ee;
+    --bar-bg: #111111;
+    --bar-fg: #ffffff;
     /* Grows with the text-size buttons, but only a little: the tools must stay compact */
     font-size: min(1rem, 18px);
     padding: 0.3em var(--gutter);
@@ -766,24 +766,6 @@ body.high-contrast .utility-bar {
     text-align: center;
     font-size: 0.85em;
     font-variant-numeric: tabular-nums;
-}
-
-body.high-contrast .partners,
-body.high-contrast .partners-wide {
-    background: #000000;
-    border-color: #ffffff;
-}
-
-body.high-contrast .partner-text,
-body.high-contrast .partners-wide figcaption {
-    color: #ffffff;
-}
-
-body.high-contrast .partners figure img,
-body.high-contrast .partners figure a img,
-body.high-contrast .partners-wide figure img,
-body.high-contrast .partners-wide figure a img {
-    filter: invert(1) brightness(1.2);
 }
 
 main.page-content {
@@ -1009,7 +991,7 @@ body.high-contrast .page-section.alt .info-panel {
     gap: 0.35rem;
     padding: 0.4rem 0.85rem;
     border-radius: var(--radius-ui);
-    background: var(--color-peach);
+    background: var(--color-red-soft);
     color: var(--color-text);
     font-weight: var(--font-weight-medium);
     font-size: 0.85rem;
@@ -1182,8 +1164,6 @@ blockquote {
 
 .footer {
     background: var(--color-surface-alt);
-    border-top: 1px solid var(--color-border);
-    padding: var(--spacing-lg) var(--gutter);
     color: var(--color-muted);
 }
 
@@ -1197,6 +1177,7 @@ blockquote {
 .footer-inner {
     margin: 0 auto;
     max-width: var(--max-width);
+    padding: var(--spacing-xl) var(--gutter) var(--spacing-lg);
     display: grid;
     gap: var(--spacing-lg);
 }
@@ -1266,149 +1247,99 @@ blockquote {
     text-decoration: underline;
 }
 
-/* Partners: two cards of logos at one common height. Logos are placed as separate images, so a
-   logo with a transparent background can simply replace its file. */
-.partners,
-.partners-wide {
-    background: #fff;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+/* Partner logos: the white strip at the bottom of the poster, under the black footer.
+   Each logo keeps its height from the poster (--h, the file's own height in px), so the
+   strip has the poster's proportions. The strip stays white in every contrast mode: the
+   logos are printed for white. */
+.footer-strip {
+    --color-text: #111111;
+    --color-muted: #333333;
+    --color-accent: #b2221a;
+    --color-accent-strong: #8c1a13;
+    --logo-scale: 0.021rem;
+    padding: 1.1rem var(--gutter) 1.25rem;
+    background: #ffffff;
+    color: #111111;
 }
 
-.partners {
+.partner-strip {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem 1.75rem;
-    padding: 1.25rem clamp(1rem, 3vw, 2rem);
+    gap: 0.9rem 2rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
-.partners figure {
+.partner-group {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem 1.4rem;
+}
+
+.partner-group ul {
+    display: contents;
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
-.partners figure a,
-.partners-wide figure a {
+.partner-group li {
+    display: flex;
+}
+
+.partner-group__label {
+    margin: 0;
+    max-width: 6.5rem;
+    font-size: 0.7rem;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #111111;
+}
+
+.partner-group img {
     display: block;
-    transition: opacity var(--transition-base), transform var(--transition-base);
+    width: auto;
+    height: calc(var(--h) * var(--logo-scale));
+    border-radius: 0;
 }
 
-.partners figure a:hover,
-.partners figure a:focus-visible,
-.partners-wide figure a:hover,
-.partners-wide figure a:focus-visible {
-    opacity: 0.8;
+.partner-group a {
+    display: block;
+    border-radius: var(--radius-xs);
+    transition: transform var(--transition-base);
+}
+
+.partner-group a:hover {
     transform: translateY(-2px);
 }
 
-.partners figure img {
-    display: block;
-    width: auto;
-    max-width: 9.5rem;
-    height: 3.5rem;
-    border-radius: 0;
-    object-fit: contain;
-}
-
-.partner-text {
-    flex-shrink: 0;
-    margin: 0;
-    font-size: 0.8rem;
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-}
-
-.partners-wide {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem clamp(1rem, 3vw, 2rem);
-    margin: 1rem 0 0;
-    padding: 1.25rem clamp(1rem, 3vw, 2rem);
-}
-
-.partners-wide figure.partner-wide {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    margin: 0;
-    padding: 0;
-}
-
-.partners-wide figure a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6rem;
-    width: 100%;
-    text-decoration: none;
-}
-
-.partners-wide figure.partner-wide img {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    height: 4.5rem;
-    border-radius: 0;
-    object-fit: contain;
-}
-
-.partners-wide figcaption {
-    order: -1;
-    text-align: center;
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    line-height: 1.35;
-    text-transform: uppercase;
-    color: var(--color-muted);
+.partner-group a:focus-visible {
+    outline: 3px solid #b2221a;
+    outline-offset: 4px;
 }
 
 @media (max-width: 768px) {
-    .partners {
-        gap: 0.5rem 1rem;
+    .footer-strip {
+        --logo-scale: 0.017rem;
     }
 
-    .partner-text {
-        flex-basis: 100%;
-        margin-top: 0.75rem;
-        text-align: center;
+    .partner-strip {
+        gap: 1rem 1.5rem;
     }
 
-    .partner-text:first-child {
-        margin-top: 0;
-    }
-
-    .partners figure img {
-        max-width: 7.5rem;
-        height: 3rem;
-    }
-
-    .partners-wide {
-        grid-template-columns: 1fr;
-    }
-
-    .partners-wide figure.partner-wide img {
-        height: 4rem;
+    .partner-group {
+        gap: 0.6rem 1.1rem;
     }
 }
 
-/* Screen readers get the caption from the link's alt text; the figcaption of the first
-   group would only repeat it */
-.partners figcaption {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+body.high-contrast .footer-strip {
+    border-top: 2px solid #ffffff;
 }
 
 .footer-note {
@@ -1518,7 +1449,7 @@ caption {
 .chip {
     padding: 0.35rem 0.85rem;
     border-radius: var(--radius-ui);
-    background: var(--color-blue-soft);
+    background: var(--color-grey-soft);
     font-size: 0.85rem;
     color: var(--color-text);
 }
@@ -1573,8 +1504,8 @@ caption {
     inset-inline: 0;
     bottom: 0;
     z-index: 50;
-    background: #1f1d1b;
-    color: #f5f2ee;
+    background: #111111;
+    color: #ffffff;
     padding: 1.1rem var(--gutter) calc(1.1rem + env(safe-area-inset-bottom, 0px));
     animation: cookie-in 0.4s ease both;
 }
@@ -1602,7 +1533,7 @@ caption {
     right: 0;
     bottom: 100%;
     height: 2.75rem;
-    background: #1f1d1b;
+    background: #111111;
     -webkit-mask: url('img/texture/ink-edge.webp') repeat-x left bottom / auto 100%;
     mask: url('img/texture/ink-edge.webp') repeat-x left bottom / auto 100%;
     pointer-events: none;
@@ -1610,14 +1541,14 @@ caption {
 
 /* The banner is a dark block: it takes the dark-section button tokens */
 body:not(.high-contrast) .cookie-notice {
-    --btn-bg: #b7cfd2;
-    --btn-fg: #1f1d1b;
-    --btn-shadow: #b38691;
-    --btn-line: #f5f2ee;
-    --btn-hover: #b7cfd2;
-    --btn-hover-fg: #1f1d1b;
-    --btn-primary-hover: #f5f2ee;
-    --btn-primary-hover-line: #f5f2ee;
+    --btn-bg: #d32f13;
+    --btn-fg: #ffffff;
+    --btn-shadow: #ffffff;
+    --btn-line: #ffffff;
+    --btn-hover: #ffffff;
+    --btn-hover-fg: #111111;
+    --btn-primary-hover: #ffffff;
+    --btn-primary-hover-line: #ffffff;
 }
 
 .cookie-notice__inner {
@@ -1637,7 +1568,7 @@ body:not(.high-contrast) .cookie-notice {
     width: 5.5rem;
     padding: 0.55rem 0.7rem;
     border-radius: var(--radius-sm);
-    background: var(--color-mauve);
+    background: #ffffff;
 }
 
 .cookie-notice__badge img {
@@ -1657,7 +1588,7 @@ body:not(.high-contrast) .cookie-notice {
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.5;
-    color: #cfc8c0;
+    color: #d2d2d2;
 }
 
 .cookie-notice__content .cookie-notice__title {
@@ -1667,11 +1598,11 @@ body:not(.high-contrast) .cookie-notice {
     letter-spacing: 0.02em;
     text-transform: uppercase;
     line-height: 1.2;
-    color: #f5f2ee;
+    color: #ffffff;
 }
 
 .cookie-notice__content a {
-    color: #f0d0d8;
+    color: #ff9f8a;
     text-decoration: underline;
     font-weight: var(--font-weight-medium);
 }
@@ -1683,7 +1614,7 @@ body:not(.high-contrast) .cookie-notice {
 
 .cookie-notice__settings summary {
     width: fit-content;
-    color: #9fd0d6;
+    color: #ff9f8a;
     font-size: 0.9rem;
     cursor: pointer;
 }
@@ -1694,7 +1625,7 @@ body:not(.high-contrast) .cookie-notice {
     margin: 0.6rem 0;
     padding: 0;
     border: 0;
-    color: #f5f2ee;
+    color: #ffffff;
     font-size: 0.95rem;
 }
 
@@ -1708,7 +1639,7 @@ body:not(.high-contrast) .cookie-notice {
 .cookie-notice__settings input {
     width: 1.15rem;
     height: 1.15rem;
-    accent-color: #b7cfd2;
+    accent-color: #d32f13;
 }
 
 .cookie-notice__actions {
@@ -1727,7 +1658,7 @@ body:not(.high-contrast) .cookie-notice {
 .cookie-notice .button:focus-visible,
 .cookie-notice__settings summary:focus-visible,
 .cookie-notice__settings input:focus-visible {
-    outline: 3px solid #f5f2ee;
+    outline: 3px solid #ffffff;
     outline-offset: 3px;
 }
 
@@ -1978,30 +1909,29 @@ h3 {
 
 /* Dark sections: tokens are redefined locally so everything inside adapts */
 body:not(.high-contrast) [data-tone="dark"] {
-    --color-bg: #1f1d1b;
-    --color-surface: #2a2725;
-    --color-surface-alt: #34302d;
-    --color-text: #f5f2ee;
-    --color-muted: #cfc8c0;
-    --color-border: #3d3935;
-    --color-accent: #e3b8c3;
-    --color-accent-strong: #f0d0d8;
-    --color-accent-soft: rgba(227, 184, 195, 0.16);
-    --color-blue-strong: #9fd0d6;
-    --color-blue-soft: rgba(159, 208, 214, 0.12);
-    --color-on-accent: #1f1d1b;
-    --color-peach: #34302d;
-    --btn-bg: #b7cfd2;
-    --btn-fg: #1f1d1b;
-    --btn-shadow: #b38691;
-    --btn-line: #f5f2ee;
-    --btn-hover: #b7cfd2;
-    --btn-hover-fg: #1f1d1b;
-    --btn-primary-hover: #f5f2ee;
-    --btn-primary-hover-line: #f5f2ee;
-    background:
-        radial-gradient(circle at 90% 0%, var(--color-blue-soft) 0, transparent 50%),
-        var(--color-bg);
+    /* the black of the suit */
+    --color-bg: #111111;
+    --color-surface: #1d1d1d;
+    --color-surface-alt: #2a2a2a;
+    --color-text: #ffffff;
+    --color-muted: #d2d2d2;
+    --color-border: #3a3a3a;
+    --color-accent: #ff7a5c; /* 7.4:1 on the black */
+    --color-accent-strong: #ffb4a3;
+    --color-accent-soft: rgba(255, 122, 92, 0.16);
+    --color-grey-strong: #c9c9c9;
+    --color-grey-soft: rgba(255, 255, 255, 0.06);
+    --color-on-accent: #111111;
+    --color-red-soft: #2a2a2a;
+    --btn-bg: #d32f13;
+    --btn-fg: #ffffff;
+    --btn-shadow: #ffffff;
+    --btn-line: #ffffff;
+    --btn-hover: #ffffff;
+    --btn-hover-fg: #111111;
+    --btn-primary-hover: #ffffff;
+    --btn-primary-hover-line: #ffffff;
+    background: var(--color-bg);
     color: var(--color-text);
 }
 
@@ -2099,10 +2029,9 @@ body:not(.high-contrast) [data-tone="dark"] {
     border: 0;
     border-radius: var(--radius-md);
     background:
-        radial-gradient(circle at 80% 20%, rgba(183, 207, 210, 0.35) 0, transparent 55%),
-        radial-gradient(circle at 15% 85%, rgba(179, 134, 145, 0.35) 0, transparent 50%),
-        #1f1d1b;
-    color: #f5f2ee;
+        radial-gradient(circle at 15% 85%, rgba(211, 47, 19, 0.45) 0, transparent 50%),
+        #111111;
+    color: #ffffff;
     font: inherit;
     text-align: center;
     cursor: pointer;
@@ -2112,7 +2041,7 @@ body:not(.high-contrast) [data-tone="dark"] {
     width: 4.5rem;
     height: 4.5rem;
     border-radius: 50%;
-    background: #f5f2ee url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%231f1d1b' d='M8 5v14l11-7z'/%3E%3C/svg%3E") 55% 50% / 2rem no-repeat;
+    background: #ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23111111' d='M8 5v14l11-7z'/%3E%3C/svg%3E") 55% 50% / 2rem no-repeat;
     transition: transform var(--transition-base);
 }
 
@@ -2122,7 +2051,7 @@ body:not(.high-contrast) [data-tone="dark"] {
 }
 
 .media-facade:focus-visible {
-    outline: 3px solid var(--color-blue);
+    outline: 3px solid var(--color-grey);
     outline-offset: 3px;
 }
 
@@ -2134,7 +2063,7 @@ body:not(.high-contrast) [data-tone="dark"] {
 
 .media-facade__note {
     font-size: 0.85rem;
-    color: #cfc8c0;
+    color: #d2d2d2;
 }
 
 /* Card buttons stay put: the whole card lifts instead, and a transformed button would
@@ -2155,7 +2084,7 @@ body:not(.high-contrast) [data-tone="dark"] {
 
 /* Header gains a hairline shadow once the page scrolls under it (class set in app.js) */
 .site-header.is-scrolled {
-    box-shadow: 0 1px 0 var(--color-border), 0 8px 24px rgba(31, 29, 27, 0.06);
+    box-shadow: 0 1px 0 var(--color-border), 0 8px 24px rgba(17, 17, 17, 0.06);
 }
 
 /* Gentle reveal of section content as it scrolls into view. Pure CSS (scroll-driven
@@ -2194,7 +2123,7 @@ body:not(.high-contrast) [data-tone="dark"] {
     width: 3.4rem;
     height: 5px;
     margin-top: 0.6rem;
-    background: var(--color-mauve);
+    background: var(--color-red);
     transform-origin: 0 50%;
 }
 
@@ -2321,19 +2250,19 @@ body.high-contrast .confetti {
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--color-blue-strong);
+    color: var(--color-grey-strong);
 }
 
 .intro__quote {
     margin: 0;
     padding-left: 1.1rem;
-    border-left: 5px solid var(--color-mauve);
+    border-left: 5px solid var(--color-red);
     font-family: var(--font-family-headers);
     font-size: clamp(1.7rem, 2.6vw, 2.5rem);
     font-weight: 600;
     line-height: 1.15;
     text-transform: uppercase;
-    color: var(--color-mauve-text);
+    color: var(--color-red-text);
 }
 
 .intro__body {
@@ -2375,7 +2304,7 @@ body.high-contrast .confetti {
 .intro__key {
     margin: 0 0 1.75rem;
     padding: 1.1rem 0 0.1rem 1.4rem;
-    border-left: 5px solid var(--color-mauve);
+    border-left: 5px solid var(--color-red);
 }
 
 .intro__key p {

@@ -252,7 +252,7 @@ test.describe('opened from disk (file://)', () => {
     await page.goto(file('pl/index.html'));
     // the stylesheet is applied: the header tools bar has its dark background
     const bar = await page.locator('.utility-bar').evaluate((el) => getComputedStyle(el).backgroundColor);
-    expect(bar).toBe('rgb(31, 29, 27)');
+    expect(bar).toBe('rgb(17, 17, 17)');
     // the ink-edge mask is the inlined texture (a file:// page cannot load a mask image from disk)
     const mask = await page.locator('[data-tone="dark"]').first().evaluate((el) => getComputedStyle(el, '::before').maskImage);
     expect(mask).toContain('data:image/webp');

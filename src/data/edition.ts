@@ -64,9 +64,13 @@ export const edition = {
   venue: atelier,
   venues: { atelier, wybrzeze },
 
-  // Artwork without the title band, used in the hero next to the lettering
+  // The figure of the poster without its lettering, used in the hero next to the cut-out title
   posterArt: '../assets/img/plakaty/2026-art.webp',
-  posterArtSize: { width: 900, height: 1142 },
+  posterArtSize: { width: 900, height: 1246 },
+  posterArtAlt: {
+    pl: 'Ilustracja z plakatu XXV edycji MASSKA: postać w czerwonym meloniku, na którym stoją świeczki w kształcie liczby 25. Twarz bez oczu, z rastrowych kropek, ma tylko usta; czarny frak i muszka.',
+    en: 'Illustration from the poster of the XXV MASSKA edition: a figure in a red bowler hat with candles shaped like the number 25 on top. The eyeless face, made of halftone dots, has only lips; a black tailcoat and bow tie.',
+  },
 } as const;
 
 export function editionNumeral(year: number): string {

@@ -38,11 +38,11 @@ const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd T
 
     <link rel="stylesheet" href={`assets/styles.css?v=${assetVersion}`}>
 
-    <link rel="icon" href="assets/icons/favicon.ico?v=20261018" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png?v=20261018">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png?v=20261018">
-    <link rel="manifest" href="assets/icons/site.webmanifest?v=20261018">
-    <meta name="theme-color" content="#1f1d1b">
+    <link rel="icon" href="assets/icons/favicon.ico?v=20261102" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png?v=20261102">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png?v=20261102">
+    <link rel="manifest" href="assets/icons/site.webmanifest?v=20261102">
+    <meta name="theme-color" content="#111111">
 
     <link rel="canonical" href={`${siteUrl}/`}>
     <link rel="alternate" href={`${siteUrl}/pl/`} hreflang="pl">
@@ -103,7 +103,7 @@ const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd T
         <figure class="splash__poster">
             <img
                 src={edition.posterArt.replace('../', '')}
-                alt="Ilustracja z plakatu XXV edycji MASSKA: kora drzewa z dwoma otworami przypominającymi oczy, a pod nią kwiat słonecznika"
+                alt={edition.posterArtAlt.pl}
                 width={edition.posterArtSize.width}
                 height={edition.posterArtSize.height}
                 fetchpriority="high"
@@ -118,9 +118,7 @@ const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd T
     .splash {
         min-height: 100vh;
         min-height: 100dvh;
-        background:
-            radial-gradient(circle at 80% 30%, var(--color-blue-soft) 0, transparent 55%),
-            var(--color-bg);
+        background: var(--color-bg);
     }
 
     .splash__inner {
@@ -152,7 +150,7 @@ const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd T
         font-weight: var(--font-weight-medium);
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--color-blue-strong);
+        color: var(--color-grey-strong);
     }
 
     .splash__title {
@@ -208,7 +206,7 @@ const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd T
     .splash__language:hover,
     .splash__language:focus-visible {
         transform: translateY(-2px);
-        border-color: var(--color-blue-strong);
+        border-color: var(--color-grey-strong);
         box-shadow: var(--shadow-lg);
         text-decoration: none;
         color: var(--color-text);
@@ -234,25 +232,14 @@ const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd T
     }
 
     .splash__poster {
-        position: relative;
         justify-self: center;
-        width: min(100%, 24rem);
-        margin: 0 1.25rem 1.25rem 0;
-    }
-
-    .splash__poster::before {
-        content: '';
-        position: absolute;
-        inset: 1.25rem -1.25rem -1.25rem 1.25rem;
-        border-radius: var(--radius-md);
-        background: var(--color-blue);
+        width: min(100%, 26rem);
+        margin: 0;
     }
 
     .splash__poster img {
-        position: relative;
         width: 100%;
         height: auto;
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-lg);
+        border-radius: 0;
     }
 </style>

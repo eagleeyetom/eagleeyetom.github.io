@@ -30,6 +30,48 @@ function getRelativeUrl(targetPath: string) {
   
   return cleanPath;
 }
+
+// Logos cut from the bottom of the poster by tools/build_graphics.py, in the poster's order.
+// size is the file's own size: the logos keep the proportions they have on the poster.
+interface Logo { file: string; alt: string; href?: string; size: [number, number] }
+const partnerGroups: { label: string; visible: boolean; logos: Logo[] }[] = [
+  {
+    label: isPl ? 'Organizator:' : 'Organiser:',
+    visible: true,
+    logos: [
+      { file: 'na-drodze-ekspresji', alt: isPl ? 'Stowarzyszenie Na Drodze Ekspresji' : 'Na Drodze Ekspresji Association', href: 'https://ekspresja.org', size: [309, 123] },
+    ],
+  },
+  {
+    label: isPl ? 'Dofinansowanie i patronat honorowy:' : 'Funding and honorary patronage:',
+    visible: false,
+    logos: [
+      { file: 'sopot', alt: isPl ? 'Sopot. Projekt dofinansowano ze środków Miasta Sopotu' : 'Sopot. Project co-financed by the City of Sopot', href: 'https://sopot.pl/', size: [356, 129] },
+      { file: 'wojewoda-pomorski', alt: isPl ? 'Patronat honorowy: Wojewoda Pomorski Beata Rutkiewicz' : 'Honorary patronage: Pomeranian Voivode Beata Rutkiewicz', href: 'https://www.gdansk.uw.gov.pl/', size: [274, 110] },
+      { file: 'prezydentka-sopotu', alt: isPl ? 'Patronat honorowy Prezydentki Miasta Sopotu' : 'Honorary patronage of the Mayor of Sopot', href: 'https://bip.sopot.pl/', size: [252, 124] },
+    ],
+  },
+  {
+    label: isPl ? 'Patronat medialny:' : 'Media patronage:',
+    visible: true,
+    logos: [
+      { file: 'radio-357', alt: 'Radio 357', href: 'https://radio357.pl/', size: [112, 126] },
+      { file: 'radio-gdansk', alt: 'Radio Gdańsk', href: 'https://radiogdansk.pl/', size: [314, 83] },
+    ],
+  },
+  {
+    label: isPl ? 'Partnerzy:' : 'Partners:',
+    visible: false,
+    logos: [
+      { file: 'teatr-wybrzeze', alt: 'Teatr Wybrzeże', href: 'https://teatrwybrzeze.pl/', size: [294, 102] },
+      { file: 'teatr-atelier', alt: 'Teatr Atelier Sopot', href: 'https://teatratelier.pl/', size: [231, 93] },
+      { file: 'mamuszki-14', alt: 'Mamuszki 14 Sopot', href: 'https://www.facebook.com/mamuszki14', size: [351, 76] },
+      { file: 'atelier-cocktails', alt: 'Atelier cocktails & food', size: [110, 103] },
+      { file: 'bart', alt: isPl ? 'Bałtycka Agencja Artystyczna BART, Sopot' : 'BART Baltic Artistic Agency, Sopot', href: 'https://bart.sopot.pl/', size: [261, 103] },
+      { file: 'pkps', alt: isPl ? 'Polski Komitet Pomocy Społecznej' : 'Polish Committee for Social Assistance', href: 'https://pkps.org.pl/', size: [113, 114] },
+    ],
+  },
+];
 ---
 
 <footer class="footer" role="contentinfo" data-tone="dark">
@@ -96,6 +138,28 @@ function getRelativeUrl(targetPath: string) {
             © {edition.year} {isPl ? "MASSKA Międzynarodowy Przegląd Teatralny" : "MASSKA International Theatre Review"}
         </p>
     </div>
+
+    <!-- The strip of logos from the bottom of the poster, on white as there -->
+    <section class="footer-strip" aria-labelledby="partners-title">
+        <h2 id="partners-title" class="sr-only">{isPl ? "Organizator i partnerzy" : "Organiser and partners"}</h2>
+        <div class="partner-strip">
+            {partnerGroups.map((group) => (
+                <div class="partner-group">
+                    <p class:list={['partner-group__label', { 'sr-only': !group.visible }]}>{group.label}</p>
+                    <ul role="list">
+                        {group.logos.map((logo) => {
+                            const img = (
+                                <img src={`../assets/img/partners/${logo.file}.webp`} alt={logo.alt}
+                                    width={logo.size[0]} height={logo.size[1]} style={`--h: ${logo.size[1]}`}
+                                    loading="lazy" decoding="async" />
+                            );
+                            return <li>{logo.href ? <a href={logo.href} target="_blank" rel="noopener noreferrer">{img}</a> : img}</li>;
+                        })}
+                    </ul>
+                </div>
+            ))}
+        </div>
+    </section>
 </footer>
 
 <script>

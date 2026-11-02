@@ -6,9 +6,10 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+// The words of the poster: what the festival is made of
 const unit = [
   edition.numeral,
-  lang === 'pl' ? '25 lat Masski' : '25 years of Masska',
+  ...(lang === 'pl' ? ['spektakle', 'spotkania', 'dyskusje'] : ['performances', 'meetings', 'discussions']),
   `${edition.firstYear}–${edition.year}`,
   'Sopot',
 ];
@@ -35,9 +36,9 @@ const items = Array.from({ length: 8 }).flatMap(() => unit);
         margin-left: -5%;
         rotate: -1.2deg;
         overflow: hidden;
-        border-block: 2px solid var(--color-ink);
-        background: var(--color-mauve);
-        color: var(--color-on-mauve);
+        border-block: 3px solid var(--color-ink);
+        background: var(--color-red);
+        color: var(--color-on-red);
     }
 
     .band__track {

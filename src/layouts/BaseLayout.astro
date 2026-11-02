@@ -1,7 +1,6 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Partners from '../components/Partners.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { edition } from '../data/edition';
 import { assetVersion } from '../data/build';
@@ -16,7 +15,6 @@ interface Props {
   isTheatre?: boolean;
   activeTheatreId?: string;
   translationUrl?: string;
-  showPartners?: boolean;
   redirectToPreferredLanguage?: boolean;
 }
 
@@ -28,7 +26,6 @@ const {
   isTheatre = false,
   activeTheatreId,
   translationUrl,
-  showPartners = true,
   redirectToPreferredLanguage = true,
 } = Astro.props;
 
@@ -124,13 +121,13 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
     <link rel="stylesheet" href={`../assets/styles-mobile.css?v=${assetVersion}`}>
 
     <!-- Favicons -->
-    <link rel="icon" href="../assets/icons/favicon.ico?v=20261018" sizes="any">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png?v=20261018">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png?v=20261018">
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png?v=20261018">
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png?v=20261018">
-    <link rel="manifest" href="../assets/icons/site.webmanifest?v=20261018">
-    <meta name="theme-color" content="#1f1d1b">
+    <link rel="icon" href="../assets/icons/favicon.ico?v=20261102" sizes="any">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png?v=20261102">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png?v=20261102">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-chrome-192x192.png?v=20261102">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png?v=20261102">
+    <link rel="manifest" href="../assets/icons/site.webmanifest?v=20261102">
+    <meta name="theme-color" content="#111111">
 
     <!-- Canonical & hreflang alternates -->
     <link rel="canonical" href={canonical}>
@@ -204,8 +201,6 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
     <main id="main-content" class="page-content" role="main">
         <slot />
     </main>
-
-    {showPartners && <Partners lang={lang} />}
 
     <Footer lang={lang} />
 

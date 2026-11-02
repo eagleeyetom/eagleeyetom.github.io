@@ -189,7 +189,7 @@ const isPl = lang === 'pl';
     .timeline-section {
         padding-inline: 0;
         background:
-            linear-gradient(180deg, var(--color-blue-soft) 0%, transparent 70%),
+            linear-gradient(180deg, var(--color-grey-soft) 0%, transparent 70%),
             var(--color-bg);
     }
 
@@ -207,7 +207,7 @@ const isPl = lang === 'pl';
         font-size: 0.85rem;
         font-weight: var(--font-weight-medium);
         letter-spacing: 0.12em;
-        color: var(--color-blue-strong);
+        color: var(--color-grey-strong);
     }
 
     .timeline-intro {
@@ -263,7 +263,7 @@ const isPl = lang === 'pl';
         overscroll-behavior-x: contain;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
-        scrollbar-color: var(--color-blue-strong) transparent;
+        scrollbar-color: var(--color-grey-strong) transparent;
     }
 
     .poster-timeline:focus-visible {
@@ -286,7 +286,7 @@ const isPl = lang === 'pl';
         left: 0;
         right: -1.5rem;
         height: 2px;
-        background: var(--color-blue-strong);
+        background: var(--color-grey-strong);
         opacity: 0.35;
     }
 
@@ -321,22 +321,22 @@ const isPl = lang === 'pl';
         height: 0.8rem;
         border-radius: 50%;
         background: var(--color-bg);
-        border: 2px solid var(--color-blue-strong);
+        border: 2px solid var(--color-grey-strong);
     }
 
     .poster-item.is-current .poster-item__year::before {
         width: 1rem;
         height: 1rem;
-        background: var(--color-mauve);
-        border-color: var(--color-mauve);
-        box-shadow: 0 0 0 4px var(--color-blue);
+        background: var(--color-red);
+        border-color: var(--color-red);
+        box-shadow: 0 0 0 4px var(--color-grey);
     }
 
     .poster-item__badge {
         padding: 0.15rem 0.6rem;
         border-radius: var(--radius-ui);
-        background: var(--color-mauve);
-        color: var(--color-on-mauve);
+        background: var(--color-red);
+        color: var(--color-on-red);
         font-size: 0.75rem;
         font-weight: var(--font-weight-medium);
         letter-spacing: 0.04em;
@@ -355,7 +355,7 @@ const isPl = lang === 'pl';
     }
 
     .poster-link:focus-visible {
-        border-color: var(--color-blue-strong);
+        border-color: var(--color-grey-strong);
         text-decoration: none;
     }
 
@@ -363,13 +363,13 @@ const isPl = lang === 'pl';
         .poster-link:hover {
             transform: translateY(-6px);
             box-shadow: var(--shadow-lg);
-            border-color: var(--color-blue-strong);
+            border-color: var(--color-grey-strong);
             text-decoration: none;
         }
     }
 
     .poster-item.is-current .poster-link {
-        border: 2px solid var(--color-mauve);
+        border: 2px solid var(--color-red);
     }
 
     .poster-link img {
@@ -399,7 +399,7 @@ const isPl = lang === 'pl';
         font-family: var(--font-family-headers);
         font-size: 3.5rem;
         font-weight: 700;
-        color: var(--color-blue-strong);
+        color: var(--color-grey-strong);
     }
 
     .poster-missing__text {
@@ -498,9 +498,9 @@ const isPl = lang === 'pl';
         position: absolute;
         top: 2rem;
         right: 2rem;
-        background: rgba(31, 29, 27, 0.7);
-        border: 2px solid #f5f2ee;
-        color: #f5f2ee;
+        background: rgba(17, 17, 17, 0.7);
+        border: 2px solid #ffffff;
+        color: #ffffff;
         font-size: 2.2rem;
         line-height: 1;
         cursor: pointer;
@@ -527,9 +527,9 @@ const isPl = lang === 'pl';
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(31, 29, 27, 0.7);
-        border: 2px solid #f5f2ee;
-        color: #f5f2ee;
+        background: rgba(17, 17, 17, 0.7);
+        border: 2px solid #ffffff;
+        color: #ffffff;
         font-size: 2.5rem;
         width: 60px;
         height: 60px;

@@ -665,7 +665,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const origin = document.querySelector("[data-confetti-origin]");
   if (!origin) return;
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const COLORS = ["#b38691", "#b7cfd2", "#fbdcc5", "#1f1d1b", "#854a5c", "#f5f2ee"];
+  const COLORS = ["#d32f13", "#111111", "#b2221a", "#7a7a7a", "#f26b4f"];
   let running = false;
 
   function burst() {
