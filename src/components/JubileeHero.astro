@@ -247,6 +247,36 @@ const t = isPl
         margin: 0;
     }
 
+    /* Narrower screens: the figure stands next to the lettering, as on the poster, instead of
+       coming after all the text; the rest of the text runs below both at full width */
+    @media (max-width: 899px) {
+        .jubilee-hero__inner {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+            gap: var(--spacing-md) clamp(0.75rem, 3vw, 1.5rem);
+            align-items: end;
+        }
+
+        .jubilee-hero__text {
+            display: contents;
+        }
+
+        .jubilee-hero__title {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        .jubilee-hero__art {
+            grid-row: 1;
+            grid-column: 2;
+        }
+
+        .jubilee-hero__lead,
+        .jubilee-hero__facts,
+        .jubilee-hero .hero-actions {
+            grid-column: 1 / -1;
+        }
+    }
+
     /* Countdown: a black block in the facts row, like the suit on the poster */
     .countdown {
         padding: 0.45rem 1rem 0.55rem;
@@ -383,8 +413,9 @@ const t = isPl
         }
     }
 
+    /* The drift only beside the text column: next to the lettering it would slide into the lead */
     @supports (animation-timeline: scroll()) {
-        @media (prefers-reduced-motion: no-preference) {
+        @media (prefers-reduced-motion: no-preference) and (min-width: 900px) {
             .jubilee-hero__art {
                 animation: art-drift linear both;
                 animation-timeline: scroll(root);
@@ -427,7 +458,9 @@ const t = isPl
 
     @media (max-width: 899px) {
         .jubilee-hero__art {
-            width: min(86%, 24rem);
+            width: 100%;
+            max-width: 22rem;
+            margin: 0;
         }
     }
 </style>

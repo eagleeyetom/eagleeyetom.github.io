@@ -32,7 +32,23 @@
     .site-nav {
         position: static;
     }
+}
 
+/* Phones: "XXV 2026" stands beside the logo and the header is no taller than the menu button */
+@media (max-width: 540px) {
+    .header-inner {
+        padding-block: 0;
+        gap: var(--spacing-sm);
+    }
+
+    .site-branding {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.6rem;
+    }
+}
+
+@media (max-width: 1280px) {
     .mobile-menu-toggle {
         display: flex;
         align-items: center;

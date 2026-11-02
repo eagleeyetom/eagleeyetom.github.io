@@ -68,21 +68,34 @@ const dir = `${base}assets/img/lettering/`;
         align-items: baseline;
         justify-content: flex-end;
         gap: 0.35em;
+        white-space: nowrap;
         font-family: var(--font-family-headers);
         font-weight: 700;
         line-height: 1;
         letter-spacing: 0.02em;
     }
 
+    /* "Sopot 2026" scales with the plate (cqi), which may be a narrow column beside the figure:
+       across its whole width one above the other, across the half of it side by side */
     .plate__city {
-        font-size: clamp(1.9rem, 4.5vw, 3rem);
+        font-size: min(9cqi, 3rem);
         color: var(--color-red-text);
     }
 
     .plate__year {
-        font-size: clamp(2.3rem, 5.6vw, 3.8rem);
+        font-size: min(11cqi, 3.8rem);
         letter-spacing: 0.08em;
         color: var(--color-grey-strong);
+    }
+
+    @container (min-width: 30rem) {
+        .plate__city {
+            font-size: min(6.8cqi, 3rem);
+        }
+
+        .plate__year {
+            font-size: min(8.6cqi, 3.8rem);
+        }
     }
 
     /* The lettering is stamped onto the page one piece after another, MASSKA last (once, on load).
