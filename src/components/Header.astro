@@ -178,7 +178,7 @@ function getTheatreUrl(entry: any) {
             <div class="nav-menu" id="main-menu">
                 <a class={`nav-link ${isFestiwal ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/index.html" : "/en/index.html")} aria-current={isFestiwal ? 'page' : undefined}>{isPl ? "Festiwal" : "Festival"}</a>
                 <a class={`nav-link ${isProgram ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/program.html" : "/en/program.html")} aria-current={isProgram ? 'page' : undefined}>Program</a>
-                <a class={`nav-link ${isOnline ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")} aria-current={isOnline ? 'page' : undefined}>{isPl ? "Oglądaj online" : "Watch online"}</a>
+                <a data-online class={`nav-link ${isOnline ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")} aria-current={isOnline ? 'page' : undefined}>{isPl ? "Oglądaj online" : "Watch online"}</a>
                 <a class={`nav-link ${isKontakt ? 'is-active' : ''}`} href={getRelativeUrl(isPl ? "/pl/kontakt.html" : "/en/contact.html")} aria-current={isKontakt ? 'page' : undefined}>{isPl ? "Kontakt" : "Contact"}</a>
 
                 {isTheatre && activeTheatre && (

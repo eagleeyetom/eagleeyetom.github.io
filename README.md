@@ -24,6 +24,13 @@ Staging: eagleeyetom.github.io (GitHub Pages).
 - `tools/` – generatory grafik, klipów promocyjnych (`tools/promo`) i grafik YouTube (`tools/youtube`)
 - `design/` – materiały źródłowe (plakat) i opis grafik
 
+## Przyciski „Oglądaj online”
+Do pierwszego dnia festiwalu (`edition.days[0]`, od północy) są ukryte; odsłania je skrypt w `<head>`
+(`BaseLayout.astro`), więc nie trzeba przebudowywać strony. Elementy oznacza atrybut `data-online`.
+**Tryb debug:** dopisz `?debug` do adresu dowolnej strony (np. `/pl/index.html?debug`) – przyciski są
+widoczne, w rogu pojawia się czerwony znaczek DEBUG, a ustawienie zostaje zapamiętane w tej przeglądarce.
+Wyłączenie: `?debug=0`. Sama strona `online.html` działa pod bezpośrednim adresem przez cały czas.
+
 ## Wdrożenie
 Push na `master` uruchamia `.github/workflows/deploy.yml` (build, testy statyczne, GitHub Pages) i
 `tests.yml` (testy przeglądarkowe).

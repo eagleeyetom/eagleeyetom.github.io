@@ -175,6 +175,56 @@ test.describe('cookie banner', () => {
   });
 });
 
+test.describe('"watch online" buttons', () => {
+  // The menu in the header is collapsed, so "visible" is judged by the gate (display), not by the layout
+  const gated = (page) => page.locator('[data-online]');
+  const shown = async (page) => page.evaluate(() =>
+    [...document.querySelectorAll('[data-online]')].map((el) => getComputedStyle(el).display !== 'none'));
+
+  test('are hidden before the first festival day', async ({ page }) => {
+    await visitor(page);
+    await page.clock.setFixedTime(new Date('2026-11-12T23:00:00+01:00'));
+    await page.goto('/pl/index.html');
+    expect(await gated(page).count()).toBeGreaterThanOrEqual(3); // header, hero, card, footer
+    expect(await shown(page)).not.toContain(true);
+    await expect(page.locator('html')).not.toHaveClass(/online-live/);
+  });
+
+  test('show from the first festival day on', async ({ page }) => {
+    await visitor(page);
+    await page.clock.setFixedTime(new Date('2026-11-13T00:30:00+01:00'));
+    await page.goto('/pl/index.html');
+    expect(await shown(page)).not.toContain(false);
+    await expect(page.locator('.hero-actions').getByRole('link', { name: 'Oglądaj online' })).toBeVisible();
+  });
+
+  test('debug mode shows them early, is remembered, and ?debug=0 switches it off', async ({ page }) => {
+    await visitor(page);
+    await page.clock.setFixedTime(new Date('2026-11-01T12:00:00+01:00'));
+    await page.goto('/pl/index.html?debug');
+    await expect(page.locator('.hero-actions').getByRole('link', { name: 'Oglądaj online' })).toBeVisible();
+    await expect(page.locator('html')).toHaveClass(/debug/);
+    await page.goto('/pl/program.html'); // no ?debug here: remembered from the previous page
+    await expect(page.locator('.hero-actions').getByRole('link', { name: 'Oglądaj transmisje' })).toBeVisible();
+    await page.goto('/pl/index.html?debug=0');
+    expect(await shown(page)).not.toContain(true);
+    await expect(page.locator('html')).not.toHaveClass(/debug/);
+  });
+
+  test('the contact FAQ keeps its sentence without the link', async ({ page }) => {
+    await visitor(page);
+    await page.clock.setFixedTime(new Date('2026-11-01T12:00:00+01:00'));
+    await page.goto('/pl/kontakt.html');
+    const card = page.locator('article.card', { hasText: 'Czy spektakle są dostępne online?' });
+    expect(await card.evaluate((el) => el.querySelector('p').innerText)).toMatch(/na naszej platformie online\.$/);
+    expect(await card.locator('a').count()).toBe(0 + (await card.locator('a[data-online]').count()));
+    expect(await card.locator('a[data-online]').evaluate((el) => getComputedStyle(el).display)).toBe('none');
+    await page.goto('/pl/kontakt.html?debug');
+    expect(await card.locator('p').evaluate((el) => el.innerText)).toMatch(/na naszej platformie online\.$/);
+    await expect(card.getByRole('link', { name: 'platformie online' })).toBeVisible();
+  });
+});
+
 test.describe('online stage', () => {
   test('lists the performances; the region filter only appears with more than one region', async ({ page }) => {
     await visitor(page);

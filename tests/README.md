@@ -5,7 +5,7 @@ Wszystkie testy działają na zbudowanej stronie (`dist/`).
 | Polecenie | Co robi |
 |---|---|
 | `npm run test:static` | szybkie sprawdzenie plików: martwe linki i kotwice, brakujące obrazy i fonty, `alt`, jeden `h1`, canonical/hreflang, sitemapa, `noindex` zaślepek, brak ścieżek bezwzględnych (strona ma działać z dysku) |
-| `npm run test:browser` | prawdziwa przeglądarka (Playwright): axe WCAG 2.2 AA (zwykły i wysoki kontrast), błędy w konsoli, brak poziomego przewijania (320–1280 px), odliczanie na podstawie zegara, przekierowanie języka, przyciski A+/kontrast, baner zgód, filtr sceny online, galeria, menu na telefonie, otwieranie z dysku (`file://`) |
+| `npm run test:browser` | prawdziwa przeglądarka (Playwright): axe WCAG 2.2 AA (zwykły i wysoki kontrast), błędy w konsoli, brak poziomego przewijania (320–1280 px), odliczanie na podstawie zegara, przekierowanie języka, przyciski A+/kontrast, baner zgód, przyciski „Oglądaj online” (ukryte do pierwszego dnia festiwalu, tryb `?debug`), filtr sceny online, galeria, menu na telefonie, otwieranie z dysku (`file://`) |
 | `npm test` | build, a potem oba zestawy |
 
 Wymagany jest Node.js 22.23.4 lub nowszy. Przed pierwszym uruchomieniem testów przeglądarkowych: `npm ci`. Lokalnie używana jest zainstalowana

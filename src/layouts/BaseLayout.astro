@@ -112,6 +112,23 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Lets CSS enhance only what JS can operate (e.g. the shortened intro) -->
     <script is:inline>document.documentElement.classList.add('js');</script>
+    <!-- The "watch online" buttons (marked data-online) only show from the first festival day, or in
+         debug mode: open any page with ?debug (switch off with ?debug=0; remembered in this browser).
+         Set before the first paint, so nothing flashes. Without JS the buttons stay hidden. -->
+    <script is:inline define:vars={{ onlineFrom: `${edition.days[0].date}T00:00:00+01:00` }}>
+        (function () {
+            var root = document.documentElement;
+            var debug = false;
+            try {
+                var param = new URLSearchParams(location.search).get('debug');
+                if (param === '0' || param === 'off') localStorage.removeItem('masskaDebug');
+                else if (param !== null) localStorage.setItem('masskaDebug', '1');
+                debug = localStorage.getItem('masskaDebug') === '1';
+            } catch (e) {}
+            if (debug) root.classList.add('debug');
+            if (debug || Date.now() >= Date.parse(onlineFrom)) root.classList.add('online-live');
+        })();
+    </script>
     <meta name="description" content={description}>
     {robots && <meta name="robots" content={robots}>}
     <title>{title}</title>

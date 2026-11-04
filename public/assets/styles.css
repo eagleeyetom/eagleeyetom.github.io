@@ -2248,3 +2248,28 @@ body:not(.high-contrast) [data-tone="dark"]::before {
         display: none;
     }
 }
+
+/* "Watch online" buttons: hidden until the first festival day (see the head script in
+   BaseLayout.astro). Debug mode (?debug) shows them early and marks the page. */
+html:not(.online-live) [data-online] {
+    display: none !important;
+}
+
+html.online-live [data-online-off] {
+    display: none;
+}
+
+html.debug::after {
+    content: 'DEBUG';
+    position: fixed;
+    left: 0.5rem;
+    bottom: 0.5rem;
+    z-index: 1000;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+    background: #b00020;
+    color: #fff;
+    font: 700 0.75rem/1.4 system-ui, sans-serif;
+    letter-spacing: 0.08em;
+    pointer-events: none;
+}
