@@ -1,0 +1,185 @@
+<!doctype html>
+<!-- YouTube graphics of the channel, drawn by tools/youtube/render.mjs: draw(kind, data) puts one
+     graphic on the page (avatar, banner, watermark or thumbnail) and returns its size. -->
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>MASSKA – grafiki YouTube</title>
+<style>
+    @font-face {
+        font-family: 'Oswald';
+        src: url('../../node_modules/@fontsource-variable/oswald/files/oswald-latin-ext-wght-normal.woff2') format('woff2');
+        font-weight: 200 700;
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+        font-family: 'Oswald';
+        src: url('../../node_modules/@fontsource-variable/oswald/files/oswald-latin-wght-normal.woff2') format('woff2');
+        font-weight: 200 700;
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    html, body {
+        margin: 0;
+        background: transparent;
+    }
+
+    #art {
+        position: relative;
+        overflow: hidden;
+        font-family: 'Oswald', sans-serif;
+        line-height: 1;
+        color: #111111;
+    }
+
+    #art * {
+        position: absolute;
+        margin: 0;
+    }
+
+    #art img {
+        display: block;
+    }
+
+    /* The figure on the banner fades out under the red band instead of ending in a straight cut */
+    .fade {
+        -webkit-mask: linear-gradient(to bottom, #000 78%, transparent 96%);
+    }
+
+    .halftone {
+        background-image: radial-gradient(circle, #d32f13 42%, transparent 44%);
+        background-size: 26px 26px;
+    }
+
+    /* Safe-area guides of the banner preview */
+    .guide {
+        border: 4px dashed #00a2ff;
+        color: #00a2ff;
+        font: 600 30px/1.2 'Oswald', sans-serif;
+        padding: 8px 14px;
+        box-sizing: border-box;
+    }
+</style>
+</head>
+<body>
+<div id="art"></div>
+
+<script>
+    const A = '../promo/assets/';
+    const PUB = '../../public';
+    const art = document.getElementById('art');
+
+    // Poster geometry (pixels of the 4134x5724 artwork): the hat brim and the face
+    const POSTER = { width: 4134, height: 5724, hatCenterX: 2080, brimWidth: 3700 };
+
+    const html = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    // The figure scaled so that the brim of the hat is `brim` px wide, with the hat's centre at (cx, top + hat)
+    function figure(src, { brim, cx, top }) {
+        const scale = brim / POSTER.brimWidth;
+        const width = POSTER.width * scale;
+        return `<img src="${A}${src}" style="width:${width}px;left:${cx - POSTER.hatCenterX * scale}px;top:${top}px" alt="">`;
+    }
+
+    // Shrinks the text of el until its inner span fits in el's box
+    function fit(el, max, min = 40) {
+        const text = el.firstElementChild;
+        const too = () => text.offsetHeight > el.clientHeight || text.scrollWidth > el.clientWidth;
+        let size = max;
+        el.style.fontSize = `${size}px`;
+        while (size > min && too()) {
+            size -= 2;
+            el.style.fontSize = `${size}px`;
+        }
+    }
+
+    const KINDS = {
+        // 800x800, shown as a circle: the red hat with the 25 candles and the face, on white
+        'avatar-hat': () => {
+            art.style.background = '#ffffff';
+            art.innerHTML = figure('art.png', { brim: 720, cx: 400, top: 18 });
+            return [800, 800];
+        },
+
+        // 800x800: MASSKA in white on the red of the hat, with the jubilee numeral
+        'avatar-masska': () => {
+            art.style.background = '#d32f13';
+            art.innerHTML = `
+                <img src="${A}masska-light.png" style="width:600px;left:100px;top:300px;filter:brightness(1.08)" alt="">
+                <div style="left:0;width:800px;top:182px;text-align:center;font-size:84px;font-weight:700;letter-spacing:0.14em;color:#111">XXV</div>
+                <div style="left:0;width:800px;top:530px;text-align:center;font-size:56px;font-weight:600;letter-spacing:0.1em;color:#ffffff">2002–2026</div>`;
+            return [800, 800];
+        },
+
+        // 2560x1440. Everything that matters stays in the middle 1546x423 (what a computer shows);
+        // TVs show the whole picture
+        banner: ({ guides }) => {
+            art.style.background = '#ffffff';
+            art.innerHTML = `
+                <div class="halftone" style="left:0;top:0;width:620px;height:1440px;-webkit-mask:linear-gradient(to right,#000,transparent)"></div>
+                <div class="halftone" style="right:0;top:0;width:620px;height:1440px;-webkit-mask:linear-gradient(to left,#000,transparent)"></div>
+                ${figure('art.png', { brim: 430, cx: 1855, top: 492 }).replace('<img ', '<img class="fade" ')}
+                <img src="${A}title.png" style="height:300px;left:520px;top:570px" alt="">
+                <img src="${A}masska.png" style="width:610px;left:985px;top:548px" alt="">
+                <div style="left:985px;width:610px;top:762px;text-align:right;font-size:76px;font-weight:700"><span style="position:static;color:#b2221a">Sopot</span> <span style="position:static;color:#4a4a4a;letter-spacing:0.08em">2026</span></div>
+                <div style="left:520px;top:882px;font-size:40px;font-weight:600;letter-spacing:0.04em">13 · 15–18.11.2026 · <span style="position:static;color:#4a4a4a">Teatr Atelier · Sopot</span></div>
+                <div style="left:-60px;width:2700px;top:1060px;height:96px;background:#d32f13;border-block:6px solid #111;rotate:-1.2deg;display:flex;align-items:center;justify-content:center;gap:60px;color:#fff;font-size:52px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase">
+                    ${['spektakle', 'spotkania', 'dyskusje', 'masska.org', 'performances', 'meetings', 'discussions'].map((w) => `<span style="position:static">${w}</span>`).join('<span style="position:static">◆</span>')}
+                </div>
+                ${guides ? `
+                    <div class="guide" style="left:507px;top:508px;width:1546px;height:424px">komputer i telefon (1546×423)</div>
+                    <div class="guide" style="left:0;top:508px;width:2560px;height:424px;border-color:#ff9f00;color:#ff9f00;padding-top:430px">szerokość na komputerze (2560×423)</div>
+                    <div class="guide" style="left:0;top:0;width:2560px;height:1440px;border-color:#9b5cff;color:#9b5cff">telewizor (całość)</div>` : ''}`;
+            return [2560, 1440];
+        },
+
+        // 150x150 PNG on transparent: the candles in a white circle, legible on any picture
+        watermark: () => {
+            art.style.background = 'transparent';
+            art.innerHTML = `
+                <div style="inset:3px;border-radius:50%;background:#ffffff;box-shadow:0 0 0 2px rgba(0,0,0,0.15)"></div>
+                <img src="${A}candles.png" style="width:120px;left:15px;top:30px" alt="">`;
+            return [150, 150];
+        },
+
+        // 1280x720. Left: a black panel with the words; right: a picture (the figure of the
+        // poster, or a photo of the performance printed in the poster's red and black)
+        thumbnail: (d) => {
+            art.style.background = '#111111';
+            const photo = d.photo
+                ? `<div style="left:520px;top:0;width:760px;height:720px;clip-path:polygon(90px 0,100% 0,100% 100%,0 100%);overflow:hidden">
+                       <img src="${d.photo}" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15)" alt="">
+                       <div style="inset:0;background:#d32f13;mix-blend-mode:color"></div>
+                   </div>`
+                : `<div style="left:520px;top:0;width:760px;height:720px;clip-path:polygon(90px 0,100% 0,100% 100%,0 100%);background:#ffffff;overflow:hidden">
+                       ${figure('art.png', { brim: 620, cx: 420, top: 18 })}
+                   </div>`;
+            art.innerHTML = `
+                ${photo}
+                <div style="left:520px;top:0;width:114px;height:720px;background:#d32f13;clip-path:polygon(90px 0,114px 0,24px 100%,0 100%)"></div>
+                <div style="left:56px;top:52px;display:flex;align-items:center;gap:14px;padding:10px 18px 12px;background:#d32f13;color:#fff;font-size:34px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">
+                    ${d.flag ? `<img src="${PUB}/assets/icons/flags/${d.flag}.svg" style="position:static;height:28px;width:auto;border-radius:3px;box-shadow:0 0 0 2px #fff" alt="">` : ''}
+                    <span style="position:static">${html(d.kicker)}</span>
+                </div>
+                <div id="t-title" style="left:56px;top:136px;width:500px;height:330px;display:flex;align-items:flex-end;font-weight:700;line-height:0.98;text-transform:uppercase;color:#fff"><span style="position:static;display:block;width:100%">${html(d.title)}</span></div>
+                <div id="t-sub" style="left:56px;top:486px;width:470px;height:104px;font-weight:500;line-height:1.2;color:#ff9f8a"><span style="position:static;display:block">${html(d.subtitle)}</span></div>
+                <img src="${A}masska-light.png" style="left:56px;top:620px;width:170px" alt="">
+                <div style="left:244px;top:633px;font-size:30px;font-weight:600;letter-spacing:0.05em;color:#d2d2d2">${html(d.footer)}</div>`;
+            fit(document.getElementById('t-title'), 132, 54);
+            fit(document.getElementById('t-sub'), 40, 26);
+            return [1280, 720];
+        },
+    };
+
+    window.draw = async (kind, data = {}) => {
+        const [w, h] = KINDS[kind](data);
+        Object.assign(art.style, { width: `${w}px`, height: `${h}px` });
+        await Promise.all([...art.querySelectorAll('img')].map((img) => img.decode().catch(() => {})));
+        return [w, h];
+    };
+    window.ready = document.fonts.ready.then(() =>
+        Promise.all(['700 40px Oswald', '600 40px Oswald', '500 40px Oswald'].map((f) => document.fonts.load(f, 'ąęśćżź'))));
+</script>
+</body>
+</html>
