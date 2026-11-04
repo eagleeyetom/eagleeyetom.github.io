@@ -31,7 +31,7 @@ const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd T
                     var langs = navigator.languages || [navigator.language || 'pl'];
                     lang = langs.some(function (l) { return String(l).toLowerCase().indexOf('pl') === 0; }) ? 'pl' : 'en';
                 }
-                location.replace(lang + (location.protocol === 'file:' ? '/index.html' : '/'));
+                location.replace(lang + (location.protocol === 'file:' ? '/index.html' : '/') + location.search + location.hash);
             } catch (e) {}
         })();
     </script>

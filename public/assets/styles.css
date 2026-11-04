@@ -2259,17 +2259,28 @@ html.online-live [data-online-off] {
     display: none;
 }
 
-html.debug::after {
-    content: 'DEBUG';
+html:not(.debug) .debug-badge {
+    display: none;
+}
+
+.debug-badge {
     position: fixed;
     left: 0.5rem;
     bottom: 0.5rem;
     z-index: 1000;
-    padding: 0.15rem 0.5rem;
+    padding: 0.25rem 0.6rem;
+    border: 0;
     border-radius: 0.25rem;
     background: #b00020;
     color: #fff;
     font: 700 0.75rem/1.4 system-ui, sans-serif;
     letter-spacing: 0.08em;
-    pointer-events: none;
+    cursor: pointer;
+}
+
+.debug-badge:hover,
+.debug-badge:focus-visible {
+    background: #7a0016;
+    outline: 2px solid #fff;
+    outline-offset: 2px;
 }

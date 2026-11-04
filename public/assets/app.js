@@ -591,7 +591,7 @@ document.addEventListener("DOMContentLoaded", () => {
         siblingFolder +
         (alternateFile || (window.location.protocol === "file:" ? "index.html" : ""));
       if (preferredPath !== currentPath) {
-        window.location.replace(preferredPath);
+        window.location.replace(preferredPath + window.location.search + window.location.hash);
       }
     }
   }

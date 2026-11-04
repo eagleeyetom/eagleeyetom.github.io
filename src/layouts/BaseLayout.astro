@@ -121,11 +121,47 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
             var debug = false;
             try {
                 var param = new URLSearchParams(location.search).get('debug');
-                if (param === '0' || param === 'off') localStorage.removeItem('masskaDebug');
-                else if (param !== null) localStorage.setItem('masskaDebug', '1');
-                debug = localStorage.getItem('masskaDebug') === '1';
+                var off = param === '0' || param === 'off';
+                try {
+                    if (off) localStorage.removeItem('masskaDebug');
+                    else if (param !== null) localStorage.setItem('masskaDebug', '1');
+                    debug = localStorage.getItem('masskaDebug') === '1';
+                } catch (e) {}
+                // the address alone is enough when the browser keeps no storage
+                if (param !== null) debug = !off;
             } catch (e) {}
-            if (debug) root.classList.add('debug');
+            if (debug) {
+                root.classList.add('debug');
+                // keep ?debug in the address while clicking through the site
+                document.addEventListener('DOMContentLoaded', function () {
+                    // the badge switches debug mode off again with one click
+                    var pl = root.lang === 'pl';
+                    var badge = document.createElement('button');
+                    badge.type = 'button';
+                    badge.className = 'debug-badge';
+                    badge.textContent = 'DEBUG ✕';
+                    badge.setAttribute('aria-label', pl ? 'Tryb debug włączony. Kliknij, aby wyłączyć' : 'Debug mode is on. Click to switch off');
+                    badge.addEventListener('click', function () {
+                        try { localStorage.removeItem('masskaDebug'); } catch (e) {}
+                        var url = new URL(location.href);
+                        url.searchParams.delete('debug');
+                        if (url.href === location.href) location.reload();
+                        else location.assign(url.href);
+                    });
+                    document.body.appendChild(badge);
+                    document.querySelectorAll('a[href]').forEach(function (a) {
+                        var href = a.getAttribute('href');
+                        if (href.charAt(0) === '#' || a.hasAttribute('download')) return;
+                        if (a.protocol !== location.protocol || a.host !== location.host) return;
+                        if (!/(\.html|\/)$/.test(a.pathname)) return;
+                        var url = new URL(a.href);
+                        if (!url.searchParams.has('debug')) {
+                            url.searchParams.set('debug', '1');
+                            a.href = url.href;
+                        }
+                    });
+                });
+            }
             if (debug || Date.now() >= Date.parse(onlineFrom)) root.classList.add('online-live');
         })();
     </script>

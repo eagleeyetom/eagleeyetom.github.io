@@ -211,6 +211,37 @@ test.describe('"watch online" buttons', () => {
     await expect(page.locator('html')).not.toHaveClass(/debug/);
   });
 
+  test('debug mode follows the visitor: ?debug stays in the address when clicking through', async ({ page }) => {
+    await visitor(page);
+    await page.goto('/pl/index.html?debug');
+    await page.locator('.hero-actions').getByRole('link', { name: 'Program' }).click();
+    await expect(page).toHaveURL(/\/pl\/program\.html\?debug=1/);
+    // even if the browser keeps no storage, the address carries the mode
+    await page.evaluate(() => localStorage.removeItem('masskaDebug'));
+    await page.locator('.hero-actions').getByRole('link', { name: 'Oglądaj transmisje' }).click();
+    await expect(page).toHaveURL(/\/pl\/online\.html\?debug=1/);
+    await expect(page.locator('html')).toHaveClass(/debug/);
+    // external and in-page links are left alone
+    const odd = await page.evaluate(() => [...document.querySelectorAll('a[href]')]
+      .filter((a) => a.host !== location.host || a.getAttribute('href').startsWith('#'))
+      .filter((a) => a.getAttribute('href').includes('debug')).length);
+    expect(odd).toBe(0);
+  });
+
+  test('the DEBUG badge switches debug mode off with one click', async ({ page }) => {
+    await visitor(page);
+    await page.clock.setFixedTime(new Date('2026-11-01T12:00:00+01:00'));
+    await page.goto('/pl/index.html?debug');
+    await page.getByRole('button', { name: /Tryb debug włączony/ }).click();
+    await expect(page).toHaveURL(/\/pl\/index\.html$/);
+    await expect(page.locator('html')).not.toHaveClass(/debug/);
+    expect(await shown(page)).not.toContain(true);
+    // still off on the next page
+    await page.goto('/pl/program.html');
+    await expect(page.locator('html')).not.toHaveClass(/debug/);
+    await expect(page.locator('.debug-badge')).toBeHidden();
+  });
+
   test('the contact FAQ keeps its sentence without the link', async ({ page }) => {
     await visitor(page);
     await page.clock.setFixedTime(new Date('2026-11-01T12:00:00+01:00'));
