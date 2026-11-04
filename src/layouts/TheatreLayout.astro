@@ -86,184 +86,138 @@ function getTheatreUrl(entry: any) {
   isTheatre={true}
   activeTheatreId={frontmatter.id}
   translationUrl={translationUrl}
-  robots={frontmatter.placeholder ? 'noindex, follow' : undefined}
 >
-    {frontmatter.placeholder && (
-        <div class="placeholder-note">
-            <p>
-                <strong>{isPl ? "Wpis zastępczy." : "Placeholder entry."}</strong>
-                {isPl
-                    ? " Ten zespół i opis są zaślepką: prawdziwe dane pojawią się po zatwierdzeniu programu."
-                    : " This ensemble and its description are a stand-in: the real details will appear once the programme is confirmed."}
-            </p>
-        </div>
-    )}
-
-    <!-- Hero Section -->
-    <section class="page-section theatre-hero">
-        <div class="section-inner two-column">
-            <div>
-                <span class="badge">
-                    {frontmatter.badgeText} <span class={`fi fi-${frontmatter.countryCode}`} aria-hidden="true"></span>
-                </span>
-                <h1>{frontmatter.name}</h1>
-                <div set:html={frontmatter.synopsis} />
-                <div class="hero-actions">
-                    {frontmatter.recordingUrl && (
-                        <a class="button primary" href={frontmatter.recordingUrl} target="_blank" rel="noopener">
-                            {isPl ? "Odtwórz spektakl" : "Play video"}
-                        </a>
-                    )}
-                    <a class="button secondary" href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")}>
-                        {isPl ? "Wróć do sceny online" : "Back to the online stage"}
-                    </a>
-                </div>
+    <!-- The stage: what it is, and the recording next to it -->
+    <section class="page-section show-stage" data-tone="dark" aria-labelledby="show-title">
+        <div class="show-stage__inner">
+            <div class="show-stage__text">
+                <a class="show-stage__back" href={getRelativeUrl(isPl ? "/pl/online.html" : "/en/online.html")}>
+                    <span aria-hidden="true">&larr;</span> {isPl ? "Wróć do sceny online" : "Back to the online stage"}
+                </a>
+                <p class="show-stage__where">
+                    <span class={`fi fi-${frontmatter.countryCode}`} aria-hidden="true"></span>
+                    {frontmatter.badgeText}
+                </p>
+                <h1 id="show-title">{frontmatter.showTitle}</h1>
+                <p class="show-stage__company"><strong>{frontmatter.name}</strong> · {frontmatter.city}</p>
+                <div class="show-stage__synopsis" set:html={frontmatter.synopsis} />
                 <ul class="chip-row" role="list">
                     <li class="chip" role="listitem">{frontmatter.genre}</li>
                     <li class="chip" role="listitem">{frontmatter.duration}</li>
                     <li class="chip" role="listitem">{isPl ? `Napisy: ${frontmatter.subtitles}` : `Subtitles: ${frontmatter.subtitles}`}</li>
-                </ul>
-                <div class="theatre-hero__map">
-                <WorldMap
-                    lang={lang}
-                    mode="single"
-                    activeId={frontmatter.id}
-                    pins={[{
-                        id: frontmatter.id,
-                        name: frontmatter.name,
-                        city: frontmatter.city.split(',')[0],
-                        country: frontmatter.country,
-                        countryCode: frontmatter.countryCode,
-                        lat: frontmatter.lat,
-                        lon: frontmatter.lon,
-                    }]}
-                />
-                </div>
-            </div>
-            <aside class="info-panel info-panel--facts" aria-label={isPl ? "Informacje o spektaklu" : "Performance details"}>
-                <h2>{isPl ? "Przegląd spektaklu" : "Performance overview"}</h2>
-                <dl>
-                    <div>
-                        <dt>{isPl ? "Tytuł" : "Title"}</dt>
-                        <dd>{frontmatter.showTitle}</dd>
-                    </div>
-                    <div>
-                        <dt>{isPl ? "Kraj" : "Country"}</dt>
-                        <dd><span class={`fi fi-${frontmatter.countryCode}`} aria-hidden="true"></span> {frontmatter.country}</dd>
-                    </div>
-                    <div>
-                        <dt>{isPl ? "Miasto" : "City"}</dt>
-                        <dd>{frontmatter.city}</dd>
-                    </div>
                     {frontmatter.language && (
-                        <div>
-                            <dt>{isPl ? "Język" : "Language"}</dt>
-                            <dd>{frontmatter.language}</dd>
-                        </div>
+                        <li class="chip" role="listitem">{isPl ? `Język: ${frontmatter.language}` : `Language: ${frontmatter.language}`}</li>
                     )}
-                    {frontmatter.availability && (
-                        <div>
-                            <dt>{isPl ? "Dostępny online" : "Available online"}</dt>
-                            <dd>{frontmatter.availability}</dd>
-                        </div>
-                    )}
-                    {frontmatter.accessibility && (
-                        <div>
-                            <dt>{isPl ? "Dostępność" : "Accessibility"}</dt>
-                            <dd>{frontmatter.accessibility}</dd>
-                        </div>
-                    )}
-                </dl>
-            </aside>
-        </div>
-    </section>
-
-    <!-- Detailed Synopsis Section -->
-    <section class="page-section alt" aria-labelledby="synopsis-title">
-        <div class="section-inner">
-            <h2 id="synopsis-title">{isPl ? "O spektaklu" : "Synopsis"}</h2>
-            <div set:html={frontmatter.aboutShow} />
-            {frontmatter.quote && (
-                <blockquote class="pull-quote">{isPl ? "„" : "“"}{quoteText}”</blockquote>
-            )}
-        </div>
-    </section>
-
-    <!-- Video Section -->
-    <section class="page-section" aria-label="Video">
-        <div class="section-inner">
-            {frontmatter.videoYtId ? (
-                <div class="external-media" data-yt-id={frontmatter.videoYtId} data-title={frontmatter.videoTitle ?? frontmatter.showTitle}>
-                </div>
-            ) : (
-                <div class="video-soon">
-                    <p class="video-soon__title">{isPl ? "Nagranie pojawi się tutaj" : "The recording will appear here"}</p>
-                    <p>
-                        {frontmatter.availability
-                            ? (isPl ? `Dostępne online: ${frontmatter.availability}` : `Available online: ${frontmatter.availability}`)
-                            : (isPl ? "Spektakl będzie dostępny w czasie festiwalu." : "The performance will be available during the festival.")}
-                    </p>
-                </div>
-            )}
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    {frontmatter.gallery && frontmatter.gallery.length > 0 && (
-        <section class="page-section" aria-label="Gallery">
-            <div class="section-inner">
-                <div class="theatre-gallery" aria-label={isPl ? "Karuzela zdjęć zespołu" : "Ensemble photo gallery"} role="region" data-gallery>
-                    <div class="theatre-gallery__track" tabindex="0" role="group" aria-label={isPl ? "Zdjęcia, przewijaj w bok" : "Photos, scroll sideways"}>
-                        {frontmatter.gallery.map(img => (
-                            <figure>
-                                <img src={getRelativeUrl(img.src)} width="800" height="560" loading="lazy" decoding="async" alt={img.alt} />
-                                <figcaption>{img.alt}</figcaption>
-                            </figure>
-                        ))}
-                    </div>
-                    <div class="theatre-gallery__controls">
-                        <button type="button" class="gallery-btn" data-gallery-prev aria-label={isPl ? "Poprzednie zdjęcie" : "Previous photo"}>‹</button>
-                        <button type="button" class="gallery-btn" data-gallery-toggle data-icon-pause="❚❚" data-icon-play="▶" data-label-pause={isPl ? "Wstrzymaj automatyczne przewijanie" : "Pause autoplay"} data-label-play={isPl ? "Wznów automatyczne przewijanie" : "Resume autoplay"} aria-pressed="false">❚❚</button>
-                        <button type="button" class="gallery-btn" data-gallery-next aria-label={isPl ? "Następne zdjęcie" : "Next photo"}>›</button>
-                    </div>
-                    <div class="theatre-gallery__dots" role="group" aria-label={isPl ? "Wybierz zdjęcie" : "Choose photo"}></div>
-                </div>
+                </ul>
             </div>
-        </section>
-    )}
-
-    <!-- About Ensemble Section -->
-    {(frontmatter.about || frontmatter.credits) && (
-        <section class="page-section" aria-labelledby="ensemble-info-title">
-            <div class="section-inner two-column">
-                <div>
-                    <h2 id="ensemble-info-title">{isPl ? "O zespole" : "About the ensemble"}</h2>
-                    {frontmatter.about && <div set:html={frontmatter.about} />}
-                </div>
-                {frontmatter.credits && (
-                    <aside class="info-panel" aria-label={frontmatter.credits.title}>
-                        <h2>{frontmatter.credits.title}</h2>
-                        <ul class="meta-list">
-                            {frontmatter.credits.items.map(item => (
-                                <li><strong>{item.label}:</strong> {item.value}</li>
-                            ))}
-                        </ul>
-                    </aside>
+            <div class="show-stage__player">
+                {frontmatter.videoYtId ? (
+                    <div class="external-media" data-yt-id={frontmatter.videoYtId} data-title={frontmatter.videoTitle ?? frontmatter.showTitle}>
+                    </div>
+                ) : (
+                    <div class="video-soon">
+                        <p class="video-soon__title">{isPl ? "Nagranie pojawi się tutaj" : "The recording will appear here"}</p>
+                        <p>
+                            {frontmatter.availability
+                                ? (isPl ? `Dostępne online: ${frontmatter.availability}` : `Available online: ${frontmatter.availability}`)
+                                : (isPl ? "Spektakl będzie dostępny w czasie festiwalu." : "The performance will be available during the festival.")}
+                        </p>
+                    </div>
+                )}
+                {frontmatter.recordingUrl && (
+                    <p class="show-stage__external">
+                        <a href={frontmatter.recordingUrl} target="_blank" rel="noopener noreferrer">
+                            {isPl ? "Otwórz w YouTube" : "Open on YouTube"} <span aria-hidden="true">&nearr;</span>
+                        </a>
+                    </p>
                 )}
             </div>
-        </section>
-    )}
+        </div>
+    </section>
 
-    <!-- History & Contact Section -->
-    {(frontmatter.history || frontmatter.contactEmail) && (
-        <section class="page-section alt" aria-labelledby="ensemble-history-title">
-            <div class="section-inner two-column">
-                <div>
-                    <h2 id="ensemble-history-title">{isPl ? "Historia zespołu" : "Ensemble history"}</h2>
-                    {frontmatter.history ? <div set:html={frontmatter.history} /> : <p />}
+    <!-- The story in the main column, the facts in one card beside it -->
+    <section class="page-section show-body">
+        <div class="show-body__inner">
+            <div class="show-body__main">
+                <article aria-labelledby="synopsis-title">
+                    <h2 id="synopsis-title">{isPl ? "O spektaklu" : "About the performance"}</h2>
+                    <div set:html={frontmatter.aboutShow} />
+                    {frontmatter.quote && (
+                        <blockquote class="pull-quote">{isPl ? "„" : "“"}{quoteText}”</blockquote>
+                    )}
+                </article>
+
+                {frontmatter.gallery && frontmatter.gallery.length > 0 && (
+                    <div class="theatre-gallery" aria-label={isPl ? "Karuzela zdjęć zespołu" : "Ensemble photo gallery"} role="region" data-gallery>
+                        <div class="theatre-gallery__track" tabindex="0" role="group" aria-label={isPl ? "Zdjęcia, przewijaj w bok" : "Photos, scroll sideways"}>
+                            {frontmatter.gallery.map(img => (
+                                <figure>
+                                    <img src={getRelativeUrl(img.src)} width="800" height="560" loading="lazy" decoding="async" alt={img.alt} />
+                                    <figcaption>{img.alt}</figcaption>
+                                </figure>
+                            ))}
+                        </div>
+                        <div class="theatre-gallery__controls">
+                            <button type="button" class="gallery-btn" data-gallery-prev aria-label={isPl ? "Poprzednie zdjęcie" : "Previous photo"}>‹</button>
+                            <button type="button" class="gallery-btn" data-gallery-toggle data-icon-pause="❚❚" data-icon-play="▶" data-label-pause={isPl ? "Wstrzymaj automatyczne przewijanie" : "Pause autoplay"} data-label-play={isPl ? "Wznów automatyczne przewijanie" : "Resume autoplay"} aria-pressed="false">❚❚</button>
+                            <button type="button" class="gallery-btn" data-gallery-next aria-label={isPl ? "Następne zdjęcie" : "Next photo"}>›</button>
+                        </div>
+                        <div class="theatre-gallery__dots" role="group" aria-label={isPl ? "Wybierz zdjęcie" : "Choose photo"}></div>
+                    </div>
+                )}
+
+                {(frontmatter.about || frontmatter.history) && (
+                    <article aria-labelledby="ensemble-info-title">
+                        <h2 id="ensemble-info-title">{isPl ? "O zespole" : "About the ensemble"}</h2>
+                        {frontmatter.about && <div set:html={frontmatter.about} />}
+                        {frontmatter.history && <div set:html={frontmatter.history} />}
+                    </article>
+                )}
+            </div>
+
+            <aside class="show-body__side" aria-label={isPl ? "Informacje o spektaklu" : "Performance details"}>
+                <div class="info-panel show-card">
+                    <h2>{isPl ? "Karta spektaklu" : "Performance card"}</h2>
+                    <dl>
+                        {frontmatter.credits?.items.map(item => (
+                            <div>
+                                <dt>{item.label}</dt>
+                                <dd>{item.value}</dd>
+                            </div>
+                        ))}
+                        {frontmatter.accessibility && (
+                            <div>
+                                <dt>{isPl ? "Dostępność" : "Accessibility"}</dt>
+                                <dd>{frontmatter.accessibility}</dd>
+                            </div>
+                        )}
+                        {frontmatter.availability && (
+                            <div>
+                                <dt>{isPl ? "Dostępny online" : "Available online"}</dt>
+                                <dd>{frontmatter.availability}</dd>
+                            </div>
+                        )}
+                    </dl>
+                    <div class="show-card__map">
+                        <WorldMap
+                            lang={lang}
+                            mode="single"
+                            activeId={frontmatter.id}
+                            pins={[{
+                                id: frontmatter.id,
+                                name: frontmatter.name,
+                                city: frontmatter.city.split(',')[0],
+                                country: frontmatter.country,
+                                countryCode: frontmatter.countryCode,
+                                lat: frontmatter.lat,
+                                lon: frontmatter.lon,
+                            }]}
+                        />
+                    </div>
                 </div>
+
                 {frontmatter.contactEmail && (
-                    <aside class="info-panel" aria-label="Contact information">
+                    <div class="info-panel show-card">
                         <h2>{isPl ? "Kontakt" : "Contact"}</h2>
                         <ul class="contact-list">
                             {frontmatter.contactName && (
@@ -274,11 +228,11 @@ function getTheatreUrl(entry: any) {
                                 <li>Social media: <a href={frontmatter.contactSocialUrl} target="_blank" rel="noopener noreferrer">{frontmatter.contactSocialText || "Link"}</a></li>
                             )}
                         </ul>
-                    </aside>
+                    </div>
                 )}
-            </div>
-        </section>
-    )}
+            </aside>
+        </div>
+    </section>
 
     <!-- Previous / next performance, in the order of the online stage -->
     {(previousTheatre || nextTheatre) && (
@@ -300,61 +254,190 @@ function getTheatreUrl(entry: any) {
         </nav>
     )}
 
-    <!-- Accordion list of all theatres -->
-    <section class="page-section" aria-labelledby="ensemble-list-title">
-        <div class="section-inner">
-            <h2 id="ensemble-list-title">{isPl ? "Zespoły festiwalowe" : "Festival ensembles"}</h2>
-            <details class="info-panel">
-                <summary>{isPl ? "Rozwiń listę zespołów" : "Expand ensemble list"}</summary>
-                <ul class="meta-list">
-                    {listTheatres.map(t => (
-                        <li>
-                            <a href={getRelativeUrl(getTheatreUrl(t))}>
-                                {theatreLabel(t)} <span class={`fi fi-${t.data.countryCode}`} aria-hidden="true"></span>
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </details>
-        </div>
-    </section>
+    <!-- Accordion list of all theatres (only worth showing once there is more than one) -->
+    {listTheatres.length > 1 && (
+        <section class="page-section" aria-labelledby="ensemble-list-title">
+            <div class="section-inner">
+                <h2 id="ensemble-list-title">{isPl ? "Zespoły festiwalowe" : "Festival ensembles"}</h2>
+                <details class="info-panel">
+                    <summary>{isPl ? "Rozwiń listę zespołów" : "Expand ensemble list"}</summary>
+                    <ul class="meta-list">
+                        {listTheatres.map(t => (
+                            <li>
+                                <a href={getRelativeUrl(getTheatreUrl(t))}>
+                                    {theatreLabel(t)} <span class={`fi fi-${t.data.countryCode}`} aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </details>
+            </div>
+        </section>
+    )}
 </BaseLayout>
 
 <style>
-    /* Hero: less air above and below, the facts in two columns, the map under the text */
-    .theatre-hero {
-        padding-block: clamp(2rem, 4vw, 3.5rem);
+    /* ---- The stage: dark like the poster's suit, text on the left, the recording on the right ---- */
+    .show-stage {
+        padding-block: clamp(1.5rem, 3vw, 3rem);
     }
 
-    .theatre-hero .two-column {
-        align-items: start;
+    /* The ragged edge of dark sections would hang over the header here */
+    .show-stage::before {
+        display: none !important;
     }
 
-    .theatre-hero__map {
-        max-width: 30rem;
-    }
-
-    .info-panel--facts dl {
+    .show-stage__inner {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-        gap: var(--spacing-sm) var(--spacing-md);
-        margin: 0;
+        gap: var(--spacing-lg) clamp(1.5rem, 4vw, 3.5rem);
+        align-items: center;
+        max-width: var(--max-width);
+        margin: 0 auto;
     }
 
-    .info-panel--facts dl > div {
+    .show-stage__inner > * {
         min-width: 0;
     }
 
-    .placeholder-note {
-        padding: var(--spacing-sm) var(--gutter);
-        background: var(--color-red-soft);
-        color: var(--color-text);
-        text-align: center;
+    @media (min-width: 960px) {
+        .show-stage__inner {
+            grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        }
     }
 
-    .placeholder-note p {
+    .show-stage__text {
+        display: grid;
+        gap: var(--spacing-sm);
+        justify-items: start;
+    }
+
+    .show-stage__text > * {
         margin: 0;
-        color: inherit;
+    }
+
+    .show-stage__back {
+        font-size: 0.9rem;
+        color: var(--color-muted);
+        text-decoration: none;
+    }
+
+    .show-stage__back:hover,
+    .show-stage__back:focus-visible {
+        color: var(--color-text);
+        text-decoration: underline;
+    }
+
+    .show-stage__where {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: var(--spacing-xs);
+        font-family: var(--font-family-headers);
+        font-size: 0.95rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-accent-strong);
+    }
+
+    .show-stage h1 {
+        font-size: clamp(2rem, 2.6vw + 1rem, 3.5rem);
+        line-height: 1.05;
+        overflow-wrap: anywhere;
+    }
+
+    .show-stage__company {
+        font-size: 1.1rem;
+        color: var(--color-muted);
+    }
+
+    .show-stage__company strong {
+        color: var(--color-text);
+    }
+
+    .show-stage__synopsis :global(p) {
+        margin: 0;
+    }
+
+    .show-stage .chip-row {
+        margin: var(--spacing-xs) 0 0;
+    }
+
+    .show-stage__external {
+        margin: var(--spacing-xs) 0 0;
+        text-align: right;
+        font-size: 0.9rem;
+    }
+
+    .show-stage__external a {
+        color: var(--color-muted);
+    }
+
+    .show-stage__external a:hover,
+    .show-stage__external a:focus-visible {
+        color: var(--color-text);
+    }
+
+    /* ---- The body: the story, the gallery and the ensemble in one column, the facts in a card ---- */
+    .show-body__inner {
+        display: grid;
+        gap: var(--spacing-xl);
+        max-width: var(--max-width);
+        margin: 0 auto;
+    }
+
+    .show-body__inner > * {
+        min-width: 0;
+    }
+
+    @media (min-width: 960px) {
+        .show-body__inner {
+            grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+            align-items: start;
+        }
+
+        .show-body__side {
+            position: sticky;
+            top: var(--spacing-md);
+        }
+    }
+
+    .show-body__main {
+        display: grid;
+        gap: var(--spacing-xl);
+    }
+
+    .show-body__main .theatre-gallery {
+        width: 100%;
+        max-width: none;
+    }
+
+    .show-body__main article > :global(:first-child) {
+        margin-top: 0;
+    }
+
+    .show-body__side {
+        display: grid;
+        gap: var(--spacing-md);
+    }
+
+    .show-card dl {
+        gap: var(--spacing-sm);
+    }
+
+    .show-card dt {
+        font-size: 0.8rem;
+        font-weight: var(--font-weight-medium);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-grey-strong);
+    }
+
+    .show-card dd {
+        color: var(--color-text);
+    }
+
+    .show-card__map {
+        margin-top: var(--spacing-xs);
     }
 
     .video-soon {

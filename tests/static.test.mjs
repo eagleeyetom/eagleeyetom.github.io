@@ -205,11 +205,6 @@ test('sitemap lists real pages, and exactly the indexable ones', () => {
   problems(bad);
 });
 
-test('placeholder ensemble pages are kept out of search engines', () => {
-  const stand = [...pages.values()].filter((p) => /\/(zespol|ensemble)-[a-z]{2}\.html$/.test(p.name));
-  for (const page of stand) assert.match(page.html, /<meta name="robots" content="noindex/, page.name);
-});
-
 test('robots.txt points at the sitemap', () => {
   const robots = readFileSync(join(DIST, 'robots.txt'), 'utf8');
   assert.match(robots, /Sitemap: https:\/\/masska\.org\/sitemap-index\.xml/);

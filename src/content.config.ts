@@ -17,8 +17,6 @@ const theatresCollection = defineCollection({
     // Where the ensemble comes from, for the pin on the world map (optional: no pin without it)
     lat: z.number().min(-90).max(90).optional(),
     lon: z.number().min(-180).max(180).optional(),
-    // true while the entry is a stand-in: the page says so and is kept out of search engines
-    placeholder: z.boolean().default(false),
     // Free text, e.g. "od XX do XX listopada 2026"; shown on the card and the page
     availability: z.string().optional(),
     badgeText: z.string(),

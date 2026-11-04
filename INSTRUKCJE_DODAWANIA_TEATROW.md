@@ -20,20 +20,11 @@ języka).
 
 ---
 
-## Wpisy zastępcze (zaślepki)
+## Stan obecny
 
-Dopóki program nie jest zatwierdzony, w kolekcji leży 10 zespołów z polem `placeholder: true`
-(`zespol-xx.md` / `ensemble-xx.md`: Japonia, Brazylia, Kenia, Australia, Argentyna, Indie, Niemcy, Gruzja, RPA, Polska).
-Takie wpisy:
-
-- mają na stronie żółty pasek „Wpis zastępczy” i znacznik „Zaślepka” na kaflu,
-- mają `noindex` i nie trafiają do sitemapy, więc Lorem Ipsum nie wejdzie do Google,
-- używają zdjęć `public/assets/img/teatr/placeholder-1…5.webp` (kadry z plakatu, generuje je
-  `python tools/build_graphics.py`).
-
-**Zamiana zaślepki na prawdziwy zespół:** usuń parę plików `zespol-xx.md` + `ensemble-xx.md` i dodaj nowy wpis
-według kroków niżej (z `placeholder: false` albo bez tego pola). Dane zespołów z edycji 2025 leżą w
-`design/archive/theatres-2025/` (razem ze zdjęciami), poza buildem.
+Wszystkie wpisy są prawdziwe (bez zaślepek). Dane zespołów z edycji 2025 leżą w `design/archive/theatres-2025/`
+(razem ze zdjęciami), poza buildem. Filtr regionów na scenie online pojawia się dopiero, gdy zespoły pochodzą
+z co najmniej dwóch regionów.
 
 ---
 
@@ -60,7 +51,6 @@ country: "Węgry"               # kraj tak, jak ma być wypisany na stronie
 region: "europe"               # europe | asia | americas | africa | oceania (filtr na scenie online)
 lat: 47.50                     # opcjonalnie: współrzędne miasta (kropka na mapie świata; bez nich brak kropki)
 lon: 19.04
-placeholder: false             # true = zaślepka (noindex, pasek „Wpis zastępczy”)
 availability: "16–20 listopada 2026"   # opcjonalnie: kiedy spektakl jest dostępny online
 badgeText: "Węgry · Teatr integracyjny"
 genre: "Teatr integracyjny, dramat"
@@ -109,8 +99,10 @@ Błędne pole w nagłówku pliku zatrzyma build z komunikatem (walidacja Zod w `
 ## Co dzieje się automatycznie
 - **Scena online**: kafel z pierwszym zdjęciem galerii, flagą, krajem, tytułem, gatunkiem, czasem trwania i napisami;
   filtr regionów, liczniki (spektakle, kraje) i „ściana flag” w nagłówku liczą się z danych.
-- **Podstrona zespołu**: informacje o spektaklu, galeria (przewijana palcem), wideo YouTube ładowane dopiero po zgodzie
-  lub kliknięciu, poprzedni/następny spektakl (w kolejności: kraj, nazwa) i lista wszystkich zespołów.
+- **Podstrona zespołu**: u góry ciemna „scena” (tytuł spektaklu, krótki opis `synopsis`, gatunek, czas, napisy, język i obok
+  wideo YouTube ładowane dopiero po zgodzie lub kliknięciu); niżej opis `aboutShow`, galeria (przewijana palcem), „O zespole”
+  (`about` + `history`) i z boku jedna „Karta spektaklu” (`credits`, dostępność, termin, mapa, kontakt). Poprzedni/następny
+  spektakl i lista zespołów pojawiają się, gdy zespołów jest więcej niż jeden.
 - **Mapa świata** na scenie online (kraje zespołów zaznaczone kolorem, kropki w miastach) i mała mapa na stronie
   każdego zespołu. Kraje są kolorowane po `countryCode`, kropki stawiane po `lat`/`lon`. Mapa jest zwykłym obrazem:
   nie ma na niej linków, a dojście do spektaklu daje lista kafli. Zarys lądów generuje

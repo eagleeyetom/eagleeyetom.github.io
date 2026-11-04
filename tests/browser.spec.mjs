@@ -12,7 +12,7 @@ const PAGES = [
   '/pl/kontakt.html', '/en/contact.html',
   '/pl/cookies.html', '/en/cookies.html',
   '/pl/dla-mediow.html', '/en/press.html',
-  '/pl/zespol-jp.html', '/en/ensemble-de.html', '/pl/zespol-pl.html',
+  '/pl/teatr-baltazar.html', '/en/baltazar.html',
 ];
 
 const langOf = (url) => (url.startsWith('/en/') ? 'en' : 'pl');
@@ -168,23 +168,18 @@ test.describe('cookie banner', () => {
     page.on('request', (r) => /google|youtube|gstatic/.test(new URL(r.url()).hostname) && external.push(r.url()));
     await page.addInitScript(() => sessionStorage.setItem('masskaConfetti', '1'));
     await page.goto('/pl/index.html');
-    await page.goto('/pl/zespol-jp.html');
+    await page.goto('/pl/teatr-baltazar.html');
     await page.waitForLoadState('networkidle');
     expect(external).toEqual([]);
   });
 });
 
 test.describe('online stage', () => {
-  test('lists the performances and filters them by region', async ({ page }) => {
+  test('lists the performances; the region filter only appears with more than one region', async ({ page }) => {
     await visitor(page);
     await page.goto('/pl/online.html');
-    const cards = page.locator('.stage-card:not([hidden])');
-    await expect(cards).toHaveCount(10);
-    await page.getByRole('button', { name: /^Azja/ }).click();
-    await expect(cards).toHaveCount(2);
-    await expect(page.locator('[data-stage-count]')).toContainText('2 z 10');
-    await page.getByRole('button', { name: /^Wszystkie/ }).click();
-    await expect(cards).toHaveCount(10);
+    await expect(page.locator('.stage-card:not([hidden])')).toHaveCount(1);
+    await expect(page.locator('[data-stage-filter]')).toHaveCount(0);
   });
 
   test('the performances start high on the page', async ({ page }) => {
@@ -194,28 +189,26 @@ test.describe('online stage', () => {
     expect(top).toBeLessThan(800);
   });
 
-  test('a card opens the ensemble page, which links back and to its neighbours', async ({ page }) => {
+  test('a card opens the ensemble page, which links back to the stage', async ({ page }) => {
     await visitor(page);
     await page.goto('/pl/online.html');
     await page.locator('.stage-card a').first().click();
     await expect(page.getByRole('link', { name: /Wróć do sceny online/ })).toBeVisible();
-    await expect(page.getByRole('navigation', { name: 'Inne spektakle' })).toBeVisible();
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
   });
 
   test('the world map names the countries', async ({ page }) => {
     await visitor(page);
     await page.goto('/pl/online.html');
-    await expect(page.getByRole('img', { name: /Kraje uczestniczące:.*Japonia/ })).toBeVisible();
+    await expect(page.getByRole('img', { name: /Kraje uczestniczące:.*Węgry/ })).toBeVisible();
   });
 });
 
 test.describe('galleries and carousels', () => {
   test('the ensemble gallery scrolls with its dots', async ({ page }) => {
     await visitor(page);
-    await page.goto('/pl/zespol-jp.html');
+    await page.goto('/pl/teatr-baltazar.html');
     const dots = page.locator('.gallery-dot');
-    await expect(dots).toHaveCount(3);
+    await expect(dots).toHaveCount(6);
     await dots.nth(1).click();
     await expect(dots.nth(1)).toHaveAttribute('aria-current', 'true');
     await expect.poll(() => page.locator('.theatre-gallery__track').evaluate((el) => el.scrollLeft)).toBeGreaterThan(50);

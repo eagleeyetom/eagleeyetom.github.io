@@ -22,11 +22,9 @@ const t = isPl
       countriesLabel: 'Kraje uczestniczące w festiwalu',
       mapTitle: 'Skąd przyjeżdżają zespoły',
       gridTitle: 'Zespoły i spektakle',
-      note: 'Lista zespołów w przygotowaniu: poniższe wpisy to zaślepki.',
       filterLabel: 'Pokaż zespoły z regionu',
       all: 'Wszystkie',
       count: (n: number, total: number) => `Pokazano ${n} z ${total} spektakli`,
-      placeholder: 'Zaślepka',
       available: 'Dostępny online',
       ctaTitle: 'Jesteś teatrem?',
       ctaText: 'Przyjmujemy zgłoszenia zespołów z Polski i z zagranicy. Wypełnij krótki formularz, a odezwiemy się do Ciebie.',
@@ -44,11 +42,9 @@ const t = isPl
       countriesLabel: 'Countries taking part in the festival',
       mapTitle: 'Where the ensembles come from',
       gridTitle: 'Ensembles and performances',
-      note: 'The list of ensembles is being prepared: the entries below are placeholders.',
       filterLabel: 'Show ensembles from the region',
       all: 'All',
       count: (n: number, total: number) => `Showing ${n} of ${total} performances`,
-      placeholder: 'Placeholder',
       available: 'Available online',
       ctaTitle: 'Are you a theatre?',
       ctaText: 'We accept applications from ensembles in Poland and abroad. Fill in a short form and we will get back to you.',
@@ -68,7 +64,6 @@ const regions = regionOrder
 
 // One flag per country, in the order of the list
 const countries = [...new Map(entries.map((e) => [e.data.countryCode, e.data.country])).entries()];
-const hasPlaceholders = entries.some((e) => e.data.placeholder);
 
 const applyUrl = 'https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform';
 
@@ -125,14 +120,14 @@ function imageOf(entry: (typeof entries)[number]) {
     <div class="section-inner">
         <h2 id="stage-grid-title">{t.gridTitle}</h2>
 
-        {hasPlaceholders && <div class="announcement"><p>{t.note}</p></div>}
-
-        <div class="stage-filter" role="group" aria-label={t.filterLabel} hidden data-stage-filter>
-            <button type="button" aria-pressed="true" data-region="all">{t.all} ({entries.length})</button>
-            {regions.map((r) => (
-                <button type="button" aria-pressed="false" data-region={r.key}>{t.regions[r.key]} ({r.count})</button>
-            ))}
-        </div>
+        {regions.length > 1 && (
+            <div class="stage-filter" role="group" aria-label={t.filterLabel} hidden data-stage-filter>
+                <button type="button" aria-pressed="true" data-region="all">{t.all} ({entries.length})</button>
+                {regions.map((r) => (
+                    <button type="button" aria-pressed="false" data-region={r.key}>{t.regions[r.key]} ({r.count})</button>
+                ))}
+            </div>
+        )}
         <p class="stage-count" aria-live="polite" hidden data-stage-count></p>
 
         <ul class="stage-grid" role="list">
@@ -140,7 +135,6 @@ function imageOf(entry: (typeof entries)[number]) {
                 <li class="stage-card" data-region={entry.data.region}>
                     <figure class="stage-card__media">
                         <img src={imageOf(entry)} alt="" width="1000" height="667" loading="lazy" decoding="async" />
-                        {entry.data.placeholder && <span class="stage-card__tag">{t.placeholder}</span>}
                     </figure>
                     <div class="stage-card__body">
                         <p class="stage-card__where">
@@ -509,20 +503,6 @@ function imageOf(entry: (typeof entries)[number]) {
         .stage-card:hover .stage-card__media img {
             transform: scale(1.05);
         }
-    }
-
-    .stage-card__tag {
-        position: absolute;
-        top: 0.6rem;
-        left: 0.6rem;
-        padding: 0.2rem 0.6rem;
-        border-radius: var(--radius-ui);
-        background: var(--color-red-soft);
-        color: var(--color-text);
-        font-size: 0.75rem;
-        font-weight: var(--font-weight-medium);
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
     }
 
     .stage-card__body {
