@@ -36,7 +36,7 @@ z co najmniej dwóch regionów.
 
 ### Krok 2: flaga kraju
 Flaga pochodzi z `public/assets/icons/flags/[kod].svg` i reguły `.fi-[kod]` w `public/assets/styles.css`.
-Są już: `ar au br de es ge hu in jp ke lt pl ru ua uz za`. Dla nowego kraju skopiuj plik SVG (4×3, np. z pakietu
+Są już: `am ar au br de es ge hu in jp ke lt pl ru ua uz za`. Dla nowego kraju skopiuj plik SVG (4×3, np. z pakietu
 `flag-icons`, licencja MIT) i dopisz jedną linię `.fi-xx { background-image: url('icons/flags/xx.svg'); }`.
 
 ### Krok 3: profil PL (`src/content/theatres/pl/[slug].md`)

@@ -13,6 +13,7 @@ const PAGES = [
   '/pl/cookies.html', '/en/cookies.html',
   '/pl/dla-mediow.html', '/en/press.html',
   '/pl/teatr-baltazar.html', '/en/baltazar.html',
+  '/pl/nca-armenia.html', '/en/nca-armenia.html',
 ];
 
 const langOf = (url) => (url.startsWith('/en/') ? 'en' : 'pl');
@@ -178,7 +179,7 @@ test.describe('online stage', () => {
   test('lists the performances; the region filter only appears with more than one region', async ({ page }) => {
     await visitor(page);
     await page.goto('/pl/online.html');
-    await expect(page.locator('.stage-card:not([hidden])')).toHaveCount(1);
+    await expect(page.locator('.stage-card:not([hidden])')).toHaveCount(2);
     await expect(page.locator('[data-stage-filter]')).toHaveCount(0);
   });
 
@@ -199,7 +200,7 @@ test.describe('online stage', () => {
   test('the world map names the countries', async ({ page }) => {
     await visitor(page);
     await page.goto('/pl/online.html');
-    await expect(page.getByRole('img', { name: /Kraje uczestniczące:.*Węgry/ })).toBeVisible();
+    await expect(page.getByRole('img', { name: /Kraje uczestniczące:.*Armenia.*Węgry/ })).toBeVisible();
   });
 });
 

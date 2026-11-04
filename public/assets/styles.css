@@ -1906,6 +1906,7 @@ body:not(.high-contrast) [data-tone="dark"] {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
 }
 
+.fi-am { background-image: url('icons/flags/am.svg'); }
 .fi-ar { background-image: url('icons/flags/ar.svg'); }
 .fi-au { background-image: url('icons/flags/au.svg'); }
 .fi-br { background-image: url('icons/flags/br.svg'); }
