@@ -5,7 +5,8 @@ import JubileePlate from '../components/JubileePlate.astro';
 import '@fontsource-variable/oswald/wght.css';
 
 const siteUrl = 'https://masska.org';
-const title = `MASSKA ${edition.year} · ${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny`;
+// A title of its own: the two home pages (/pl/, /en/) carry the long names in each language
+const title = `MASSKA ${edition.year} · Sopot · Przegląd Teatralny / Theatre Review`;
 const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year} w Sopocie. 25 lat Masski. ${edition.numeral} MASSKA Anniversary International Theatre Review in Sopot.`;
 ---
 
@@ -17,6 +18,16 @@ const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd T
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{title}</title>
     <meta name="description" content={description}>
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <!-- The name of the site for search results (Google reads it from the home page) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MASSKA",
+        "alternateName": ["MASSKA Festival", "Międzynarodowy Przegląd Teatralny MASSKA", "MASSKA International Theatre Review"],
+        "url": `${siteUrl}/`,
+        "inLanguage": ["pl", "en"]
+    })} />
 
     <!-- Same rule as the root redirect in .htaccess, for hosts without Apache (GitHub Pages, dev
          server): people go straight to their language, crawlers stay on this x-default page -->

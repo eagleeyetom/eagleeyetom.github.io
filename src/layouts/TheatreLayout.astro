@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import WorldMap from '../components/WorldMap.astro';
+import { edition } from '../data/edition';
 
 interface Props {
   // Typed from the content schema so fields missing there fail `astro check`
@@ -81,7 +82,7 @@ function getTheatreUrl(entry: any) {
 
 <BaseLayout
   title={`${frontmatter.name} · ${frontmatter.showTitle} · MASSKA`}
-  description={`${frontmatter.name} (${frontmatter.city}) · spektakl "${frontmatter.showTitle}" · ${frontmatter.genre}`}
+  description={`${frontmatter.name} (${frontmatter.city}) · ${isPl ? "spektakl" : "performance"} "${frontmatter.showTitle}" · ${frontmatter.genre} · MASSKA ${edition.year}`}
   lang={lang}
   isTheatre={true}
   activeTheatreId={frontmatter.id}

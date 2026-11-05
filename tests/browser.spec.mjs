@@ -173,6 +173,28 @@ test.describe('cookie banner', () => {
     await page.waitForLoadState('networkidle');
     expect(external).toEqual([]);
   });
+
+  test('Google Analytics loads with the id of the property once analytics are accepted, and again on the next page', async ({ page }) => {
+    const loaded = [];
+    // the script is answered here, so the test sends nothing to Google
+    await page.route(/googletagmanager\.com|google-analytics\.com/, (route) => {
+      loaded.push(route.request().url());
+      return route.fulfill({ contentType: 'text/javascript', body: '' });
+    });
+    await page.addInitScript(() => sessionStorage.setItem('masskaConfetti', '1'));
+    await page.goto('/pl/index.html');
+    expect(loaded).toEqual([]);
+    await page.locator('[data-consent-banner]').getByRole('button', { name: 'Akceptuj wszystko' }).click();
+    await expect.poll(() => loaded.length).toBe(1);
+    expect(loaded[0]).toBe('https://www.googletagmanager.com/gtag/js?id=G-CKB0FYJDGK');
+    // the page_view comes from this "config" call once the library has loaded
+    await expect.poll(() => page.evaluate(() =>
+      [...window.dataLayer].map((a) => Array.from(a)).find((a) => a[0] === 'config')?.[1])).toBe('G-CKB0FYJDGK');
+
+    await page.goto('/pl/teatr-baltazar.html');
+    // (a visitor whose browser is English is taken on to the English page, which loads it once more)
+    await expect.poll(() => loaded.length).toBeGreaterThanOrEqual(2);
+  });
 });
 
 test.describe('"watch online" buttons', () => {

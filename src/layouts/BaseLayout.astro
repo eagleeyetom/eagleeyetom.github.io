@@ -85,7 +85,7 @@ const isPl = lang === 'pl';
 const eventDates = edition.datesConfirmed
   ? { startDate: edition.start, endDate: edition.end }
   : {};
-const festivalPlace = Object.values(edition.venues).map((venue) => ({
+const place = (venue: (typeof edition.venues)[keyof typeof edition.venues]) => ({
   "@type": "Place",
   "name": venue.name,
   "address": {
@@ -94,7 +94,31 @@ const festivalPlace = Object.values(edition.venues).map((venue) => ({
     "addressLocality": venue.city,
     "addressCountry": venue.country
   }
-}));
+});
+// Live in Sopot and online: with the mixed attendance mode search engines expect both kinds of place
+const eventLocation = [
+  ...Object.values(edition.venues).map(place),
+  { "@type": "VirtualLocation", "url": `${siteUrl}${isPl ? '/pl/online.html' : '/en/online.html'}` }
+];
+const festivalName = isPl
+  ? `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year}`
+  : `${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}`;
+const festivalUrl = `${siteUrl}${isPl ? '/pl/' : '/en/'}`;
+// One entry per festival day (13 November, then 15-18 November), each at its own venue
+const subEvents = edition.datesConfirmed
+  ? edition.days.map((day, i) => ({
+      "@type": "Event",
+      "name": `${festivalName} · ${day.date}`,
+      "startDate": edition.schedule[i].start,
+      "endDate": edition.schedule[i].end,
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+      "location": place(day.venue)
+    }))
+  : [];
+// The event markup describes the festival itself, so only the pages about the festival carry it
+// (home pages and programme); an ensemble's page carries its own, the others none
+const describesFestival = ['/pl/', '/en/', '/pl/program.html', '/en/program.html'].includes(pathname);
 const organizer = {
   "@type": "Organization",
   "name": "Stowarzyszenie Na Drodze Ekspresji",
@@ -110,6 +134,11 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- What search engines read comes first: title, description, robots; the scripts after it -->
+    <meta name="description" content={description}>
+    <!-- Allowed to show large pictures in search results and Discover, unless the page says otherwise -->
+    <meta name="robots" content={robots ?? 'index, follow, max-image-preview:large'}>
+    <title>{title}</title>
     <!-- Lets CSS enhance only what JS can operate (e.g. the shortened intro) -->
     <script is:inline>document.documentElement.classList.add('js');</script>
     <!-- The "watch online" buttons (marked data-online) only show from the first festival day, or in
@@ -165,9 +194,6 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
             if (debug || Date.now() >= Date.parse(onlineFrom)) root.classList.add('online-live');
         })();
     </script>
-    <meta name="description" content={description}>
-    {robots && <meta name="robots" content={robots}>}
-    <title>{title}</title>
 
     <!-- CSS Stylesheets -->
     <link rel="stylesheet" href={`../assets/styles.css?v=${assetVersion}`}>
@@ -190,7 +216,7 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="MASSKA Festival">
+    <meta property="og:site_name" content="MASSKA">
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
     <meta property="og:url" content={canonical}>
@@ -213,29 +239,33 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
         "@type": "TheaterEvent",
         "name": title,
         "description": description,
+        "url": canonical,
+        "inLanguage": lang,
         ...eventDates,
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
-        "location": festivalPlace,
+        "location": eventLocation,
         "image": `${siteUrl}/assets/img/og-masska-2026.jpg`,
-        "organizer": organizer
+        "organizer": organizer,
+        "superEvent": { "@type": "Festival", "name": festivalName, "url": festivalUrl }
       })} />
-    ) : (
+    ) : describesFestival ? (
       <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Festival",
-        "name": isPl
-          ? `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year}`
-          : `${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}`,
+        "name": festivalName,
         "description": description,
+        "url": canonical,
+        "inLanguage": lang,
         ...eventDates,
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
-        "location": festivalPlace,
+        "location": eventLocation,
+        "subEvent": subEvents,
         "image": `${siteUrl}/assets/img/og-masska-2026.jpg`,
         "organizer": organizer
       })} />
-    )}
+    ) : null}
 </head>
 
 <body data-redirect-to-preferred-language={redirectToPreferredLanguage ? "true" : "false"}>

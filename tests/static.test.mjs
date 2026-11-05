@@ -242,3 +242,58 @@ test('404.html is there, kept out of search engines and leads home in both langu
   assert.match(html, /\/assets\/styles\.css\?v=[a-z0-9]+"/, 'the stylesheet carries the build version');
   assert.ok(existsSync(join(DIST, 'assets', 'styles.css')));
 });
+
+test('every page has a title and a description of its own, of a length search results can show', () => {
+  const titles = new Map();
+  const bad = [];
+  for (const page of pages.values()) {
+    const title = page.html.match(/<title>([^<]*)<\/title>/)?.[1] ?? '';
+    const description = page.html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '';
+    titles.set(title, [...(titles.get(title) ?? []), page.name]);
+    if (title.length < 10 || title.length > 70) bad.push(`${page.name}: title of ${title.length} characters`);
+    if (description.length < 70 || description.length > 165) bad.push(`${page.name}: description of ${description.length} characters`);
+  }
+  for (const [title, names] of titles) if (names.length > 1) bad.push(`the title "${title}" is used by ${names.join(', ')}`);
+  problems(bad);
+});
+
+test('event markup sits on the pages about the festival and the ensembles, with a place online and one per festival day', () => {
+  const bad = [];
+  for (const page of pages.values()) {
+    const types = [...page.html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+    const festival = types.find((d) => d['@type'] === 'Festival');
+    const aboutFestival = /^(pl|en)\/(index|program)\.html$/.test(page.name);
+    if (aboutFestival && !festival) bad.push(`${page.name}: no Festival markup`);
+    if (!aboutFestival && festival) bad.push(`${page.name}: Festival markup on a page that is not about the festival`);
+    for (const event of types.filter((d) => ['Festival', 'TheaterEvent'].includes(d['@type']))) {
+      if (!event.location.some((l) => l['@type'] === 'VirtualLocation')) bad.push(`${page.name}: no online location`);
+      if (event['@type'] === 'Festival' && !(event.subEvent?.length >= 5)) bad.push(`${page.name}: the festival days are missing`);
+    }
+  }
+  problems(bad);
+});
+
+test('the home page of the site (/) names the site, and the pages leave indexing to the search engines', () => {
+  const root = pages.get(join(DIST, 'index.html'));
+  const site = [...root.html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1])).find((d) => d['@type'] === 'WebSite');
+  assert.equal(site?.name, 'MASSKA');
+  const noindex = [...pages.values()].filter((p) => /<meta name="robots" content="[^"]*noindex/.test(p.html)).map((p) => p.name);
+  // no stand-in ensembles any more: nothing in the built site is kept out of the index
+  assert.deepEqual(noindex, []);
+});
+
+test('the pages of the old site are redirected, www goes to the bare domain, and the sitemap has its new address', () => {
+  const htaccess = readFileSync('public/.htaccess', 'utf8');
+  assert.match(htaccess, /RewriteCond %\{HTTP_HOST\} \^www\\./);
+  assert.match(htaccess, /RewriteRule \^sitemap\\.xml\$ \/sitemap-index\.xml \[R=301,L\]/);
+  // the ensemble pages of the 2025 edition that search engines know (from its sitemap)
+  const old = [
+    'pl/teatr-danza-mobile', 'pl/teatr-krug-ii', 'pl/teatr-lik', 'pl/teatr-otczapy', 'pl/teatr-parostky-szczesliwi-wygnancy',
+    'pl/teatr-parostky', 'pl/teatr-rambazamba', 'pl/teatr-tur', 'pl/trupa-mtt',
+    'en/danza-mobile', 'en/krug-ii', 'en/lik', 'en/otczapy-theater', 'en/parostky-happy-exiles', 'en/parostky',
+    'en/rambazamba', 'en/troupe-mtt', 'en/tur',
+  ];
+  const rules = [...htaccess.matchAll(/RewriteRule \^((?:pl|en)\/\([^ ]+\)\\.html\$) \/(pl|en)\/online\.html \[R=301,L\]/g)].map((m) => new RegExp(m[1]));
+  const bad = old.filter((path) => !rules.some((rule) => rule.test(`${path}.html`)) || existsSync(join(DIST, `${path}.html`)));
+  problems(bad);
+});

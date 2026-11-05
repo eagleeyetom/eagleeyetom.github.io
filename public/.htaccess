@@ -1,7 +1,15 @@
-# force ssl
+# force ssl, and the one address of the site: www.masska.org -> masska.org (one step, not two)
 RewriteEngine On
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://masska.org%{REQUEST_URI} [L,R=301]
+
+# The pages of the ensembles of the 2025 edition are gone; search engines still know them, so
+# they go permanently to the online stage of their language (a 404 would lose what they gained)
+RewriteRule ^pl/(teatr-danza-mobile|teatr-krug-ii|teatr-lik|teatr-otczapy|teatr-parostky-szczesliwi-wygnancy|teatr-parostky|teatr-rambazamba|teatr-tur|trupa-mtt)\.html$ /pl/online.html [R=301,L]
+RewriteRule ^en/(danza-mobile|krug-ii|lik|otczapy-theater|parostky-happy-exiles|parostky|rambazamba|troupe-mtt|tur)\.html$ /en/online.html [R=301,L]
+# The old sitemap's address, from before the sitemap-index of the current build
+RewriteRule ^sitemap\.xml$ /sitemap-index.xml [R=301,L]
 
 # Remove index.html from URLs (canonical enforcement)
 RewriteCond %{THE_REQUEST} ^GET\ .*/index\.html\ HTTP
