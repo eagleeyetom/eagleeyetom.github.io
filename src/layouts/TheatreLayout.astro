@@ -121,7 +121,7 @@ function getTheatreUrl(entry: any) {
                         <p>
                             {frontmatter.availability
                                 ? (isPl ? `Dostępne online: ${frontmatter.availability}` : `Available online: ${frontmatter.availability}`)
-                                : (isPl ? "Spektakl będzie dostępny w czasie festiwalu." : "The performance will be available during the festival.")}
+                                : (isPl ? `Spektakl będzie dostępny online ${edition.online.dateLabel.pl}.` : `The performance will be available online ${edition.online.dateLabel.en}.`)}
                         </p>
                     </div>
                 )}

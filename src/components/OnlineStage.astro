@@ -15,7 +15,7 @@ const t = isPl
       eyebrow: `MASSKA Online · ${edition.numeral}`,
       title: 'Scena online',
       lead: 'Teatry z całego świata pokazują swoje spektakle w sieci. Wybierz zespół, włącz napisy i oglądaj, gdziekolwiek jesteś.',
-      when: 'Termin',
+      when: 'Dostępne',
       provisional: 'termin do potwierdzenia',
       shows: 'Spektakle',
       countries: 'Kraje',
@@ -26,16 +26,13 @@ const t = isPl
       all: 'Wszystkie',
       count: (n: number, total: number) => `Pokazano ${n} z ${total} spektakli`,
       available: 'Dostępny online',
-      ctaTitle: 'Jesteś teatrem?',
-      ctaText: 'Przyjmujemy zgłoszenia zespołów z Polski i z zagranicy. Wypełnij krótki formularz, a odezwiemy się do Ciebie.',
-      ctaButton: 'Zgłoś swój teatr',
       regions: { europe: 'Europa', asia: 'Azja', americas: 'Ameryki', africa: 'Afryka', oceania: 'Oceania' },
     }
   : {
       eyebrow: `MASSKA Online · ${edition.numeral}`,
       title: 'Online stage',
       lead: 'Theatres from all over the world show their performances online. Pick an ensemble, turn on the subtitles and watch wherever you are.',
-      when: 'Dates',
+      when: 'Available',
       provisional: 'dates to be confirmed',
       shows: 'Performances',
       countries: 'Countries',
@@ -46,9 +43,6 @@ const t = isPl
       all: 'All',
       count: (n: number, total: number) => `Showing ${n} of ${total} performances`,
       available: 'Available online',
-      ctaTitle: 'Are you a theatre?',
-      ctaText: 'We accept applications from ensembles in Poland and abroad. Fill in a short form and we will get back to you.',
-      ctaButton: 'Apply with your theatre',
       regions: { europe: 'Europe', asia: 'Asia', americas: 'The Americas', africa: 'Africa', oceania: 'Oceania' },
     };
 
@@ -65,7 +59,6 @@ const regions = regionOrder
 // One flag per country, in the order of the list
 const countries = [...new Map(entries.map((e) => [e.data.countryCode, e.data.country])).entries()];
 
-const applyUrl = 'https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform';
 
 function slugOf(entry: (typeof entries)[number]) {
   return entry.id.split('/').pop();
@@ -99,7 +92,7 @@ function imageOf(entry: (typeof entries)[number]) {
                 <div>
                     <dt>{t.when}</dt>
                     <dd>
-                        <time datetime={edition.start.slice(0, 10)}>{edition.dateLabel[lang]}</time>
+                        <time datetime={edition.online.start.slice(0, 10)}>{edition.online.dateLabel[lang]}</time>
                         {!edition.datesConfirmed && <span class="stage-facts__detail">{t.provisional}</span>}
                     </dd>
                 </div>
@@ -174,14 +167,6 @@ function imageOf(entry: (typeof entries)[number]) {
                 ))}
             </ul>
         </div>
-    </div>
-</section>
-
-<section class="page-section" data-tone="dark" aria-labelledby="stage-cta-title">
-    <div class="section-inner section-narrow stage-cta">
-        <h2 id="stage-cta-title">{t.ctaTitle}</h2>
-        <p>{t.ctaText}</p>
-        <a class="button primary" href={applyUrl} target="_blank" rel="noopener noreferrer">{t.ctaButton}</a>
     </div>
 </section>
 
@@ -574,17 +559,5 @@ function imageOf(entry: (typeof entries)[number]) {
         margin: auto 0 0;
         padding-top: 0.5rem;
         font-size: 0.85rem;
-    }
-
-    /* ---- Call to action ---- */
-    .stage-cta {
-        display: grid;
-        justify-items: start;
-        gap: var(--spacing-sm);
-    }
-
-    .stage-cta p {
-        max-width: 36rem;
-        margin: 0 0 var(--spacing-sm);
     }
 </style>

@@ -6,7 +6,7 @@ import { edition } from '../../data/edition';
 
 <BaseLayout
   title={`Online stage · MASSKA ${edition.year}`}
-  description={`MASSKA Online ${edition.year}: performances by theatres from all over the world, with subtitles, available online during the ${edition.numeral} Anniversary International Theatre Review.`}
+  description={`MASSKA Online ${edition.year}: performances by theatres from all over the world, with subtitles, available online ${edition.online.dateLabel.en}.`}
   lang="en"
 >
     <OnlineStage lang="en" />

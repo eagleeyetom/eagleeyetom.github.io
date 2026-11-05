@@ -1,20 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { edition, dayLabel } from '../../data/edition';
+import ProgramSchedule from '../../components/ProgramSchedule.astro';
+import { edition } from '../../data/edition';
+import { venues } from '../../data/program';
 
-// PLACEHOLDER: the 2026 programme is not announced yet. Replace the days below
-// (and the dates in src/data/edition.ts) once it is.
-const days = [
-  { title: 'Day 1', entries: ['Lorem ipsum (City): Dolor sit amet', 'Consectetur (City): Adipiscing elit'] },
-  { title: 'Day 2', entries: ['Sed do eiusmod (City): Tempor incididunt', 'Ut labore (City): Et dolore magna', 'Aliqua (City): Ut enim ad minim'] },
-  { title: 'Day 3', entries: ['Quis nostrud (City): Exercitation', 'Ullamco laboris (City): Nisi ut aliquip'] },
-  { title: 'Day 4', entries: ['Ex ea commodo (City): Consequat', 'Duis aute (City): Irure dolor in reprehenderit'] },
-  { title: 'Day 5', entries: ['Voluptate velit (City): Esse cillum dolore', 'Eu fugiat nulla (City): Pariatur excepteur'] },
-];
 ---
 <BaseLayout
   title={`Schedule · MASSKA ${edition.year}`}
-  description={`Schedule of the ${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}. Performances, workshops and events in Sopot.`}
+  description={`Schedule of the ${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year}: performances, a film, concerts and a gala, day by day. ${edition.dateLabel.en}, Sopot.`}
   lang="en"
   redirectToPreferredLanguage={true}
 >
@@ -22,17 +15,13 @@ const days = [
             <div class="hero-text">
                 <p class="eyebrow">{edition.numeral} Anniversary International Theatre Review</p>
                 <h1>MASSKA {edition.year} Festival Program</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. {edition.dateLabel.en} in Sopot
-                    — sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>{edition.dateLabel.en} in Sopot: performances by theatres from Poland and abroad, a film, concerts and a gala. The whole programme is below, day by day.</p>
                 <div class="hero-actions">
                     <a class="button primary" data-online href="online.html">Watch streams</a>
-                    <a class="button secondary"
-                        href="https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform"
-                        target="_blank" rel="noopener noreferrer">Theatre submission</a>
                 </div>
                 <div class="chip-row" role="list">
                     {edition.places.map((place) => <span class="chip" role="listitem">{place.when.en} · {place.venue.shortName}</span>)}
-                    <span class="chip" role="listitem">Performances & workshops</span>
+                    <span class="chip" role="listitem">Performances, film & concerts</span>
                     <span class="chip" role="listitem">Live and online</span>
                 </div>
             </div>
@@ -49,10 +38,13 @@ const days = [
                     {edition.places.map((place) => (
                         <article class="card">
                             <h3>{place.venue.name}</h3>
-                            <p><strong>{place.when.en}</strong> · {place.venue.street}, {place.venue.city}. Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                            <p><strong>{place.when.en}</strong> · {place.venue.street}, {place.venue.city}</p>
                         </article>
                     ))}
+                    <article class="card">
+                        <h3>{venues.mamuszki14.name}</h3>
+                        <p><strong>16 Nov</strong> · {venues.mamuszki14.city}. Gala and party for the participants of the review.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -61,24 +53,7 @@ const days = [
             <div class="section-inner">
                 <h2 id="detailed-program">Detailed schedule</h2>
 
-                <div class="announcement">
-                    <p><strong>Programme in preparation.</strong> The entries below are placeholders: the full
-                        programme will be published once the dates and ensembles are confirmed.</p>
-                </div>
-
-                <div class="timeline">
-                    {days.map((day) => (
-                        <div class="timeline-item">
-                            <h3>{day.title} · {dayLabel(edition.days[days.indexOf(day)].date, 'en')}</h3>
-                            <p><strong>{edition.days[days.indexOf(day)].venue.shortName}</strong></p>
-                            <ul>
-                                {day.entries.map((entry) => (
-                                    <li><strong>00:00</strong> — {entry} (00 min)</li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
+                <ProgramSchedule lang="en" />
 
                 <div class="announcement">
                     <p><strong>Notice:</strong> The organizer reserves the right to make changes to the program for
@@ -94,13 +69,6 @@ const days = [
                     <p>The festival takes place in a hybrid format — performances are available live in Sopot and via
                         online streaming.</p>
 
-                    <h3>Accessibility</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-
-                    <h3>Workshop registration</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.</p>
                 </div>
                 <aside class="info-panel" aria-label="Key practical information">
                     <h2>Organizational contact</h2>
@@ -111,7 +79,7 @@ const days = [
                         </div>
                         <div>
                             <dt>Venue</dt>
-                            <dd>{edition.places.map((place) => <div>{place.when.en}: {place.venue.name}<br>{place.venue.street}, {place.venue.city}</div>)}</dd>
+                            <dd>{edition.places.map((place) => <div>{place.when.en}: {place.venue.name}<br>{place.venue.street}, {place.venue.city}</div>)}<div>16 Nov (gala): {venues.mamuszki14.name}, {venues.mamuszki14.city}</div></dd>
                         </div>
                     </dl>
                 </aside>

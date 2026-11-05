@@ -297,3 +297,17 @@ test('the pages of the old site are redirected, www goes to the bare domain, and
   const bad = old.filter((path) => !rules.some((rule) => rule.test(`${path}.html`)) || existsSync(join(DIST, `${path}.html`)));
   problems(bad);
 });
+
+test('the programme pages list every entry of the programme, in both languages, with no filler left', () => {
+  const expected = 26; // 4 + 4 + 5 + the gala + 6 + 6 entries, see src/data/program.ts
+  for (const name of ['pl/program.html', 'en/program.html']) {
+    const page = pages.get(join(DIST, ...name.split('/')));
+    assert.equal((page.body.match(/<time class="program__time"/g) ?? []).length, expected, name);
+    assert.doesNotMatch(page.body, /lorem|ipsum|zaślepk|placeholder/i, name);
+    const festival = [...page.html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1])).find((d) => d['@type'] === 'Festival');
+    assert.equal(festival.subEvent.length, expected, `${name}: one Event per entry in the structured data`);
+    assert.ok(festival.subEvent.every((e) => /^2026-11-1[3-8]T\d\d:\d\d:00\+01:00$/.test(e.startDate)), name);
+  }
+  const pl = pages.get(join(DIST, 'pl', 'program.html')).body;
+  for (const text of ['Dziadek', 'Amatorzy', 'Mamuszki 14', 'Toż/samość', 'Kto szuka, też błądzi', 'W kolejce… ale po co?']) assert.ok(pl.includes(text), text);
+});

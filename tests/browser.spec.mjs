@@ -97,8 +97,9 @@ test.describe('countdown', () => {
   test('counts to the next day in the break between the 13th and the 15th', async ({ page }) => {
     const box = await at(page, '2026-11-14T12:00:00+01:00');
     await expect(box.locator('[data-countdown-label]')).toContainText('Do kolejnego dnia festiwalu');
-    await expect(box.locator('[data-countdown-part]').nth(0)).toHaveText('0');
-    await expect(box.locator('[data-countdown-part]').nth(1)).toHaveText('22');
+    // the 15th starts at 14:00 (the first performance in Teatr Atelier): 26 hours from noon on the 14th
+    await expect(box.locator('[data-countdown-part]').nth(0)).toHaveText('1');
+    await expect(box.locator('[data-countdown-part]').nth(1)).toHaveText('02');
   });
 
   test('disappears after the last day', async ({ page }) => {
@@ -203,18 +204,18 @@ test.describe('"watch online" buttons', () => {
   const shown = async (page) => page.evaluate(() =>
     [...document.querySelectorAll('[data-online]')].map((el) => getComputedStyle(el).display !== 'none'));
 
-  test('are hidden before the first festival day', async ({ page }) => {
+  test('are hidden until MASSKA Online starts, also through the festival days', async ({ page }) => {
     await visitor(page);
-    await page.clock.setFixedTime(new Date('2026-11-12T23:00:00+01:00'));
+    await page.clock.setFixedTime(new Date('2026-11-19T23:59:00+01:00'));
     await page.goto('/pl/index.html');
     expect(await gated(page).count()).toBeGreaterThanOrEqual(3); // header, hero, card, footer
     expect(await shown(page)).not.toContain(true);
     await expect(page.locator('html')).not.toHaveClass(/online-live/);
   });
 
-  test('show from the first festival day on', async ({ page }) => {
+  test('show from 20 November 2026, 0:00 on', async ({ page }) => {
     await visitor(page);
-    await page.clock.setFixedTime(new Date('2026-11-13T00:30:00+01:00'));
+    await page.clock.setFixedTime(new Date('2026-11-20T00:00:30+01:00'));
     await page.goto('/pl/index.html');
     expect(await shown(page)).not.toContain(false);
     await expect(page.locator('.hero-actions').getByRole('link', { name: 'Oglądaj online' })).toBeVisible();

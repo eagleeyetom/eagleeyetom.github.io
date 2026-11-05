@@ -29,10 +29,18 @@ export const edition = {
   firstYear: 2002,
 
   // Dates are confirmed: one day on its own (13 November) and then four days (15-18 November).
-  // The opening and closing times are still guesses (used by the countdown only).
+  // The first start of each day is from the programme (src/data/program.ts); the closing times are
+  // still guesses (used by the countdown only), except the gala of 16 November, which ends at 21:30.
   datesConfirmed: true,
   start: '2026-11-13T10:00:00+01:00',
   end: '2026-11-18T22:00:00+01:00',
+
+  // MASSKA Online starts on 20 November 2026 at midnight (Polish time), after the live days: from then
+  // on the "watch online" buttons show (see BaseLayout) and the pages give this date
+  online: {
+    start: '2026-11-20T00:00:00+01:00',
+    dateLabel: { pl: 'od 20 listopada 2026', en: 'from 20 November 2026' },
+  },
   // The festival days, one per programme day, and where each takes place
   days: [
     { date: '2026-11-13', venue: wybrzeze },
@@ -48,8 +56,8 @@ export const edition = {
   ],
   schedule: [
     { start: '2026-11-13T10:00:00+01:00', end: '2026-11-13T22:00:00+01:00' },
-    { start: '2026-11-15T10:00:00+01:00', end: '2026-11-15T22:00:00+01:00' },
-    { start: '2026-11-16T10:00:00+01:00', end: '2026-11-16T22:00:00+01:00' },
+    { start: '2026-11-15T14:00:00+01:00', end: '2026-11-15T22:00:00+01:00' },
+    { start: '2026-11-16T10:00:00+01:00', end: '2026-11-16T21:30:00+01:00' },
     { start: '2026-11-17T10:00:00+01:00', end: '2026-11-17T22:00:00+01:00' },
     { start: '2026-11-18T10:00:00+01:00', end: '2026-11-18T22:00:00+01:00' },
   ],

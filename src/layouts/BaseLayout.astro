@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { edition } from '../data/edition';
+import { performanceEvents } from '../data/program';
 import { assetVersion } from '../data/build';
 // Self-hosted fonts (no request to Google Fonts): Oswald for headings, Inter for text
 import '@fontsource-variable/oswald/wght.css';
@@ -119,6 +120,8 @@ const subEvents = edition.datesConfirmed
 // The event markup describes the festival itself, so only the pages about the festival carry it
 // (home pages and programme); an ensemble's page carries its own, the others none
 const describesFestival = ['/pl/', '/en/', '/pl/program.html', '/en/program.html'].includes(pathname);
+// The programme page lists every performance, so there the festival's parts are the performances themselves
+const isProgramme = pathname === '/pl/program.html' || pathname === '/en/program.html';
 const organizer = {
   "@type": "Organization",
   "name": "Stowarzyszenie Na Drodze Ekspresji",
@@ -141,10 +144,10 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
     <title>{title}</title>
     <!-- Lets CSS enhance only what JS can operate (e.g. the shortened intro) -->
     <script is:inline>document.documentElement.classList.add('js');</script>
-    <!-- The "watch online" buttons (marked data-online) only show from the first festival day, or in
+    <!-- The "watch online" buttons (marked data-online) only show once MASSKA Online has started, or in
          debug mode: open any page with ?debug (switch off with ?debug=0; remembered in this browser).
          Set before the first paint, so nothing flashes. Without JS the buttons stay hidden. -->
-    <script is:inline define:vars={{ onlineFrom: `${edition.days[0].date}T00:00:00+01:00` }}>
+    <script is:inline define:vars={{ onlineFrom: edition.online.start }}>
         (function () {
             var root = document.documentElement;
             var debug = false;
@@ -261,7 +264,7 @@ const isHome = pathname === '/pl/' || pathname === '/en/';
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
         "location": eventLocation,
-        "subEvent": subEvents,
+        "subEvent": isProgramme ? performanceEvents(lang) : subEvents,
         "image": `${siteUrl}/assets/img/og-masska-2026.jpg`,
         "organizer": organizer
       })} />

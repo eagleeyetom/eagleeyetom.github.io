@@ -1,0 +1,142 @@
+---
+// The programme day by day, from src/data/program.ts: one block per day, in it one list per venue.
+import { dayLabel, type Lang } from '../data/edition';
+import { programDays, venues, words } from '../data/program';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<div class="timeline program">
+    {programDays.map((day) => (
+        <div class="timeline-item">
+            <h3>{dayLabel(day.date, lang)}</h3>
+            {day.sessions.map((session) => (
+                <div class="program__venue">
+                    <p class="program__place">
+                        <strong>{venues[session.venue].name}</strong>
+                        <span>{[venues[session.venue].street, venues[session.venue].city].filter(Boolean).join(', ')}</span>
+                    </p>
+                    <ul class="program__list" aria-label={venues[session.venue].name}>
+                        {session.entries.map((entry) => (
+                            <li class:list={['program__entry', entry.kind && `program__entry--${entry.kind}`]}>
+                                <time class="program__time" datetime={`${day.date}T${entry.time}`}>
+                                    {entry.time}{entry.end && <span aria-hidden="true">–{entry.end}</span>}
+                                    {entry.end && <span class="sr-only"> {lang === 'pl' ? 'do' : 'to'} {entry.end}</span>}
+                                </time>
+                                <span class="program__what">
+                                    <strong class="program__group">{words(entry.group, lang)}</strong>
+                                    {entry.show && <span class="program__show">{entry.show}</span>}
+                                    {entry.note && <span class="program__note">{words(entry.note, lang)}</span>}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+    ))}
+</div>
+
+<style>
+    .program__venue + .program__venue {
+        margin-top: var(--spacing-md);
+    }
+
+    .program__place {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.1rem 0.75rem;
+        margin: 0 0 var(--spacing-xs);
+        color: var(--color-muted);
+    }
+
+    .program__place strong {
+        color: var(--color-text);
+    }
+
+    .program__list {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .program__entry {
+        display: grid;
+        grid-template-columns: 4.5rem 1fr;
+        gap: 0.75rem;
+        padding: 0.55rem 0;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .program__entry:last-child {
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .program__time {
+        font-family: var(--font-family-headers);
+        font-size: 1.15rem;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.35;
+        color: var(--color-red-text);
+        white-space: nowrap;
+    }
+
+    .program__time > [aria-hidden] {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--color-muted);
+    }
+
+    .program__what {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 0.5rem;
+        min-width: 0;
+        line-height: 1.4;
+    }
+
+    .program__group {
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text);
+    }
+
+    .program__show {
+        color: var(--color-text);
+    }
+
+    .program__show::before {
+        content: '–';
+        margin-right: 0.5rem;
+        color: var(--color-muted);
+    }
+
+    /* On a phone the title goes under the name of the ensemble, without the dash that would hang at the start of a line */
+    @media (max-width: 560px) {
+        .program__show {
+            flex-basis: 100%;
+        }
+
+        .program__show::before {
+            content: none;
+        }
+    }
+
+    .program__note {
+        font-size: 0.9rem;
+        color: var(--color-muted);
+    }
+
+    /* The gala is set apart by a mark on the left */
+    .program__entry--gala {
+        padding-left: 0.75rem;
+        border-left: 4px solid var(--color-red);
+        background: var(--color-red-soft);
+    }
+</style>

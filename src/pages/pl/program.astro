@@ -1,20 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { edition, dayLabel } from '../../data/edition';
+import ProgramSchedule from '../../components/ProgramSchedule.astro';
+import { edition } from '../../data/edition';
+import { venues } from '../../data/program';
 
-// PLACEHOLDER: the 2026 programme is not announced yet. Replace the days below
-// (and the dates in src/data/edition.ts) once it is.
-const days = [
-  { title: 'Dzień 1', entries: ['Lorem ipsum (Miasto): Dolor sit amet', 'Consectetur (Miasto): Adipiscing elit'] },
-  { title: 'Dzień 2', entries: ['Sed do eiusmod (Miasto): Tempor incididunt', 'Ut labore (Miasto): Et dolore magna', 'Aliqua (Miasto): Ut enim ad minim'] },
-  { title: 'Dzień 3', entries: ['Quis nostrud (Miasto): Exercitation', 'Ullamco laboris (Miasto): Nisi ut aliquip'] },
-  { title: 'Dzień 4', entries: ['Ex ea commodo (Miasto): Consequat', 'Duis aute (Miasto): Irure dolor in reprehenderit'] },
-  { title: 'Dzień 5', entries: ['Voluptate velit (Miasto): Esse cillum dolore', 'Eu fugiat nulla (Miasto): Pariatur excepteur'] },
-];
 ---
 <BaseLayout
   title={`Program · MASSKA ${edition.year}`}
-  description={`Program ${edition.numeral} Jubileuszowego Międzynarodowego Przeglądu Teatralnego MASSKA ${edition.year}. Spektakle, warsztaty i wydarzenia w Sopocie.`}
+  description={`Program ${edition.numeral} Jubileuszowego Międzynarodowego Przeglądu Teatralnego MASSKA ${edition.year}: spektakle, film, koncerty i gala, dzień po dniu. ${edition.dateLabel.pl}, Sopot.`}
   lang="pl"
   redirectToPreferredLanguage={true}
 >
@@ -22,17 +15,13 @@ const days = [
             <div class="hero-text">
                 <p class="eyebrow">{edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny</p>
                 <h1>Program festiwalu MASSKA {edition.year}</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. {edition.dateLabel.pl} w Sopocie
-                    — sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>{edition.dateLabel.pl} w Sopocie: spektakle teatrów z Polski i z zagranicy, film, koncerty i gala. Poniżej cały program, dzień po dniu.</p>
                 <div class="hero-actions">
                     <a class="button primary" data-online href="online.html">Oglądaj transmisje</a>
-                    <a class="button secondary"
-                        href="https://docs.google.com/forms/d/1-cCnZtjLfHMI9uyEodcN6xm2t2ZBQPrVYIwB4eLu0yE/viewform"
-                        target="_blank" rel="noopener noreferrer">Zgłoszenie teatru</a>
                 </div>
                 <div class="chip-row" role="list">
                     {edition.places.map((place) => <span class="chip" role="listitem">{place.when.pl} · {place.venue.shortName}</span>)}
-                    <span class="chip" role="listitem">Spektakle i warsztaty</span>
+                    <span class="chip" role="listitem">Spektakle, film i koncerty</span>
                     <span class="chip" role="listitem">Na żywo i online</span>
                 </div>
             </div>
@@ -49,10 +38,13 @@ const days = [
                     {edition.places.map((place) => (
                         <article class="card">
                             <h3>{place.venue.name}</h3>
-                            <p><strong>{place.when.pl}</strong> · {place.venue.street}, {place.venue.city}. Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                            <p><strong>{place.when.pl}</strong> · {place.venue.street}, {place.venue.city}</p>
                         </article>
                     ))}
+                    <article class="card">
+                        <h3>{venues.mamuszki14.name}</h3>
+                        <p><strong>16.11</strong> · {venues.mamuszki14.city}. Gala i zabawa dla uczestników przeglądu.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -61,24 +53,7 @@ const days = [
             <div class="section-inner">
                 <h2 id="program-szczegolowy">Program szczegółowy</h2>
 
-                <div class="announcement">
-                    <p><strong>Program w przygotowaniu.</strong> Poniższe wpisy to zaślepki: pełny program
-                        opublikujemy po potwierdzeniu terminu i zespołów.</p>
-                </div>
-
-                <div class="timeline">
-                    {days.map((day) => (
-                        <div class="timeline-item">
-                            <h3>{day.title} · {dayLabel(edition.days[days.indexOf(day)].date, 'pl')}</h3>
-                            <p><strong>{edition.days[days.indexOf(day)].venue.shortName}</strong></p>
-                            <ul>
-                                {day.entries.map((entry) => (
-                                    <li><strong>00:00</strong> — {entry} (00 min)</li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
+                <ProgramSchedule lang="pl" />
 
                 <div class="announcement">
                     <p><strong>Uwaga:</strong> Organizator zastrzega sobie prawo do zmian w programie z powodów od niego
@@ -94,24 +69,17 @@ const days = [
                     <p>Festiwal odbywa się w formule hybrydowej — spektakle są dostępne na żywo w Sopocie oraz w
                         transmisji online.</p>
 
-                    <h3>Dostępność</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-
-                    <h3>Zapisy na warsztaty</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.</p>
                 </div>
                 <aside class="info-panel" aria-label="Najważniejsze informacje praktyczne">
                     <h2>Kontakt organizacyjny</h2>
                     <dl>
                         <div>
-                            <dt>Pytania i zgłoszenia</dt>
+                            <dt>Pytania</dt>
                             <dd><a href="kontakt.html">Formularz kontaktowy</a></dd>
                         </div>
                         <div>
                             <dt>Miejsce</dt>
-                            <dd>{edition.places.map((place) => <div>{place.when.pl}: {place.venue.name}<br>{place.venue.street}, {place.venue.city}</div>)}</dd>
+                            <dd>{edition.places.map((place) => <div>{place.when.pl}: {place.venue.name}<br>{place.venue.street}, {place.venue.city}</div>)}<div>16.11 (gala): {venues.mamuszki14.name}, {venues.mamuszki14.city}</div></dd>
                         </div>
                     </dl>
                 </aside>
