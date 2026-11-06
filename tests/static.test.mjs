@@ -237,10 +237,15 @@ test('404.html is there, kept out of search engines and leads home in both langu
   assert.ok(existsSync(file), '404.html missing');
   const html = readFileSync(file, 'utf8');
   assert.match(html, /<meta name="robots" content="noindex">/);
-  assert.match(html, /href="\/pl\/"/);
-  assert.match(html, /href="\/en\/"/);
-  assert.match(html, /\/assets\/styles\.css\?v=[a-z0-9]+"/, 'the stylesheet carries the build version');
+  assert.match(html, /<base href="\/">/);
+  assert.match(html, /href="pl\/"/);
+  assert.match(html, /href="en\/"/);
+  assert.match(html, /href="assets\/styles\.css\?v=[a-z0-9]+"/, 'the stylesheet carries the build version');
   assert.ok(existsSync(join(DIST, 'assets', 'styles.css')));
+  // the figure with the "404" candles, and the fonts of the site, which postbuild copies in
+  assert.ok(existsSync(join(DIST, 'assets', 'img', 'plakaty', '2026-art-404.webp')));
+  assert.match(html, /@font-face/);
+  for (const [, font] of html.matchAll(/url\(_astro\/([^)]+)\)/g)) assert.ok(existsSync(join(DIST, '_astro', font)), font);
 });
 
 test('every page has a title and a description of its own, of a length search results can show', () => {

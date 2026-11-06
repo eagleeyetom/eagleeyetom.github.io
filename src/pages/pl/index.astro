@@ -7,7 +7,7 @@ import { edition } from '../../data/edition';
 ---
 <BaseLayout
   title={`MASSKA ${edition.year} · ${edition.numeral} Jubileuszowy Przegląd Teatralny · Sopot`}
-  description={`${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year} w Sopocie. 25 lat Masski: spektakle, warsztaty i spotkania z twórcami, na żywo i online.`}
+  description={`${edition.numeral} Jubileuszowy Międzynarodowy Przegląd Teatralny MASSKA ${edition.year} w Sopocie. 25 lat Masski: spektakle i spotkania z twórcami, na żywo i online.`}
   lang="pl"
   redirectToPreferredLanguage={false}
 >
@@ -19,7 +19,7 @@ import { edition } from '../../data/edition';
                 <h2 id="klip-promocyjny">Klip promocyjny MASSKA 2026</h2>
                 <p>Zapowiedź XXV, jubileuszowej edycji festiwalu.</p>
                 <div>
-                    <div class="external-media" data-yt-id="q2rQAHBiSn0" data-title="MASSKA 2026 - klip promocyjny"></div>
+                    <div class="external-media" data-yt-id="SH75G6zo5rY" data-title="MASSKA 2026 - klip promocyjny"></div>
                 </div>
             </div>
         </section>
@@ -61,8 +61,8 @@ import { edition } from '../../data/edition';
                     <div class="timeline">
                         <div class="timeline-item">
                             <h3>{edition.dateLabel.pl} · Festiwal stacjonarny</h3>
-                            <p>Spektakle na żywo w Sopocie: {edition.places[0].when.pl} na Scenie Kameralnej Teatru Wybrzeże ({edition.venues.wybrzeze.street}), {edition.places[1].when.pl} w Teatrze Atelier ({edition.venues.atelier.street}). Warsztaty,
-                                spotkania z twórcami i wieczorne wydarzenia.</p>
+                            <p>Spektakle na żywo w Sopocie: {edition.places[0].when.pl} na Scenie Kameralnej Teatru Wybrzeże ({edition.venues.wybrzeze.street}), {edition.places[1].when.pl} w Teatrze Atelier ({edition.venues.atelier.street}). Spotkania
+                                z twórcami i wieczorne wydarzenia.</p>
                         </div>
                         <div class="timeline-item">
                             <h3>MASSKA Online</h3>
@@ -109,22 +109,21 @@ import { edition } from '../../data/edition';
                 <h2 id="sekcja-wyroznienia">Co oferuje festiwal</h2>
                 <div class="card-grid">
                     <article class="card">
-                        <img class="card__media" src="../assets/img/teatr/placeholder-1.webp" alt="" loading="lazy" decoding="async">
+                        <img class="card__media" src="../assets/img/karty/kapelusz.webp" alt="" loading="lazy" decoding="async">
                         <h3>Spektakle na żywo</h3>
                         <p>Przedstawienia zespołów teatralnych z Polski i zagranicy na scenach w Sopocie.</p>
                         <a class="button ghost" href="program.html">Zobacz program</a>
                     </article>
                     <article class="card">
-                        <img class="card__media" src="../assets/img/teatr/placeholder-3.webp" alt="" loading="lazy" decoding="async">
+                        <img class="card__media" src="../assets/img/karty/muszka.webp" alt="" loading="lazy" decoding="async">
                         <h3>MASSKA Online</h3>
                         <p>Spektakle teatrów z całego świata, z napisami w dwóch językach: {edition.online.dateLabel.pl}.</p>
                         <a class="button ghost" data-online href="online.html">Platforma online</a>
                     </article>
                     <article class="card">
-                        <img class="card__media" src="../assets/img/teatr/placeholder-4.webp" alt="" loading="lazy" decoding="async">
-                        <h3>Warsztaty i spotkania</h3>
-                        <p>Warsztaty taneczne, teatralne i muzyczne prowadzone przez profesjonalistów. Spotkania z
-                            twórcami spektakli.</p>
+                        <img class="card__media" src="../assets/img/karty/usta.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Spotkania i gala</h3>
+                        <p>Spotkania z twórcami spektakli oraz gala i zabawa dla uczestników przeglądu (16.11).</p>
                         <a class="button ghost" href="program.html#program-szczegolowy">Szczegóły</a>
                     </article>
                 </div>

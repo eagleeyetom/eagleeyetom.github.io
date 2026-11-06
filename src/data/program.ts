@@ -46,7 +46,7 @@ export const programDays: ProgramDay[] = [
       entries: [
         { time: '10:00', group: 'Teatr MarionBrand', show: 'Dziadek' },
         { time: '12:00', group: { pl: 'Film fabularny', en: 'Feature film' }, show: 'Amatorzy', note: { pl: 'projekcja', en: 'screening' }, kind: 'film' },
-        { time: '17:00', group: 'Teatro Estudio 87', show: 'O potrzebie' },
+        { time: '17:00', group: { pl: 'Teatro Estudio 87 i Radio Escénica', en: 'Teatro Estudio 87 and Radio Escénica' }, show: 'Sobre cómo un hombre heterosexual le rompe el corazón a otro' },
         { time: '19:00', group: 'Walny Teatr', show: 'Koncert na klarnet i orkiestrę' },
       ],
     }],
@@ -73,7 +73,7 @@ export const programDays: ProgramDay[] = [
           { time: '11:30', group: 'Teatr Smile', show: '21 elementów' },
           { time: '13:00', group: 'Teatr Euforion', show: '9 kochanek kawalera Dorna' },
           { time: '14:30', group: 'Teatr EF', show: 'Informacja' },
-          { time: '17:00', group: 'Teatro Estudio 87', show: 'O potrzebie' },
+          { time: '17:00', group: { pl: 'Teatro Estudio 87 i Radio Escénica', en: 'Teatro Estudio 87 and Radio Escénica' }, show: 'Sobre cómo un hombre heterosexual le rompe el corazón a otro' },
         ],
       },
       {

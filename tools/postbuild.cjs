@@ -122,9 +122,19 @@ const home = path.join(distDir, 'pl', 'index.html');
 if (fs.existsSync(notFound) && fs.existsSync(home)) {
   const version = /assets\/styles\.css\?v=([a-z0-9]+)/.exec(fs.readFileSync(home, 'utf8'))?.[1];
   if (version) {
-    const html = fs.readFileSync(notFound, 'utf8').replace('/assets/styles.css"', `/assets/styles.css?v=${version}"`);
+    let html = fs.readFileSync(notFound, 'utf8').replace('assets/styles.css"', `assets/styles.css?v=${version}"`);
+    // The fonts of the site (Oswald, Inter): their @font-face rules sit inside the pages' <style>
+    // blocks; take them from the home page and make the font files root-absolute
+    const home = fs.readFileSync(path.join(distDir, 'pl', 'index.html'), 'utf8');
+    const fontFaces = [...home.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)]
+      .map((match) => match[1])
+      .filter((css) => css.includes('@font-face'))
+      .map((css) => (css.match(/@font-face\{[^}]*\}/g) ?? []).join(''))
+      .join('')
+      .replace(/url\(\.\.\/_astro\//g, 'url(_astro/');
+    html = html.replace('</head>', ['    <style>' + fontFaces + '</style>', '</head>'].join(require('os').EOL));
     fs.writeFileSync(notFound, html);
-    console.log('Versioned the stylesheet of 404.html');
+    console.log(`Versioned the stylesheet of 404.html and added ${(fontFaces.match(/@font-face/g) ?? []).length} font faces`);
   }
 }
 

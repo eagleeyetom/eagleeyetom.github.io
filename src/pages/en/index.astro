@@ -7,7 +7,7 @@ import { edition } from '../../data/edition';
 ---
 <BaseLayout
   title={`MASSKA ${edition.year} · ${edition.numeral} Anniversary International Theatre Review`}
-  description={`${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year} in Sopot. 25 years of Masska: performances, workshops and meetings with the artists, live and online.`}
+  description={`${edition.numeral} MASSKA Anniversary International Theatre Review ${edition.year} in Sopot. 25 years of Masska: performances and meetings with the artists, live and online.`}
   lang="en"
   redirectToPreferredLanguage={false}
 >
@@ -19,7 +19,7 @@ import { edition } from '../../data/edition';
                 <h2 id="promotional-video">MASSKA 2026 Promotional Video</h2>
                 <p>A preview of the XXV anniversary edition of the festival.</p>
                 <div>
-                    <div class="external-media" data-yt-id="q2rQAHBiSn0" data-title="MASSKA 2026 - promotional video"></div>
+                    <div class="external-media" data-yt-id="SH75G6zo5rY" data-title="MASSKA 2026 - promotional video"></div>
                 </div>
             </div>
         </section>
@@ -62,7 +62,7 @@ import { edition } from '../../data/edition';
                         <div class="timeline-item">
                             <h3>{edition.dateLabel.en} · In-Person Festival</h3>
                             <p>Live performances in {edition.venue.city}: {edition.places[0].when.en} at the {edition.venues.wybrzeze.shortName} ({edition.venues.wybrzeze.street}), {edition.places[1].when.en} at {edition.venues.atelier.shortName} ({edition.venues.atelier.street}).
-                                Workshops, meetings with creators, and evening events.</p>
+                                Meetings with creators and evening events.</p>
                         </div>
                         <div class="timeline-item">
                             <h3>MASSKA Online</h3>
@@ -110,23 +110,22 @@ import { edition } from '../../data/edition';
                 <h2 id="highlights-section">What the festival offers</h2>
                 <div class="card-grid">
                     <article class="card">
-                        <img class="card__media" src="../assets/img/teatr/placeholder-1.webp" alt="" loading="lazy" decoding="async">
+                        <img class="card__media" src="../assets/img/karty/kapelusz.webp" alt="" loading="lazy" decoding="async">
                         <h3>Live performances</h3>
                         <p>Performances by theatre ensembles from Poland and abroad on stages in Sopot.</p>
                         <a class="button ghost" href="program.html">View schedule</a>
                     </article>
                     <article class="card">
-                        <img class="card__media" src="../assets/img/teatr/placeholder-3.webp" alt="" loading="lazy" decoding="async">
+                        <img class="card__media" src="../assets/img/karty/muszka.webp" alt="" loading="lazy" decoding="async">
                         <h3>MASSKA Online</h3>
                         <p>Performances by theatres from all over the world, with subtitles in two languages:
                             {edition.online.dateLabel.en}.</p>
                         <a class="button ghost" data-online href="online.html">Online platform</a>
                     </article>
                     <article class="card">
-                        <img class="card__media" src="../assets/img/teatr/placeholder-4.webp" alt="" loading="lazy" decoding="async">
-                        <h3>Workshops and meetings</h3>
-                        <p>Dance, theatre, and music workshops led by professionals. Meetings with performance creators.
-                        </p>
+                        <img class="card__media" src="../assets/img/karty/usta.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Meetings and gala</h3>
+                        <p>Meetings with the creators of the performances, and a gala with a party for the participants of the review (16 Nov).</p>
                         <a class="button ghost" href="program.html#detailed-program">Details</a>
                     </article>
                 </div>

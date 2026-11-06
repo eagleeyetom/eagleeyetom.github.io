@@ -5,27 +5,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
     <title>404 · MASSKA 2026</title>
-    <!-- Served for any address that does not exist, at any depth, so every path here is root-absolute
-         (the pages built by Astro use relative ones) -->
-    <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="icon" href="/assets/icons/favicon.ico" sizes="any">
+    <!-- Served for any address that does not exist, at any depth: <base> makes the paths below start at
+         the root of the site. Opened from a folder on disk (file://), the base is that folder instead, so
+         the page looks the same there. tools/postbuild.cjs adds the fonts of the site. -->
+    <base href="/">
+    <script>
+        if (location.protocol === 'file:') document.querySelector('base').href = location.href.replace(/[^/]*$/, '');
+    </script>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
     <meta name="theme-color" content="#111111">
     <style>
-        .not-found { max-width: 40rem; margin: 0 auto; padding: 4rem 1.25rem; text-align: center; }
-        .not-found h1 { margin: 0 0 0.5rem; font-size: clamp(3rem, 14vw, 6rem); line-height: 1; color: #d32f13; }
-        .not-found p { margin: 0 0 1.5rem; }
-        .not-found .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+        .nf {
+            display: grid;
+            gap: 1.5rem 3rem;
+            align-items: center;
+            max-width: 62rem;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 3rem;
+        }
+
+        @media (min-width: 800px) {
+            .nf {
+                grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+                min-height: 100vh;
+            }
+        }
+
+        /* The figure of the poster, with the candles of its own: 4 0 4, the middle one blown out */
+        .nf__stage {
+            position: relative;
+            width: min(100%, 22rem);
+            margin: 0 auto;
+            aspect-ratio: 900 / 1246;
+        }
+
+        .nf__stage img,
+        .nf__stage svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .nf__stage svg {
+            overflow: visible;
+        }
+
+        .wax {
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .wax--edge { stroke: #7d1203; stroke-width: 28; }
+        .wax--body { stroke: url(#wax-red); stroke-width: 22; }
+        .wax--shine { stroke: rgba(255, 255, 255, 0.42); stroke-width: 4; }
+        .wick { stroke: #111; stroke-width: 4; stroke-linecap: round; }
+
+        .flame {
+            fill: url(#flame);
+            transform-box: fill-box;
+            transform-origin: 50% 100%;
+        }
+
+        .smoke {
+            fill: none;
+            stroke: #8d8d8d;
+            stroke-width: 5;
+            stroke-linecap: round;
+            opacity: 0.55;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .flame { animation: flicker 0.46s ease-in-out infinite alternate; }
+            .flame--b { animation-duration: 0.61s; animation-delay: -0.2s; }
+            .smoke { animation: rise 3.2s ease-in-out infinite; }
+        }
+
+        @keyframes flicker {
+            from { transform: scale(1, 1) rotate(-3deg); }
+            to { transform: scale(0.86, 1.1) rotate(4deg); }
+        }
+
+        @keyframes rise {
+            0% { opacity: 0; transform: translateY(14px); }
+            30% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-26px); }
+        }
+
+        /* What the figure says, out of its lips */
+        .nf__bubble {
+            position: absolute;
+            left: 69%;
+            top: 43%;
+            width: 9.5rem;
+            padding: 0.55rem 0.8rem 0.65rem;
+            border: 3px solid #111;
+            border-radius: 1rem;
+            background: #fff;
+            box-shadow: 4px 4px 0 #d32f13;
+            font-family: var(--font-family-headers);
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.15;
+            text-transform: uppercase;
+            color: #111;
+            transform: rotate(3deg);
+        }
+
+        .nf__bubble::before {
+            content: '';
+            position: absolute;
+            left: -0.95rem;
+            top: 62%;
+            width: 1.2rem;
+            height: 1.2rem;
+            border-left: 3px solid #111;
+            border-bottom: 3px solid #111;
+            background: #fff;
+            transform: rotate(40deg) skew(12deg);
+        }
+
+        .nf__text .eyebrow { margin: 0 0 0.25rem; }
+        .nf__text h1 { margin: 0 0 1rem; line-height: 1.02; }
+        .nf__text p { max-width: 32rem; margin: 0 0 1rem; }
+        .nf__text .en { color: var(--color-muted); }
+        .nf__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
     </style>
 </head>
 <body>
-    <main class="not-found">
-        <h1>404</h1>
-        <p><strong>Nie znaleziono tej strony.</strong> Mogła zmienić adres albo nigdy jej nie było.</p>
-        <p lang="en"><strong>This page was not found.</strong> It may have moved, or it never existed.</p>
-        <div class="actions">
-            <a class="button primary" href="/pl/">Strona główna</a>
-            <a class="button secondary" href="/en/" lang="en">Home page</a>
+    <main class="nf">
+        <div class="nf__stage">
+            <img src="assets/img/plakaty/2026-art-404.webp" width="900" height="1246" alt="" decoding="async">
+            <svg viewBox="0 0 900 1246" aria-hidden="true" focusable="false">
+                <defs>
+                    <linearGradient id="wax-red" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#ff5a24"/>
+                        <stop offset="1" stop-color="#c4200a"/>
+                    </linearGradient>
+                    <radialGradient id="flame" cx="50%" cy="72%" r="60%">
+                        <stop offset="0" stop-color="#fff6c9"/>
+                        <stop offset="0.25" stop-color="#ffc531"/>
+                        <stop offset="0.6" stop-color="#ff7a1a"/>
+                        <stop offset="1" stop-color="#d32f13" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+
+                <!-- 4 -->
+                <g transform="translate(360 27)">
+                    <path class="wax wax--edge" d="M44 11V114M44 11L11 78H56"/>
+                    <path class="wax wax--body" d="M44 11V114M44 11L11 78H56"/>
+                    <path class="wax wax--shine" d="M37 16V108M38 18L8 74"/>
+                    <path class="wick" d="M44 -6V-24"/>
+                    <ellipse class="flame" cx="44" cy="-42" rx="10" ry="19"/>
+                </g>
+                <!-- 0: the candle that went out -->
+                <g transform="translate(430 27)">
+                    <ellipse class="wax wax--edge" cx="31" cy="62.5" rx="20" ry="51.5"/>
+                    <ellipse class="wax wax--body" cx="31" cy="62.5" rx="20" ry="51.5"/>
+                    <path class="wax wax--shine" d="M17 40Q19 22 31 16"/>
+                    <path class="wick" d="M31 -6Q33 -16 28 -26"/>
+                    <path class="smoke" d="M28 -32C16 -48 42 -58 30 -76C20 -90 38 -100 32 -112"/>
+                </g>
+                <!-- 4 -->
+                <g transform="translate(500 27)">
+                    <path class="wax wax--edge" d="M44 11V114M44 11L11 78H56"/>
+                    <path class="wax wax--body" d="M44 11V114M44 11L11 78H56"/>
+                    <path class="wax wax--shine" d="M37 16V108M38 18L8 74"/>
+                    <path class="wick" d="M44 -6V-24"/>
+                    <ellipse class="flame flame--b" cx="44" cy="-42" rx="10" ry="19"/>
+                </g>
+            </svg>
+            <p class="nf__bubble" aria-hidden="true">Ups… tu nic nie ma!</p>
+        </div>
+
+        <div class="nf__text">
+            <p class="eyebrow">Błąd 404</p>
+            <h1>Ta strona zeszła z&nbsp;afisza</h1>
+            <p>Adres, którego szukasz, nie istnieje. Mógł zmienić miejsce albo nigdy nie trafił do programu. Jedna świeczka zgasła, ale festiwal świeci dalej.</p>
+            <p class="en" lang="en"><strong>This page has left the bill.</strong> The address does not exist: it may have moved, or it never made it into the programme. One candle went out, but the festival goes on.</p>
+            <div class="nf__actions">
+                <a class="button primary" href="pl/">Strona główna</a>
+                <a class="button secondary" href="pl/program.html">Program</a>
+                <a class="button secondary" href="en/" lang="en">Home page</a>
+            </div>
         </div>
     </main>
+    <script>
+        // From a folder on disk a folder address shows no page: point at its index.html
+        if (location.protocol === 'file:') document.querySelectorAll('a[href$="/"]').forEach((a) => a.setAttribute('href', a.getAttribute('href') + 'index.html'));
+    </script>
 </body>
 </html>

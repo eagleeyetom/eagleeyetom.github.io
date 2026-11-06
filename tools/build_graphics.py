@@ -193,6 +193,32 @@ def placeholder_photos(art):
         save(resize_to_width(crop, 1000), IMG / "teatr" / f"placeholder-{n}.webp", quality=62, method=6)
 
 
+# The three pictures of the "What the festival offers" cards on the home page, 16:10, each one detail
+# of the figure: (left, top, width) in pixels of the artwork
+CARD_CROPS = {
+    "kapelusz": (300, 700, 3600),  # the bowler hat
+    "muszka": (1190, 4099, 2600),  # the bow tie
+    "usta": (1318, 2700, 1800),  # the lips in the halftone face
+}
+
+
+def cards(art):
+    print("Cards")
+    for name, (x, y, w) in CARD_CROPS.items():
+        h = round(w / 1.6)
+        y = min(y, art.height - h)
+        save(resize_to_width(art.crop((x, y, x + w, y + h)), 1100), IMG / "karty" / f"{name}.webp", quality=78, method=6)
+
+
+def art_404(art):
+    """The figure of the hero without the "25" candles, for the 404 page, which stands its own
+    candles ("404") on the crown of the hat: everything above the crown is wiped to white."""
+    print("Art for the 404 page")
+    small = resize_to_width(art, 900).convert("RGB")
+    ImageDraw.Draw(small).rectangle((0, 0, small.width, 152), fill=WHITE)
+    save(small, IMG / "plakaty" / "2026-art-404.webp", quality=72, method=6)
+
+
 def ink_edge():
     """A strip of halftone dots that grow downwards until they merge, like the face on the poster.
     Used as a mask above dark sections so the dark block fades into the page in print dots.
@@ -254,6 +280,8 @@ def main():
     archive_posters()
     partners(poster)
     placeholder_photos(art)
+    cards(art)
+    art_404(art)
     ink_edge()
     icons(candles)
     print("Done.")
