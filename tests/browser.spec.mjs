@@ -127,6 +127,30 @@ test.describe('language', () => {
     await page.goto('/index.html');
     await expect(page).toHaveURL(/\/en\/$/);
   });
+
+  // The one rule of the home page (the .htaccess has no language redirect of its own): the language
+  // chosen before, else Polish if Polish is on the browser's list, else English
+  test.describe('the home page of the site, first visit', () => {
+    test.use({ locale: 'de-DE' });
+
+    test('a browser that does not list Polish gets the English page', async ({ page }) => {
+      await page.goto('/index.html');
+      await expect(page).toHaveURL(/\/en\/$/);
+    });
+  });
+
+  test('a browser that lists Polish, even after English, gets the Polish page', async ({ page }) => {
+    await page.addInitScript(() => Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'pl'] }));
+    await page.goto('/index.html');
+    await expect(page).toHaveURL(/\/pl\/$/);
+  });
+
+  test('the language chosen before wins over the language of the browser', async ({ page }) => {
+    await page.addInitScript(() => Object.defineProperty(navigator, 'languages', { get: () => ['pl-PL'] }));
+    await visitor(page, { language: 'en' });
+    await page.goto('/index.html');
+    await expect(page).toHaveURL(/\/en\/$/);
+  });
 });
 
 test.describe('text size and contrast buttons', () => {
@@ -270,12 +294,12 @@ test.describe('"watch online" buttons', () => {
     await page.clock.setFixedTime(new Date('2026-11-01T12:00:00+01:00'));
     await page.goto('/pl/kontakt.html');
     const card = page.locator('article.card', { hasText: 'Czy spektakle są dostępne online?' });
-    expect(await card.evaluate((el) => el.querySelector('p').innerText)).toMatch(/na naszej platformie online\.$/);
+    expect(await card.evaluate((el) => el.querySelector('p').innerText)).toMatch(/na naszej scenie online, z napisami/);
     expect(await card.locator('a').count()).toBe(0 + (await card.locator('a[data-online]').count()));
     expect(await card.locator('a[data-online]').evaluate((el) => getComputedStyle(el).display)).toBe('none');
     await page.goto('/pl/kontakt.html?debug');
-    expect(await card.locator('p').evaluate((el) => el.innerText)).toMatch(/na naszej platformie online\.$/);
-    await expect(card.getByRole('link', { name: 'platformie online' })).toBeVisible();
+    expect(await card.locator('p').evaluate((el) => el.innerText)).toMatch(/na naszej scenie online, z napisami/);
+    await expect(card.getByRole('link', { name: 'scenie online' })).toBeVisible();
   });
 });
 
@@ -304,7 +328,9 @@ test.describe('online stage', () => {
   test('the world map names the countries', async ({ page }) => {
     await visitor(page);
     await page.goto('/pl/online.html');
-    await expect(page.getByRole('img', { name: /Kraje uczestniczące:.*Armenia.*Węgry/ })).toBeVisible();
+    // the online stage and the ensembles coming to Sopot
+    await expect(page.getByRole('img', { name: /Kraje uczestniczące:.*Armenia.*Węgry.*Polska.*Kolumbia/ })).toBeVisible();
+    await expect(page.locator('.flag-wall li')).toHaveText(['Armenia', 'Kolumbia', 'Polska', 'Węgry']);
   });
 });
 

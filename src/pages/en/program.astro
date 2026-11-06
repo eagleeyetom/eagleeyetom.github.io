@@ -16,8 +16,8 @@ import { venues } from '../../data/program';
                 <p class="eyebrow">{edition.numeral} Anniversary International Theatre Review</p>
                 <h1>MASSKA {edition.year} Festival Program</h1>
                 <p>{edition.dateLabel.en} in Sopot: performances by theatres from Poland and abroad, a film, concerts and a gala. The whole programme is below, day by day.</p>
-                <div class="hero-actions">
-                    <a class="button primary" data-online href="online.html">Watch streams</a>
+                <div class="hero-actions" data-online>
+                    <a class="button primary" href="online.html">Watch streams</a>
                 </div>
                 <div class="chip-row" role="list">
                     {edition.places.map((place) => <span class="chip" role="listitem">{place.when.en} · {place.venue.shortName}</span>)}
@@ -66,8 +66,8 @@ import { venues } from '../../data/program';
             <div class="section-inner two-column">
                 <div>
                     <h2 id="practical-info">Practical information</h2>
-                    <p>The festival takes place in a hybrid format — performances are available live in Sopot and via
-                        online streaming.</p>
+                    <p>The festival has two parts: live performances in Sopot ({edition.dateLabel.en}) and MASSKA Online,
+                        where performances by theatres from all over the world can be watched {edition.online.dateLabel.en}.</p>
 
                 </div>
                 <aside class="info-panel" aria-label="Key practical information">

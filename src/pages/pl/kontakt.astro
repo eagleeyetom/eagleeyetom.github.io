@@ -75,7 +75,7 @@ import { edition } from '../../data/edition';
                     <h3>Czas odpowiedzi</h3>
                     <p>
                         Odpowiadamy zazwyczaj w ciągu 2-3 dni roboczych. W okresie festiwalu ({edition.dateLabel.pl}) możliwe
-                        są krótsze opóźnienia.
+                        są niewielkie opóźnienia.
                     </p>
 
                     <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
@@ -94,7 +94,7 @@ import { edition } from '../../data/edition';
                 <div class="card-grid">
                     <article class="card">
                         <h3>Czy spektakle są dostępne online?</h3>
-                        <p>Tak! Transmisje wybranych spektakli są dostępne na naszej{" "}<a data-online href="online.html">platformie online</a><span data-online-off>platformie online</span>.</p>
+                        <p>Tak. {edition.online.dateLabel.pl[0].toUpperCase() + edition.online.dateLabel.pl.slice(1)} spektakle teatrów z całego świata można oglądać na naszej{" "}<a data-online href="online.html">scenie online</a><span data-online-off>scenie online</span>, z napisami w języku polskim i angielskim.</p>
                     </article>
                     <article class="card">
                         <h3>Jak dojechać do lokalizacji?</h3>

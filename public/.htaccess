@@ -15,17 +15,10 @@ RewriteRule ^sitemap\.xml$ /sitemap-index.xml [R=301,L]
 RewriteCond %{THE_REQUEST} ^GET\ .*/index\.html\ HTTP
 RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
 
-# Language redirect for root index.html (the answer depends on Accept-Language: see Vary below)
-RewriteCond %{HTTP_USER_AGENT} !(bot|crawler|spider|googlebot|bingbot|duckduckbot|baiduspider|yandex|sogou|exabot|slurp|facebot|ia_archiver) [NC]
-RewriteCond %{REQUEST_URI} ^/index\.html$ [OR]
-RewriteCond %{REQUEST_URI} ^/$
-RewriteCond %{HTTP:Accept-Language} ^en [NC]
-RewriteRule ^(index\.html)?$ /en/ [R=302,L,E=LANG_REDIRECT:1]
-
-RewriteCond %{HTTP_USER_AGENT} !(bot|crawler|spider|googlebot|bingbot|duckduckbot|baiduspider|yandex|sogou|exabot|slurp|facebot|ia_archiver) [NC]
-RewriteCond %{REQUEST_URI} ^/index\.html$ [OR]
-RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^(index\.html)?$ /pl/ [R=302,L,E=LANG_REDIRECT:1]
+# No language redirect here: the home page of the domain (/) is the language chooser, and a script
+# in it takes people to their language (the one they chose before, or else the one of their browser:
+# Polish if Polish is on its list, English otherwise). One rule in one place, the same on every host;
+# search engines stay on the chooser, which is the x-default page of the site.
 
 # A page that does not exist (public/404.html: noindex, links to both languages)
 ErrorDocument 404 /404.html
@@ -42,10 +35,6 @@ ErrorDocument 404 /404.html
     Header always set X-Content-Type-Options "nosniff"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set X-Frame-Options "SAMEORIGIN"
-
-    # The redirect from the root depends on the visitor's language: caches must not mix it up
-    Header always append Vary "Accept-Language" env=LANG_REDIRECT
-    Header always append Vary "Accept-Language" env=REDIRECT_LANG_REDIRECT
 </IfModule>
 
 # Caching (need mod_expires). The stylesheets and the script carry ?v=<build> in their URLs and

@@ -5,12 +5,12 @@ export type Lang = 'pl' | 'en';
 
 // 13 November is at the chamber stage of Teatr Wybrzeże, 15-18 November at Teatr Atelier
 const atelier = {
-  name: 'Teatr Atelier im. Agnieszki Osieckiej',
+  name: 'Teatr Atelier',
   shortName: 'Teatr Atelier',
   street: 'al. Franciszka Mamuszki 2',
   city: 'Sopot',
   country: 'PL',
-  mapsQuery: 'Teatr Atelier im. Agnieszki Osieckiej, al. Franciszka Mamuszki 2, Sopot',
+  mapsQuery: 'Teatr Atelier, al. Franciszka Mamuszki 2, Sopot',
 } as const;
 
 const wybrzeze = {

@@ -14,6 +14,16 @@ import { edition } from '../../data/edition';
         <JubileeHero lang="pl" />
         <JubileeBand lang="pl" />
 
+        <section class="page-section" aria-labelledby="klip-promocyjny">
+            <div class="section-inner section-narrow">
+                <h2 id="klip-promocyjny">Klip promocyjny MASSKA 2026</h2>
+                <p>Zapowiedź XXV, jubileuszowej edycji festiwalu.</p>
+                <div>
+                    <div class="external-media" data-yt-id="q2rQAHBiSn0" data-title="MASSKA 2026 - klip promocyjny"></div>
+                </div>
+            </div>
+        </section>
+
         <section class="page-section" aria-labelledby="wstep">
             <div class="section-inner intro">
                 <div class="intro__side">
@@ -56,8 +66,8 @@ import { edition } from '../../data/edition';
                         </div>
                         <div class="timeline-item">
                             <h3>MASSKA Online</h3>
-                            <p>Transmisje wybranych spektakli dostępne online z napisami w języku polskim i angielskim.
-                                Materiały do pobrania i opisy spektakli dla widzów z całego świata.</p>
+                            <p>Spektakle teatrów z całego świata w sieci, {edition.online.dateLabel.pl}, z napisami w języku
+                                polskim i angielskim.</p>
                         </div>
                         <div class="timeline-item">
                             <h3>Formuła hybrydowa</h3>
@@ -106,8 +116,8 @@ import { edition } from '../../data/edition';
                     </article>
                     <article class="card">
                         <img class="card__media" src="../assets/img/teatr/placeholder-3.webp" alt="" loading="lazy" decoding="async">
-                        <h3>Transmisje online</h3>
-                        <p>Wybrane spektakle dostępne online z napisami w dwóch językach.</p>
+                        <h3>MASSKA Online</h3>
+                        <p>Spektakle teatrów z całego świata, z napisami w dwóch językach: {edition.online.dateLabel.pl}.</p>
                         <a class="button ghost" data-online href="online.html">Platforma online</a>
                     </article>
                     <article class="card">
@@ -122,14 +132,4 @@ import { edition } from '../../data/edition';
         </section>
 
         <PosterGallery lang="pl" />
-
-        <section class="page-section" aria-labelledby="klip-promocyjny">
-            <div class="section-inner section-narrow">
-                <h2 id="klip-promocyjny">Klip promocyjny MASSKA 2026</h2>
-                <p>Zapowiedź XXV, jubileuszowej edycji festiwalu.</p>
-                <div>
-                    <div class="external-media" data-yt-id="q2rQAHBiSn0" data-title="MASSKA 2026 - klip promocyjny"></div>
-                </div>
-            </div>
-        </section>
 </BaseLayout>

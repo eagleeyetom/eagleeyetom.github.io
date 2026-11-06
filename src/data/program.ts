@@ -155,3 +155,46 @@ export function performanceEvents(lang: Lang) {
     }),
   );
 }
+
+// The ensembles of the live festival in Sopot and where they come from (for the map on the online
+// stage). Coordinates of the towns from OpenStreetMap; Teatro Estudio 87 works in two cities.
+const poland = { pl: 'Polska', en: 'Poland' };
+const colombia = { pl: 'Kolumbia', en: 'Colombia' };
+
+export interface LiveEnsemble {
+  name: string;
+  city: string;
+  country: { pl: string; en: string };
+  countryCode: string;
+  lat: number;
+  lon: number;
+}
+
+export const liveEnsembles: LiveEnsemble[] = [
+  { name: 'Teatr Ubogi Relacji', city: 'Sopot', country: poland, countryCode: 'pl', lat: 54.445, lon: 18.568 },
+  { name: 'Teatr Biuro Rzeczy Osobistych', city: 'Gdynia', country: poland, countryCode: 'pl', lat: 54.516, lon: 18.54 },
+  { name: 'Teatr Przebudzeni', city: 'Ostróda', country: poland, countryCode: 'pl', lat: 53.703, lon: 19.962 },
+  { name: 'Stanisław Wojciechowski', city: 'Pruszcz Gdański', country: poland, countryCode: 'pl', lat: 54.261, lon: 18.646 },
+  { name: 'Walny Teatr', city: 'Dzięgiel', country: poland, countryCode: 'pl', lat: 53.879, lon: 17.431 },
+  { name: 'Teatr Otczapy', city: 'Września', country: poland, countryCode: 'pl', lat: 52.325, lon: 17.565 },
+  { name: 'Teatr Nemno', city: 'Rzeszów', country: poland, countryCode: 'pl', lat: 50.037, lon: 22.005 },
+  { name: 'Teatr Smile', city: 'Łódź', country: poland, countryCode: 'pl', lat: 51.769, lon: 19.457 },
+  { name: 'Teatr Euforion', city: 'Wrocław', country: poland, countryCode: 'pl', lat: 51.109, lon: 17.033 },
+  { name: 'Teatr EF', city: 'Bielsko-Biała', country: poland, countryCode: 'pl', lat: 49.822, lon: 19.045 },
+  { name: 'Ksawery Męcnarowski', city: 'Bielsko-Biała', country: poland, countryCode: 'pl', lat: 49.822, lon: 19.045 },
+  { name: 'Teatroterapia Lubelska', city: 'Lublin', country: poland, countryCode: 'pl', lat: 51.251, lon: 22.57 },
+  { name: 'Teatr Łątek', city: 'Supraśl', country: poland, countryCode: 'pl', lat: 53.21, lon: 23.336 },
+  { name: 'Teatr BIS', city: 'Gdynia', country: poland, countryCode: 'pl', lat: 54.516, lon: 18.54 },
+  { name: 'Mały Big Band', city: 'Łódź', country: poland, countryCode: 'pl', lat: 51.769, lon: 19.457 },
+  { name: 'Teatr Cienie', city: 'Jarosław', country: poland, countryCode: 'pl', lat: 50.016, lon: 22.68 },
+  { name: 'Remont Pomp', city: 'Gdańsk', country: poland, countryCode: 'pl', lat: 54.348, lon: 18.654 },
+  { name: 'Teatr Arlekin', city: 'Iława', country: poland, countryCode: 'pl', lat: 53.598, lon: 19.561 },
+  { name: 'Teatro Estudio 87', city: 'Bogotá', country: colombia, countryCode: 'co', lat: 4.653, lon: -74.084 },
+  { name: 'Teatro Estudio 87', city: 'Medellín', country: colombia, countryCode: 'co', lat: 6.27, lon: -75.603 },
+  { name: 'Teatr Generacja (TeAtRAkcja)', city: 'Sopot', country: poland, countryCode: 'pl', lat: 54.445, lon: 18.568 },
+  { name: 'Agata Frankiewicz', city: 'Łódź', country: poland, countryCode: 'pl', lat: 51.769, lon: 19.457 },
+  { name: 'Teatr „Czy TAK, czy NIE?”', city: 'Toruń', country: poland, countryCode: 'pl', lat: 53.01, lon: 18.605 },
+  { name: 'Grupa Teatralna „Po prostu”', city: 'Odolanów', country: poland, countryCode: 'pl', lat: 51.574, lon: 17.674 },
+  { name: 'Mała Motoryka', city: 'Gdańsk', country: poland, countryCode: 'pl', lat: 54.348, lon: 18.654 },
+  { name: 'Bez Przesady – Teatr po pracy', city: 'Ostróda', country: poland, countryCode: 'pl', lat: 53.703, lon: 19.962 },
+];

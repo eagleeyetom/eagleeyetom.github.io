@@ -81,3 +81,6 @@ playwright-report/
 
 # Promo clip: high-resolution cut-outs and rendered frames (tools/promo/assets.py)
 tools/promo/assets/
+
+# Packages built for upload to the production server (npm run build, then zipped)
+release/

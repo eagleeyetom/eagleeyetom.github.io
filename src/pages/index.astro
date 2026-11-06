@@ -29,8 +29,9 @@ const description = `${edition.numeral} Jubileuszowy Międzynarodowy Przegląd T
         "inLanguage": ["pl", "en"]
     })} />
 
-    <!-- Same rule as the root redirect in .htaccess, for hosts without Apache (GitHub Pages, dev
-         server): people go straight to their language, crawlers stay on this x-default page -->
+    <!-- The one language rule of the site's home page, the same on every host (Apache, GitHub Pages,
+         dev server): people go straight to the language they chose before, or else to the one of their
+         browser (Polish if Polish is on its list, English otherwise); crawlers stay on this x-default page -->
     <script is:inline>
         (function () {
             try {

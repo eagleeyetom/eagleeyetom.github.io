@@ -14,6 +14,16 @@ import { edition } from '../../data/edition';
         <JubileeHero lang="en" />
         <JubileeBand lang="en" />
 
+        <section class="page-section" aria-labelledby="promotional-video">
+            <div class="section-inner section-narrow">
+                <h2 id="promotional-video">MASSKA 2026 Promotional Video</h2>
+                <p>A preview of the XXV anniversary edition of the festival.</p>
+                <div>
+                    <div class="external-media" data-yt-id="q2rQAHBiSn0" data-title="MASSKA 2026 - promotional video"></div>
+                </div>
+            </div>
+        </section>
+
         <section class="page-section" aria-labelledby="introduction">
             <div class="section-inner intro">
                 <div class="intro__side">
@@ -56,8 +66,8 @@ import { edition } from '../../data/edition';
                         </div>
                         <div class="timeline-item">
                             <h3>MASSKA Online</h3>
-                            <p>Selected performances available online with Polish and English subtitles. Downloadable
-                                materials and performance descriptions for audiences worldwide.</p>
+                            <p>Performances by theatres from all over the world online, {edition.online.dateLabel.en}, with
+                                Polish and English subtitles.</p>
                         </div>
                         <div class="timeline-item">
                             <h3>Hybrid Format</h3>
@@ -107,9 +117,9 @@ import { edition } from '../../data/edition';
                     </article>
                     <article class="card">
                         <img class="card__media" src="../assets/img/teatr/placeholder-3.webp" alt="" loading="lazy" decoding="async">
-                        <h3>Online streaming</h3>
-                        <p>Selected performances available online with subtitles in two
-                            languages.</p>
+                        <h3>MASSKA Online</h3>
+                        <p>Performances by theatres from all over the world, with subtitles in two languages:
+                            {edition.online.dateLabel.en}.</p>
                         <a class="button ghost" data-online href="online.html">Online platform</a>
                     </article>
                     <article class="card">
@@ -124,14 +134,4 @@ import { edition } from '../../data/edition';
         </section>
 
         <PosterGallery lang="en" />
-
-        <section class="page-section" aria-labelledby="promotional-video">
-            <div class="section-inner section-narrow">
-                <h2 id="promotional-video">MASSKA 2026 Promotional Video</h2>
-                <p>A preview of the XXV anniversary edition of the festival.</p>
-                <div>
-                    <div class="external-media" data-yt-id="q2rQAHBiSn0" data-title="MASSKA 2026 - promotional video"></div>
-                </div>
-            </div>
-        </section>
 </BaseLayout>

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { edition } from '../data/edition';
 import WorldMap from './WorldMap.astro';
+import { liveEnsembles } from '../data/program';
 
 interface Props {
   lang: 'pl' | 'en';
@@ -21,6 +22,9 @@ const t = isPl
       countries: 'Kraje',
       countriesLabel: 'Kraje uczestniczące w festiwalu',
       mapTitle: 'Skąd przyjeżdżają zespoły',
+      mapNote: 'Wszystkie zespoły festiwalu: te, które występują w Sopocie, i te ze sceny online.',
+      polandTitle: 'Zespoły z Polski',
+      townsLabel: 'Miejscowości i zespoły',
       gridTitle: 'Zespoły i spektakle',
       filterLabel: 'Pokaż zespoły z regionu',
       all: 'Wszystkie',
@@ -38,6 +42,9 @@ const t = isPl
       countries: 'Countries',
       countriesLabel: 'Countries taking part in the festival',
       mapTitle: 'Where the ensembles come from',
+      mapNote: 'All the ensembles of the festival: those performing in Sopot and those of the online stage.',
+      polandTitle: 'Ensembles from Poland',
+      townsLabel: 'Towns and ensembles',
       gridTitle: 'Ensembles and performances',
       filterLabel: 'Show ensembles from the region',
       all: 'All',
@@ -59,12 +66,34 @@ const regions = regionOrder
 // One flag per country, in the order of the list
 const countries = [...new Map(entries.map((e) => [e.data.countryCode, e.data.country])).entries()];
 
+// The map shows every ensemble of the festival: those of the online stage and those coming to Sopot
+const livePins = liveEnsembles.map((e, i) => ({
+  id: `live-${i}`,
+  name: e.name,
+  city: e.city,
+  country: e.country[lang],
+  countryCode: e.countryCode,
+  lat: e.lat,
+  lon: e.lon,
+}));
+const mapCountries = [...new Map([
+  ...entries.map((e) => [e.data.countryCode, e.data.country] as [string, string]),
+  ...livePins.map((p) => [p.countryCode, p.country] as [string, string]),
+]).entries()].sort((a, b) => a[1].localeCompare(b[1], lang));
+// The Polish towns with their ensembles, for the close-up map
+const polishTowns = [...mapPinsByTown()].sort((a, b) => a[0].localeCompare(b[0], 'pl'));
+function mapPinsByTown() {
+  const towns = new Map<string, string[]>();
+  for (const pin of livePins.filter((p) => p.countryCode === 'pl')) towns.set(pin.city, [...(towns.get(pin.city) ?? []), pin.name]);
+  return towns;
+}
+
 
 function slugOf(entry: (typeof entries)[number]) {
   return entry.id.split('/').pop();
 }
 
-const mapPins = entries.map((entry) => ({
+const mapPins = [...entries.map((entry) => ({
   id: entry.data.id,
   name: entry.data.name,
   city: entry.data.city.split(',')[0],
@@ -72,7 +101,7 @@ const mapPins = entries.map((entry) => ({
   countryCode: entry.data.countryCode,
   lat: entry.data.lat,
   lon: entry.data.lon,
-}));
+})), ...livePins];
 function imageOf(entry: (typeof entries)[number]) {
   const src = entry.data.gallery[0]?.src;
   return src ? `..${src}` : '../assets/img/teatr/placeholder-1.webp';
@@ -156,14 +185,26 @@ function imageOf(entry: (typeof entries)[number]) {
 <section class="page-section alt" aria-labelledby="stage-map-title">
     <div class="section-inner">
         <h2 id="stage-map-title">{t.mapTitle}</h2>
+        <p class="stage-map__note">{t.mapNote}</p>
         <div class="stage-geo">
-            <WorldMap lang={lang} pins={mapPins} />
+            <WorldMap lang={lang} pins={mapPins} noDotsIn={['pl']} />
             <ul class="flag-wall" role="list" aria-label={t.countriesLabel}>
-                {countries.map(([code, name]) => (
+                {mapCountries.map(([code, name]) => (
                     <li>
                         <span class={`fi fi-${code}`} aria-hidden="true"></span>
                         <span>{name}</span>
                     </li>
+                ))}
+            </ul>
+        </div>
+
+        <!-- Most of the live ensembles come from Poland: on the world map they would be one blot -->
+        <h3 class="stage-map__poland-title">{t.polandTitle}</h3>
+        <div class="stage-geo stage-geo--poland">
+            <WorldMap lang={lang} pins={mapPins} mode="country" focus="pl" />
+            <ul class="stage-map__towns" role="list" aria-label={t.townsLabel}>
+                {polishTowns.map(([town, names]) => (
+                    <li><strong>{town}</strong> <span>{names.join(', ')}</span></li>
                 ))}
             </ul>
         </div>
@@ -294,6 +335,40 @@ function imageOf(entry: (typeof entries)[number]) {
     }
 
     /* ---- Map and countries side by side ---- */
+    .stage-map__note {
+        max-width: 40rem;
+        margin: 0 0 var(--spacing-md);
+        color: var(--color-muted);
+    }
+
+    .stage-map__poland-title {
+        margin: var(--spacing-xl) 0 var(--spacing-sm);
+    }
+
+    .stage-map__towns {
+        columns: 3 13rem;
+        column-gap: var(--spacing-lg);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.9rem;
+    }
+
+    .stage-map__towns li {
+        break-inside: avoid;
+        margin-bottom: 0.5rem;
+    }
+
+    .stage-map__towns strong {
+        display: block;
+        font-family: var(--font-family-headers);
+        font-weight: 600;
+    }
+
+    .stage-map__towns span {
+        color: var(--color-muted);
+    }
+
     .stage-geo {
         display: grid;
         gap: var(--spacing-lg);
@@ -304,6 +379,11 @@ function imageOf(entry: (typeof entries)[number]) {
         .stage-geo {
             grid-template-columns: minmax(0, 860px) 15rem;
             justify-content: start;
+        }
+
+        /* the close-up of Poland: the towns below the map, in columns */
+        .stage-geo--poland {
+            grid-template-columns: minmax(0, 860px);
         }
     }
 
